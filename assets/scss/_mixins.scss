@@ -1,0 +1,41 @@
+//
+// Mixins
+// --------------------------------------------------
+@mixin clearfix {
+	zoom: 1;
+	&:before,
+	&:after {
+		content: " "; /* 1 */
+		display: table; /* 2 */
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin unstyled {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+// WP Dashboard Styling
+@mixin wptable {
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	border: 1px solid $border;
+	border-radius: 3px;
+}
+
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+      -ms-transform: translate($x, $y); // IE9 only
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+
+@mixin transition-transform($transition...) {
+  -webkit-transition: -webkit-transform $transition;
+     -moz-transition: -moz-transform $transition;
+       -o-transition: -o-transform $transition;
+          transition: transform $transition;
+}

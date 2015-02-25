@@ -1,0 +1,20 @@
+//
+// Admin Settings - General
+// --------------------------------------------------
+
+.simplefavorites-dependency {
+	margin-bottom: 10px;
+}
+
+// Textarea for holding dependency content
+.simplefavorites-dependency-content {
+	display: none;
+	padding-top: 8px;
+	p {
+		margin-bottom: 10px !important;
+	}
+	textarea {
+		width: 100%;
+		height: 200px;
+	}
+}
