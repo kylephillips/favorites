@@ -27,4 +27,25 @@ function toggle_dependency_content(item)
 	}
 }
 
+/**
+* --------------------------------------------------------------------
+* Settings Fields Toggling
+* --------------------------------------------------------------------
+*/
+$(document).on('change', '.simplefavorites-display-anonymous', function(){
+	toggle_anonymous_save();
+});
+$(document).ready(function(){
+	toggle_anonymous_save();
+});
+
+function toggle_anonymous_save()
+{
+	if ( $('.simplefavorites-display-anonymous').is(':checked') ){
+		$('.simplefavorites-save-anonymous').show();
+	} else {
+		$('.simplefavorites-save-anonymous').hide().find('input[type="checkbox"]').attr('checked', false);	
+	}
+}
+
 });

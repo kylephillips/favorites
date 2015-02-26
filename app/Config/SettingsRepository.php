@@ -13,4 +13,21 @@ class SettingsRepository {
 		return ( isset($option[$dependency]) && $option[$dependency] == 'true' ) ? true : false;
 	}
 
+	/**
+	* Anonymous Display Options
+	* @param string option key
+	* @since 1.0
+	* @return boolean
+	*/
+	public function anonymous($option = 'display')
+	{
+		$anon_option = get_option('simplefavorites_users');
+
+		if ( isset($anon_option['anonymous'][$option]) 
+			&& $anon_option['anonymous'][$option] == 'true') {
+			return true;
+		}
+		return false;
+	}
+
 }

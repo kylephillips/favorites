@@ -1,0 +1,1 @@
+<?php settings_fields( 'simple-favorites-display' ); ?>

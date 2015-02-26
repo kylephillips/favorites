@@ -4,7 +4,7 @@
 	<td><strong><?php echo SimpleFavorites\Helpers::version(); ?></strong></td>
 </tr>
 <tr valign="top">
-	<th scope="row"><?php _e('Display Options', 'simplefavorites'); ?></th>
+	<th scope="row"><?php _e('Depenedencies', 'simplefavorites'); ?></th>
 	<td>
 		<div class="simplefavorites-dependency">
 			<label>
