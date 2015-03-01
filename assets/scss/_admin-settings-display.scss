@@ -1,0 +1,15 @@
+//
+// Admin Settings - Display
+// --------------------------------------------------
+.simple-favorites-posttype-locations {
+	background-color: darken($white, 10%);
+	padding: 8px;
+	margin: 5px 0px 10px 0px;
+	label {
+		display: block;
+		margin-top: 5px;
+		&:first-child {
+			margin: 0;
+		}
+	}
+}

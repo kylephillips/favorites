@@ -30,4 +30,19 @@ class SettingsRepository {
 		return false;
 	}
 
+	/**
+	* Display in a given Post Type?
+	* @param string post type name
+	*/
+	public function displayInPostType($posttype)
+	{
+		$types = get_option('simplefavorites_display');
+		if ( $types && $types !== "" ){
+			foreach ( $types['posttypes'] as $key => $type ){
+				if ( $key == $posttype && isset($type['display']) && $type['display'] == 'true' ) return $type;
+			}
+		}
+		return false;
+	}
+
 }

@@ -2,6 +2,7 @@
 
 use SimpleFavorites\Helpers;
 use SimpleFavorites\Config\SettingsRepository;
+use SimpleFavorites\Entities\PostType\PostTypeRepository;
 
 /**
 * Plugin Settings
@@ -13,10 +14,16 @@ class Settings {
 	*/
 	private $settings_repo;
 
+	/**
+	* Post Type Repository
+	*/
+	private $post_type_repo;
+
 
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
+		$this->post_type_repo = new PostTypeRepository;
 		add_action( 'admin_init', array( $this, 'registerSettings' ) );
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
 	}

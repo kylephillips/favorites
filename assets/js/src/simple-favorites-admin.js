@@ -48,4 +48,26 @@ function toggle_anonymous_save()
 	}
 }
 
+// Post Type Display
+$(document).on('change', '*[data-sf-posttype]', function(){
+	toggle_posttype_display();
+});
+$(document).ready(function(){
+	toggle_posttype_display();
+});
+
+function toggle_posttype_display()
+{
+	var posttypes = $('*[data-sf-posttype]');
+	$.each(posttypes, function(i, v){
+		var selections = $(this).parents('.simple-favorites-posttype').find('.simple-favorites-posttype-locations');
+		if ( $(this).is(':checked') ){
+			$(selections).show();
+		} else {
+			$(selections).hide();
+		}
+	});
+}
+
+
 });
