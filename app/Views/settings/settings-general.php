@@ -1,6 +1,6 @@
 <?php settings_fields( 'simple-favorites-general' ); ?>
 <tr valign="top">
-	<th scope="row"><?php _e('Simple Favorites Version', 'simplefavorites'); ?></th>
+	<th scope="row"><?php echo $this->plugin_name . ' '; _e('Version', 'simplefavorites'); ?></th>
 	<td><strong><?php echo SimpleFavorites\Helpers::version(); ?></strong></td>
 </tr>
 <tr valign="top">

@@ -1,0 +1,63 @@
+<?php namespace SimpleFavorites\Entities\Post;
+
+use SimpleFavorites\Config\SettingsRepository;
+
+/**
+* Post Actions and Filters
+*/
+class PostHooks {
+
+	/**
+	* Settings Repository
+	*/
+	private $settings_repo;
+
+	/**
+	* The Content
+	*/
+	private $content;
+
+
+	public function __construct()
+	{
+		$this->settings_repo = new SettingsRepository;
+		add_filter('the_content', array($this, 'filterContent'));
+	}
+
+
+	/**
+	* Filter the Content
+	*/
+	public function filterContent($content)
+	{
+		global $post;
+		$this->content = $content;
+
+		$display = $this->settings_repo->displayInPostType($post->post_type);
+		if ( !$display ) return $content;
+
+		return $this->addFavoriteButton($display);
+	}
+
+
+	/**
+	* Add the Favorite Button
+	* @todo add favorite button html
+	*/
+	private function addFavoriteButton($display_in)
+	{
+		$output = '';
+		
+		if ( isset($display_in['before_content']) && $display_in['before_content'] == 'true' ){
+			$output .= 'Fav Button';
+		}
+		
+		$output .= $this->content;
+
+		if ( isset($display_in['after_content']) && $display_in['after_content'] == 'true' ){
+			$output .= 'Fav Button';
+		}
+		return $output;
+	}
+
+}

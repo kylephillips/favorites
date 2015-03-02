@@ -14,6 +14,9 @@ class SimpleFavorites {
 		global $simple_favorites_version;
 		$simple_favorites_version = '1.0';
 
+		global $simple_favorites_name;
+		$simple_favorites_name = __('Simple Favorites', 'simplefavorites');
+
 		$app = new SimpleFavorites\Bootstrap;
 	}
 }

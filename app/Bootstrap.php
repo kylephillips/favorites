@@ -21,6 +21,7 @@ class Bootstrap {
 		new Config\Settings;
 		new Activation\Activate;
 		new Activation\Dependencies;
+		new Entities\Post\PostHooks;
 	}
 
 	/**

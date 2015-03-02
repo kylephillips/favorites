@@ -10,6 +10,11 @@ use SimpleFavorites\Entities\PostType\PostTypeRepository;
 class Settings {
 
 	/**
+	* Plugin Name
+	*/
+	private $plugin_name;
+
+	/**
 	* Settings Repository
 	*/
 	private $settings_repo;
@@ -24,8 +29,19 @@ class Settings {
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->post_type_repo = new PostTypeRepository;
+		$this->setName();
 		add_action( 'admin_init', array( $this, 'registerSettings' ) );
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
+	}
+
+
+	/**
+	* Set the plugin name
+	*/
+	private function setName()
+	{
+		global $simple_favorites_name;
+		$this->plugin_name = $simple_favorites_name;
 	}
 
 
@@ -35,8 +51,8 @@ class Settings {
 	public function registerSettingsPage()
 	{
 		add_options_page( 
-			__('Simple Favorites Settings', 'simplefavorites'),
-			__('Simple Favorites', 'simplefavorites'),
+			$this->plugin_name . ' ' . __('Settings', 'simplefavorites'),
+			$this->plugin_name,
 			'manage_options',
 			'simple-favorites', 
 			array( $this, 'settingsPage' ) 
