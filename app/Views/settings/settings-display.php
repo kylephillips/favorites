@@ -17,6 +17,9 @@
 				<label>
 					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][after_content]" value="true" <?php if ( isset($display['after_content']) ) echo ' checked'; ?>/> <?php _e('Insert After Content', 'simplefavorites') ?>
 				</label>
+				<label>
+					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][postmeta]" value="true" <?php if ( isset($display['postmeta']) ) echo ' checked'; ?>/> <?php _e('Show Favorite Count on Post Entry Screen', 'simplefavorites') ?>
+				</label>
 			</div>
 		</div>
 		<?php endforeach; ?>

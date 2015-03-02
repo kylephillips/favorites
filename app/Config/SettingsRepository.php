@@ -78,4 +78,18 @@ class SettingsRepository {
 		return esc_html($option['buttontextfavorited']);
 	}
 
+	/**
+	* Post Types to show meta box on
+	*/
+	public function metaEnabled()
+	{
+		$posttypes = array();
+		$types = get_option('simplefavorites_display');
+		if ( !isset($types['posttypes']) || $types['posttypes'] == "" ) return $posttypes;
+		foreach ( $types['posttypes'] as $key => $type ){
+			if ( isset($type['postmeta']) && $type['postmeta'] == 'true' ) array_push($posttypes, $key);
+		}
+		return $posttypes;
+	}
+
 }

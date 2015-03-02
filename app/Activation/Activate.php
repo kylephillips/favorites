@@ -39,7 +39,8 @@ class Activate {
 				'posttypes' => array(
 					'post' => array(
 						'display' => true,
-						'after_content' => true
+						'after_content' => true,
+						'postmeta' => true
 					)
 				)
 			));
