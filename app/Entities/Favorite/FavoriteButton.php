@@ -30,13 +30,20 @@ class FavoriteButton {
 
 	/**
 	* Diplay the Button
+	* @return html
 	*/
 	public function display()
 	{
 		if ( !$this->user->getsButton() ) return false;
+
+		$favorited = ( $this->user->isFavorite($this->post_id) ) ? true : false;
+		$text = ( $favorited ) 
+			? html_entity_decode($this->settings_repo->buttonTextFavorited()) 
+			: html_entity_decode($this->settings_repo->buttonText());
+
 		$out = '<button class="simplefavorite-button';
-		if ( $this->user->isFavorite($this->post_id) ) $out .= ' active';
-		$out .= '" data-postid="' . $this->post_id . '">' . html_entity_decode($this->settings_repo->buttonText()) . '</button>';
+		if ( $favorited ) $out .= ' active';
+		$out .= '" data-postid="' . $this->post_id . '">' . $text . '</button>';
 		return $out;
 	}
 

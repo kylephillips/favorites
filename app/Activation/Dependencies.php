@@ -100,7 +100,9 @@ class Dependencies {
 			'simple-favorites',
 			'simple_favorites',
 			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' )
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'favorite' => $this->settings_repo->buttonText(),
+				'favorited' => $this->settings_repo->buttonTextFavorited()
 			)
 		);
 	}

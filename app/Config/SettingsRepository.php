@@ -63,8 +63,19 @@ class SettingsRepository {
 	{
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['buttontext']) || $option['buttontext'] == "" ) 
-			return __('Favorite', 'simplefavorites') . ' ' . esc_html('<i class="simplefavorite-icon-star"></i>');
+			return __('Favorite', 'simplefavorites');
 		return esc_html($option['buttontext']);
+	}
+
+	/**
+	* Favorite Button Text
+	*/
+	public function buttonTextFavorited()
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['buttontextfavorited']) || $option['buttontextfavorited'] == "" ) 
+			return __('Favorited', 'simplefavorites');
+		return esc_html($option['buttontextfavorited']);
 	}
 
 }

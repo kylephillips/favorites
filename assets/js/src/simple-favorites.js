@@ -53,9 +53,11 @@ function submit_favorite(button)
 
 	if ( $(button).hasClass('active') ) {
 		$(button).removeClass('active');
+		$(button).html(simple_favorites.favorite);
 	} else {
 		var status = 'active';
 		$(button).addClass('active');
+		$(button).html(simple_favorites.favorited);
 	}
 
 	$.ajax({

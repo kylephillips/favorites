@@ -23,8 +23,17 @@
 	</td>
 </tr>
 <tr valign="top">
-	<th scope="row"><?php _e('Button Text (May include HTML)', 'simplefavorites'); ?></th>
+	<th scope="row"><?php _e('Button Text', 'simplefavorites'); ?>*</th>
 	<td>
-		<input type="text" name="simplefavorites_display[buttontext]" value="<?php esc_html($this->settings_repo->buttonText()); ?>" />
+		<input type="text" name="simplefavorites_display[buttontext]" value="<?php echo $this->settings_repo->buttonText(); ?>" />
 	</td>
+</tr>
+<tr valign="top">
+	<th scope="row"><?php _e('Button Text (Favorited)', 'simplefavorites'); ?>*</th>
+	<td>
+		<input type="text" name="simplefavorites_display[buttontextfavorited]" value="<?php echo $this->settings_repo->buttonTextFavorited(); ?>" />
+	</td>
+</tr>
+<tr valign="top">
+	<td colspan="2" style="padding:0;"><em style="font-size:13px;">*<?php _e('May contain HTML', 'simplefavorites'); ?></em></td>
 </tr>
