@@ -25,6 +25,6 @@
 <tr valign="top">
 	<th scope="row"><?php _e('Button Text (May include HTML)', 'simplefavorites'); ?></th>
 	<td>
-		<input type="text" name="simplefavorites_display[buttontext]" value="<?php echo $this->settings_repo->buttonText(); ?>" />
+		<input type="text" name="simplefavorites_display[buttontext]" value="<?php esc_html($this->settings_repo->buttonText()); ?>" />
 	</td>
 </tr>

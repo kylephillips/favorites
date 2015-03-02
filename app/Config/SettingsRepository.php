@@ -52,7 +52,7 @@ class SettingsRepository {
 	{
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['buttontext']) || $option['buttontext'] == "" ) 
-			return __('Favorite', 'simplefavorites') . ' <i class="simplefavorite-icon-star"></i>';
+			return __('Favorite', 'simplefavorites') . ' ' . esc_html('<i class="simplefavorite-icon-star"></i>');
 		return esc_html($option['buttontext']);
 	}
 
