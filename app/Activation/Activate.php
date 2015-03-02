@@ -30,6 +30,18 @@ class Activate {
 				)
 			));
 		}
+		if ( !get_option('simplefavorites_display')
+			&& get_option('simplefavorites_display') !== "" ){
+			update_option('simplefavorites_display', array(
+				'buttontext' => __('Favorite', 'simplefavorites') . ' <i class="simplefavorite-icon-star"></i>',
+				'posttypes' => array(
+					'post' => array(
+						'display' => true,
+						'after_content' => true
+					)
+				)
+			));
+		}
 	}
 
 }

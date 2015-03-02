@@ -45,4 +45,15 @@ class SettingsRepository {
 		return false;
 	}
 
+	/**
+	* Favorite Button Text
+	*/
+	public function buttonText()
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['buttontext']) || $option['buttontext'] == "" ) 
+			return __('Favorite', 'simplefavorites') . ' <i class="simplefavorite-icon-star"></i>';
+		return esc_html($option['buttontext']);
+	}
+
 }
