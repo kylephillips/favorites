@@ -25,21 +25,13 @@ class Bootstrap {
 		new Forms\Handlers;
 	}
 
-	/**
-	* Set Form Actions & Handlers
-	*/
-	public function setFormActions()
-	{
-		
-	}
-
 
 	/**
 	* Add a link to the settings on the plugin page
 	*/
 	public function settingsLink($links)
 	{ 
-		$settings_link = '<a href="options-general.php?page=simple-favorites">' . __('Settings','simplefavorites') . '</a>'; 
+		$settings_link = '<a href="options-general.php?page=simple-favorites">' . __('Settings', 'simplefavorites') . '</a>'; 
 		$help_link = '<a href="http://favoriteposts.com">' . __('FAQ','simplefavorites') . '</a>'; 
 		array_unshift($links, $help_link); 
 		array_unshift($links, $settings_link);
