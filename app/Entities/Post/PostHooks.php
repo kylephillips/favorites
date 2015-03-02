@@ -1,6 +1,7 @@
 <?php namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Config\SettingsRepository;
+use SimpleFavorites\Entities\Favorite\FavoriteButton;
 
 /**
 * Post Actions and Filters
@@ -17,6 +18,11 @@ class PostHooks {
 	*/
 	private $content;
 
+	/**
+	* The Post Object
+	*/
+	private $post;
+
 
 	public function __construct()
 	{
@@ -31,6 +37,7 @@ class PostHooks {
 	public function filterContent($content)
 	{
 		global $post;
+		$this->post = $post;
 		$this->content = $content;
 
 		$display = $this->settings_repo->displayInPostType($post->post_type);
@@ -47,15 +54,17 @@ class PostHooks {
 	private function addFavoriteButton($display_in)
 	{
 		$output = '';
+
+		$button = new FavoriteButton($this->post->ID);
 		
 		if ( isset($display_in['before_content']) && $display_in['before_content'] == 'true' ){
-			$output .= 'Fav Button';
+			$output .= $button->display();
 		}
 		
 		$output .= $this->content;
 
 		if ( isset($display_in['after_content']) && $display_in['after_content'] == 'true' ){
-			$output .= 'Fav Button';
+			$output .= $button->display();
 		}
 		return $output;
 	}
