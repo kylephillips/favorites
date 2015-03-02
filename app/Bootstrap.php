@@ -7,7 +7,6 @@ class Bootstrap {
 	public function __construct()
 	{
 		$this->init();
-		$this->setFormActions();
 		add_action( 'init', array($this, 'startSession') );
 		add_filter( 'plugin_action_links_' . 'simple-favorites/simple-favorites.php', array($this, 'settingsLink' ) );
 		add_action( 'plugins_loaded', array($this, 'addLocalization') );
