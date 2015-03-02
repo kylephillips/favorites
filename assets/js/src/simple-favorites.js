@@ -36,6 +36,48 @@ function appendNonce(nonce)
 
 /**
 * --------------------------------------------------------------------
+* Update Favorite button statuses (page cache workaround)
+* --------------------------------------------------------------------
+*/
+$(document).ready(function(){
+	get_favorites();
+});
+
+function get_favorites()
+{
+	$.ajax({
+		url: simple_favorites.ajaxurl,
+		type: 'post',
+		datatype: 'json',
+		data: {
+			action : 'simplefavorites_list'
+		},
+		success: function(data){
+			var favorites = [];
+			$.each(data.favorites, function(i, v){
+				favorites[i] = v;
+			});
+			update_buttons(favorites);
+		}
+	});
+}
+
+function update_buttons(favorites)
+{
+	var buttons = $('.simplefavorite-button');
+	$.each(buttons, function(i, v){
+		var postid = $(this).data('postid');
+		if ( $.inArray(postid.toString(), favorites) !== -1 ){
+			$(this).addClass('active').html(simple_favorites.favorited);
+		} else {
+			$(this).removeClass('active').html(simple_favorites.favorite);
+		}
+	});
+}
+
+
+/**
+* --------------------------------------------------------------------
 * Submit Favorite
 * --------------------------------------------------------------------
 */
