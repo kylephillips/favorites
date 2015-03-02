@@ -67,4 +67,15 @@ class UserRepository {
 		return ( in_array($post_id, $all_favorites) ) ? true : false;
 	}
 
+
+	/**
+	* Does the user count in total favorites?
+	* @return boolean
+	*/
+	public function countsInTotal()
+	{
+		if ( is_user_logged_in() ) return true;
+		return $this->settings_repo->anonymous('save');
+	}
+
 }

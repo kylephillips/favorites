@@ -22,7 +22,6 @@ class SyncUserFavorite {
 	{
 		$this->user = new UserRepository;
 		$this->post_id = $post_id;
-		$this->status = $status;
 	}
 
 	/**

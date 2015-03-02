@@ -2,6 +2,7 @@
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Entities\Favorite\SyncUserFavorite;
+use SimpleFavorites\Entities\Post\SyncFavoriteCount;
 
 class Favorite {
 
@@ -9,11 +10,6 @@ class Favorite {
 	* Settings Repository
 	*/
 	private $settings_repo;
-
-	/**
-	* Favorite Sync
-	*/
-	private $sync_service;
 
 
 	public function __construct()
@@ -24,11 +20,15 @@ class Favorite {
 	/**
 	* Save the Favorite
 	*/
-	public function update($post_id)
+	public function update($post_id, $status)
 	{
 		$saveType = $this->settings_repo->saveType();
+		
 		$usersync = new SyncUserFavorite($post_id);
 		$usersync->$saveType();
+		
+		$postsync = new SyncFavoriteCount($post_id, $status);
+		$postsync->sync();
 	}
 
 }
