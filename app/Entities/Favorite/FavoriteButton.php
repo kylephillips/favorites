@@ -33,8 +33,11 @@ class FavoriteButton {
 	*/
 	public function display()
 	{
-		if ( !$this->user->displayButton() ) return false;
-		return '<button class="simplefavorite-button">' . html_entity_decode($this->settings_repo->buttonText()) . '</button>';
+		if ( !$this->user->getsButton() ) return false;
+		$out = '<button class="simplefavorite-button';
+		if ( $this->user->isFavorite($this->post_id) ) $out .= ' active';
+		$out .= '" data-postid="' . $this->post_id . '">' . html_entity_decode($this->settings_repo->buttonText()) . '</button>';
+		return $out;
 	}
 
 

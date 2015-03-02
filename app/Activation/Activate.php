@@ -27,13 +27,14 @@ class Activate {
 				'anonymous' => array(
 					'display' => 'true',
 					'save' => 'true'
-				)
+				),
+				'saveas' => 'cookie'
 			));
 		}
 		if ( !get_option('simplefavorites_display')
 			&& get_option('simplefavorites_display') !== "" ){
 			update_option('simplefavorites_display', array(
-				'buttontext' => __('Favorite', 'simplefavorites') . ' <i class="simplefavorite-icon-star"></i>',
+				'buttontext' => __('Favorite', 'simplefavorites'),
 				'posttypes' => array(
 					'post' => array(
 						'display' => true,

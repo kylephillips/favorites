@@ -22,6 +22,7 @@ class Bootstrap {
 		new Activation\Activate;
 		new Activation\Dependencies;
 		new Entities\Post\PostHooks;
+		new Forms\Handlers;
 	}
 
 	/**

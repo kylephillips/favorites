@@ -1,0 +1,35 @@
+<?php namespace SimpleFavorites\Forms;
+
+use SimpleFavorites\Forms\NonceHandler;
+use SimpleFavorites\Forms\FavoriteButtonHandler;
+
+class Handlers {
+
+	public function __construct()
+	{
+		// Generate a Nonce
+		add_action( 'wp_ajax_nopriv_simplefavoritesnonce', array($this, 'nonce' ));
+		add_action( 'wp_ajax_simplefavoritesnonce', array($this, 'nonce' ));
+
+		// Front End Favorite Button
+		add_action( 'wp_ajax_nopriv_simplefavorites', array($this, 'favoriteButton' ));
+		add_action( 'wp_ajax_simplefavorites', array($this, 'favoriteButton' ));
+	}
+
+	/**
+	* Favorite Button
+	*/
+	public function favoriteButton()
+	{
+		new FavoriteButtonHandler;
+	}
+
+	/**
+	* Generate a Nonce
+	*/
+	public function nonce()
+	{
+		new NonceHandler;
+	}
+
+}

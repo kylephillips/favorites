@@ -31,6 +31,17 @@ class SettingsRepository {
 	}
 
 	/**
+	* Save type for anonymous users
+	*/
+	public function saveType()
+	{
+		$option = get_option('simplefavorites_users');
+		if ( !isset($option['anonymous']['saveas']) ) return 'cookie';
+		return $option['anonymous']['saveas'];
+	}
+
+
+	/**
 	* Display in a given Post Type?
 	* @param string post type name
 	*/

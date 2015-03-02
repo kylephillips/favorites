@@ -100,8 +100,7 @@ class Dependencies {
 			'simple-favorites',
 			'simple_favorites',
 			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'simple_favorites-nonce' )
+				'ajaxurl' => admin_url( 'admin-ajax.php' )
 			)
 		);
 	}
