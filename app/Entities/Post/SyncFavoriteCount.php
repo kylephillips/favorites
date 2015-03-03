@@ -46,7 +46,7 @@ class SyncFavoriteCount {
 	{
 		if ( !$this->user->countsInTotal() ) return false;
 		$count = $this->favorite_count->getCount($this->post_id);
-		$count = ( $this->status == 'active' ) ? $count + 1 : $count - 1;
+		$count = ( $this->status == 'active' ) ? $count + 1 : max(0, $count - 1);
 		return update_post_meta($this->post_id, 'simplefavorites_count', $count);
 	}
 
