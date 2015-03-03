@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Simple Favorites
+Plugin Name: Favorites
 Plugin URI: http://favoriteposts.com
 Description: Simple and flexible favorite buttons for any post type.
 Version: 1.0
