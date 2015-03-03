@@ -30,7 +30,7 @@ function simple_favorites_button($post_id = null)
 
 
 /**
-* Get the Favorite Count
+* Get the Favorite Total Count for a Post
 */
 function get_simple_favorites_count($post_id = null)
 {

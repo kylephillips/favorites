@@ -111,9 +111,6 @@ function submit_favorite(button)
 			nonce : simple_favorites_nonce,
 			postid : post_id,
 			status : status
-		},
-		success: function(data){
-			console.log(data);
 		}
 	});
 }

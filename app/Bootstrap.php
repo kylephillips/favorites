@@ -23,6 +23,9 @@ class Bootstrap {
 		new Entities\Post\PostHooks;
 		new Forms\Handlers;
 		new Entities\Post\PostMeta;
+		new API\Shortcodes\ButtonShortcode;
+		new API\Shortcodes\FavoriteCountShortcode;
+		new API\Shortcodes\UserFavoritesShortcode;
 	}
 
 

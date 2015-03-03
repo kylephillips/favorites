@@ -2,7 +2,7 @@
 /*
 Plugin Name: Simple Favorites
 Plugin URI: http://favoriteposts.com
-Description: Add favorite functionality for any post type.
+Description: Add user favorite/like functionality for any post type.
 Version: 1.0
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
