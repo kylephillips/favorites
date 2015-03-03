@@ -43,6 +43,7 @@ class PostMeta {
 		$count = new FavoriteCount;
 		echo '<strong>' . __('Total Favorites', 'simplefavorites') . ':</strong> ';
 		echo $count->getCount($post->ID);
+		echo '<input type="hidden" name="simplefavorites_count" value="' . $count->getCount($post->ID) . '">';
 	}
 
 }
