@@ -66,3 +66,32 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 
 = 1.0 =
 Initial release
+
+== Usage ==
+
+### Usage
+
+**Favorite Button**
+
+The favorite button can be added automatically to the content by enabling specific post types in the plugin settings. It may also be added to template files or through the content editor using the included functions or shortcodes. The post id may be left blank in all cases if inside the loop.
+
+* **Get function:** `get_favorites_button($post_id)`
+* **Print function:** `the_favorites_button($post_id)`
+* **Shortcode:** `[favorite_button post_id=""]`
+
+**Favorite Count**
+
+Total favorites for each post are saved as a simple integer. If a user unfavorites a post, this count is updated. Anonymous users' favorites count towards the total by default, but may be disabled via the plugin settings. The post id may be left blank in all cases if inside the loop.
+
+* **Get function:** `get_favorites_count($post_id)`
+* **Print function:** `the_favorites_count($post_id)`
+* **Shortcode:** `[favorite_count post_id=""]`
+
+**User Favorites**
+
+User favorites are stored as an array of post ids. Logged-in users' favorites are stored as a custom user meta field, while anonymous users' favorites are stored in either the session or browser cookie (configurable in the plugin settings). If the user id parameter is omitted, the favorites default to the current user.
+
+* **Get function (returns array of IDs):** `get_user_favorites($user_id)`
+* **Get function (returns html list):** `get_user_favorites_list($user_id)`
+* **Print function (prints an html list):** `the_user_favorites_list($user_id)`
+* **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true"]
