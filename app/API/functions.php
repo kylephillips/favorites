@@ -11,7 +11,7 @@ use SimpleFavorites\Entities\User\UserFavorites;
 * Get the favorite button
 * @return html
 */
-function get_simple_favorites_button($post_id = null)
+function get_favorites_button($post_id = null)
 {
 	if ( !$post_id ) $post_id = get_the_id();
 	$button = new FavoriteButton($post_id);
@@ -23,16 +23,16 @@ function get_simple_favorites_button($post_id = null)
 * Echos the favorite button
 * @return html
 */
-function simple_favorites_button($post_id = null)
+function the_favorites_button($post_id = null)
 {	
-	echo get_simple_favorites_button($post_id);
+	echo get_favorites_button($post_id);
 }
 
 
 /**
 * Get the Favorite Total Count for a Post
 */
-function get_simple_favorites_count($post_id = null)
+function get_favorites_count($post_id = null)
 {
 	if ( !$post_id ) $post_id = get_the_id();
 	$count = new FavoriteCount();
@@ -43,9 +43,9 @@ function get_simple_favorites_count($post_id = null)
 /**
 * Echo the Favorite Count
 */
-function simple_favorites_count($post_id = null)
+function the_favorites_count($post_id = null)
 {
-	echo get_simple_favorites_count($post_id);
+	echo get_favorites_count($post_id);
 }
 
 
@@ -53,7 +53,7 @@ function simple_favorites_count($post_id = null)
 * Get an array of User Favorites
 * @return array
 */
-function get_simple_favorites_user_favorites($user_id = null)
+function get_user_favorites($user_id = null)
 {
 	$favorites = new UserFavorites($user_id);
 	return $favorites->getFavoritesArray();
@@ -64,7 +64,7 @@ function get_simple_favorites_user_favorites($user_id = null)
 * HTML List of User Favorites
 * @return html
 */
-function get_simple_favorites_user_list($user_id = null)
+function get_user_favorites_list($user_id = null)
 {
 	$favorites = new UserFavorites($user_id);
 	return $favorites->getFavoritesList();
@@ -76,7 +76,7 @@ function get_simple_favorites_user_list($user_id = null)
 * Echos list
 * @return html
 */
-function simple_favorites_user_list($user_id = null)
+function the_user_favorites_list($user_id = null)
 {
-	echo get_simple_favorites_user_list($user_id);
+	echo get_user_favorites_list($user_id);
 }

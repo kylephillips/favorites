@@ -31,7 +31,7 @@ class UserFavoritesShortcode {
 	{
 		$this->setOptions($options);
 
-		$favorites = get_simple_favorites_user_favorites($this->options['user_id']);
+		$favorites = get_user_favorites($this->options['user_id']);
 		$out = '<ul>';
 		foreach($favorites as $favorite){
 			$out .= '<li>';

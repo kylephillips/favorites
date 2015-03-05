@@ -29,7 +29,7 @@ class ButtonShortcode {
 	public function renderView($options)
 	{
 		$this->setOptions($options);
-		return get_simple_favorites_button($this->options['post_id']);
+		return get_favorites_button($this->options['post_id']);
 	}
 
 }
