@@ -1,7 +1,7 @@
 === Favorites ===
 Contributors: kylephillips
 Donate link: http://favoriteposts.com/
-Tags: favorites, like, bookmark, favorite, likes, bookmarks
+Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites
 Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.0
@@ -23,11 +23,11 @@ Visit [favoriteposts.com](http://favoriteposts.com) for a full list of available
 
 **Features**
 
-*Use with Any Post Type* - Enable or disable favorite functionality per post type while automatically adding a favorite button before and/or after the content. Of, use the included functions to display the button anywhere in your template.
+**Use with Any Post Type** - Enable or disable favorite functionality per post type while automatically adding a favorite button before and/or after the content. Or, use the included functions to display the button anywhere in your template.
 
-*Available for All Users* – Don't want to hide functionality behind a login? Favorites includes an option to save anonymous users' favorites by either Session or Cookie. Logged-In users' favorites are also saved as user meta
+**Available for All Users** – Don't want to hide functionality behind a login? Favorites includes an option to save anonymous users' favorites by either Session or Cookie. Logged-In users' favorites are also saved as user meta
 
-*Designed for Developers* - Favorites works great out-of-the-box for beginners, but a full set of  template functions unlocks just about any sort of custom functionality developers may need. Favorites outputs the minimum amount of markup needed, putting the style and control in your hands.
+**Designed for Developers** - Favorites works great out-of-the-box for beginners, but a full set of template functions unlocks just about any sort of custom functionality developers may need. Favorites outputs the minimum amount of markup needed, putting the style and control in your hands.
 
 For more information visit [favoriteposts.com](http://favoriteposts.com).
 
@@ -68,8 +68,6 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 Initial release
 
 == Usage ==
-
-### Usage
 
 **Favorite Button**
 
