@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.0.1
 
 License: GPLv2 or later
@@ -60,6 +60,7 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 
 = 1.0.1 =
 * Fixed bug where logged in user's favorites were pulling from session/cookie rather than saved user meta
+* Tested for 4.2 compatibility
 
 = 1.0 =
 * Initial release 
