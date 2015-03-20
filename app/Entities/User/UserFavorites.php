@@ -28,6 +28,7 @@ class UserFavorites {
 	public function getFavoritesArray()
 	{
 		if ( $this->user_id ) return get_user_meta($this->user_id, 'simplefavorites', true);
+		if ( is_user_logged_in() ) return get_user_meta(get_current_user_id(), 'simplefavorites', true);
 		return $this->user_repo->getFavorites();
 	}
 

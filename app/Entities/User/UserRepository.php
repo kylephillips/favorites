@@ -32,6 +32,7 @@ class UserRepository {
 	public function getFavorites()
 	{
 		$saveType = $this->settings_repo->saveType();
+		if ( is_user_logged_in() ) return get_user_meta(get_current_user_id(), 'simplefavorites', true);
 		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
 		return $favorites;
 	}
