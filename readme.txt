@@ -58,6 +58,9 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed array error bug for logged in users
+
 = 1.0.1 =
 * Fixed bug where logged in user's favorites were pulling from session/cookie rather than saved user meta
 * Tested for 4.2 compatibility
