@@ -33,11 +33,11 @@ class UserRepository {
 	{
 		$saveType = $this->settings_repo->saveType();
 
-		// if ( is_user_logged_in() ) {
-		// 	$favorites = get_user_meta(get_current_user_id(), 'simplefavorites');
-		// 	if ( empty($favorites) ) return array();
-		// 	return $favorites[0];
-		// }
+		if ( is_user_logged_in() ) {
+			$favorites = get_user_meta(get_current_user_id(), 'simplefavorites');
+			if ( empty($favorites) ) return array();
+			return $favorites[0];
+		}
 		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
 		return $favorites;
 	}
