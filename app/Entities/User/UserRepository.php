@@ -70,7 +70,7 @@ class UserRepository {
 	public function isFavorite($post_id)
 	{
 		$all_favorites = $this->getFavorites();
-		return ( isset($all_favorites) && in_array($post_id, $all_favorites) ) ? true : false;
+		return ( isset($all_favorites) && (!empty($all_favorites)) && in_array($post_id, $all_favorites) ) ? true : false;
 	}
 
 
