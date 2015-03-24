@@ -29,12 +29,13 @@ class UserRepository {
 	* Get User's Favorites
 	* @return array
 	*/
-	public function getFavorites()
+	public function getFavorites($user_id = null)
 	{
 		$saveType = $this->settings_repo->saveType();
 
 		if ( is_user_logged_in() ) {
-			$favorites = get_user_meta(get_current_user_id(), 'simplefavorites');
+			$user_id = ( isset($user_id) ) ? $user_id : get_current_user_id();
+			$favorites = get_user_meta($user_id, 'simplefavorites');
 			if ( empty($favorites) ) return array();
 			return $favorites[0];
 		}

@@ -58,6 +58,9 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 
 == Changelog ==
 
+= 1.0.4 =
+* User favorites list bug fix
+
 = 1.0.3 =
 * Additional bug fixes for logged in users
 
