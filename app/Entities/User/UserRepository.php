@@ -32,7 +32,12 @@ class UserRepository {
 	public function getFavorites()
 	{
 		$saveType = $this->settings_repo->saveType();
-		if ( is_user_logged_in() ) return get_user_meta(get_current_user_id(), 'simplefavorites', true);
+
+		// if ( is_user_logged_in() ) {
+		// 	$favorites = get_user_meta(get_current_user_id(), 'simplefavorites');
+		// 	if ( empty($favorites) ) return array();
+		// 	return $favorites[0];
+		// }
 		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
 		return $favorites;
 	}
@@ -65,7 +70,7 @@ class UserRepository {
 	public function isFavorite($post_id)
 	{
 		$all_favorites = $this->getFavorites();
-		return ( in_array($post_id, $all_favorites) ) ? true : false;
+		return ( isset($all_favorites) && in_array($post_id, $all_favorites) ) ? true : false;
 	}
 
 

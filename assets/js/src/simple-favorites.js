@@ -53,6 +53,7 @@ function get_favorites()
 			action : 'simplefavorites_list'
 		},
 		success: function(data){
+			console.log(data);
 			var favorites = [];
 			$.each(data.favorites, function(i, v){
 				favorites[i] = v;
@@ -111,6 +112,9 @@ function submit_favorite(button)
 			nonce : simple_favorites_nonce,
 			postid : post_id,
 			status : status
+		},
+		success: function(data){
+			console.log(data);
 		}
 	});
 }

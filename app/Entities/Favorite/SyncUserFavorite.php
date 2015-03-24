@@ -52,8 +52,7 @@ class SyncUserFavorite {
 	public function updateUserMeta($favorites)
 	{
 		if ( !is_user_logged_in() ) return false;
-		$user_id = get_current_user_id();
-		update_user_meta( $user_id, 'simplefavorites', $favorites );
+		return update_user_meta( get_current_user_id(), 'simplefavorites', $this->array_flatten($favorites) );
 	}
 
 	/**
@@ -75,9 +74,20 @@ class SyncUserFavorite {
 	private function addFavorite()
 	{
 		$favorites = $this->user->getFavorites();
-		array_push($favorites, $this->post_id);
+		$favorites[] = $this->post_id;
 		$this->updateUserMeta($favorites);
 		return $favorites;
 	}
+
+	/**
+	* Flatten Array
+	*/
+	private function array_flatten(array $array)
+	{
+		$return = array();
+		array_walk_recursive($array, function($a) use (&$return) { $return[] = $a; });
+		return $return;
+	}
+
 
 }
