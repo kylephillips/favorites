@@ -51,8 +51,8 @@ function simple_favorites_check_versions( $wp = '3.9', $php = '5.3.2' ) {
 
 if( !class_exists('Bootstrap') ) :
     simple_favorites_check_versions();
-    require_once('vendor/autoload.php');
-    require_once('app/SimpleFavorites.php');
-    require_once('app/API/functions.php');
+    require_once(__DIR__ . '/vendor/autoload.php');
+    require_once(__DIR__ . '/app/SimpleFavorites.php');
+    require_once(__DIR__ . '/app/API/functions.php');
     SimpleFavorites::init();
 endif;
