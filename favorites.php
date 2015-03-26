@@ -27,11 +27,14 @@ Copyright: Kyle Phillips
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-    
+
 /**
 * Check Wordpress and PHP versions before instantiating plugin
 */
 register_activation_hook( __FILE__, 'simple_favorites_check_versions' );
+
+define( 'FAVORITES_PLUGIN_FILE', __FILE__ );
+
 function simple_favorites_check_versions( $wp = '3.9', $php = '5.3.2' ) {
     global $wp_version;
     if ( version_compare( PHP_VERSION, $php, '<' ) ) $flag = 'PHP';

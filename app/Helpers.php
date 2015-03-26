@@ -9,7 +9,7 @@ class Helpers {
 	*/
 	public static function plugin_url()
 	{
-		return plugins_url() . '/favorites';
+		return plugins_url() . '/' . dirname( plugin_basename( FAVORITES_PLUGIN_FILE ) );
 	}
 
 	/**
