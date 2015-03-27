@@ -35,7 +35,7 @@ class Activate {
 			&& get_option('simplefavorites_display') !== "" ){
 			update_option('simplefavorites_display', array(
 				'buttontext' => __('Favorite <i class="sf-icon-star-empty"></i>', 'simplefavorites'),
-				'buttontextfavorited' => __('Favorited <i class="sf-icon-star"></i>', 'simplefavorites'),
+				'buttontextfavorited' => __('Favorited <i class="sf-icon-star-full"></i>', 'simplefavorites'),
 				'posttypes' => array(
 					'post' => array(
 						'display' => true,
