@@ -32,7 +32,7 @@ class UserFavoritesShortcode {
 		$this->setOptions($options);
 
 		$favorites = get_user_favorites($this->options['user_id']);
-		$out = '<ul>';
+		$out = '<ul class="favorites-list" data-userid="' . $this->options['user_id'] . '" data-links="' . $this->options['include_links'] . '">';
 		foreach($favorites as $favorite){
 			$out .= '<li>';
 			if ( $this->options['include_links'] == 'true' ) $out .= '<a href="' . get_permalink($favorite) . '">';

@@ -37,7 +37,7 @@ class UserFavorites {
 	{
 		$favorites = $this->getFavoritesArray();
 		if ( $favorites ){
-			$out = '<ul>';
+			$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true">';
 			foreach ( $favorites as $key => $favorite ){
 				$out .= '<li><a href="' . get_permalink($favorite) . '">' . get_the_title($favorite) . '</a></li>';
 			}
