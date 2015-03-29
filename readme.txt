@@ -55,6 +55,10 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 
 3. Enable and display per post type, or use the functions/shortcodes to manually add to templates.
 
+4. Add a favorites button to any post type. Customize the button text and/or icon.
+
+5. Use the included functions or shortcodes to display a list of user favorites. A template function is also provided to fetch an array of user favorite post ids.
+
 
 == Changelog ==
 
