@@ -41,6 +41,7 @@ function appendNonce(nonce)
 */
 $(document).ready(function(){
 	get_favorites();
+	get_favorites_lists();
 });
 
 function get_favorites()
@@ -50,10 +51,9 @@ function get_favorites()
 		type: 'post',
 		datatype: 'json',
 		data: {
-			action : 'simplefavorites_list'
+			action : 'simplefavorites_array'
 		},
 		success: function(data){
-			console.log(data);
 			var favorites = [];
 			$.each(data.favorites, function(i, v){
 				favorites[i] = v;
@@ -72,6 +72,38 @@ function update_buttons(favorites)
 			$(this).addClass('active').html(simple_favorites.favorited);
 		} else {
 			$(this).removeClass('active').html(simple_favorites.favorite);
+		}
+	});
+}
+
+/**
+* --------------------------------------------------------------------
+* Update Favorite Lists
+* --------------------------------------------------------------------
+*/
+function get_favorites_lists()
+{
+	var lists = $('.favorites-list');
+	$.each(lists, function(i, v){
+		var user_id = $(this).data('userid');
+		var links = $(this).data('links');
+		var list = $(this);
+		get_single_list(list, user_id, links);
+	});
+}
+function get_single_list(list, user_id, links)
+{
+	$.ajax({
+		url: simple_favorites.ajaxurl,
+		type: 'post',
+		datatype: 'json',
+		data: {
+			action : 'simplefavorites_list',
+			userid : user_id,
+			links : links
+		},
+		success: function(data){
+			$(list).html(data.list);
 		}
 	});
 }
