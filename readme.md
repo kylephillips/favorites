@@ -10,11 +10,18 @@ The plugin name is “Favorites,” but the button text is customizable. It can 
 [View the Demo](http://favoriteposts.com)
 
 
-### Installation 
+### Installation - WP Directory Download
 1. Upload the favorites plugin directory to the wp-content/plugins/ directory
 2. Activate the plugin through the Plugins menu in WordPress
 3. Visit the plugin settings to configure display options
 4. Use the template functions, display settings, or shortcodes to display the favorite button, favorite counts, and/or user favorites.
+
+### Installation - Git Clone
+1. Clone the repository to your site plugins directory
+2. Run `composer install`
+3. Activate the plugin through the Plugins menu in WordPress
+4. Visit the plugin settings to configure display options
+5. Use the template functions, display settings, or shortcodes to display the favorite button, favorite counts, and/or user favorites.
 
 
 ### Usage
