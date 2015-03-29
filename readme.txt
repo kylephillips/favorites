@@ -60,6 +60,7 @@ Yes, although the buttons may display the incorrect state momentarily. Button st
 
 = 1.0.5 =
 * Autoloader bug fix (Thanks to Stefan Oderbolz)
+* User List page cache fix
 
 = 1.0.4 =
 * User favorites list bug fix
