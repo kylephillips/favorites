@@ -1,7 +1,7 @@
 === Favorites ===
 Contributors: kylephillips
 Donate link: http://favoriteposts.com/
-Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites
+Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite
 Requires at least: 3.8
 Tested up to: 4.2
 Stable tag: 1.0.5
@@ -29,6 +29,8 @@ Visit [favoriteposts.com](http://favoriteposts.com) for a full list of available
 
 **Designed for Developers** - Favorites works great out-of-the-box for beginners, but a full set of template functions unlocks just about any sort of custom functionality developers may need. Favorites outputs the minimum amount of markup needed, putting the style and control in your hands.
 
+**Multisite Compatible** - As of version 1.1.0, Favorites is multisite compatible. User favorites are saved on a site/blog basis, and may be retrieved and displayed across sites.
+
 For more information visit [favoriteposts.com](http://favoriteposts.com).
 
 **Important: Favorites requires WordPress version 3.8 or higher, and PHP version 5.3.2 or higher.**
@@ -46,8 +48,8 @@ For more information visit [favoriteposts.com](http://favoriteposts.com).
 = Does this worked on cached pages? =
 Yes, although the buttons may display the incorrect state momentarily. Button states are updated via an AJAX call after page load in order to accommodate cached pages. This may be noticeable on slower servers.
 
-= Is this plugin compatible with multi site? =
-Not fully. Multi site support is under development.
+= Is this plugin compatible with Multisite? =
+As of version 1.1.0, Favorites is compatible with multisite installations. By default, all shortcodes and template functions will pull data from the site being viewed. Specific site IDs may be passed as parameters for more control. See the documentation for more information.
 
 
 == Screenshots ==
@@ -64,6 +66,9 @@ Not fully. Multi site support is under development.
 
 
 == Changelog ==
+
+= 1.1.0 =
+* Favorites is now multisite compatible. See documentation for added template function and shortcode parameters.
 
 = 1.0.5 =
 * Autoloader bug fix (Thanks to Stefan Oderbolz)
@@ -87,6 +92,9 @@ Not fully. Multi site support is under development.
 
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+* Favorites is now multisite compatible. See documentation for added template function and shortcode parameters.
 
 = 1.0 =
 Initial release
