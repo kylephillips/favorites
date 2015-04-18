@@ -89,6 +89,7 @@ class UserRepository {
 	{
 		if ( !isset($_SESSION['simplefavorites']) ) $_SESSION['simplefavorites'] = array();
 		$favorites = $_SESSION['simplefavorites'];
+		$favorites = $this->favoritesWithSiteID($favorites);
 		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 
@@ -100,6 +101,7 @@ class UserRepository {
 	{
 		if ( !isset($_COOKIE['simplefavorites']) ) $_COOKIE['simplefavorites'] = json_encode(array());
 		$favorites = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
+		$favorites = $this->favoritesWithSiteID($favorites);
 		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 

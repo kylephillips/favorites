@@ -95,6 +95,7 @@ function inObject(search, object)
 	var status = false;
 	$.each(object, function(i, v){
 		if ( v === search ) status = true;
+		if ( parseInt(v) === search ) status = true;
 	});
 	return status;
 }
