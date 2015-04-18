@@ -57,7 +57,7 @@ class UserRepository {
 	*/
 	private function favoritesWithSiteID($favorites)
 	{
-		if ( Helpers::findKey('site_id', $favorites) ) return $favorites;
+		if ( Helpers::keyExists('site_id', $favorites) ) return $favorites;
 		$new_favorites = array(
 			array(
 				'site_id' => 1,

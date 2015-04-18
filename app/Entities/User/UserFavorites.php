@@ -53,8 +53,6 @@ class UserFavorites {
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
 		$favorites = $this->getFavoritesArray();
 
-		//$favorites = Helpers::pluckSiteFavorites($this->site_id, $favorites);
-
 		if ( $favorites ){
 			if ( is_multisite() ) switch_to_blog($this->site_id);
 			$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '">';

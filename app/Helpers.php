@@ -42,13 +42,17 @@ class Helpers {
 	* @since 1.1
 	* @return boolean
 	*/
-	public static function findKey($search, $array)
+	public static function keyExists($needle, $haystack)
 	{
-		foreach ( $array as $key => $value ){
-			if ( $key == $search ) return true;
-			if ( isset($array[$key]) ) self::findKey($array[$key], $search);
+		if ( array_key_exists($needle, $haystack) || in_array($needle, $haystack) ){
+			return true;
+		} else {
+			$return = false;
+			foreach ( array_values($haystack) as $value ){
+				if ( is_array($value) && !$return ) $return = self::keyExists($needle, $value);
+			}
+			return $return;
 		}
-		return false;
 	}
 
 	/**
@@ -74,7 +78,6 @@ class Helpers {
 	*/
 	public static function pluckSiteFavorites($site_id, $all_favorites)
 	{
-		//if ( !isset($site_id) || $site_id == '' ) $site_id = 1;
 		foreach($all_favorites as $site_favorites){
 			if ( $site_favorites['site_id'] == $site_id ) return $site_favorites['site_favorites'];
 		}
