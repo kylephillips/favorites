@@ -15,6 +15,12 @@ class SyncFavoriteCount {
 	private $post_id;
 
 	/**
+	* Site ID
+	* @var int
+	*/
+	private $site_id;
+
+	/**
 	* Status
 	* @var string
 	*/
@@ -31,10 +37,11 @@ class SyncFavoriteCount {
 	*/
 	private $user;
 
-	public function __construct($post_id, $status)
+	public function __construct($post_id, $status, $site_id)
 	{
 		$this->post_id = $post_id;
 		$this->status = $status;
+		$this->site_id = $site_id;
 		$this->favorite_count = new FavoriteCount;
 		$this->user = new UserRepository;
 	}
@@ -45,7 +52,7 @@ class SyncFavoriteCount {
 	public function sync()
 	{
 		if ( !$this->user->countsInTotal() ) return false;
-		$count = $this->favorite_count->getCount($this->post_id);
+		$count = $this->favorite_count->getCount($this->post_id, $this->site_id);
 		$count = ( $this->status == 'active' ) ? $count + 1 : max(0, $count - 1);
 		return update_post_meta($this->post_id, 'simplefavorites_count', $count);
 	}

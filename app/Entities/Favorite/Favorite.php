@@ -20,14 +20,13 @@ class Favorite {
 	/**
 	* Save the Favorite
 	*/
-	public function update($post_id, $status)
+	public function update($post_id, $status, $site_id)
 	{
 		$saveType = $this->settings_repo->saveType();
-		
-		$usersync = new SyncUserFavorite($post_id);
+		$usersync = new SyncUserFavorite($post_id, $site_id);
 		$usersync->$saveType();
 		
-		$postsync = new SyncFavoriteCount($post_id, $status);
+		$postsync = new SyncFavoriteCount($post_id, $status, $site_id);
 		$postsync->sync();
 	}
 

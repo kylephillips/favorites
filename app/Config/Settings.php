@@ -1,8 +1,8 @@
 <?php namespace SimpleFavorites\Config;
 
-use SimpleFavorites\Helpers;
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Entities\PostType\PostTypeRepository;
+use SimpleFavorites\Helpers;
 
 /**
 * Plugin Settings
@@ -62,7 +62,6 @@ class Settings {
 
 	/**
 	* Display the Settings Page
-	* Callback for registerSettingsPage method
 	*/
 	public function settingsPage()
 	{

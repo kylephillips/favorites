@@ -15,7 +15,7 @@ class SettingsRepository {
 
 	/**
 	* Anonymous Display Options
-	* @param string option key
+	* @param string option (array key)
 	* @since 1.0
 	* @return boolean
 	*/
@@ -31,7 +31,7 @@ class SettingsRepository {
 	}
 
 	/**
-	* Save type for anonymous users
+	* Method of saving favorites for anonymous users
 	*/
 	public function saveType()
 	{
@@ -68,7 +68,7 @@ class SettingsRepository {
 	}
 
 	/**
-	* Favorite Button Text
+	* Favorite Button Text (Active state)
 	*/
 	public function buttonTextFavorited()
 	{

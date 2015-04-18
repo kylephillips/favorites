@@ -1,6 +1,6 @@
 <?php namespace SimpleFavorites\Forms;
 
-use SimpleFavorites\Entities\User\UserRepository;
+use SimpleFavorites\Entities\User\UserFavorites;
 
 /**
 * Return an HTML formatted list of user's favorites
@@ -18,6 +18,7 @@ class FavoritesListHandler {
 	*/
 	private $list;
 
+
 	public function __construct()
 	{
 		$this->setData();
@@ -30,7 +31,8 @@ class FavoritesListHandler {
 	*/
 	private function setData()
 	{
-		$this->data['user_id'] = ( isset($_POST['user_id']) ) ? intval($_POST['user_id']) : null;
+		$this->data['user_id'] = ( $_POST['userid'] !== '' ) ? intval($_POST['userid']) : null;
+		$this->data['site_id'] = ( isset($_POST['siteid']) ) ? intval($_POST['siteid']) : null;
 		$this->data['links'] =  ( isset($_POST['links']) && $_POST['links'] == 'true' ) ? true : false;
 	}
 
@@ -39,16 +41,8 @@ class FavoritesListHandler {
 	*/
 	private function setList()
 	{
-		$favorites = get_user_favorites($this->data['user_id']);
-		$out = "";
-		foreach($favorites as $favorite){
-			$out .= '<li>';
-			if ( $this->data['links'] ) $out .= '<a href="' . get_permalink($favorite) . '">';
-			$out .= get_the_title($favorite);
-			if ( $this->data['links'] ) $out .= '</a>';
-			$out .= '</li>';
-		}
-		$this->list = $out;
+		$favorites = new UserFavorites($this->data['user_id'], $this->data['site_id'], $this->data['links']);
+		$this->list = $favorites->getFavoritesList();
 	}
 
 	/**

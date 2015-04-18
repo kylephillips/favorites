@@ -63,17 +63,40 @@ function get_favorites()
 	});
 }
 
+/**
+* Loop through all the favorites buttons and update their status
+*/
 function update_buttons(favorites)
 {
 	var buttons = $('.simplefavorite-button');
 	$.each(buttons, function(i, v){
+		
 		var postid = $(this).data('postid');
-		if ( $.inArray(postid.toString(), favorites) !== -1 ){
-			$(this).addClass('active').html(simple_favorites.favorited);
-		} else {
-			$(this).removeClass('active').html(simple_favorites.favorite);
+		var siteid = $(this).data('siteid');
+		
+		// Find the Site's Favorites Array
+		for ( var i = 0; i < favorites.length; i++ ){
+			if ( favorites[i].site_id !== siteid ) continue;
+			if ( inObject(postid, favorites[i].site_favorites) ){
+				$(this).addClass('active').html(simple_favorites.favorited);
+			} else {
+				$(this).removeClass('active').html(simple_favorites.favorite);
+			}
 		}
+
 	});
+}
+
+/**
+* Check if value exists in array
+*/
+function inObject(search, object)
+{
+	var status = false;
+	$.each(object, function(i, v){
+		if ( v === search ) status = true;
+	});
+	return status;
 }
 
 /**
@@ -86,13 +109,15 @@ function get_favorites_lists()
 	var lists = $('.favorites-list');
 	$.each(lists, function(i, v){
 		var user_id = $(this).data('userid');
+		var site_id = $(this).data('siteid');
 		var links = $(this).data('links');
 		var list = $(this);
-		get_single_list(list, user_id, links);
+		//get_single_list(list, user_id, site_id, links);
 	});
 }
-function get_single_list(list, user_id, links)
+function get_single_list(list, user_id, site_id, links)
 {
+	if ( user_id === '0' ) user_id = null;
 	$.ajax({
 		url: simple_favorites.ajaxurl,
 		type: 'post',
@@ -100,10 +125,12 @@ function get_single_list(list, user_id, links)
 		data: {
 			action : 'simplefavorites_list',
 			userid : user_id,
+			siteid : site_id,
 			links : links
 		},
 		success: function(data){
-			$(list).html(data.list);
+			console.log(data);
+			$(list).replaceWith(data.list);
 		}
 	});
 }
@@ -124,6 +151,8 @@ $(document).on('click', '.simplefavorite-button', function(e){
 function submit_favorite(button)
 {
 	var post_id = $(button).data('postid');
+	var site_id = $(button).data('siteid');
+
 	var status = 'inactive';
 
 	if ( $(button).hasClass('active') ) {
@@ -143,9 +172,11 @@ function submit_favorite(button)
 			action : 'simplefavorites',
 			nonce : simple_favorites_nonce,
 			postid : post_id,
+			siteid : site_id,
 			status : status
 		},
 		success: function(data){
+			if ( data.status !== 'success' ) console.log(data.message);
 			console.log(data);
 		}
 	});

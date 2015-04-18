@@ -1,6 +1,7 @@
 <?php namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\User\UserRepository;
+use SimpleFavorites\Helpers;
 
 /**
 * Sync a favorite to a given save type
@@ -13,15 +14,21 @@ class SyncUserFavorite {
 	private $post_id;
 
 	/**
+	* The Site ID
+	*/
+	private $site_id;
+
+	/**
 	* User Repository
 	*/
 	private $user;
 
 
-	public function __construct($post_id)
+	public function __construct($post_id, $site_id)
 	{
 		$this->user = new UserRepository;
 		$this->post_id = $post_id;
+		$this->site_id = $site_id;
 	}
 
 	/**
@@ -29,7 +36,7 @@ class SyncUserFavorite {
 	*/
 	public function session()
 	{
-		if ( $this->user->isFavorite($this->post_id) ) return $_SESSION['simplefavorites'] = $this->removeFavorite();
+		if ( $this->user->isFavorite($this->post_id, $this->site_id) ) return $_SESSION['simplefavorites'] = $this->removeFavorite();
 		return $_SESSION['simplefavorites'] = $this->addFavorite();
 	}
 
@@ -38,7 +45,7 @@ class SyncUserFavorite {
 	*/
 	public function cookie()
 	{
-		if ( $this->user->isFavorite($this->post_id) ){
+		if ( $this->user->isFavorite($this->post_id, $this->site_id) ){
 			setcookie('simplefavorites', json_encode($this->removeFavorite()), time()+3600, '/' );
 			return;
 		}
@@ -52,7 +59,7 @@ class SyncUserFavorite {
 	public function updateUserMeta($favorites)
 	{
 		if ( !is_user_logged_in() ) return false;
-		return update_user_meta( get_current_user_id(), 'simplefavorites', $this->array_flatten($favorites) );
+		return update_user_meta( get_current_user_id(), 'simplefavorites', $favorites );
 	}
 
 	/**
@@ -60,9 +67,12 @@ class SyncUserFavorite {
 	*/
 	private function removeFavorite()
 	{
-		$favorites = $this->user->getFavorites();
-		foreach($favorites as $key => $favorite){
-			if ( $favorite == $this->post_id ) unset($favorites[$key]);
+		$favorites = $this->user->getAllFavorites($this->site_id);
+		foreach($favorites as $key => $site_favorites){
+			if ( $site_favorites['site_id'] !== $this->site_id ) continue;
+			foreach($site_favorites['site_favorites'] as $k => $fav){
+				if ( $fav == $this->post_id ) unset($favorites[$key]['site_favorites'][$k]);
+			}
 		}
 		$this->updateUserMeta($favorites);
 		return $favorites;
@@ -73,21 +83,19 @@ class SyncUserFavorite {
 	*/
 	private function addFavorite()
 	{
-		$favorites = $this->user->getFavorites();
-		$favorites[] = $this->post_id;
+		$favorites = $this->user->getAllFavorites($this->site_id);
+		if ( !Helpers::siteExists($this->site_id, $favorites) ){
+			$favorites[] = array(
+				'site_id' => $this->site_id,
+				'site_favorites' => array()
+			);
+		}
+		foreach($favorites as $key => $site_favorites){
+			if ( $site_favorites['site_id'] !== $this->site_id ) continue;
+			$favorites[$key]['site_favorites'][] = $this->post_id;
+		}
 		$this->updateUserMeta($favorites);
 		return $favorites;
 	}
-
-	/**
-	* Flatten Array
-	*/
-	private function array_flatten(array $array)
-	{
-		$return = array();
-		array_walk_recursive($array, function($a) use (&$return) { $return[] = $a; });
-		return $return;
-	}
-
 
 }

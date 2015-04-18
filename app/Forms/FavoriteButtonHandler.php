@@ -22,8 +22,9 @@ class FavoriteButtonHandler {
 	private function setFormData()
 	{
 		$this->data['nonce'] = sanitize_text_field($_POST['nonce']);
-		$this->data['postid'] = sanitize_text_field($_POST['postid']);
-		$this->data['status'] = sanitize_text_field($_POST['status']);
+		$this->data['postid'] = intval(sanitize_text_field($_POST['postid']));
+		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
+		$this->data['status'] = ( $_POST['status'] == 'active') ? 'active' : 'inactive';
 	}
 
 	/**
@@ -40,7 +41,7 @@ class FavoriteButtonHandler {
 	private function updateFavorite()
 	{
 		$favorite = new Favorite;
-		$favorite->update($this->data['postid'], $this->data['status']);
+		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
 	}
 
 	/**
@@ -48,7 +49,10 @@ class FavoriteButtonHandler {
 	*/
 	private function sendError()
 	{
-		return wp_send_json(array('status'=>'error', 'message'=>'Invalid form field'));
+		return wp_send_json(array(
+			'status'=>'error', 
+			'message'=>__('Invalid form field', 'simplefavorites')
+		));
 	}
 
 }

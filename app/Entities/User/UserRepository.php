@@ -1,6 +1,7 @@
 <?php namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Config\SettingsRepository;
+use SimpleFavorites\Helpers;
 
 class UserRepository {
 
@@ -26,52 +27,92 @@ class UserRepository {
 	}
 
 	/**
-	* Get User's Favorites
+	* Get All of current user's favorites
 	* @return array
 	*/
-	public function getFavorites($user_id = null)
+	public function getAllFavorites()
 	{
+		if ( is_user_logged_in() ) return $this->getLoggedInFavorites();
 		$saveType = $this->settings_repo->saveType();
-
-		if ( is_user_logged_in() ) {
-			$user_id = ( isset($user_id) ) ? $user_id : get_current_user_id();
-			$favorites = get_user_meta($user_id, 'simplefavorites');
-			if ( empty($favorites) ) return array();
-			return $favorites[0];
-		}
 		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
+		return $this->favoritesWithSiteID($favorites);
+	}
+
+	/**
+	* Get User's Favorites by Site ID
+	* @return array
+	*/
+	public function getFavorites($user_id = null, $site_id = null)
+	{
+		if ( is_user_logged_in() ) return $this->getLoggedInFavorites($user_id, $site_id);
+		$saveType = $this->settings_repo->saveType();
+		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites($site_id) : $this->getSessionFavorites($site_id);
 		return $favorites;
+	}
+
+	/**
+	* Check for Site ID in user's favorites
+	* Multisite Compatibility for >1.1
+	* @since 1.1
+	*/
+	private function favoritesWithSiteID($favorites)
+	{
+		if ( Helpers::findKey('site_id', $favorites) ) return $favorites;
+		$new_favorites = array(
+			array(
+				'site_id' => 1,
+				'site_favorites' => $favorites
+			)
+		);
+		return $new_favorites;
+	}
+
+	/**
+	* Get Logged In User Favorites
+	*/
+	private function getLoggedInFavorites($user_id = null, $site_id = null)
+	{
+		$user_id = ( isset($user_id) ) ? $user_id : get_current_user_id();
+		$favorites = get_user_meta($user_id, 'simplefavorites');
+		
+		if ( empty($favorites) ) return array(array('site_id'=>1, 'site_favorites' => array()));
+		
+		$favorites = $this->favoritesWithSiteID($favorites[0]);
+
+		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 
 	/**
 	* Get Session Favorites
 	*/
-	private function getSessionFavorites()
+	private function getSessionFavorites($site_id = null)
 	{
 		if ( !isset($_SESSION['simplefavorites']) ) $_SESSION['simplefavorites'] = array();
-		return $_SESSION['simplefavorites'];
+		$favorites = $_SESSION['simplefavorites'];
+		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 
 
 	/**
 	* Get Cookie Favorites
 	*/
-	private function getCookieFavorites()
+	private function getCookieFavorites($site_id = null)
 	{
 		if ( !isset($_COOKIE['simplefavorites']) ) $_COOKIE['simplefavorites'] = json_encode(array());
-		$cookie = stripslashes($_COOKIE['simplefavorites']);
-		return json_decode($cookie, true);
+		$favorites = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
+		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 
 
 	/**
 	* Has the user favorited a specified post?
-	* @param int - post id
+	* @param int $post_id
+	* @param int $site_id
 	*/
-	public function isFavorite($post_id)
+	public function isFavorite($post_id, $site_id = 1)
 	{
-		$all_favorites = $this->getFavorites();
-		return ( isset($all_favorites) && (!empty($all_favorites)) && in_array($post_id, $all_favorites) ) ? true : false;
+		$favorites = $this->getFavorites(null, $site_id);
+		return ( isset($favorites) && (!empty($favorites)) && in_array($post_id, $favorites) ) ? true : false;
 	}
 
 

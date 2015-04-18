@@ -19,17 +19,19 @@ class FavoriteCountShortcode {
 	private function setOptions($options)
 	{
 		$this->options = shortcode_atts(array(
-			'post_id' => null
+			'post_id' => '',
+			'site_id' => ''
 		), $options);
 	}
 
 	/**
-	* Call the function
+	* Render the count
+	* @param $options, array of shortcode options
 	*/
 	public function renderView($options)
 	{
 		$this->setOptions($options);
-		return get_favorites_count($this->options['post_id']);
+		return get_favorites_count($this->options['post_id'], $this->options['site_id']);
 	}
 
 }

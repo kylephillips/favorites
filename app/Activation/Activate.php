@@ -14,6 +14,11 @@ class Activate {
 	*/
 	private function setOptions()
 	{
+		global $simple_favorites_version;
+		if ( !get_option('simplefavorites_version')
+			|| get_option('simplefavorites_version') < $simple_favorites_version ){
+			update_option('simplefavorites_version', $simple_favorites_version);
+		}
 		if ( !get_option('simplefavorites_dependencies') 
 			&& get_option('simplefavorites_dependencies') !== "" ){
 			update_option('simplefavorites_dependencies', array(

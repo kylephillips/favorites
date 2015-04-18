@@ -46,6 +46,9 @@ For more information visit [favoriteposts.com](http://favoriteposts.com).
 = Does this worked on cached pages? =
 Yes, although the buttons may display the incorrect state momentarily. Button states are updated via an AJAX call after page load in order to accommodate cached pages. This may be noticeable on slower servers.
 
+= Is this plugin compatible with multi site? =
+Not fully. Multi site support is under development.
+
 
 == Screenshots ==
 

@@ -31,7 +31,7 @@ class FavoritesArrayHandler {
 	*/
 	private function setFavorites()
 	{
-		$this->favorites = $this->user->getFavorites();
+		$this->favorites = $this->user->getAllFavorites();
 	}
 
 	/**

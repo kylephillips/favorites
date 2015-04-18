@@ -54,17 +54,15 @@ class PostHooks {
 	private function addFavoriteButton($display_in)
 	{
 		$output = '';
-
-		$button = new FavoriteButton($this->post->ID);
 		
 		if ( isset($display_in['before_content']) && $display_in['before_content'] == 'true' ){
-			$output .= $button->display();
+			$output .= get_favorites_button();
 		}
 		
 		$output .= $this->content;
 
 		if ( isset($display_in['after_content']) && $display_in['after_content'] == 'true' ){
-			$output .= $button->display();
+			$output .= get_favorites_button();
 		}
 		return $output;
 	}
