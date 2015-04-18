@@ -32,17 +32,9 @@ class UserFavorites {
 	public function __construct($user_id, $site_id, $links = false)
 	{
 		$this->user_id = $user_id;
-		$this->setSiteID($site_id);
+		$this->site_id = $site_id;
 		$this->links = $links;
 		$this->user_repo = new UserRepository;
-	}
-
-	/**
-	* Set the Site ID
-	*/
-	public function setSiteID($site_id)
-	{
-		$this->site_id = $site_id;
 	}
 
 	/**
@@ -60,6 +52,8 @@ class UserFavorites {
 	{
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
 		$favorites = $this->getFavoritesArray();
+
+		//$favorites = Helpers::pluckSiteFavorites($this->site_id, $favorites);
 
 		if ( $favorites ){
 			if ( is_multisite() ) switch_to_blog($this->site_id);
