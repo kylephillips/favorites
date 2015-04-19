@@ -38,5 +38,14 @@
 	</td>
 </tr>
 <tr valign="top">
+	<th scope="row"><?php _e('Favorite Count', 'simplefavorites'); ?>*</th>
+	<td>
+		<label>
+			<input type="checkbox" name="simplefavorites_display[buttoncount]" value="true" <?php if ( $this->settings_repo->includeCountInButton() ) echo 'checked'; ?> />
+			<?php _e('Include total favorite count in button text', 'simplefavorites'); ?>
+		</label>
+	</td>
+</tr>
+<tr valign="top">
 	<td colspan="2" style="padding:0;"><em style="font-size:13px;">*<?php _e('May contain HTML', 'simplefavorites'); ?></em></td>
 </tr>

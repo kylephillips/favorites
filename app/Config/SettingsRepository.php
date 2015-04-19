@@ -92,4 +92,15 @@ class SettingsRepository {
 		return $posttypes;
 	}
 
+	/**
+	* Does the button get the favorite count
+	* @return boolean
+	* @since 1.1.1
+	*/
+	public function includeCountInButton()
+	{
+		$option = get_option('simplefavorites_display');
+		return ( isset($option['buttoncount']) && $option['buttoncount'] == "true" ) ? true : false;
+	}
+
 }

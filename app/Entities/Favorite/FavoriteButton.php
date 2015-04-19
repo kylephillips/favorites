@@ -1,6 +1,7 @@
 <?php namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\User\UserRepository;
+use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Config\SettingsRepository;
 
 class FavoriteButton {
@@ -42,6 +43,9 @@ class FavoriteButton {
 	{
 		if ( !$this->user->getsButton() ) return false;
 
+		$count = new FavoriteCount();
+		$count = $count->getCount($this->post_id, $this->site_id);
+
 		$favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
 		$text = ( $favorited ) 
 			? html_entity_decode($this->settings_repo->buttonTextFavorited()) 
@@ -49,7 +53,9 @@ class FavoriteButton {
 
 		$out = '<button class="simplefavorite-button';
 		if ( $favorited ) $out .= ' active';
-		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '">' . $text . '</button>';
+		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">' . $text;
+		if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '<span>';
+		$out .= '</button>';
 		return $out;
 	}
 
