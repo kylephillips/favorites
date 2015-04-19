@@ -175,6 +175,7 @@ function submit_favorite(button)
 
 	if ( $(button).hasClass('active') ) {
 		$(button).removeClass('active');
+		if ( favorite_count - 1 < 0 ) favorite_count = 1;
 		$(button).attr('data-favoritecount', favorite_count - 1);
 		html = add_favorite_count_to_button(simple_favorites.favorite, favorite_count - 1);
 		$(button).html(html);
