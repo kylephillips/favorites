@@ -54,8 +54,16 @@ class FavoriteButton {
 		$out = '<button class="simplefavorite-button';
 		if ( $favorited ) $out .= ' active';
 		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
-		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">' . $text;
-		if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '<span>';
+		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
+
+		if ( $this->settings_repo->includeLoadingIndicator() ){
+			$out .= $this->settings_repo->loadingText();
+			$spinner = $this->settings_repo->loadingImage();
+			if ( $spinner ) $out .= $spinner;
+		} else {
+			$out .= $text;
+			if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '<span>';
+		}
 		$out .= '</button>';
 		return $out;
 	}

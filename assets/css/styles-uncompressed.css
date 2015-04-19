@@ -4,6 +4,9 @@
   position: relative;
   padding-right: 60px; }
 
+.simplefavorites-loading {
+  margin-left: 8px; }
+
 .simplefavorite-button-count {
   position: absolute;
   width: 40px;

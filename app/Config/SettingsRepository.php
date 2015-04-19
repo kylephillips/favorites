@@ -1,5 +1,7 @@
 <?php namespace SimpleFavorites\Config;
 
+use SimpleFavorites\Helpers;
+
 class SettingsRepository {
 
 	/**
@@ -101,6 +103,51 @@ class SettingsRepository {
 	{
 		$option = get_option('simplefavorites_display');
 		return ( isset($option['buttoncount']) && $option['buttoncount'] == "true" ) ? true : false;
+	}
+
+	/**
+	* Does the button get loading indication?
+	* @return boolean
+	* @since 1.1.1
+	*/
+	public function includeLoadingIndicator()
+	{
+		$option = get_option('simplefavorites_display');
+		return ( isset($option['loadingindicator']) && $option['loadingindicator']['include'] == "true" ) ? true : false;
+	}
+
+	/**
+	* Loading Text
+	* @return string
+	* @since 1.1.1
+	*/
+	public function loadingText()
+	{
+		$option = get_option('simplefavorites_display');
+		return ( isset($option['loadingindicator']['text']) && $option['loadingindicator']['text'] !== "" ) ? esc_html($option['loadingindicator']['text']) : __('Loading', 'simplefavorites');
+	}
+
+	/**
+	* Loading Image
+	* @return string
+	* @param $state string
+	* @uses simplefavorites_spinner_url filter, simplefavorites_spinner_url_active filter
+	* @since 1.1.1
+	*/
+	public function loadingImage($state = 'inactive')
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['loadingindicator']['include_image']) || $option['loadingindicator']['include_image'] !== 'true' ) return false;
+		$image_url = Helpers::plugin_url() . '/assets/images/loading.gif';
+		
+		if ( $state == 'inactive' ) {
+			$image = '<img src="' . apply_filters('simplefavorites_spinner_url', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
+		} else { 
+			// active state (some users might want different color for active)
+			$image = '<img src="' . apply_filters('simplefavorites_spinner_url_active', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
+		} 
+
+		return $image;
 	}
 
 }

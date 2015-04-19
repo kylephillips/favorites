@@ -69,5 +69,21 @@ function toggle_posttype_display()
 	});
 }
 
+// Loading Indicators
+$(document).ready(function(){
+	toggle_loading_indicators();
+});
+$(document).on('change', '.simplefavorites-display-loading', function(){
+	toggle_loading_indicators();
+});
+function toggle_loading_indicators()
+{
+	if ( $('.simplefavorites-display-loading').is(':checked') ){
+		$('.simplefavorites-loading-fields').show();
+	} else {
+		$('.simplefavorites-loading-fields').hide();
+	}
+}
+
 
 });

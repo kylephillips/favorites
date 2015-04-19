@@ -38,12 +38,34 @@
 	</td>
 </tr>
 <tr valign="top">
-	<th scope="row"><?php _e('Favorite Count', 'simplefavorites'); ?>*</th>
+	<th scope="row"><?php _e('Favorite Count', 'simplefavorites'); ?></th>
 	<td>
 		<label>
 			<input type="checkbox" name="simplefavorites_display[buttoncount]" value="true" <?php if ( $this->settings_repo->includeCountInButton() ) echo 'checked'; ?> />
 			<?php _e('Include total favorite count in button text', 'simplefavorites'); ?>
 		</label>
+	</td>
+</tr>
+<tr valign="top">
+	<th scope="row"><?php _e('Loading Indication', 'simplefavorites'); ?></th>
+	<td>
+		<label>
+			<input type="checkbox" class="simplefavorites-display-loading" name="simplefavorites_display[loadingindicator][include]" value="true" <?php if ( $this->settings_repo->includeLoadingIndicator() ) echo 'checked'; ?> />
+			<?php _e('Display loading indicator for buttons', 'simplefavorites'); ?>
+			<em>(<?php _e('Helpful for slow sites with cache enabled', 'simplefavorites'); ?>)</em>
+		</label>
+		<div class="simplefavorites-loading-fields" style="padding-top:10px;display:none;">
+			<p>
+				<label>Loading Text</label><br>
+				<input type="text" name="simplefavorites_display[loadingindicator][text]" value="<?php echo $this->settings_repo->loadingText(); ?>" />
+			</p>
+			<p style="padding-top:10px;">
+				<label>
+					<input type="checkbox" name="simplefavorites_display[loadingindicator][include_image]" value="true" <?php if ( $this->settings_repo->loadingImage() ) echo 'checked'; ?>>
+					<?php _e('Include loading indicator image', 'simplefavorites'); ?>
+				</label>
+			</p>
+		</div>
 	</td>
 </tr>
 <tr valign="top">
