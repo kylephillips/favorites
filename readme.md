@@ -43,7 +43,7 @@ Total favorites for each post are saved as a simple integer. If a user unfavorit
 #### User Favorites
 User favorites are stored as an array of post ids. Logged-in users' favorites are stored as a custom user meta field, while anonymous users' favorites are stored in either the session or browser cookie (configurable in the plugin settings). If the user id parameter is omitted, the favorites default to the current user. The site id parameter is optional, for use in multisite installations.
 
-- **Get function (returns array of IDs):** `get_user_favorites($user_id, $site_id)`
-- **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id)`
-- **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id)`
-- **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id=""]
+- **Get function (returns array of IDs):** `get_user_favorites($user_id, $site_id, $filters)`
+- **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id, $include_links, $filters)`
+- **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id, $include_links, $filters)`
+- **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id="" post_types=""]`
