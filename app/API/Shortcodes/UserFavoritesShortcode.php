@@ -10,6 +10,12 @@ class UserFavoritesShortcode {
 	*/
 	private $options;
 
+	/**
+	* List Filters
+	* @var array
+	*/
+	private $filters;
+
 	public function __construct()
 	{
 		add_shortcode('user_favorites', array($this, 'renderView'));
@@ -23,8 +29,19 @@ class UserFavoritesShortcode {
 		$this->options = shortcode_atts(array(
 			'user_id' => '',
 			'site_id' => '',
-			'include_links' => 'true'
+			'include_links' => 'true',
+			'post_types' => ''
 		), $options);
+	}
+
+	/**
+	* Parse Post Types
+	*/
+	private function parsePostTypes()
+	{
+		if ( $this->options['post_types'] == "" ) return;
+		$post_types = explode(',', $this->options['post_types']);
+		$this->filters = array('post_type' => $post_types);
 	}
 
 	/**
@@ -34,12 +51,13 @@ class UserFavoritesShortcode {
 	public function renderView($options)
 	{
 		$this->setOptions($options);
+		$this->parsePostTypes();
 		
 		$this->options['include_links'] = ( $this->options['include_links'] == 'true' ) ? true : false;
 		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
 		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
 
-		$favorites = new UserFavorites($this->options['user_id'], $this->options['site_id'], $this->options['include_links']);
+		$favorites = new UserFavorites($this->options['user_id'], $this->options['site_id'], $this->options['include_links'], $this->filters);
 		return $favorites->getFavoritesList();
 	}
 
