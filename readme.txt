@@ -1,7 +1,7 @@
 === Favorites ===
 Contributors: kylephillips
 Donate link: http://favoriteposts.com/
-Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite
+Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
 Tested up to: 4.2
 Stable tag: 1.1.0
@@ -9,7 +9,7 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple and flexible favorite buttons for any post type.
+Favorites for any post type. Easily add favoriting/liking, wishlists, or any other similar functionaliyt using the developer-friendly API.
 
 == Description ==
 
