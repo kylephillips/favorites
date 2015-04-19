@@ -69,12 +69,12 @@ function the_favorites_count($post_id = null, $site_id = null)
 * @param $site_id int, defaults to current blog/site
 * @return array
 */
-function get_user_favorites($user_id = null, $site_id = null)
+function get_user_favorites($user_id = null, $site_id = null, $filters = null)
 {
 	global $blog_id;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !is_multisite() ) $site_id = 1;
-	$favorites = new UserFavorites($user_id, $site_id);
+	$favorites = new UserFavorites($user_id, $site_id, $links = false, $filters);
 	return $favorites->getFavoritesArray();
 }
 
@@ -83,14 +83,15 @@ function get_user_favorites($user_id = null, $site_id = null)
 * HTML List of User Favorites
 * @param $user_id int, defaults to current user
 * @param $site_id int, defaults to current blog/site
+* @param $filters array of post types/taxonomies
 * @return html
 */
-function get_user_favorites_list($user_id = null, $site_id = null)
+function get_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null)
 {
 	global $blog_id;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !is_multisite() ) $site_id = 1;
-	$favorites = new UserFavorites($user_id, $site_id);
+	$favorites = new UserFavorites($user_id, $site_id, $include_links, $filters);
 	return $favorites->getFavoritesList();
 }
 
@@ -101,7 +102,7 @@ function get_user_favorites_list($user_id = null, $site_id = null)
 * @param $site_id int, defaults to current blog/site
 * @return html
 */
-function the_user_favorites_list($user_id = null, $site_id = null)
+function the_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null)
 {
-	echo get_user_favorites_list($user_id, $site_id);
+	echo get_user_favorites_list($user_id, $site_id, $include_links, $filters);
 }

@@ -1,6 +1,7 @@
 <?php namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Entities\User\UserRepository;
+use SimpleFavorites\Entities\Favorite\FavoriteFilter;
 use SimpleFavorites\Helpers;
 
 class UserFavorites {
@@ -24,16 +25,23 @@ class UserFavorites {
 	private $links;
 
 	/**
+	* Filters
+	* @var array
+	*/
+	private $filters;
+
+	/**
 	* Settings Repository
 	*/
 	private $user_repo;
 
 
-	public function __construct($user_id, $site_id, $links = false)
+	public function __construct($user_id, $site_id, $links = false, $filters = null)
 	{
 		$this->user_id = $user_id;
 		$this->site_id = $site_id;
 		$this->links = $links;
+		$this->filters = $filters;
 		$this->user_repo = new UserRepository;
 	}
 
@@ -42,8 +50,21 @@ class UserFavorites {
 	*/
 	public function getFavoritesArray()
 	{
-		return $this->user_repo->getFavorites($this->user_id, $this->site_id);
+		$favorites = $this->user_repo->getFavorites($this->user_id, $this->site_id);
+		if ( isset($this->filters) && is_array($this->filters) ) $favorites = $this->filterFavorites($favorites);
+		return $favorites;
 	}
+
+	/**
+	* Filter the favorites
+	* @since 1.1.1
+	* @param array $favorites
+	*/
+	private function filterFavorites($favorites)
+	{
+		$favorites = new FavoriteFilter($favorites, $this->filters);
+		return $favorites->filter();
+	}	
 
 	/**
 	* Return an HTML list of favorites for specified user
