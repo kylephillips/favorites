@@ -1,5 +1,20 @@
 .simplefavorite-button.active {
   opacity: 0.5; }
+.simplefavorite-button.has-count {
+  position: relative;
+  padding-right: 60px; }
+
+.simplefavorite-button-count {
+  position: absolute;
+  width: 40px;
+  right: 0;
+  top: 0;
+  height: 100%;
+  padding-top: 13%;
+  background-color: rgba(0, 0, 0, 0.8);
+  font-size: 0.75em;
+  color: #ffffff;
+  font-weight: normal; }
 
 @font-face {
   font-family: 'favorites';

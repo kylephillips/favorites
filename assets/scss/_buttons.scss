@@ -6,4 +6,21 @@
 	&.active{
 		opacity: .5;
 	}
+	&.has-count {
+		position: relative;
+		padding-right: 60px;
+	}
+}
+
+.simplefavorite-button-count {
+	position: absolute;
+	width: 40px;
+	right: 0;
+	top: 0;
+	height: 100%;
+	padding-top: 13%;
+	background-color: rgba(0, 0, 0, .8);
+	font-size: .75em;
+	color: $white;
+	font-weight: normal;
 }

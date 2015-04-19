@@ -53,6 +53,7 @@ class FavoriteButton {
 
 		$out = '<button class="simplefavorite-button';
 		if ( $favorited ) $out .= ' active';
+		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
 		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">' . $text;
 		if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '<span>';
 		$out .= '</button>';
