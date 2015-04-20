@@ -72,6 +72,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 * An optional "post_type" parameter has been added to the user_favorites shortcode. The parameter allows for filtering of the generated list by post types, and will accept a comma separated list of post types
 * Option added to include post favorite count in the button (view settings > favorites > display to enable)
 * Button loading state option added (view settings > favorites > display to enable)
+* Added template function and shortcode for displaying total number of favorites by user (see documentation for more options)
 
 = 1.1.0 =
 * Favorites is now multisite compatible. See documentation for added template function and shortcode parameters.

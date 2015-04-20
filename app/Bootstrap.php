@@ -26,6 +26,7 @@ class Bootstrap {
 		new API\Shortcodes\ButtonShortcode;
 		new API\Shortcodes\FavoriteCountShortcode;
 		new API\Shortcodes\UserFavoritesShortcode;
+		new API\Shortcodes\UserFavoriteCount;
 	}
 
 
