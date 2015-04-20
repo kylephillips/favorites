@@ -9,7 +9,7 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Favorites for any post type. Easily add favoriting/liking, wishlists, or any other similar functionaliyt using the developer-friendly API.
+Favorites for any post type. Easily add favoriting/liking, wishlists, or any other similar functionality using the developer-friendly API.
 
 == Description ==
 
@@ -71,6 +71,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 * Optional filtering added to favorite list template functions. The functions now accept an array of arguments for fine-tuned favorite lists. Visit the documentation for more information.
 * An optional "post_type" parameter has been added to the user_favorites shortcode. The parameter allows for filtering of the generated list by post types, and will accept a comma separated list of post types
 * Option added to include post favorite count in the button (view settings > favorites > display to enable)
+* Button loading state option added (view settings > favorites > display to enable)
 
 = 1.1.0 =
 * Favorites is now multisite compatible. See documentation for added template function and shortcode parameters.

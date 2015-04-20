@@ -124,7 +124,7 @@ class SettingsRepository {
 	public function loadingText()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['loadingindicator']['text']) && $option['loadingindicator']['text'] !== "" ) ? esc_html($option['loadingindicator']['text']) : __('Loading', 'simplefavorites');
+		return ( isset($option['loadingindicator']['text']) ) ? esc_html($option['loadingindicator']['text']) : __('Loading', 'simplefavorites');
 	}
 
 	/**

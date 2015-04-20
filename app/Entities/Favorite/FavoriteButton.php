@@ -52,13 +52,17 @@ class FavoriteButton {
 			: html_entity_decode($this->settings_repo->buttonText());
 
 		$out = '<button class="simplefavorite-button';
+		
+		// Button Classes
 		if ( $favorited ) $out .= ' active';
 		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
+		if ( $this->settings_repo->includeLoadingIndicator() ) $out .= ' loading';
+
 		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
 
 		if ( $this->settings_repo->includeLoadingIndicator() ){
 			$out .= $this->settings_repo->loadingText();
-			$spinner = $this->settings_repo->loadingImage();
+			$spinner = ($favorited) ? $this->settings_repo->loadingImage('active') : $this->settings_repo->loadingImage();
 			if ( $spinner ) $out .= $spinner;
 		} else {
 			$out .= $text;

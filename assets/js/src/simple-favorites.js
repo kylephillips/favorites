@@ -86,6 +86,7 @@ function update_buttons(favorites)
 				html = add_favorite_count_to_button(simple_favorites.favorite, favorite_count);
 				$(this).removeClass('active').html(html);
 			}
+			$(this).removeClass('loading');
 		}
 
 	});
@@ -160,6 +161,7 @@ function get_single_list(list, user_id, site_id, links)
 $(document).on('click', '.simplefavorite-button', function(e){
 	e.preventDefault();
 	var button = $(this);
+	$(this).addClass('loading');
 	submit_favorite(button);
 });
 
@@ -172,18 +174,21 @@ function submit_favorite(button)
 
 	var status = 'inactive';
 	var html = "";
+	var original_html = "";
 
 	if ( $(button).hasClass('active') ) {
 		$(button).removeClass('active');
 		if ( favorite_count - 1 < 0 ) favorite_count = 1;
 		$(button).attr('data-favoritecount', favorite_count - 1);
-		html = add_favorite_count_to_button(simple_favorites.favorite, favorite_count - 1);
+		original_html = add_favorite_count_to_button(simple_favorites.favorite, favorite_count - 1);
+		html = add_loading_indication(original_html, status);
 		$(button).html(html);
 	} else {
-		var status = 'active';
+		status = 'active';
 		$(button).addClass('active');
 		$(button).attr('data-favoritecount', favorite_count + 1);
-		html = add_favorite_count_to_button(simple_favorites.favorited, favorite_count + 1);
+		original_html = add_favorite_count_to_button(simple_favorites.favorited, favorite_count + 1);
+		html = add_loading_indication(original_html, status);
 		$(button).html(html);
 	}
 
@@ -200,9 +205,24 @@ function submit_favorite(button)
 		},
 		success: function(data){
 			if ( data.status !== 'success' ) console.log(data.message);
-			console.log(data);
+			$(button).removeClass('loading');
+			$(button).html(original_html);  // TODO: save original html, replace here
 		}
 	});
+}
+
+/**
+* Add loading indication
+* @return html
+*/
+function add_loading_indication(html, status)
+{
+	if ( simple_favorites.indicate_loading !== '1' ) return html;
+	if ( status === 'active' ){
+		return simple_favorites.loading_text + simple_favorites.loading_image_active;
+	} else {
+		return simple_favorites.loading_text + simple_favorites.loading_image;
+	}
 }
 
 

@@ -3,8 +3,8 @@
 // --------------------------------------------------
 
 .simplefavorite-button {
-	&.active{
-		opacity: .5;
+	&.active {
+		opacity: .7;
 	}
 	&.has-count {
 		position: relative;
@@ -23,7 +23,7 @@
 	right: 0;
 	top: 0;
 	height: 100%;
-	padding-top: 13%;
+	padding-top: 18%;
 	background-color: rgba(0, 0, 0, .8);
 	font-size: .75em;
 	color: $white;
