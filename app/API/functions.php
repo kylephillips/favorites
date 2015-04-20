@@ -122,3 +122,16 @@ function get_user_favorites_count($user_id = null, $site_id = null, $filters = n
 	$favorites = get_user_favorites($user_id, $site_id, $filters);
 	return count($favorites);
 }
+
+
+/**
+* Get an array of User Favorites
+* @param $user_id int, defaults to current user
+* @param $site_id int, defaults to current blog/site
+* @param $filters array of post types/taxonomies
+* @return int
+*/
+function the_user_favorites_count($user_id = null, $site_id = null, $filters = null)
+{
+	echo get_user_favorites_count($user_id, $site_id, $filters);
+}
