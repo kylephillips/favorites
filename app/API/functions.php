@@ -129,7 +129,7 @@ function get_user_favorites_count($user_id = null, $site_id = null, $filters = n
 * @param $user_id int, defaults to current user
 * @param $site_id int, defaults to current blog/site
 * @param $filters array of post types/taxonomies
-* @return int
+* @return html
 */
 function the_user_favorites_count($user_id = null, $site_id = null, $filters = null)
 {
