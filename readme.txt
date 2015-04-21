@@ -119,13 +119,20 @@ The favorite button can be added automatically to the content by enabling specif
 * **Print function:** `the_favorites_button($post_id, $site_id)`
 * **Shortcode:** `[favorite_button post_id="" site_id=""]`
 
-**Favorite Count**
+**Favorite Count (by Post)**
 
 Total favorites for each post are saved as a simple integer. If a user unfavorites a post, this count is updated. Anonymous users' favorites count towards the total by default, but may be disabled via the plugin settings. The post id may be left blank in all cases if inside the loop.
 
 * **Get function:** `get_favorites_count($post_id)`
 * **Print function:** `the_favorites_count($post_id)`
 * **Shortcode:** `[favorite_count post_id=""]`
+
+**Favorite Count (by User)**
+Displays the total number of favorites a user has favorited. Template functions accept the same filters parameter as the user favorites functions.
+
+* **Get function:** `get_user_favorites_count($user_id, $site_id, $filters)`
+* **Print function:** `the_user_favorites_count($user_id, $site_id, $filters)`
+* **Shortcode:** `[user_favorites user_id="" site_id="" post_types=""]`
 
 **User Favorites**
 
