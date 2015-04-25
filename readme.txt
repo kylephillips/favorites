@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 1.1.2 =
+* Bug fix in plugin settings when deselecting all automatic post type insertions.
+
 = 1.1.1 =
 * Optional filtering added to favorite list template functions. The functions now accept an array of arguments for fine-tuned favorite lists. Visit the documentation for more information.
 * An optional "post_type" parameter has been added to the user_favorites shortcode. The parameter allows for filtering of the generated list by post types, and will accept a comma separated list of post types

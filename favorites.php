@@ -3,7 +3,7 @@
 Plugin Name: Favorites
 Plugin URI: http://favoriteposts.com
 Description: Simple and flexible favorite buttons for any post type.
-Version: 1.1.1
+Version: 1.1.2
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
 Text Domain: simplefavorites
