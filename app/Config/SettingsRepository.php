@@ -50,7 +50,7 @@ class SettingsRepository {
 	public function displayInPostType($posttype)
 	{
 		$types = get_option('simplefavorites_display');
-		if ( $types && $types !== "" ){
+		if ( !empty($types['posttypes']) && $types !== "" ){
 			foreach ( $types['posttypes'] as $key => $type ){
 				if ( $key == $posttype && isset($type['display']) && $type['display'] == 'true' ) return $type;
 			}
@@ -113,7 +113,7 @@ class SettingsRepository {
 	public function includeLoadingIndicator()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['loadingindicator']) && $option['loadingindicator']['include'] == "true" ) ? true : false;
+		return ( isset($option['loadingindicator']['include']) && $option['loadingindicator']['include'] == "true" ) ? true : false;
 	}
 
 	/**
