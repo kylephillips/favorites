@@ -107,7 +107,8 @@ class Dependencies {
 				'indicate_loading' => $this->settings_repo->includeLoadingIndicator(),
 				'loading_text' => $this->settings_repo->loadingText(),
 				'loading_image' => $this->settings_repo->loadingImage(),
-				'loading_image_active' => $this->settings_repo->loadingImage('active')
+				'loading_image_active' => $this->settings_repo->loadingImage('active'),
+				'loading_image_preload' => $this->settings_repo->includeLoadingIndicatorPreload()
 			)
 		);
 	}

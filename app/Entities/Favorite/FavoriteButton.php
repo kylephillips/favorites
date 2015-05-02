@@ -56,11 +56,12 @@ class FavoriteButton {
 		// Button Classes
 		if ( $favorited ) $out .= ' active';
 		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
-		if ( $this->settings_repo->includeLoadingIndicator() ) $out .= ' loading';
+		
+		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() ) $out .= ' loading';
 
 		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
 
-		if ( $this->settings_repo->includeLoadingIndicator() ){
+		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() ){
 			$out .= $this->settings_repo->loadingText();
 			$spinner = ($favorited) ? $this->settings_repo->loadingImage('active') : $this->settings_repo->loadingImage();
 			if ( $spinner ) $out .= $spinner;

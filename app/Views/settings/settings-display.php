@@ -65,6 +65,12 @@
 					<?php _e('Include loading indicator image', 'simplefavorites'); ?>
 				</label>
 			</p>
+			<p style="padding-top:10px;">
+				<label>
+					<input type="checkbox" name="simplefavorites_display[loadingindicator][include_preload]" value="true" <?php if ( $this->settings_repo->includeLoadingIndicatorPreload() ) echo 'checked'; ?>>
+					<?php _e('Include loading indicator image on page load', 'simplefavorites'); ?>
+				</label>
+			</p>
 		</div>
 	</td>
 </tr>

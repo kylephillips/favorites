@@ -117,6 +117,17 @@ class SettingsRepository {
 	}
 
 	/**
+	* Does the button get loading indication on page load?
+	* @return boolean
+	* @since 1.1.3
+	*/
+	public function includeLoadingIndicatorPreload()
+	{
+		$option = get_option('simplefavorites_display');
+		return ( isset($option['loadingindicator']['include_preload']) && $option['loadingindicator']['include_preload'] == "true" ) ? true : false;
+	}
+
+	/**
 	* Loading Text
 	* @return string
 	* @since 1.1.1

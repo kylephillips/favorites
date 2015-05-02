@@ -5,6 +5,10 @@ jQuery(function($){
 * Generate a Nonce and Append to Head (page cache workaround)
 * --------------------------------------------------------------------
 */
+
+function after_favorite_submit(post_id, status, site_id){}
+
+
 $(document).ready(function(){
 	generate_nonce();
 });
@@ -129,7 +133,7 @@ function get_favorites_lists()
 		var site_id = $(this).data('siteid');
 		var links = $(this).data('links');
 		var list = $(this);
-		//get_single_list(list, user_id, site_id, links);
+		get_single_list(list, user_id, site_id, links);
 	});
 }
 function get_single_list(list, user_id, site_id, links)
@@ -146,7 +150,6 @@ function get_single_list(list, user_id, site_id, links)
 			links : links
 		},
 		success: function(data){
-			console.log(data);
 			$(list).replaceWith(data.list);
 		}
 	});
@@ -206,7 +209,8 @@ function submit_favorite(button)
 		success: function(data){
 			if ( data.status !== 'success' ) console.log(data.message);
 			$(button).removeClass('loading');
-			$(button).html(original_html);  // TODO: save original html, replace here
+			$(button).html(original_html);
+			after_favorite_submit(post_id, status, site_id);
 		}
 	});
 }
