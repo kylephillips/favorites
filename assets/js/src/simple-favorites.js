@@ -165,6 +165,7 @@ $(document).on('click', '.simplefavorite-button', function(e){
 	e.preventDefault();
 	var button = $(this);
 	$(this).addClass('loading');
+	$(this).attr('disabled', 'disabled');
 	submit_favorite(button);
 });
 
@@ -207,9 +208,9 @@ function submit_favorite(button)
 			status : status
 		},
 		success: function(data){
-			if ( data.status !== 'success' ) console.log(data.message);
 			$(button).removeClass('loading');
 			$(button).html(original_html);
+			$(button).attr('disabled', false);
 			after_favorite_submit(post_id, status, site_id);
 		}
 	});
