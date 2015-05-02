@@ -67,9 +67,11 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 1.1.4 =
+* Fixed bug that allowed multiple button submissions before the previous was processed
+
 = 1.1.3 =
 * Option added to hide loading indication on page load.
-* Fixed bug that allowed multiple button submissions before the previous was processed.
 
 = 1.1.2 =
 * Bug fix in plugin settings when deselecting all automatic post type insertions.
