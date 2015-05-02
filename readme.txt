@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 1.1.3 =
+* Option added to hide loading indication on page load.
+
 = 1.1.2 =
 * Bug fix in plugin settings when deselecting all automatic post type insertions.
 
@@ -102,6 +105,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 
 == Upgrade Notice ==
+
+= 1.1.3 =
+* Option added to hide loading indication on page load. By default, loading indication is turned off. To turn loading indication on, visit settings > favorites > display, and select the checkbox labeld "include loading indicator image on page load"
 
 = 1.1.1 =
 * Optional filters added to favorite list functionality. Visit the documentation page for more information.
