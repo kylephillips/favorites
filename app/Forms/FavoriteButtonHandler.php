@@ -42,6 +42,17 @@ class FavoriteButtonHandler {
 	{
 		$favorite = new Favorite;
 		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
+		$this->afterUpdateAction();
+	}
+
+	/**
+	* After Update Action
+	* Provides hook for performing actions after a favorite
+	*/
+	private function afterUpdateAction()
+	{
+		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
+		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
 	}
 
 	/**
