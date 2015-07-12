@@ -7,7 +7,6 @@ namespace SimpleFavorites\Entities\Post;
 */
 class FavoriteCount 
 {
-
 	/**
 	* Get the favorite count for a post
 	*/

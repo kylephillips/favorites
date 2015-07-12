@@ -47,7 +47,7 @@ class UserRepository
 	*/
 	public function getFavorites($user_id = null, $site_id = null)
 	{
-		if ( is_user_logged_in() ) return $this->getLoggedInFavorites($user_id, $site_id);
+		if ( is_user_logged_in() || $user_id ) return $this->getLoggedInFavorites($user_id, $site_id);
 		$saveType = $this->settings_repo->saveType();
 		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites($site_id) : $this->getSessionFavorites($site_id);
 		return $favorites;
@@ -112,9 +112,9 @@ class UserRepository
 	* @param int $post_id
 	* @param int $site_id
 	*/
-	public function isFavorite($post_id, $site_id = 1)
+	public function isFavorite($post_id, $site_id = 1, $user_id = null)
 	{
-		$favorites = $this->getFavorites(null, $site_id);
+		$favorites = $this->getFavorites($user_id, $site_id);
 		return ( isset($favorites) && (!empty($favorites)) && in_array($post_id, $favorites) ) ? true : false;
 	}
 

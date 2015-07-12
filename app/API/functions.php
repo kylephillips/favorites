@@ -6,6 +6,7 @@
 use SimpleFavorites\Entities\Favorite\FavoriteButton;
 use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Entities\User\UserFavorites;
+use SimpleFavorites\Entities\Post\FavoritedUsers;
 
 
 /**
@@ -135,3 +136,35 @@ function the_user_favorites_count($user_id = null, $site_id = null, $filters = n
 {
 	echo get_user_favorites_count($user_id, $site_id, $filters);
 }
+
+
+/**
+* Get an array of users who have favorited a post
+* @param $post_id int, defaults to current post
+* @param $site_id int, defaults to current blog/site
+* @return array of user objects
+*/
+function get_users_who_favorited_post($post_id = null, $site_id = null)
+{
+	$users = new FavoritedUsers($post_id, $site_id);
+	return $users->getUsers();
+}
+
+
+/**
+* Get a list of users who favorited a post
+* @param $post_id int, defaults to current post
+* @param $site_id int, defaults to current blog/site
+* @param $separator string, custom separator between items (defaults to HTML list)
+* @param $include_anonmyous boolean, whether to include anonmyous users
+* @param $anonymous_label string, label for anonymous user count
+* @param $anonymous_label_single string, singular label for anonymous user count
+*/
+function the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User')
+{
+	$users = new FavoritedUsers($post_id, $site_id);
+	echo $users->userList($separator, $include_anonymous, $anonymous_label, $anonymous_label_single);
+}
+
+
+
