@@ -68,6 +68,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 == Changelog ==
 
 = 1.1.5 =
+* Added functionality to display users who have favorited a post. Use the shortcode [post_favorites] or one of the two new template functions: get_users_who_favorited_post or the_users_who_favorited_post. View the plugin website for options and usage examples.
 * Added developer hook for after a post has been favorited
 * Deleted and unpublished posts removed from user favorites and lists.
 
@@ -158,3 +159,11 @@ User favorites are stored as an array of post ids. Logged-in users' favorites ar
 * **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id)`
 * **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id)`
 * **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id=""]
+
+**Post Favorites**
+
+Display a list of users who have favorited a specific post. If the user id parameter is omitted, the favorites default to the current user. The site id parameter is optional, for use in multisite installations (defaults to current site). The get function returns an array of user objects.
+
+* **Get function (returns array of User Objects):** `get_users_who_favorited_post($post_id, $site_id)`
+* **Print function (prints an html list):** `the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User')`
+* **Shortcode (prints an html list):** `[post_favorites post_id="" site_id="" separator="list" include_anonymous="true" anonymous_label="Anonymous Users" anonymous_label_single="Anonymous User"]
