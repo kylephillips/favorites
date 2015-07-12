@@ -52,6 +52,18 @@ class UserFavorites {
 	{
 		$favorites = $this->user_repo->getFavorites($this->user_id, $this->site_id);
 		if ( isset($this->filters) && is_array($this->filters) ) $favorites = $this->filterFavorites($favorites);
+		return $this->removeInvalidFavorites($favorites);
+	}
+
+	/**
+	* Remove non-existent or non-published favorites
+	* @param array $favorites
+	*/
+	private function removeInvalidFavorites($favorites)
+	{
+		foreach($favorites as $key => $favorite){
+			if ( !$this->postExists($favorite) ) unset($favorites[$key]);
+		}
 		return $favorites;
 	}
 
@@ -89,6 +101,15 @@ class UserFavorites {
 			return $out;
 		}
 		return false;
+	}
+
+	/**
+	* Check if post exists and is published
+	*/
+	private function postExists($id)
+	{
+		$status = get_post_status($id);
+		return( !$status || $status !== 'publish') ? false : true;
 	}
 
 }
