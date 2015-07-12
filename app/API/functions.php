@@ -6,7 +6,7 @@
 use SimpleFavorites\Entities\Favorite\FavoriteButton;
 use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Entities\User\UserFavorites;
-use SimpleFavorites\Entities\Post\FavoritedUsers;
+use SimpleFavorites\Entities\Post\PostFavorites;
 
 
 /**
@@ -146,7 +146,7 @@ function the_user_favorites_count($user_id = null, $site_id = null, $filters = n
 */
 function get_users_who_favorited_post($post_id = null, $site_id = null)
 {
-	$users = new FavoritedUsers($post_id, $site_id);
+	$users = new PostFavorites($post_id, $site_id);
 	return $users->getUsers();
 }
 
@@ -162,7 +162,7 @@ function get_users_who_favorited_post($post_id = null, $site_id = null)
 */
 function the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User')
 {
-	$users = new FavoritedUsers($post_id, $site_id);
+	$users = new PostFavorites($post_id, $site_id);
 	echo $users->userList($separator, $include_anonymous, $anonymous_label, $anonymous_label_single);
 }
 

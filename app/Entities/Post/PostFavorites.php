@@ -8,7 +8,7 @@ use SimpleFavorites\Entities\Post\FavoriteCount;
 /**
 * Get the users who have favorited a specific post
 */
-class FavoritedUsers
+class PostFavorites
 {
 	/**
 	* Post ID
