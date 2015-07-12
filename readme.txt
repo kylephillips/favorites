@@ -69,6 +69,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 1.1.5 =
 * Added developer hook for after a post has been favorited
+* Deleted and unpublished posts removed from user favorites and lists.
 
 = 1.1.4 =
 * Fixed bug that allowed multiple button submissions before the previous was processed
