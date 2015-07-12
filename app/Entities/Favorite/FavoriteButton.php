@@ -1,10 +1,13 @@
-<?php namespace SimpleFavorites\Entities\Favorite;
+<?php 
+
+namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Config\SettingsRepository;
 
-class FavoriteButton {
+class FavoriteButton 
+{
 
 	/**
 	* The Post ID
@@ -25,7 +28,6 @@ class FavoriteButton {
 	* Settings Repository
 	*/
 	private $settings_repo;
-
 
 	public function __construct($post_id, $site_id)
 	{
@@ -72,6 +74,5 @@ class FavoriteButton {
 		$out .= '</button>';
 		return $out;
 	}
-
 
 }

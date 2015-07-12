@@ -1,8 +1,12 @@
-<?php namespace SimpleFavorites\Entities\Favorite;
+<?php 
+
+namespace SimpleFavorites\Entities\Favorite;
+
 /**
 * Filters an array of favorites using provided array of filters
 */
-class FavoriteFilter {
+class FavoriteFilter 
+{
 
 	/**
 	* Favorites
@@ -30,7 +34,6 @@ class FavoriteFilter {
 	*
 	*/
 	private $filters;
-
 
 	public function __construct($favorites, $filters)
 	{

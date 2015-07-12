@@ -1,4 +1,6 @@
-<?php namespace SimpleFavorites\Entities\Favorite;
+<?php 
+
+namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Helpers;
@@ -6,7 +8,8 @@ use SimpleFavorites\Helpers;
 /**
 * Sync a favorite to a given save type
 */
-class SyncUserFavorite {
+class SyncUserFavorite 
+{
 
 	/**
 	* The Post ID
@@ -22,7 +25,6 @@ class SyncUserFavorite {
 	* User Repository
 	*/
 	private $user;
-
 
 	public function __construct($post_id, $site_id)
 	{

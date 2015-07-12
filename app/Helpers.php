@@ -1,8 +1,12 @@
-<?php namespace SimpleFavorites;
+<?php 
+
+namespace SimpleFavorites;
+
 /**
 * Static Helper Methods
 */
-class Helpers {
+class Helpers 
+{
 
 	/**
 	* Plugin Root Directory

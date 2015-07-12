@@ -1,8 +1,12 @@
-<?php namespace SimpleFavorites;
+<?php 
+
+namespace SimpleFavorites;
+
 /**
 * Plugin Bootstrap
 */
-class Bootstrap {
+class Bootstrap 
+{
 
 	public function __construct()
 	{
@@ -29,7 +33,6 @@ class Bootstrap {
 		new API\Shortcodes\UserFavoriteCount;
 	}
 
-
 	/**
 	* Add a link to the settings on the plugin page
 	*/
@@ -41,7 +44,6 @@ class Bootstrap {
 		array_unshift($links, $settings_link);
 		return $links; 
 	}
-
 
 	/**
 	* Localization Domain
@@ -61,7 +63,5 @@ class Bootstrap {
 	{
 		if ( !session_id() ) session_start();
 	}
-
-
 
 }

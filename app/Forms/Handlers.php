@@ -1,11 +1,14 @@
-<?php namespace SimpleFavorites\Forms;
+<?php 
+
+namespace SimpleFavorites\Forms;
 
 use SimpleFavorites\Forms\NonceHandler;
 use SimpleFavorites\Forms\FavoriteButtonHandler;
 use SimpleFavorites\Forms\FavoritesArrayHandler;
 use SimpleFavorites\Forms\FavoritesListHandler;
 
-class Handlers {
+class Handlers 
+{
 
 	public function __construct()
 	{

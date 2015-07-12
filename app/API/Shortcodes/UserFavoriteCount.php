@@ -1,6 +1,9 @@
-<?php namespace SimpleFavorites\API\Shortcodes;
+<?php 
 
-class UserFavoriteCount {
+namespace SimpleFavorites\API\Shortcodes;
+
+class UserFavoriteCount 
+{
 
 	/**
 	* Shortcode Options

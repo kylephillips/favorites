@@ -1,4 +1,6 @@
-<?php namespace SimpleFavorites\Entities\Post;
+<?php 
+
+namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Entities\Favorite\FavoriteButton;
@@ -6,7 +8,8 @@ use SimpleFavorites\Entities\Favorite\FavoriteButton;
 /**
 * Post Actions and Filters
 */
-class PostHooks {
+class PostHooks 
+{
 
 	/**
 	* Settings Repository
@@ -23,13 +26,11 @@ class PostHooks {
 	*/
 	private $post;
 
-
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
 		add_filter('the_content', array($this, 'filterContent'));
 	}
-
 
 	/**
 	* Filter the Content
@@ -45,7 +46,6 @@ class PostHooks {
 
 		return $this->addFavoriteButton($display);
 	}
-
 
 	/**
 	* Add the Favorite Button

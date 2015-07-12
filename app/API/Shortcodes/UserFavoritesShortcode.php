@@ -1,8 +1,11 @@
-<?php namespace SimpleFavorites\API\Shortcodes;
+<?php 
+
+namespace SimpleFavorites\API\Shortcodes;
 
 use SimpleFavorites\Entities\User\UserFavorites;
 
-class UserFavoritesShortcode {
+class UserFavoritesShortcode 
+{
 
 	/**
 	* Shortcode Options

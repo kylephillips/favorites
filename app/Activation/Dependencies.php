@@ -1,4 +1,6 @@
-<?php namespace SimpleFavorites\Activation;
+<?php 
+
+namespace SimpleFavorites\Activation;
 
 use SimpleFavorites\Helpers;
 use SimpleFavorites\Config\SettingsRepository;
@@ -6,7 +8,8 @@ use SimpleFavorites\Config\SettingsRepository;
 /**
 * Plugin Dependencies
 */
-class Dependencies {
+class Dependencies 
+{
 
 	/**
 	* Plugin Directory
@@ -22,7 +25,6 @@ class Dependencies {
 	* Settings Repository
 	*/
 	private $settings_repo;
-
 
 	public function __construct()
 	{

@@ -1,8 +1,11 @@
-<?php namespace SimpleFavorites\Config;
+<?php 
+
+namespace SimpleFavorites\Config;
 
 use SimpleFavorites\Helpers;
 
-class SettingsRepository {
+class SettingsRepository 
+{
 
 	/**
 	* Output Dependency
@@ -41,7 +44,6 @@ class SettingsRepository {
 		if ( !isset($option['anonymous']['saveas']) ) return 'cookie';
 		return $option['anonymous']['saveas'];
 	}
-
 
 	/**
 	* Display in a given Post Type?

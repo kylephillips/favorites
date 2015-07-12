@@ -1,4 +1,6 @@
-<?php namespace SimpleFavorites\Config;
+<?php 
+
+namespace SimpleFavorites\Config;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Entities\PostType\PostTypeRepository;
@@ -7,7 +9,8 @@ use SimpleFavorites\Helpers;
 /**
 * Plugin Settings
 */
-class Settings {
+class Settings 
+{
 
 	/**
 	* Plugin Name
@@ -24,7 +27,6 @@ class Settings {
 	*/
 	private $post_type_repo;
 
-
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
@@ -34,7 +36,6 @@ class Settings {
 		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
 	}
 
-
 	/**
 	* Set the plugin name
 	*/
@@ -43,7 +44,6 @@ class Settings {
 		global $simple_favorites_name;
 		$this->plugin_name = $simple_favorites_name;
 	}
-
 
 	/**
 	* Register the settings page
@@ -59,7 +59,6 @@ class Settings {
 		);
 	}
 
-
 	/**
 	* Display the Settings Page
 	*/
@@ -68,7 +67,6 @@ class Settings {
 		$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
 		include( Helpers::view('settings/settings') );
 	}
-
 
 	/**
 	* Register the settings
@@ -79,6 +77,5 @@ class Settings {
 		register_setting( 'simple-favorites-users', 'simplefavorites_users' );
 		register_setting( 'simple-favorites-display', 'simplefavorites_display' );
 	}
-
 
 }

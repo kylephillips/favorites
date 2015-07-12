@@ -1,8 +1,12 @@
-<?php namespace SimpleFavorites\Activation;
+<?php 
+
+namespace SimpleFavorites\Activation;
+
 /**
 * Plugin Activation
 */
-class Activate {
+class Activate 
+{
 
 	public function __construct()
 	{

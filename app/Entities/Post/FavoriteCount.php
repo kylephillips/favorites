@@ -1,8 +1,12 @@
-<?php namespace SimpleFavorites\Entities\Post;
+<?php 
+
+namespace SimpleFavorites\Entities\Post;
+
 /**
 * Returns the total number of favorites for a post
 */
-class FavoriteCount {
+class FavoriteCount 
+{
 
 	/**
 	* Get the favorite count for a post

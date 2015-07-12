@@ -1,10 +1,13 @@
-<?php namespace SimpleFavorites\Entities\Favorite;
+<?php 
+
+namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Entities\Favorite\SyncUserFavorite;
 use SimpleFavorites\Entities\Post\SyncFavoriteCount;
 
-class Favorite {
+class Favorite 
+{
 
 	/**
 	* Settings Repository

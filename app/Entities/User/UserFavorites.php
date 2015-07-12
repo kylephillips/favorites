@@ -1,10 +1,13 @@
-<?php namespace SimpleFavorites\Entities\User;
+<?php 
+
+namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Entities\Favorite\FavoriteFilter;
 use SimpleFavorites\Helpers;
 
-class UserFavorites {
+class UserFavorites 
+{
 
 	/**
 	* User ID
@@ -34,7 +37,6 @@ class UserFavorites {
 	* Settings Repository
 	*/
 	private $user_repo;
-
 
 	public function __construct($user_id, $site_id, $links = false, $filters = null)
 	{

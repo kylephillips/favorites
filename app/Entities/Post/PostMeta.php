@@ -1,9 +1,12 @@
-<?php namespace SimpleFavorites\Entities\Post;
+<?php 
+
+namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Entities\Post\FavoriteCount;
 
-class PostMeta {
+class PostMeta 
+{
 
 	/**
 	* Settings Repository

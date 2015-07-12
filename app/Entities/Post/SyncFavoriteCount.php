@@ -1,4 +1,6 @@
-<?php namespace SimpleFavorites\Entities\Post;
+<?php 
+
+namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Entities\User\UserRepository;
@@ -6,7 +8,8 @@ use SimpleFavorites\Entities\User\UserRepository;
 /**
 * Updates the favorite count for a given post
 */
-class SyncFavoriteCount {
+class SyncFavoriteCount 
+{
 
 	/**
 	* Post ID

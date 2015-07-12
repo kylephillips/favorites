@@ -1,11 +1,14 @@
-<?php namespace SimpleFavorites\Forms;
+<?php 
+
+namespace SimpleFavorites\Forms;
 
 use SimpleFavorites\Entities\User\UserRepository;
 
 /**
 * Return an array of user's favorited posts
 */
-class FavoritesArrayHandler {
+class FavoritesArrayHandler 
+{
 
 	/**
 	* User Repository

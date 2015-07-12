@@ -1,9 +1,12 @@
-<?php namespace SimpleFavorites\Entities\User;
+<?php 
+
+namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Helpers;
 
-class UserRepository {
+class UserRepository 
+{
 
 	/**
 	* Settings Repository
@@ -93,7 +96,6 @@ class UserRepository {
 		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 
-
 	/**
 	* Get Cookie Favorites
 	*/
@@ -105,7 +107,6 @@ class UserRepository {
 		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
 	}
 
-
 	/**
 	* Has the user favorited a specified post?
 	* @param int $post_id
@@ -116,7 +117,6 @@ class UserRepository {
 		$favorites = $this->getFavorites(null, $site_id);
 		return ( isset($favorites) && (!empty($favorites)) && in_array($post_id, $favorites) ) ? true : false;
 	}
-
 
 	/**
 	* Does the user count in total favorites?

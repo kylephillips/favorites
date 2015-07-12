@@ -1,4 +1,6 @@
-<?php namespace SimpleFavorites\Forms;
+<?php 
+
+namespace SimpleFavorites\Forms;
 
 use SimpleFavorites\Entities\User\UserFavorites;
 
@@ -6,7 +8,8 @@ use SimpleFavorites\Entities\User\UserFavorites;
 * Return an HTML formatted list of user's favorites
 * (For use in replacing cached content with AJAX injected content)
 */
-class FavoritesListHandler {
+class FavoritesListHandler 
+{
 
 	/**
 	* Form Data

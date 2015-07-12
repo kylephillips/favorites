@@ -1,6 +1,9 @@
-<?php namespace SimpleFavorites\API\Shortcodes;
+<?php 
 
-class ButtonShortcode {
+namespace SimpleFavorites\API\Shortcodes;
+
+class ButtonShortcode 
+{
 
 	/**
 	* Shortcode Options

@@ -1,8 +1,11 @@
-<?php namespace SimpleFavorites\Forms;
+<?php 
+
+namespace SimpleFavorites\Forms;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
 
-class FavoriteButtonHandler {
+class FavoriteButtonHandler 
+{
 
 	/**
 	* Form Data
