@@ -7,6 +7,12 @@ namespace SimpleFavorites\Listeners;
 */
 abstract class AJAXListenerBase
 {
+
+	/**
+	* Form Data
+	*/
+	protected $data;
+
 	public function __construct()
 	{
 		$this->validateNonce();

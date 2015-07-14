@@ -6,11 +6,6 @@ use SimpleFavorites\Entities\Favorite\Favorite;
 
 class FavoriteButton extends AJAXListenerBase
 {
-	/**
-	* Form Data
-	*/
-	private $data;
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -33,9 +28,20 @@ class FavoriteButton extends AJAXListenerBase
 	*/
 	private function updateFavorite()
 	{
+		$this->beforeUpdateAction();
 		$favorite = new Favorite;
 		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
 		$this->afterUpdateAction();
+	}
+
+	/**
+	* Before Update Action
+	* Provides hook for performing actions before a favorite
+	*/
+	private function beforeUpdateAction()
+	{
+		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
+		do_action('favorites_before_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
 	}
 
 	/**
