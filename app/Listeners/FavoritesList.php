@@ -8,9 +8,8 @@ use SimpleFavorites\Entities\User\UserFavorites;
 * Return an HTML formatted list of user's favorites
 * (For use in replacing cached content with AJAX injected content)
 */
-class FavoritesList 
+class FavoritesList extends AJAXListenerBase
 {
-
 	/**
 	* Form Data
 	*/
@@ -21,12 +20,11 @@ class FavoritesList
 	*/
 	private $list;
 
-
 	public function __construct()
 	{
 		$this->setData();
 		$this->setList();
-		$this->response();
+		$this->response(array('status'=>'success', 'list' => $this->list));
 	}
 
 	/**
@@ -46,14 +44,6 @@ class FavoritesList
 	{
 		$favorites = new UserFavorites($this->data['user_id'], $this->data['site_id'], $this->data['links']);
 		$this->list = $favorites->getFavoritesList();
-	}
-
-	/**
-	* Send the response
-	*/
-	private function response()
-	{
-		return wp_send_json(array('status'=>'success', 'list'=>$this->list));
-	}
+	}	
 
 }

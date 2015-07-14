@@ -4,9 +4,8 @@ namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
 
-class FavoriteButton 
+class FavoriteButton extends AJAXListenerBase
 {
-
 	/**
 	* Form Data
 	*/
@@ -14,8 +13,8 @@ class FavoriteButton
 
 	public function __construct()
 	{
+		parent::__construct();
 		$this->setFormData();
-		$this->validateNonce();
 		$this->updateFavorite();
 	}
 
@@ -24,18 +23,9 @@ class FavoriteButton
 	*/
 	private function setFormData()
 	{
-		$this->data['nonce'] = sanitize_text_field($_POST['nonce']);
 		$this->data['postid'] = intval(sanitize_text_field($_POST['postid']));
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
 		$this->data['status'] = ( $_POST['status'] == 'active') ? 'active' : 'inactive';
-	}
-
-	/**
-	* Validate the Nonce
-	*/
-	private function validateNonce()
-	{
-		if ( !wp_verify_nonce( $this->data['nonce'], 'simple_favorites_nonce' ) ) return $this->sendError();
 	}
 
 	/**
@@ -56,17 +46,6 @@ class FavoriteButton
 	{
 		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
 		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
-	}
-
-	/**
-	* Send an Error Response
-	*/
-	private function sendError()
-	{
-		return wp_send_json(array(
-			'status'=>'error', 
-			'message'=>__('Invalid form field', 'simplefavorites')
-		));
 	}
 
 }

@@ -7,9 +7,8 @@ use SimpleFavorites\Entities\User\UserRepository;
 /**
 * Return an array of user's favorited posts
 */
-class FavoritesArray 
+class FavoritesArray extends AJAXListenerBase
 {
-
 	/**
 	* User Repository
 	*/
@@ -21,12 +20,11 @@ class FavoritesArray
 	*/
 	private $favorites;
 
-
 	public function __construct()
 	{
 		$this->user = new UserRepository;
 		$this->setFavorites();
-		$this->sendResponse();
+		$this->response(array('status'=>'success', 'favorites' => $this->favorites));
 	}
 
 	/**
@@ -36,13 +34,4 @@ class FavoritesArray
 	{
 		$this->favorites = $this->user->getAllFavorites();
 	}
-
-	/**
-	* Send the Response
-	*/
-	private function sendResponse()
-	{
-		return wp_send_json(array('status'=>'success', 'favorites'=>$this->favorites));
-	}
-
 }
