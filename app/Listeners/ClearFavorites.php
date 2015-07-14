@@ -1,10 +1,10 @@
 <?php 
 
-namespace SimpleFavorites\Forms;
+namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
 
-class FavoriteButtonHandler 
+class ClearFavorites
 {
 
 	/**
@@ -16,7 +16,7 @@ class FavoriteButtonHandler
 	{
 		$this->setFormData();
 		$this->validateNonce();
-		$this->updateFavorite();
+		$this->clearFavorites();
 	}
 
 	/**
@@ -25,9 +25,7 @@ class FavoriteButtonHandler
 	private function setFormData()
 	{
 		$this->data['nonce'] = sanitize_text_field($_POST['nonce']);
-		$this->data['postid'] = intval(sanitize_text_field($_POST['postid']));
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
-		$this->data['status'] = ( $_POST['status'] == 'active') ? 'active' : 'inactive';
 	}
 
 	/**
@@ -41,18 +39,18 @@ class FavoriteButtonHandler
 	/**
 	* Update the Favorite
 	*/
-	private function updateFavorite()
+	private function clearFavorites()
 	{
 		$favorite = new Favorite;
 		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
-		$this->afterUpdateAction();
+		$this->afterClearAction();
 	}
 
 	/**
 	* After Update Action
 	* Provides hook for performing actions after a favorite
 	*/
-	private function afterUpdateAction()
+	private function afterClearAction()
 	{
 		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
 		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);

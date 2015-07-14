@@ -1,6 +1,6 @@
 <?php 
 
-namespace SimpleFavorites\Forms;
+namespace SimpleFavorites\Listeners;
 
 /**
 * Creates a Nonce for Cached Pages

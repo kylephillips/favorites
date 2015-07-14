@@ -2,11 +2,11 @@
 
 namespace SimpleFavorites\Events;
 
-use SimpleFavorites\Forms\NonceHandler;
-use SimpleFavorites\Forms\FavoriteButtonHandler;
-use SimpleFavorites\Forms\FavoritesArrayHandler;
-use SimpleFavorites\Forms\FavoritesListHandler;
-use SimpleFavorites\Forms\ClearFavoritesHandler;
+use SimpleFavorites\Listeners\NonceHandler;
+use SimpleFavorites\Listeners\FavoriteButton;
+use SimpleFavorites\Listeners\FavoritesArray;
+use SimpleFavorites\Listeners\FavoritesList;
+use SimpleFavorites\Listeners\ClearFavorites;
 
 class RegisterPublicEvents 
 {
@@ -40,7 +40,7 @@ class RegisterPublicEvents
 	*/
 	public function favoriteButton()
 	{
-		new FavoriteButtonHandler;
+		new FavoriteButton;
 	}
 
 	/**
@@ -56,7 +56,7 @@ class RegisterPublicEvents
 	*/
 	public function favoritesArray()
 	{
-		new FavoritesArrayHandler;
+		new FavoritesArray;
 	}
 
 	/**
@@ -64,7 +64,7 @@ class RegisterPublicEvents
 	*/
 	public function favoritesList()
 	{
-		new FavoritesListHandler;
+		new FavoritesList;
 	}
 
 	/**
@@ -72,7 +72,7 @@ class RegisterPublicEvents
 	*/
 	public function clearFavorites()
 	{
-		new ClearFavoritesHandler;
+		new ClearFavorites;
 	}
 
 }
