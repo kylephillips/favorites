@@ -1,13 +1,14 @@
 <?php 
 
-namespace SimpleFavorites\Forms;
+namespace SimpleFavorites\Events;
 
 use SimpleFavorites\Forms\NonceHandler;
 use SimpleFavorites\Forms\FavoriteButtonHandler;
 use SimpleFavorites\Forms\FavoritesArrayHandler;
 use SimpleFavorites\Forms\FavoritesListHandler;
+use SimpleFavorites\Forms\ClearFavoritesHandler;
 
-class Handlers 
+class RegisterPublicEvents 
 {
 
 	public function __construct()
@@ -27,6 +28,10 @@ class Handlers
 		// HTML formatted list of favorites
 		add_action( 'wp_ajax_nopriv_simplefavorites_list', array($this, 'favoritesList' ));
 		add_action( 'wp_ajax_simplefavorites_list', array($this, 'favoritesList' ));
+
+		// Clear Favorites
+		add_action( 'wp_ajax_nopriv_simplefavorites_clear', array($this, 'clearFavorites' ));
+		add_action( 'wp_ajax_simplefavorites_clear', array($this, 'clearFavorites' ));
 
 	}
 
@@ -60,6 +65,14 @@ class Handlers
 	public function favoritesList()
 	{
 		new FavoritesListHandler;
+	}
+
+	/**
+	* Clear all Favorites
+	*/
+	public function clearFavorites()
+	{
+		new ClearFavoritesHandler;
 	}
 
 }

@@ -83,6 +83,17 @@ class SettingsRepository
 	}
 
 	/**
+	* Clear Favorites Button Text
+	*/
+	public function clearFavoritesText()
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['clearfavorites']) || $option['clearfavorites'] == "" ) 
+			return __('Clear Favorites', 'simplefavorites');
+		return esc_html($option['clearfavorites']);
+	}
+
+	/**
 	* Post Types to show meta box on
 	*/
 	public function metaEnabled()

@@ -25,7 +25,7 @@ class Bootstrap
 		new Activation\Activate;
 		new Activation\Dependencies;
 		new Entities\Post\PostHooks;
-		new Forms\Handlers;
+		new Events\RegisterPublicEvents;
 		new Entities\Post\PostMeta;
 		new API\Shortcodes\ButtonShortcode;
 		new API\Shortcodes\FavoriteCountShortcode;

@@ -7,6 +7,7 @@ use SimpleFavorites\Entities\Favorite\FavoriteButton;
 use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Entities\User\UserFavorites;
 use SimpleFavorites\Entities\Post\PostFavorites;
+use SimpleFavorites\Entities\Favorite\ClearFavoritesButton;
 
 
 /**
@@ -167,4 +168,13 @@ function the_users_who_favorited_post($post_id = null, $site_id = null, $separat
 }
 
 
+/**
+* Get the clear favorites button
+* @return html
+*/
+function get_clear_favorites_button($site_id = 1)
+{
+	$button = new ClearFavoritesButton;
+	return $button->display($site_id);
+}
 
