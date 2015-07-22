@@ -230,18 +230,35 @@ function submit_favorite(button)
 			$(button).attr('disabled', false);
 			if ( status === 'active' ) $('.simplefavorites-clear[data-siteid=' + site_id + ']').attr('disabled', false);
 			if ( !data.has_favorites ) $('.simplefavorites-clear[data-siteid=' + site_id + ']').attr('disabled', true);
-			update_favorite_button(button, data.count);
+			sync_buttons(button, data.count, status)
 			after_favorite_submit(post_id, status, site_id);
 		}
 	});
 }
 
+
 /**
-* Update the favorite button
+* Sync buttons for to a button
 */
-function update_favorite_button(button, count)
-{
-	$(button).find('.simplefavorite-button-count').text(count);
+function sync_buttons(button, count, status)
+{	
+	var postid = $(button).attr('data-postid');
+	var siteid = $(button).attr('data-siteid');
+	var buttons = $('.simplefavorite-button');
+
+	$.each(buttons, function(i, v){
+		var html = "";
+		if ( ( $(this).attr('data-postid') === postid ) && ( $(this).attr('data-siteid') === siteid ) ){
+			$(this).attr('data-favoritecount', count);
+			if ( status === 'active' ) {
+				html = add_favorite_count_to_button(simple_favorites.favorited, count);
+				$(this).html(html).addClass('active');
+			} else {
+				html = add_favorite_count_to_button(simple_favorites.favorite, count);
+				$(this).html(html).removeClass('active');
+			}
+		}
+	});
 }
 
 /**
