@@ -82,8 +82,9 @@ class UserFavorites
 
 	/**
 	* Return an HTML list of favorites for specified user
+	* @param $include_button boolean - whether to include the favorite button
 	*/
-	public function getFavoritesList()
+	public function getFavoritesList($include_button = false)
 	{
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
 		$favorites = $this->getFavoritesArray();
@@ -95,6 +96,7 @@ class UserFavorites
 			$out .= '<li>';
 			if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
 			$out .= get_the_title($favorite);
+			if ( $include_button ) $out .= '<br>' . get_favorites_button($favorite, $this->site_id);
 			if ( $this->links ) $out .= '</a>';
 			$out .= '</li>';
 		}

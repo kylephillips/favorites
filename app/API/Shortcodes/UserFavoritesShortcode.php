@@ -33,7 +33,8 @@ class UserFavoritesShortcode
 			'user_id' => '',
 			'site_id' => '',
 			'include_links' => 'true',
-			'post_types' => ''
+			'post_types' => '',
+			'include_buttons' => 'false'
 		), $options);
 	}
 
@@ -57,11 +58,12 @@ class UserFavoritesShortcode
 		$this->parsePostTypes();
 		
 		$this->options['include_links'] = ( $this->options['include_links'] == 'true' ) ? true : false;
+		$this->options['include_buttons'] = ( $this->options['include_buttons'] == 'true' ) ? true : false;
 		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
 		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
 
 		$favorites = new UserFavorites($this->options['user_id'], $this->options['site_id'], $this->options['include_links'], $this->filters);
-		return $favorites->getFavoritesList();
+		return $favorites->getFavoritesList($this->options['include_buttons']);
 	}
 
 }

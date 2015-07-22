@@ -70,8 +70,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 = 1.1.5 =
 * Added functionality to display users who have favorited a post. Use the shortcode [post_favorites] or one of the two new template functions: get_users_who_favorited_post or the_users_who_favorited_post. View the plugin website for options and usage examples.
 * Added shortcode and template functions to display a "Clear Favorites" button. Button clears all user favorites when clicked.
-* Added developer hook for after a post has been favorited
-* Deleted and unpublished posts removed from user favorites and lists.
+* Added developer hooks for before and after a post has been favorited
+* Option added to include favorite button in generated list
+* Bug fix - Invalid posts removed from user favorites (trashed/unpublished posts).
 
 = 1.1.4 =
 * Fixed bug that allowed multiple button submissions before the previous was processed
@@ -157,11 +158,11 @@ Displays the total number of favorites a user has favorited. Template functions 
 User favorites are stored as an array of post ids. Logged-in users' favorites are stored as a custom user meta field, while anonymous users' favorites are stored in either the session or browser cookie (configurable in the plugin settings). If the user id parameter is omitted, the favorites default to the current user. The site id parameter is optional, for use in multisite installations (defaults to current site).
 
 * **Get function (returns array of IDs):** `get_user_favorites($user_id, $site_id)`
-* **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id)`
-* **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id)`
-* **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id=""]
+* **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button)`
+* **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button)`
+* **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id="" include_buttons="false" post_types="post"]
 
-**Post Favorites**
+**List Users Who Have Favorited a Post**
 
 Display a list of users who have favorited a specific post. If the user id parameter is omitted, the favorites default to the current user. The site id parameter is optional, for use in multisite installations (defaults to current site). The get function returns an array of user objects.
 
