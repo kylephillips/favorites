@@ -7,6 +7,7 @@ use SimpleFavorites\Listeners\FavoriteButton;
 use SimpleFavorites\Listeners\FavoritesArray;
 use SimpleFavorites\Listeners\FavoritesList;
 use SimpleFavorites\Listeners\ClearFavorites;
+use SimpleFavorites\Listeners\FavoriteCount;
 
 class RegisterPublicEvents 
 {
@@ -32,6 +33,10 @@ class RegisterPublicEvents
 		// Clear Favorites
 		add_action( 'wp_ajax_nopriv_simplefavorites_clear', array($this, 'clearFavorites' ));
 		add_action( 'wp_ajax_simplefavorites_clear', array($this, 'clearFavorites' ));
+
+		// Total Favorite Count
+		add_action( 'wp_ajax_nopriv_simplefavorites_totalcount', array($this, 'favoriteCount' ));
+		add_action( 'wp_ajax_simplefavorites_totalcount', array($this, 'favoriteCount' ));
 
 	}
 
@@ -73,6 +78,14 @@ class RegisterPublicEvents
 	public function clearFavorites()
 	{
 		new ClearFavorites;
+	}
+
+	/**
+	* Favorite Count for a single post
+	*/
+	public function favoriteCount()
+	{
+		new FavoriteCount;
 	}
 
 }

@@ -3,20 +3,30 @@
 namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
+use SimpleFavorites\Entities\User\UserRepository;
+use SimpleFavorites\Entities\Favorite\SyncAllFavorites;
+use SimpleFavorites\Entities\Post\SyncFavoriteCount;
 
-class ClearFavorites
+class ClearFavorites extends AJAXListenerBase
 {
+	/**
+	* User Repository
+	*/
+	private $user_repo;
 
 	/**
-	* Form Data
+	* Favorites Sync
 	*/
-	private $data;
+	private $favorites_sync;
 
 	public function __construct()
 	{
+		parent::__construct();
+		$this->user_repo = new UserRepository;
+		$this->favorites_sync = new SyncAllFavorites;
 		$this->setFormData();
-		$this->validateNonce();
 		$this->clearFavorites();
+		$this->sendResponse();
 	}
 
 	/**
@@ -24,46 +34,49 @@ class ClearFavorites
 	*/
 	private function setFormData()
 	{
-		$this->data['nonce'] = sanitize_text_field($_POST['nonce']);
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
 	}
 
 	/**
-	* Validate the Nonce
-	*/
-	private function validateNonce()
-	{
-		if ( !wp_verify_nonce( $this->data['nonce'], 'simple_favorites_nonce' ) ) return $this->sendError();
-	}
-
-	/**
-	* Update the Favorite
+	* Remove all user's favorites from the specified site
 	*/
 	private function clearFavorites()
 	{
-		$favorite = new Favorite;
-		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
-		$this->afterClearAction();
-	}
-
-	/**
-	* After Update Action
-	* Provides hook for performing actions after a favorite
-	*/
-	private function afterClearAction()
-	{
 		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
-		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
+		do_action('favorites_before_clear', $this->data['siteid'], $user);
+		
+		$favorites = $this->user_repo->getAllFavorites();
+		foreach($favorites as $key => $site_favorites){
+			if ( $site_favorites['site_id'] == $this->data['siteid'] ) {
+				$this->updateFavoriteCounts($site_favorites);
+				unset($favorites[$key]);
+			}
+		}
+		$this->favorites_sync->sync($favorites);
+		
+		do_action('favorites_after_clear', $this->data['siteid'], $user);
 	}
 
 	/**
-	* Send an Error Response
+	* Update all the cleared post favorite counts
 	*/
-	private function sendError()
+	private function updateFavoriteCounts($site_favorites)
 	{
-		return wp_send_json(array(
-			'status'=>'error', 
-			'message'=>__('Invalid form field', 'simplefavorites')
+		foreach($site_favorites['site_favorites'] as $favorite){
+			$count_sync = new SyncFavoriteCount($favorite, 'inactive', $this->data['siteid']);
+			$count_sync->sync();
+		}
+	}
+
+	/**
+	* Set and send the response
+	*/
+	private function sendResponse()
+	{
+		$favorites = $this->user_repo->getAllFavorites();
+		$this->response(array(
+			'status' => 'success',
+			'favorites' => $favorites
 		));
 	}
 

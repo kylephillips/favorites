@@ -4,6 +4,7 @@ namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Helpers;
+use SimpleFavorites\Entities\Post\FavoriteCount;
 
 class UserRepository 
 {
@@ -60,14 +61,28 @@ class UserRepository
 	*/
 	private function favoritesWithSiteID($favorites)
 	{
-		if ( Helpers::keyExists('site_id', $favorites) ) return $favorites;
+		if ( Helpers::keyExists('site_id', $favorites) ) return $this->favoritesWithCount($favorites);
 		$new_favorites = array(
 			array(
 				'site_id' => 1,
-				'site_favorites' => $favorites
+				'site_favorites' => $this->favoritesWithCount($favorites)
 			)
 		);
 		return $new_favorites;
+	}
+
+	/**
+	* Add total count to favorites array
+	*/
+	private function favoritesWithCount($favorites)
+	{
+		$counter = new FavoriteCount;
+		foreach ($favorites as $key => $site){
+			foreach($site['site_favorites'] as $keytwo => $site_favorite){
+				$favorites[$key]['total'][$site_favorite] = $counter->getCount($site_favorite, $site['site_id']);
+			}
+		}
+		return $favorites;
 	}
 
 	/**
@@ -126,6 +141,21 @@ class UserRepository
 	{
 		if ( is_user_logged_in() ) return true;
 		return $this->settings_repo->anonymous('save');
+	}
+
+	/**
+	* Does the user have any favorites for a given site?
+	* If no site_id passed, returns boolean for all sites
+	*/
+	public function hasFavorites($site_id = null)
+	{
+		$favorites = $this->getAllFavorites();
+		$has_favorites = true;
+		foreach($favorites as $site_favorites){
+			if ( $site_id && $site_favorites['site_id'] !== $site_id ) continue;
+			if ( !empty($site_favorites['site_favorites']) ) $has_favorites = false;
+		}
+		return $has_favorites;
 	}
 
 }

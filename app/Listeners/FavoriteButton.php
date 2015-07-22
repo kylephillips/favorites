@@ -3,12 +3,28 @@
 namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
+use SimpleFavorites\Entities\Post\FavoriteCount;
+use SimpleFavorites\Entities\User\UserRepository;
 
 class FavoriteButton extends AJAXListenerBase
 {
+	/**
+	* Favorite Count
+	* @var SimpleFavorites\Entities\Post\FavoriteCount
+	*/
+	private $favorite_counter;
+
+	/**
+	* User Repository
+	* @var SimpleFavorites\Entities\User\UserRepository
+	*/
+	private $user_repo;
+
 	public function __construct()
 	{
 		parent::__construct();
+		$this->favorite_counter = new FavoriteCount;
+		$this->user_repo = new UserRepository;
 		$this->setFormData();
 		$this->updateFavorite();
 	}
@@ -31,7 +47,9 @@ class FavoriteButton extends AJAXListenerBase
 		$this->beforeUpdateAction();
 		$favorite = new Favorite;
 		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
+		$count = $this->favorite_counter->getCount($this->data['postid'], $this->data['siteid']);
 		$this->afterUpdateAction();
+		$this->response(array('status' => 'success', 'count' => $count, 'has_favorites' => $this->user_repo->hasFavorites($this->data['siteid'])));
 	}
 
 	/**

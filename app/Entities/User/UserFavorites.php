@@ -38,7 +38,7 @@ class UserFavorites
 	*/
 	private $user_repo;
 
-	public function __construct($user_id, $site_id, $links = false, $filters = null)
+	public function __construct($user_id = null, $site_id = null, $links = false, $filters = null)
 	{
 		$this->user_id = $user_id;
 		$this->site_id = $site_id;

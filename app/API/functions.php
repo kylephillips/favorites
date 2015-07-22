@@ -170,11 +170,25 @@ function the_users_who_favorited_post($post_id = null, $site_id = null, $separat
 
 /**
 * Get the clear favorites button
+* @param $site_id int, defaults to current blog/site
+* @param $text string, button text - defaults to site setting
 * @return html
 */
-function get_clear_favorites_button($site_id = 1)
+function get_clear_favorites_button($site_id = null, $text = null)
 {
-	$button = new ClearFavoritesButton;
-	return $button->display($site_id);
+	$button = new ClearFavoritesButton($site_id, $text);
+	return $button->display();
+}
+
+
+/**
+* Print the clear favorites button
+* @param $site_id int, defaults to current blog/site
+* @param $text string, button text - defaults to site setting
+* @return html
+*/
+function the_clear_favorites_button($site_id = null, $text = null)
+{
+	echo get_clear_favorites_button($site_id, $text);
 }
 

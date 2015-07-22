@@ -6,9 +6,9 @@ use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Helpers;
 
 /**
-* Sync a favorite to a given save type
+* Sync a single favorite to a given save type
 */
-class SyncUserFavorite 
+class SyncSingleFavorite 
 {
 
 	/**

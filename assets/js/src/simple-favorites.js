@@ -1,3 +1,6 @@
+function after_favorite_submit(post_id, status, site_id){}
+function before_clear_favorites(button){}
+
 jQuery(function($){
 
 /**
@@ -6,13 +9,13 @@ jQuery(function($){
 * --------------------------------------------------------------------
 */
 
-function after_favorite_submit(post_id, status, site_id){}
-
-
 $(document).ready(function(){
 	generate_nonce();
 });
 
+/**
+* Generate a nonce to get around cached nonce fields
+*/
 function generate_nonce()
 {
 	$.ajax({
@@ -35,6 +38,8 @@ function appendNonce(nonce)
 {
 	var script = '<script type="text/javascript"> var simple_favorites_nonce = "' + nonce + '" ;</script>';
 	$('head').append(script);
+	get_favorites();
+	get_favorites_lists();
 }
 
 
@@ -43,11 +48,6 @@ function appendNonce(nonce)
 * Update Favorite button statuses (page cache workaround)
 * --------------------------------------------------------------------
 */
-$(document).ready(function(){
-	get_favorites();
-	get_favorites_lists();
-});
-
 function get_favorites()
 {
 	$.ajax({
@@ -62,7 +62,7 @@ function get_favorites()
 			$.each(data.favorites, function(i, v){
 				favorites[i] = v;
 			});
-			update_buttons(favorites);
+			update_buttons(data.favorites);
 		}
 	});
 }
@@ -77,13 +77,14 @@ function update_buttons(favorites)
 		
 		var postid = $(this).data('postid');
 		var siteid = $(this).data('siteid');
-		var favorite_count = $(this).data('favoritecount');
+		var favorite_count = $(this).attr('data-favoritecount');
 		var html = "";
 		
 		// Find the Site's Favorites Array
 		for ( var i = 0; i < favorites.length; i++ ){
 			if ( favorites[i].site_id !== siteid ) continue;
 			if ( inObject(postid, favorites[i].site_favorites) ){
+				favorite_count = favorites[i].total[postid];
 				html = add_favorite_count_to_button(simple_favorites.favorited, favorite_count);
 				$(this).addClass('active').html(html);
 			} else {
@@ -92,8 +93,24 @@ function update_buttons(favorites)
 			}
 			$(this).removeClass('loading');
 		}
-
 	});
+	update_clear_buttons(favorites);
+}
+
+/**
+* Loop through all sites and update clear button status
+*/
+function update_clear_buttons(favorites)
+{
+	for ( var i = 0; i < favorites.length; i++ ){
+		var buttons = $('.simplefavorites-clear[data-siteid=' + favorites[i].site_id + ']');
+		if ( favorites[i].site_favorites.length > 0 ){
+			$(buttons).attr('disabled', false);
+		} else {
+			$(buttons).attr('disabled', 'disabled;');
+		}
+	}
+	var buttons = $('.simplefavorite-button.active');
 }
 
 /**
@@ -211,9 +228,20 @@ function submit_favorite(button)
 			$(button).removeClass('loading');
 			$(button).html(original_html);
 			$(button).attr('disabled', false);
+			if ( status === 'active' ) $('.simplefavorites-clear[data-siteid=' + site_id + ']').attr('disabled', false);
+			if ( !data.has_favorites ) $('.simplefavorites-clear[data-siteid=' + site_id + ']').attr('disabled', true);
+			update_favorite_button(button, data.count);
 			after_favorite_submit(post_id, status, site_id);
 		}
 	});
+}
+
+/**
+* Update the favorite button
+*/
+function update_favorite_button(button, count)
+{
+	$(button).find('.simplefavorite-button-count').text(count);
 }
 
 /**
@@ -228,6 +256,57 @@ function add_loading_indication(html, status)
 	} else {
 		return simple_favorites.loading_text + simple_favorites.loading_image;
 	}
+}
+
+
+
+/**
+* --------------------------------------------------------------------
+* Clear All Favorites
+* --------------------------------------------------------------------
+*/
+$(document).on('click', '.simplefavorites-clear', function(e){
+	e.preventDefault();
+	$(this).addClass('loading');
+	$(this).attr('disabled', 'disabled');
+	clear_favorites($(this));
+});
+
+/**
+* Clear all Favorites
+*/
+function clear_favorites(button)
+{
+	before_clear_favorites(button);
+	var site_id = $(button).attr('data-siteid');
+	$.ajax({
+		url: simple_favorites.ajaxurl,
+		type: 'post',
+		datatype: 'json',
+		data: {
+			action : 'simplefavorites_clear',
+			nonce : simple_favorites_nonce,
+			siteid : site_id,
+		},
+		success : function(data){
+			$(button).removeClass('loading');
+			reset_button_counts_after_clear(data);
+		}
+	});
+}
+
+/**
+* Update buttons on the page with new favorite count
+*/
+function reset_button_counts_after_clear(data)
+{
+	var buttons = $('.simplefavorite-button.active.has-count');
+	$.each(buttons, function(){
+		var count_display = $(this).find('.simplefavorite-button-count');
+		var new_count = $(count_display).text() - 1;
+		$(this).attr('data-favoritecount', new_count);
+	});
+	update_buttons(data.favorites);
 }
 
 
