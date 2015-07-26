@@ -121,10 +121,15 @@ function the_user_favorites_list($user_id = null, $site_id = null, $include_link
 * @param $filters array of post types/taxonomies
 * @return int
 */
-function get_user_favorites_count($user_id = null, $site_id = null, $filters = null)
+function get_user_favorites_count($user_id = null, $site_id = null, $filters = null, $html = false)
 {
 	$favorites = get_user_favorites($user_id, $site_id, $filters);
-	return count($favorites);
+	$posttypes = ( isset($filters['post_type']) ) ? implode(',', $filters['post_type']) : 'all';
+	$out = "";
+	if ( $html ) $out .= '<span class="simplefavorites-user-count" data-posttypes="' . $posttypes . '">';
+	$out .= count($favorites);
+	if ( $html ) $out .= '</span>';
+	return $out;
 }
 
 
