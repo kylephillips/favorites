@@ -13,7 +13,7 @@ class FavoritesList extends AJAXListenerBase
 	/**
 	* Form Data
 	*/
-	private $data;
+	protected $data;
 
 	/**
 	* HTML formatted list
@@ -35,6 +35,7 @@ class FavoritesList extends AJAXListenerBase
 		$this->data['user_id'] = ( $_POST['userid'] !== '' ) ? intval($_POST['userid']) : null;
 		$this->data['site_id'] = ( isset($_POST['siteid']) ) ? intval($_POST['siteid']) : null;
 		$this->data['links'] =  ( isset($_POST['links']) && $_POST['links'] == 'true' ) ? true : false;
+		$this->data['include_buttons'] =  ( isset($_POST['include_buttons']) && $_POST['include_buttons'] == 'true' ) ? true : false;
 	}
 
 	/**
@@ -43,7 +44,7 @@ class FavoritesList extends AJAXListenerBase
 	private function setList()
 	{
 		$favorites = new UserFavorites($this->data['user_id'], $this->data['site_id'], $this->data['links']);
-		$this->list = $favorites->getFavoritesList();
+		$this->list = $favorites->getFavoritesList($this->data['include_buttons']);
 	}	
 
 }

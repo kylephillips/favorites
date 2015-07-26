@@ -39,9 +39,10 @@ class FavoriteButton
 
 	/**
 	* Diplay the Button
+	* @param boolean loading - whether to include loading class
 	* @return html
 	*/
-	public function display()
+	public function display($loading = true)
 	{
 		if ( !$this->user->getsButton() ) return false;
 
@@ -59,11 +60,11 @@ class FavoriteButton
 		if ( $favorited ) $out .= ' active';
 		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
 		
-		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() ) $out .= ' loading';
+		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading ) $out .= ' loading';
 
 		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
 
-		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() ){
+		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading){
 			$out .= $this->settings_repo->loadingText();
 			$spinner = ($favorited) ? $this->settings_repo->loadingImage('active') : $this->settings_repo->loadingImage();
 			if ( $spinner ) $out .= $spinner;

@@ -5,6 +5,7 @@ namespace SimpleFavorites\Entities\User;
 use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Entities\Favorite\FavoriteFilter;
 use SimpleFavorites\Helpers;
+use SimpleFavorites\Entities\Favorite\FavoriteButton;
 
 class UserFavorites 
 {
@@ -91,13 +92,21 @@ class UserFavorites
 
 		if ( empty($favorites) ) return false;
 		if ( is_multisite() ) switch_to_blog($this->site_id);
-		$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '">';
+		$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '" ';
+		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
+		$out .= '>';
 		foreach ( $favorites as $key => $favorite ){
+			
 			$out .= '<li>';
+			if ( $include_button ) $out .= '<p>';
 			if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
 			$out .= get_the_title($favorite);
-			if ( $include_button ) $out .= '<br>' . get_favorites_button($favorite, $this->site_id);
 			if ( $this->links ) $out .= '</a>';
+			if ( $include_button ){
+				$button = new FavoriteButton($favorite, $this->site_id);
+				$out .= '</p><p>';
+				$out .= $button->display(false) . '</p>';
+			}
 			$out .= '</li>';
 		}
 		$out .= '</ul>';

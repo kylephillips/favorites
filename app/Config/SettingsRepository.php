@@ -9,7 +9,8 @@ class SettingsRepository
 
 	/**
 	* Output Dependency
-	* @return array
+	* @return boolean
+	* @param string - css/js
 	* @since 1.0
 	*/
 	public function outputDependency($dependency = 'css')
@@ -27,7 +28,6 @@ class SettingsRepository
 	public function anonymous($option = 'display')
 	{
 		$anon_option = get_option('simplefavorites_users');
-
 		if ( isset($anon_option['anonymous'][$option]) 
 			&& $anon_option['anonymous'][$option] == 'true') {
 			return true;
@@ -37,6 +37,7 @@ class SettingsRepository
 
 	/**
 	* Method of saving favorites for anonymous users
+	* @return string - cookie/session
 	*/
 	public function saveType()
 	{
@@ -47,7 +48,7 @@ class SettingsRepository
 
 	/**
 	* Display in a given Post Type?
-	* @param string post type name
+	* @param string - post type name
 	*/
 	public function displayInPostType($posttype)
 	{
@@ -62,6 +63,7 @@ class SettingsRepository
 
 	/**
 	* Favorite Button Text
+	* @return string
 	*/
 	public function buttonText()
 	{
@@ -73,6 +75,7 @@ class SettingsRepository
 
 	/**
 	* Favorite Button Text (Active state)
+	* @return string
 	*/
 	public function buttonTextFavorited()
 	{
@@ -84,6 +87,7 @@ class SettingsRepository
 
 	/**
 	* Clear Favorites Button Text
+	* @return string
 	*/
 	public function clearFavoritesText()
 	{
@@ -95,6 +99,7 @@ class SettingsRepository
 
 	/**
 	* Post Types to show meta box on
+	* @return array
 	*/
 	public function metaEnabled()
 	{
@@ -164,13 +169,13 @@ class SettingsRepository
 		if ( !isset($option['loadingindicator']['include_image']) || $option['loadingindicator']['include_image'] !== 'true' ) return false;
 		$image_url = Helpers::plugin_url() . '/assets/images/loading.gif';
 		
-		if ( $state == 'inactive' ) {
+		if ( $state == 'inactive' ){
 			$image = '<img src="' . apply_filters('simplefavorites_spinner_url', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
-		} else { 
-			// active state (some users might want different color for active)
-			$image = '<img src="' . apply_filters('simplefavorites_spinner_url_active', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
-		} 
-
+			return $image;
+		}
+		
+		// active state (some users might want different color for active)
+		$image = '<img src="' . apply_filters('simplefavorites_spinner_url_active', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
 		return $image;
 	}
 

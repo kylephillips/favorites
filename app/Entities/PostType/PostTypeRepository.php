@@ -4,7 +4,6 @@ namespace SimpleFavorites\Entities\PostType;
 
 class PostTypeRepository 
 {
-
 	/**
 	* Get all registered post types
 	* @since 1.0

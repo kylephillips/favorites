@@ -15,12 +15,12 @@ class RegisterPublicEvents
 	public function __construct()
 	{
 		// Generate a Nonce
-		add_action( 'wp_ajax_nopriv_simplefavoritesnonce', array($this, 'nonce' ));
-		add_action( 'wp_ajax_simplefavoritesnonce', array($this, 'nonce' ));
+		add_action( 'wp_ajax_nopriv_simplefavorites_nonce', array($this, 'nonce' ));
+		add_action( 'wp_ajax_simplefavorites_nonce', array($this, 'nonce' ));
 
 		// Front End Favorite Button
-		add_action( 'wp_ajax_nopriv_simplefavorites', array($this, 'favoriteButton' ));
-		add_action( 'wp_ajax_simplefavorites', array($this, 'favoriteButton' ));
+		add_action( 'wp_ajax_nopriv_simplefavorites_favorite', array($this, 'favoriteButton' ));
+		add_action( 'wp_ajax_simplefavorites_favorite', array($this, 'favoriteButton' ));
 
 		// User's Favorited Posts (array of IDs)
 		add_action( 'wp_ajax_nopriv_simplefavorites_array', array($this, 'favoritesArray' ));
@@ -37,7 +37,6 @@ class RegisterPublicEvents
 		// Total Favorite Count
 		add_action( 'wp_ajax_nopriv_simplefavorites_totalcount', array($this, 'favoriteCount' ));
 		add_action( 'wp_ajax_simplefavorites_totalcount', array($this, 'favoriteCount' ));
-
 	}
 
 	/**

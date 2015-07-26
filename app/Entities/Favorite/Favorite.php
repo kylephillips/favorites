@@ -8,7 +8,6 @@ use SimpleFavorites\Entities\Post\SyncFavoriteCount;
 
 class Favorite 
 {
-
 	/**
 	* Settings Repository
 	*/
