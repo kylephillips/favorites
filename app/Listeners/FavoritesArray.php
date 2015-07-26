@@ -32,18 +32,7 @@ class FavoritesArray extends AJAXListenerBase
 	*/
 	private function setFavorites()
 	{
-		$favorites = $this->user->getAllFavorites();
-
-		// Update the returned arrays to follow numeric index
-		foreach ($favorites as $key => $site){
-			$c = 0;
-			foreach ( $site['site_favorites'] as $fkey => $favorite ){
-				unset($favorites[$key]['site_favorites'][$fkey]);
-				$favorites[$key]['site_favorites'][$c] = $favorite;
-				$c++;
-			}
-		}
-
+		$favorites = $this->user->formattedFavorites();
 		$this->favorites = $favorites;
 	}
 }

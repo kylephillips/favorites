@@ -81,5 +81,11 @@
 	</td>
 </tr>
 <tr valign="top">
+	<th scope="row"><?php _e('No Favorites Text', 'simplefavorites'); ?>*</th>
+	<td>
+		<input type="text" name="simplefavorites_display[nofavorites]" value="<?php echo $this->settings_repo->noFavoritesText(); ?>" />
+	</td>
+</tr>
+<tr valign="top">
 	<td colspan="2" style="padding:0;"><em style="font-size:13px;">*<?php _e('May contain HTML', 'simplefavorites'); ?></em></td>
 </tr>

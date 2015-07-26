@@ -4,7 +4,7 @@ namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Config\SettingsRepository;
 use SimpleFavorites\Helpers;
-use SimpleFavorites\Entities\Post\FavoriteCount;
+use SimpleFavorites\Entities\Favorite\FavoritesArrayFormatter;
 
 class UserRepository 
 {
@@ -57,32 +57,27 @@ class UserRepository
 	/**
 	* Check for Site ID in user's favorites
 	* Multisite Compatibility for >1.1
+	* 1.2 compatibility with new naming structure
 	* @since 1.1
 	*/
 	private function favoritesWithSiteID($favorites)
 	{
-		if ( Helpers::keyExists('site_id', $favorites) ) return $this->favoritesWithCount($favorites);
+		if ( Helpers::keyExists('site_favorites', $favorites) ){
+			foreach($favorites as $key => $site_favorites){
+				if ( !isset($favorites[$key]['site_favorites']) ) continue;
+				$favorites[$key]['posts'] = $favorites[$key]['site_favorites'];
+				unset($favorites[$key]['site_favorites']);
+				if ( isset($favorites[$key]['total']) ) unset($favorites[$key]['total']);
+			}
+		}
+		if ( Helpers::keyExists('site_id', $favorites) ) return $favorites;
 		$new_favorites = array(
 			array(
 				'site_id' => 1,
-				'site_favorites' => $this->favoritesWithCount($favorites)
+				'posts' => $favorites
 			)
 		);
 		return $new_favorites;
-	}
-
-	/**
-	* Add total count to favorites array
-	*/
-	private function favoritesWithCount($favorites)
-	{
-		$counter = new FavoriteCount;
-		foreach ($favorites as $key => $site){
-			foreach($site['site_favorites'] as $keytwo => $site_favorite){
-				$favorites[$key]['total'][$site_favorite] = $counter->getCount($site_favorite, $site['site_id']);
-			}
-		}
-		return $favorites;
 	}
 
 	/**
@@ -93,7 +88,7 @@ class UserRepository
 		$user_id = ( isset($user_id) ) ? $user_id : get_current_user_id();
 		$favorites = get_user_meta($user_id, 'simplefavorites');
 		
-		if ( empty($favorites) ) return array(array('site_id'=>1, 'site_favorites' => array()));
+		if ( empty($favorites) ) return array(array('site_id'=>1, 'posts' => array()));
 		
 		$favorites = $this->favoritesWithSiteID($favorites[0]);
 
@@ -144,18 +139,13 @@ class UserRepository
 	}
 
 	/**
-	* Does the user have any favorites for a given site?
-	* If no site_id passed, returns boolean for all sites
+	* Format an array of favorites
 	*/
-	public function hasFavorites($site_id = null)
+	public function formattedFavorites()
 	{
 		$favorites = $this->getAllFavorites();
-		$has_favorites = true;
-		foreach($favorites as $site_favorites){
-			if ( $site_id && $site_favorites['site_id'] !== $site_id ) continue;
-			if ( !empty($site_favorites['site_favorites']) ) $has_favorites = false;
-		}
-		return $has_favorites;
+		$formatter = new FavoritesArrayFormatter;
+		return $formatter->format($favorites);
 	}
 
 }

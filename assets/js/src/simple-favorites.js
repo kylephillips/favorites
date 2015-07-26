@@ -40,7 +40,6 @@ var Favorites = function()
 	// JS Data
 	plugin.nonce = ''; // The nonce, generated dynamically
 	plugin.userfavorites; // Object – User Favorites
-	plugin.favoritecount = []; // Array - Favorite Count by site id
 
 
 	plugin.bindEvents = function(){
@@ -89,10 +88,8 @@ var Favorites = function()
 				action : plugin.formactions.favoritesarray
 			},
 			success: function(data){
+				console.log(data.favorites);
 				plugin.userfavorites = data.favorites;
-				for ( var i = 0; i < data.favorites.length; i++ ){
-					plugin.favoritecount[data.favorites[i].site_id] = data.favorites[i].site_favorites.length;
-				}
 				if ( callback ) callback();
 			}
 		});
@@ -108,10 +105,10 @@ var Favorites = function()
 			var favorite_count = $(button).attr('data-favoritecount');
 			var html = "";
 			var site_index = plugin.siteIndex(siteid);
-			var site_favorites = plugin.userfavorites[site_index].site_favorites;
+			var site_favorites = plugin.userfavorites[site_index].posts;
 
-			if ( plugin.inObject( postid, site_favorites ) ){
-				favorite_count = plugin.userfavorites[site_index].total[postid];
+			if ( plugin.isFavorite( postid, site_favorites ) ){
+				favorite_count = plugin.userfavorites[site_index].posts[postid].total;
 				html = plugin.addFavoriteCount(plugin.favorited, favorite_count);
 				$(button).addClass('active').html(html).removeClass('loading');
 				continue;
@@ -222,11 +219,11 @@ var Favorites = function()
 				status : status
 			},
 			success: function(data){
+				console.log(data);
 				$(button).removeClass('loading');
 				$(button).html(original_html);
 				$(button).attr('disabled', false);
-				if ( status === 'active' ) $('.simplefavorites-clear[data-siteid=' + site_id + ']').attr('disabled', false);
-				if ( !data.has_favorites ) $('.simplefavorites-clear[data-siteid=' + site_id + ']').attr('disabled', true);
+				plugin.userfavorites = data.favorites;
 				plugin.syncButtons(button);
 			}
 		});
@@ -244,31 +241,8 @@ var Favorites = function()
 	}
 
 
-	// Update the user favorites after a button has been submitted
-	plugin.updateUserFavorites = function(button){
-		
-		var postid = $(button).attr('data-postid');
-		var siteid = $(button).attr('data-siteid');
-		var status = ( $(button).hasClass('active') ) ? 'active' : 'inactive';
-		
-		for ( var i = 0; i < plugin.userfavorites.length; i++ ){
-			if ( plugin.userfavorites[i].site_id !== parseInt(siteid) ) continue;
-			
-			if ( status === 'active' ){
-				var length = plugin.objectLength(plugin.userfavorites[i].site_favorites);
-				plugin.userfavorites[i].site_favorites[length] = parseInt(postid);
-				continue;
-			}
-			
-			plugin.userfavorites[i].site_favorites = plugin.removeFromArray(parseInt(postid), plugin.userfavorites[i].site_favorites);
-		}
-	}
-
-
 	// Sync all buttons of the same post and site id in the DOM to a single button
-	plugin.syncButtons = function(button){	
-		
-		plugin.updateUserFavorites(button);
+	plugin.syncButtons = function(button){
 
 		var postid = $(button).attr('data-postid');
 		var siteid = $(button).attr('data-siteid');
@@ -302,7 +276,7 @@ var Favorites = function()
 			var siteid = $(button).attr('data-siteid');
 			for ( var c = 0; c < plugin.userfavorites.length; c++ ){
 				if ( plugin.userfavorites[c].site_id !== parseInt(siteid) ) continue;
-				if ( plugin.userfavorites[c].site_favorites.length > 0 ) {
+				if ( plugin.objectLength(plugin.userfavorites[c].posts) > 0 ) {
 					$(button).attr('disabled', false);
 					continue;
 				}
@@ -356,11 +330,11 @@ var Favorites = function()
 
 
 	// Check if an item is in an array
-	plugin.inObject = function(search, object){
+	plugin.isFavorite = function(search, object){
 		var status = false;
 		$.each(object, function(i, v){
-			if ( v === parseInt(search) ) status = true;
-			if ( parseInt(v) === search ) status = true;
+			if ( v.post_id === parseInt(search) ) status = true;
+			if ( parseInt(v.post_id) === search ) status = true;
 		});
 		return status;
 	}

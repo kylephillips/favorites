@@ -67,11 +67,12 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
-= 1.1.5 =
+= 1.2.0 =
 * Added functionality to display users who have favorited a post. Use the shortcode [post_favorites] or one of the two new template functions: get_users_who_favorited_post or the_users_who_favorited_post. View the plugin website for options and usage examples.
 * Added shortcode and template functions to display a "Clear Favorites" button. Button clears all user favorites when clicked.
 * Added developer hooks for before and after a post has been favorited.
 * Option added to include favorite button in generated list (see "Other Notes" tab or plugins website for template functions and shortcode)
+* Option added to customize text that displays in lists when the user has no favorites (visit settings > favorites > display to customize the text)
 * Bug fix - Invalid posts removed from user favorites (trashed/unpublished posts).
 * Other various enhancements and minor bug fixes
 

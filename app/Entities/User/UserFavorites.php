@@ -6,6 +6,7 @@ use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Entities\Favorite\FavoriteFilter;
 use SimpleFavorites\Helpers;
 use SimpleFavorites\Entities\Favorite\FavoriteButton;
+use SimpleFavorites\Config\SettingsRepository;
 
 class UserFavorites 
 {
@@ -35,9 +36,14 @@ class UserFavorites
 	private $filters;
 
 	/**
-	* Settings Repository
+	* User Repository
 	*/
 	private $user_repo;
+
+	/**
+	* Settings Repository
+	*/
+	private $settings_repo;
 
 	public function __construct($user_id = null, $site_id = null, $links = false, $filters = null)
 	{
@@ -46,6 +52,7 @@ class UserFavorites
 		$this->links = $links;
 		$this->filters = $filters;
 		$this->user_repo = new UserRepository;
+		$this->settings_repo = new SettingsRepository;
 	}
 
 	/**
@@ -89,8 +96,6 @@ class UserFavorites
 	{
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
 		$favorites = $this->getFavoritesArray();
-
-		if ( empty($favorites) ) return false;
 		if ( is_multisite() ) switch_to_blog($this->site_id);
 		$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '" ';
 		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
@@ -111,6 +116,7 @@ class UserFavorites
 		}
 		$out .= '</ul>';
 		if ( is_multisite() ) restore_current_blog();
+		if ( empty($favorites) ) $out .= apply_filters('the_content', $this->settings_repo->noFavoritesText());
 		return $out;
 	}
 

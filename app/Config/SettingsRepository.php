@@ -179,4 +179,15 @@ class SettingsRepository
 		return $image;
 	}
 
+	/**
+	* Get text to display in lists if no favorites are saved
+	* @return string
+	* @since 1.2
+	*/
+	public function noFavoritesText()
+	{
+		$option = get_option('simplefavorites_display');
+		return ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'simplefavorites');
+	}
+
 }

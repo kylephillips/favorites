@@ -62,7 +62,7 @@ class ClearFavorites extends AJAXListenerBase
 	*/
 	private function updateFavoriteCounts($site_favorites)
 	{
-		foreach($site_favorites['site_favorites'] as $favorite){
+		foreach($site_favorites['posts'] as $favorite){
 			$count_sync = new SyncFavoriteCount($favorite, 'inactive', $this->data['siteid']);
 			$count_sync->sync();
 		}
@@ -73,7 +73,7 @@ class ClearFavorites extends AJAXListenerBase
 	*/
 	private function sendResponse()
 	{
-		$favorites = $this->user_repo->getAllFavorites();
+		$favorites = $this->user_repo->formattedFavorites();
 		$this->response(array(
 			'status' => 'success',
 			'favorites' => $favorites
