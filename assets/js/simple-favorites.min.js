@@ -346,7 +346,7 @@ var Favorites = function()
 			$(button).attr('data-favoritecount', new_count);
 		}
 
-		plugin.updateAllButtons();
+		plugin.setUserFavorites(plugin.updateAllButtons);
 	}
 
 
