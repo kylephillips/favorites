@@ -3,6 +3,7 @@
 namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\Post\FavoriteCount;
+use SimpleFavorites\Entities\Favorite\FavoriteButton;
 
 /**
 * Format the user's favorite array to include additional post data
@@ -57,11 +58,15 @@ class FavoritesArrayFormatter
 	{
 		foreach ( $this->formatted_favorites as $site => $site_favorites ){
 			foreach ( $site_favorites['posts'] as $key => $favorite ){
+				$site_id = $this->formatted_favorites[$site]['site_id'];
 				$this->formatted_favorites[$site]['posts'][$key]['post_type'] = get_post_type($key);
 				$this->formatted_favorites[$site]['posts'][$key]['title'] = get_the_title($key);
 				$this->formatted_favorites[$site]['posts'][$key]['permalink'] = get_the_permalink($key);
-				$this->formatted_favorites[$site]['posts'][$key]['total'] = $this->counter->getCount($key, $site['site_id']);
+				$this->formatted_favorites[$site]['posts'][$key]['total'] = $this->counter->getCount($key, $site_id);
+				$button = new FavoriteButton($key, $site_id);
+				$this->formatted_favorites[$site]['posts'][$key]['button'] = $button->display(false);
 			}
+			$this->formatted_favorites[$site] = array_reverse($this->formatted_favorites[$site]);
 		}
 	}
 

@@ -95,14 +95,20 @@ class UserFavorites
 	public function getFavoritesList($include_button = false)
 	{
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
+		
 		$favorites = $this->getFavoritesArray();
+		$no_favorites = $this->settings_repo->noFavoritesText();
+		
 		if ( is_multisite() ) switch_to_blog($this->site_id);
+		
 		$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '" ';
 		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
+		$out .= ( $this->links ) ? ' data-includelinks="true"' : ' data-includelinks="false"';
+		$out .= ' data-nofavoritestext="' . $no_favorites . '"';
 		$out .= '>';
 		foreach ( $favorites as $key => $favorite ){
 			
-			$out .= '<li>';
+			$out .= '<li data-postid="' . $favorite . '">';
 			if ( $include_button ) $out .= '<p>';
 			if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
 			$out .= get_the_title($favorite);
@@ -114,9 +120,9 @@ class UserFavorites
 			}
 			$out .= '</li>';
 		}
+		if ( empty($favorites) ) $out .= '<li data-nofavorites>' . $no_favorites . '</li>';
 		$out .= '</ul>';
 		if ( is_multisite() ) restore_current_blog();
-		if ( empty($favorites) ) $out .= apply_filters('the_content', $this->settings_repo->noFavoritesText());
 		return $out;
 	}
 

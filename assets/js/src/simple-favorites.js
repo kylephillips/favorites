@@ -16,7 +16,6 @@ var Favorites = function()
 	plugin.formactions = {
 		nonce : 'simplefavorites_nonce',
 		favoritesarray : 'simplefavorites_array',
-		list : 'simplefavorites_list',
 		favorite : 'simplefavorites_favorite',
 		clearall : 'simplefavorites_clear'
 	}
@@ -88,8 +87,8 @@ var Favorites = function()
 				action : plugin.formactions.favoritesarray
 			},
 			success: function(data){
-				console.log(data.favorites);
 				plugin.userfavorites = data.favorites;
+				plugin.updateAllLists();
 				if ( callback ) callback();
 			}
 		});
@@ -118,7 +117,7 @@ var Favorites = function()
 			$(button).removeClass('active').html(html).removeClass('loading');
 		}
 
-		if ( plugin.initial_load ) plugin.getFavoriteLists();
+		// if ( plugin.initial_load ) plugin.getFavoriteLists();
 		if ( callback ) callback();
 	}
 
@@ -138,43 +137,6 @@ var Favorites = function()
 			html += ' <span class="simplefavorite-button-count">' + count + '</span>';
 		}
 		return html;
-	}
-
-
-	// Get all the lists in the DOM
-	plugin.getFavoriteLists = function(){
-		for ( var i = 0; i < $(plugin.lists).length; i++ ){
-			var list = $(plugin.lists)[i];
-			plugin.updateList(list);
-		}
-		if ( plugin.initial_load ) plugin.updateClearButtons();
-		plugin.initial_load = false;
-	}
-
-
-	// Update a single list
-	plugin.updateList = function(list){
-		if ( user_id === '0' ) user_id = null;
-		var user_id = $(list).attr('data-userid');
-		var site_id = $(list).attr('data-siteid');
-		var links = $(list).attr('data-links');
-		var include_buttons = $(list).attr('data-includebuttons');
-
-		$.ajax({
-			url: plugin.ajaxurl,
-			type: 'post',
-			datatype: 'json',
-			data: {
-				action : plugin.formactions.list,
-				userid : user_id,
-				siteid : site_id,
-				links : links,
-				include_buttons : include_buttons
-			},
-			success: function(data){
-				$(list).replaceWith(data.list);
-			}
-		});
 	}
 
 
@@ -265,7 +227,8 @@ var Favorites = function()
 			$(button).html(html).removeClass('active');
 		}
 
-		 plugin.updateClearButtons()
+		 plugin.updateClearButtons();
+		 plugin.updateAllLists();
 	}
 
 
@@ -321,6 +284,59 @@ var Favorites = function()
 		}
 
 		plugin.setUserFavorites(plugin.updateAllButtons);
+	}
+
+
+	// Update all lists
+	plugin.updateAllLists = function(){
+		for ( var i = 0; i < plugin.userfavorites.length; i++ ){
+			var lists = $(plugin.lists + '[data-siteid="' + plugin.userfavorites[i].site_id + '"]');
+			for ( var c = 0; c < $(lists).length; c++ ){
+				var list = $(lists)[c];
+				plugin.updateSingleList($(list), plugin.userfavorites[i].posts);
+			}
+		}
+	}
+
+
+	// Update a single list html
+	plugin.updateSingleList = function(list, favorites){
+
+		plugin.removeInvalidListItems(list, favorites);
+
+		// Update the no favorites item
+		if ( plugin.objectLength(favorites) > 0 ){
+			$(list).find('[data-nofavorites]').remove();
+		} else {
+			html = '<li data-nofavorites>' + $(list).attr('data-nofavoritestext') + '</li>';
+			$(list).empty().append(html);
+		}
+
+		var include_buttons = ( $(list).attr('data-includebuttons') === 'true' ) ? true : false;
+		var include_links = ( $(list).attr('data-includelinks') === 'true' ) ? true : false;
+		
+		// Add favorites that arent in the list
+		$.each(favorites, function(i, v){
+			if ( $(list).find('li[data-postid=' + v.post_id + ']').length > 0 ) return;
+			html = '<li data-postid="' + v.post_id + '">';
+			if ( include_buttons ) html += '<p>';
+			if ( include_links ) html += '<a href="' + v.permalink + '">';
+			html += v.title;
+			if ( include_links ) html += '</a>';
+			if ( include_buttons ) html += '</p><p>' + v.button + '</p>';
+			html += '</li>';
+			$(list).append(html);
+		});
+	}
+
+
+	// Remove invalid list items
+	plugin.removeInvalidListItems = function(list, favorites){
+		var listitems = $(list).find('li[data-postid]');
+		$.each(listitems, function(i, v){
+			var postid = $(this).attr('data-postid');
+			if ( !plugin.isFavorite(postid, favorites) ) $(this).remove();
+		});
 	}
 
 

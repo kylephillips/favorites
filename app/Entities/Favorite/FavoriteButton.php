@@ -50,6 +50,7 @@ class FavoriteButton
 		$count = $count->getCount($this->post_id, $this->site_id);
 
 		$favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
+
 		$text = ( $favorited ) 
 			? html_entity_decode($this->settings_repo->buttonTextFavorited()) 
 			: html_entity_decode($this->settings_repo->buttonText());
