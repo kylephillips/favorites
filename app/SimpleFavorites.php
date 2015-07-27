@@ -13,7 +13,7 @@ class SimpleFavorites
 		$simple_favorites_env = 'live';
 
 		global $simple_favorites_version;
-		$simple_favorites_version = '1.1.5';
+		$simple_favorites_version = '1.2.0';
 
 		global $simple_favorites_name;
 		$simple_favorites_name = __('Favorites', 'simplefavorites');
