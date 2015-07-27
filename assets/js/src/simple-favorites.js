@@ -181,7 +181,6 @@ var Favorites = function()
 				status : status
 			},
 			success: function(data){
-				console.log(data);
 				$(button).removeClass('loading');
 				$(button).html(original_html);
 				$(button).attr('disabled', false);

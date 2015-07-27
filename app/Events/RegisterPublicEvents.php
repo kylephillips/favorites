@@ -5,7 +5,6 @@ namespace SimpleFavorites\Events;
 use SimpleFavorites\Listeners\NonceHandler;
 use SimpleFavorites\Listeners\FavoriteButton;
 use SimpleFavorites\Listeners\FavoritesArray;
-use SimpleFavorites\Listeners\FavoritesList;
 use SimpleFavorites\Listeners\ClearFavorites;
 use SimpleFavorites\Listeners\FavoriteCount;
 
@@ -25,10 +24,6 @@ class RegisterPublicEvents
 		// User's Favorited Posts (array of IDs)
 		add_action( 'wp_ajax_nopriv_simplefavorites_array', array($this, 'favoritesArray' ));
 		add_action( 'wp_ajax_simplefavorites_array', array($this, 'favoritesArray' ));
-
-		// HTML formatted list of favorites
-		add_action( 'wp_ajax_nopriv_simplefavorites_list', array($this, 'favoritesList' ));
-		add_action( 'wp_ajax_simplefavorites_list', array($this, 'favoritesList' ));
 
 		// Clear Favorites
 		add_action( 'wp_ajax_nopriv_simplefavorites_clear', array($this, 'clearFavorites' ));
@@ -61,14 +56,6 @@ class RegisterPublicEvents
 	public function favoritesArray()
 	{
 		new FavoritesArray;
-	}
-
-	/**
-	* Get an HTML formatted list of given user's favorites
-	*/
-	public function favoritesList()
-	{
-		new FavoritesList;
 	}
 
 	/**
