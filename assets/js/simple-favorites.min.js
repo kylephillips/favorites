@@ -89,6 +89,7 @@ var Favorites = function()
 			success: function(data){
 				plugin.userfavorites = data.favorites;
 				plugin.updateAllLists();
+				plugin.updateClearButtons();
 				if ( callback ) callback();
 			}
 		});
@@ -117,7 +118,6 @@ var Favorites = function()
 			$(button).removeClass('active').html(html).removeClass('loading');
 		}
 
-		// if ( plugin.initial_load ) plugin.getFavoriteLists();
 		if ( callback ) callback();
 	}
 
@@ -226,8 +226,8 @@ var Favorites = function()
 			$(button).html(html).removeClass('active');
 		}
 
-		 plugin.updateClearButtons();
-		 plugin.updateAllLists();
+		plugin.updateClearButtons();
+		plugin.updateAllLists();
 	}
 
 
@@ -352,17 +352,6 @@ var Favorites = function()
 			if ( parseInt(v.post_id) === search ) status = true;
 		});
 		return status;
-	}
-
-
-	// Remove an item from an array
-	plugin.removeFromArray = function(value, array){
-		for ( var i = 0; i < array.length; i++ ){
-			if ( array[i] === value ){
-				array.splice(i, 1);
-			}
-		}
-		return array;
 	}
 
 
