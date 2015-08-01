@@ -49,10 +49,11 @@ class FavoriteButton extends AJAXListenerBase
 		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
 		$count = $this->favorite_counter->getCount($this->data['postid'], $this->data['siteid']);
 		$this->afterUpdateAction();
+
 		$this->response(array(
 			'status' => 'success', 
 			'count' => $count, 
-			'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'])
+			'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'], $this->data['status'])
 		));
 	}
 

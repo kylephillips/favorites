@@ -23,25 +23,35 @@ class FavoritesArrayFormatter
 	/**
 	* Post ID to add to return array
 	* For adding/removing session/cookie favorites for current request
+	* @var int
 	*/
 	private $post_id;
 
 	/**
 	* Site ID for post to add to array
 	* For adding/removing session/cookie favorites for current request
+	* @var int
 	*/
 	private $site_id;
+
+	/**
+	* Site ID for post to add to array
+	* For adding/removing session/cookie favorites for current request
+	* @var string
+	*/
+	private $status;
 
 	public function __construct()
 	{
 		$this->counter = new FavoriteCount;
 	}
 
-	public function format($favorites, $post_id = null, $site_id = null)
+	public function format($favorites, $post_id = null, $site_id = null, $status = null)
 	{
 		$this->formatted_favorites = $favorites;
 		$this->post_id = $post_id;
 		$this->site_id = $site_id;
+		$this->status = $status;
 		$this->resetIndexes();
 		$this->addPostData();
 		return $this->formatted_favorites;
@@ -94,7 +104,10 @@ class FavoritesArrayFormatter
 		if ( !isset($this->post_id) || !isset($this->site_id) ) return;
 		foreach ( $this->formatted_favorites as $site => $site_favorites ){
 			if ( $site_favorites['site_id'] == $this->site_id ) {
-				if ( isset($site_favorites['posts'][$this->post_id]) ) return;
+				if ( isset($site_favorites['posts'][$this->post_id]) && $this->status !== 'active' ){
+					unset($this->formatted_favorites[$site]['posts'][$this->post_id]);
+					return;
+				}
 				$this->formatted_favorites[$site]['posts'][$this->post_id] = array('post_id' => $this->post_id);
 			}
 		}

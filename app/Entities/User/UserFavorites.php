@@ -120,7 +120,7 @@ class UserFavorites
 			}
 			$out .= '</li>';
 		}
-		if ( empty($favorites) ) $out .= '<li data-nofavorites>' . $no_favorites . '</li>';
+		if ( empty($favorites) ) $out .= '<li data-postid="0" data-nofavorites>' . $no_favorites . '</li>';
 		$out .= '</ul>';
 		if ( is_multisite() ) restore_current_blog();
 		return $out;

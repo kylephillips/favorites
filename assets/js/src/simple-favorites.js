@@ -28,26 +28,27 @@ var Favorites = function()
 	}
 
 	// DOM Selectors
-	plugin.buttons = '.simplefavorite-button';
-	plugin.lists = '.favorites-list';
-	plugin.clear_buttons = '.simplefavorites-clear';
+	plugin.buttons = '.simplefavorite-button'; // Favorites Button Selector
+	plugin.lists = '.favorites-list'; // Favorites List Selector
+	plugin.clear_buttons = '.simplefavorites-clear'; // Clear Button Selector
+	plugin.total_favorites = '.simplefavorites-user-count'; // Total Favorites (from the_user_favorites_count)
 
 	// Localized Data
-	plugin.ajaxurl = simple_favorites.ajaxurl;
-	plugin.favorite = simple_favorites.favorite;
-	plugin.favorited = simple_favorites.favorited;
-	plugin.include_count = simple_favorites.includecount;
-	plugin.initial_load = true;
-	plugin.indicate_loading = simple_favorites.indicate_loading;
-	plugin.loading_text = simple_favorites.loading_text;
-	plugin.loading_image_active = simple_favorites.loading_image_active;
-	plugin.loading_image = simple_favorites.loading_image;
+	plugin.ajaxurl = simple_favorites.ajaxurl; // The WP AJAX URL
+	plugin.favorite = simple_favorites.favorite; // Active Button Text
+	plugin.favorited = simple_favorites.favorited; // Inactive Button Text
+	plugin.include_count = simple_favorites.includecount; // Whether to include the count in buttons
+	plugin.indicate_loading = simple_favorites.indicate_loading; // Whether to include loading indication in buttons
+	plugin.loading_text = simple_favorites.loading_text; // Loading indication text
+	plugin.loading_image_active = simple_favorites.loading_image_active; // Loading spinner url in active button
+	plugin.loading_image = simple_favorites.loading_image; // Loading spinner url in inactive button
 
 	// JS Data
 	plugin.nonce = ''; // The nonce, generated dynamically
-	plugin.userfavorites; // Object – User Favorites
+	plugin.userfavorites; // Object – User Favorites, each site is an array of post objects
 
 
+	// Bind events, called in initialization
 	plugin.bindEvents = function(){
 		$(document).on('click', plugin.buttons, function(e){
 			e.preventDefault();
@@ -68,7 +69,7 @@ var Favorites = function()
 	}
 
 
-	// Generate a nonce 
+	// Generate a nonce (workaround for cached pages/nonces)
 	plugin.generateNonce = function(){
 		$.ajax({
 			url: plugin.ajaxurl,
@@ -84,7 +85,7 @@ var Favorites = function()
 	}
 
 
-	// Set the user favorites
+	// Set the initial user favorites (called on page load)
 	plugin.setUserFavorites = function(callback){
 		$.ajax({
 			url: plugin.ajaxurl,
@@ -96,14 +97,17 @@ var Favorites = function()
 			success: function(data){
 				plugin.userfavorites = data.favorites;
 				plugin.updateAllLists();
+				plugin.updateAllButtons();
 				plugin.updateClearButtons();
+				plugin.updateTotalFavorites();
 				if ( callback ) callback();
+				favorites_after_initial_load(plugin.userfavorites);
 			}
 		});
 	}
 
 
-	// Update the Favorite Buttons to match the user favorites
+	// Update all favorites buttons to match the user favorites
 	plugin.updateAllButtons = function(callback){
 		for ( var i = 0; i < $(plugin.buttons).length; i++ ){
 			var button = $(plugin.buttons)[i];
@@ -123,11 +127,6 @@ var Favorites = function()
 
 			html = plugin.addFavoriteCount(plugin.favorite, favorite_count);
 			$(button).removeClass('active').html(html).removeClass('loading');
-		}
-
-		if ( plugin.initial_load ){
-			plugin.initial_load = false
-			favorites_after_initial_load(plugin.userfavorites);
 		}
 
 		if ( callback ) callback();
@@ -193,12 +192,14 @@ var Favorites = function()
 				status : status
 			},
 			success: function(data){
-				console.log(data);
 				$(button).removeClass('loading');
 				$(button).html(original_html);
 				$(button).attr('disabled', false);
 				plugin.userfavorites = data.favorites;
-				plugin.syncButtons(button);
+				plugin.updateAllLists();
+				plugin.updateAllButtons();
+				plugin.updateClearButtons();
+				plugin.updateTotalFavorites();
 				favorites_after_button_submit(data.favorites);
 			}
 		});
@@ -208,40 +209,8 @@ var Favorites = function()
 	// Add loading indication to button
 	plugin.addButtonLoading = function(html, status){
 		if ( plugin.indicate_loading !== '1' ) return html;
-		if ( status === 'active' ){
-			return plugin.loading_text + plugin.loading_image_active;
-		} else {
-			return plugin.loading_text + plugin.loading_image;
-		}
-	}
-
-
-	// Sync all buttons of the same post and site id in the DOM to a single button
-	plugin.syncButtons = function(button){
-
-		var postid = $(button).attr('data-postid');
-		var siteid = $(button).attr('data-siteid');
-		var count = $(button).attr('data-favoritecount');
-		var status = ( $(button).hasClass('active') ) ? 'active' : 'inactive';
-		var html = "";
-
-		for ( var i = 0; i < $(plugin.buttons).length; i++ ){
-			var button = $(plugin.buttons)[i];
-			
-			if ( ( $(button).attr('data-postid') !== postid ) || ( $(button).attr('data-siteid') !== siteid ) ) continue;
-			
-			$(button).attr('data-favoritecount', count);
-			if ( status === 'active' ){
-				html = plugin.addFavoriteCount(plugin.favorited, count);
-				$(button).html(html).addClass('active');
-				continue;
-			} 
-			html = plugin.addFavoriteCount(plugin.favorite, count);
-			$(button).html(html).removeClass('active');
-		}
-
-		plugin.updateClearButtons();
-		plugin.updateAllLists();
+		if ( status === 'active' ) return plugin.loading_text + plugin.loading_image_active;
+		return plugin.loading_text + plugin.loading_image;
 	}
 
 
@@ -317,6 +286,18 @@ var Favorites = function()
 
 		plugin.removeInvalidListItems(list, favorites);
 
+		var include_buttons = ( $(list).attr('data-includebuttons') === 'true' ) ? true : false;
+		var include_links = ( $(list).attr('data-includelinks') === 'true' ) ? true : false;
+
+		// Remove list items without a data-postid attribute (backwards compatibility plugin v < 1.2)
+		var list_items = $(list).find('li');
+		$.each(list_items, function(i, v){
+			var attr = $(this).attr('data-postid');
+			if (typeof attr === typeof undefined || attr === false) {
+				$(this).remove();	
+			}
+		});
+
 		// Update the no favorites item
 		if ( plugin.objectLength(favorites) > 0 ){
 			$(list).find('[data-nofavorites]').remove();
@@ -324,9 +305,6 @@ var Favorites = function()
 			html = '<li data-nofavorites>' + $(list).attr('data-nofavoritestext') + '</li>';
 			$(list).empty().append(html);
 		}
-
-		var include_buttons = ( $(list).attr('data-includebuttons') === 'true' ) ? true : false;
-		var include_links = ( $(list).attr('data-includelinks') === 'true' ) ? true : false;
 		
 		// Add favorites that arent in the list
 		$.each(favorites, function(i, v){
@@ -350,6 +328,31 @@ var Favorites = function()
 			var postid = $(this).attr('data-postid');
 			if ( !plugin.isFavorite(postid, favorites) ) $(this).remove();
 		});
+	}
+
+
+	// Update Total Number of Favorites
+	plugin.updateTotalFavorites = function()
+	{
+		// Loop through all the total favorite element
+		for ( var i = 0; i < $(plugin.total_favorites).length; i++ ){
+			var item = $(plugin.total_favorites)[i];
+			var siteid = parseInt($(item).attr('data-siteid'));
+			var posttypes = $(item).attr('data-posttypes');
+			var posttypes_array = posttypes.split(','); // Multiple Post Type Support
+			var count = 0;
+
+			// Loop through all sites in favorites
+			for ( var c = 0; c < plugin.userfavorites.length; c++ ){
+				var site_favorites = plugin.userfavorites[c];
+				if ( site_favorites.site_id !== siteid ) continue; 
+				$.each(site_favorites.posts, function(){
+					if ( $.inArray(this.post_type, posttypes_array) !== -1 ) count++;
+				});
+			}
+
+			$(item).text(count);
+		}
 	}
 
 
