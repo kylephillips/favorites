@@ -52,7 +52,7 @@ class FavoriteButton extends AJAXListenerBase
 		$this->response(array(
 			'status' => 'success', 
 			'count' => $count, 
-			'favorites' => $this->user_repo->formattedFavorites()
+			'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'])
 		));
 	}
 

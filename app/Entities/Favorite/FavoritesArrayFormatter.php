@@ -20,14 +20,28 @@ class FavoritesArrayFormatter
 	*/
 	private $counter;
 
+	/**
+	* Post ID to add to return array
+	* For adding/removing session/cookie favorites for current request
+	*/
+	private $post_id;
+
+	/**
+	* Site ID for post to add to array
+	* For adding/removing session/cookie favorites for current request
+	*/
+	private $site_id;
+
 	public function __construct()
 	{
 		$this->counter = new FavoriteCount;
 	}
 
-	public function format($favorites)
+	public function format($favorites, $post_id = null, $site_id = null)
 	{
 		$this->formatted_favorites = $favorites;
+		$this->post_id = $post_id;
+		$this->site_id = $site_id;
 		$this->resetIndexes();
 		$this->addPostData();
 		return $this->formatted_favorites;
@@ -56,6 +70,7 @@ class FavoritesArrayFormatter
 	*/
 	private function addPostData()
 	{
+		$this->checkCurrentPost();
 		foreach ( $this->formatted_favorites as $site => $site_favorites ){
 			foreach ( $site_favorites['posts'] as $key => $favorite ){
 				$site_id = $this->formatted_favorites[$site]['site_id'];
@@ -69,5 +84,21 @@ class FavoritesArrayFormatter
 			$this->formatted_favorites[$site] = array_reverse($this->formatted_favorites[$site]);
 		}
 	}
+
+	/**
+	* Make sure the current post is updated in the array
+	* (for cookie/session favorites, so AJAX response returns array with correct posts without page refresh)
+	*/
+	private function checkCurrentPost()
+	{
+		if ( !isset($this->post_id) || !isset($this->site_id) ) return;
+		foreach ( $this->formatted_favorites as $site => $site_favorites ){
+			if ( $site_favorites['site_id'] == $this->site_id ) {
+				if ( isset($site_favorites['posts'][$this->post_id]) ) return;
+				$this->formatted_favorites[$site]['posts'][$this->post_id] = array('post_id' => $this->post_id);
+			}
+		}
+	}
+
 
 }

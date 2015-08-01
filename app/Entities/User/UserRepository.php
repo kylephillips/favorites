@@ -141,12 +141,14 @@ class UserRepository
 
 	/**
 	* Format an array of favorites
+	* @param $post_id - int, post to add to array (for session/cookie favorites)
+	* @param $site_id - int, site id for post_id
 	*/
-	public function formattedFavorites()
+	public function formattedFavorites($post_id = null, $site_id = null)
 	{
 		$favorites = $this->getAllFavorites();
 		$formatter = new FavoritesArrayFormatter;
-		return $formatter->format($favorites);
+		return $formatter->format($favorites, $post_id, $site_id);
 	}
 
 }
