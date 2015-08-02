@@ -102,13 +102,14 @@ class FavoritesArrayFormatter
 	private function checkCurrentPost()
 	{
 		if ( !isset($this->post_id) || !isset($this->site_id) ) return;
+		if ( is_user_logged_in() ) return;
 		foreach ( $this->formatted_favorites as $site => $site_favorites ){
 			if ( $site_favorites['site_id'] == $this->site_id ) {
-				if ( isset($site_favorites['posts'][$this->post_id]) && $this->status !== 'active' ){
+				if ( isset($site_favorites['posts'][$this->post_id]) && $this->status == 'inactive' ){
 					unset($this->formatted_favorites[$site]['posts'][$this->post_id]);
-					return;
+				} else {
+					$this->formatted_favorites[$site]['posts'][$this->post_id] = array('post_id' => $this->post_id);
 				}
-				$this->formatted_favorites[$site]['posts'][$this->post_id] = array('post_id' => $this->post_id);
 			}
 		}
 	}

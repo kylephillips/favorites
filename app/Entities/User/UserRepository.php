@@ -31,8 +31,8 @@ class UserRepository
 	}
 
 	/**
-	* Get All of current user's favorites
-	* @return array
+	* Get All of current user's favorites (includes all sites)
+	* @return array (multidimensional)
 	*/
 	public function getAllFavorites()
 	{
@@ -43,8 +43,8 @@ class UserRepository
 	}
 
 	/**
-	* Get User's Favorites by Site ID
-	* @return array
+	* Get User's Favorites by Site ID (includes a single site)
+	* @return array (flat)
 	*/
 	public function getFavorites($user_id = null, $site_id = null)
 	{
