@@ -71,8 +71,11 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 * Added functionality to display users who have favorited a post. Use the shortcode [post_favorites] or one of the two new template functions: get_users_who_favorited_post or the_users_who_favorited_post. View the plugin website for options and usage examples.
 * Added shortcode and template functions to display a "Clear Favorites" button. Button clears all user favorites when clicked.
 * Added developer hooks for before and after a post has been favorited.
+* Added developer Javascript callback functions for after the page has loaded, and after a favorite has been submitted.
 * Option added to include favorite button in generated list (see "Other Notes" tab or plugins website for template functions and shortcode)
 * Option added to customize text that displays in lists when the user has no favorites (visit settings > favorites > display to customize the text)
+* Post type(s) parameter added to get_user_favorites_count template function and user_favorite_count shortcode.
+* User favorite count now updated dynamically (may require a cache reset if page cache is enabled)
 * Bug fix - Invalid posts removed from user favorites (trashed/unpublished posts).
 * Other various enhancements and minor bug fixes
 
@@ -117,6 +120,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+* Many enhancements and developer/theme features have been added. If page cache is enabled on your site, it may be beneficial to reset the cache. Some generated HTML elements are now output with data attributes that enable dynamic updates. If the cached HTML does not have these data attributes, errors may occur.
 
 = 1.1.3 =
 * Option added to hide loading indication on page load. By default, loading indication is turned off. To turn loading indication on, visit settings > favorites > display, and select the checkbox labeld "include loading indicator image on page load"
