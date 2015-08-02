@@ -4,7 +4,7 @@ Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 1.1.4
+Stable tag: 1.2.0
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -122,6 +122,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 == Upgrade Notice ==
 
 = 1.2.0 =
+* Important: If page cache is enabled on your site, clear the cache immediately after updating.
 * Many enhancements and developer/theme features have been added. If page cache is enabled on your site, it may be beneficial to reset the cache. Some generated HTML elements are now output with data attributes that enable dynamic updates. If the cached HTML does not have these data attributes, errors may occur.
 
 = 1.1.3 =
