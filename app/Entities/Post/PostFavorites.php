@@ -88,6 +88,7 @@ class PostFavorites
 	{
 		$users = $this->getUsers();
 		$total = ( $include_anonymous ) ? count($users) + 1 : count($users);
+		$anonymous_count = $this->anonymousCount();
 		
 		$out = ( $separator == 'list' ) ? '<ul>' : '';
 		foreach($users as $key => $user){
@@ -101,17 +102,17 @@ class PostFavorites
 		}
 
 		if ( $include_anonymous ){
-			$number = $this->anonymousCount();
-			$label = ( $number == 1 ) ? $anonymous_label_single : $anonymous_label;
+			$label = ( $anonymous_count == 1 ) ? $anonymous_label_single : $anonymous_label;
 
 			if ( $separator == 'list' ){
-				$out .= '<li>' . $number . ' ' . $label . '</li>';
+				$out .= '<li>' . $anonymous_count . ' ' . $label . '</li>';
 			} else {
-				$out .= $number . ' ' . $label;
+				$out .= $anonymous_count . ' ' . $label;
 			}
 		}
 
 		if ( $separator == 'list' ) $out .= '</ul>';
-		return $out;
+		
+		return apply_filters('simplefavorites_user_list', $out, $users, $anonymous_count);
 	}
 }

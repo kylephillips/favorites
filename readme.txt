@@ -69,6 +69,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 1.2.1 =
 * Bug fix where [user_favorite_count] shortcode always returning 0 in multisite installations.
+* Added filter to customize user list output.
 
 = 1.2.0 =
 * Added functionality to display users who have favorited a post. Use the shortcode [post_favorites] or one of the two new template functions: get_users_who_favorited_post or the_users_who_favorited_post. View the plugin website for options and usage examples.
