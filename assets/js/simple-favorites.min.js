@@ -347,6 +347,10 @@ var Favorites = function()
 				var site_favorites = plugin.userfavorites[c];
 				if ( site_favorites.site_id !== siteid ) continue; 
 				$.each(site_favorites.posts, function(){
+					if ( $(item).attr('data-posttypes') === 'all' ){
+						count++;
+						return;
+					}
 					if ( $.inArray(this.post_type, posttypes_array) !== -1 ) count++;
 				});
 			}

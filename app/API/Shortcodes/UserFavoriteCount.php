@@ -54,6 +54,7 @@ class UserFavoriteCount
 		$this->parsePostTypes();
 
 		if ( $this->options['user_id'] == '' ) $this->options['user_id'] = null;
+		if ( $this->options['site_id'] == '' ) $this->options['site_id'] = get_current_blog_id();
 		
 		return get_user_favorites_count($this->options['user_id'], $this->options['site_id'], $this->filters, true);
 	}

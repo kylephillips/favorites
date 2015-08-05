@@ -119,6 +119,7 @@ function the_user_favorites_list($user_id = null, $site_id = null, $include_link
 * @param $user_id int, defaults to current user
 * @param $site_id int, defaults to current blog/site
 * @param $filters array of post types/taxonomies
+* @param $html boolean, whether to output html (important for AJAX updates). If false, an integer is returned
 * @return int
 */
 function get_user_favorites_count($user_id = null, $site_id = null, $filters = null, $html = false)
