@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: 1.2.0
 
 License: GPLv2 or later
@@ -70,6 +70,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 = 1.2.1 =
 * Bug fix where [user_favorite_count] shortcode always returning 0 in multisite installations.
 * Added filter to customize user list output.
+* Tested for WordPress 4.3 compatibility
 
 = 1.2.0 =
 * Added functionality to display users who have favorited a post. Use the shortcode [post_favorites] or one of the two new template functions: get_users_who_favorited_post or the_users_who_favorited_post. View the plugin website for options and usage examples.
