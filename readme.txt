@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 1.2.2 =
+* Bug fix - incorrect list being displayed when passing a specific user id to get_user_favorites_list();
+
 = 1.2.1 =
 * Bug fix where [user_favorite_count] shortcode always returning 0 in multisite installations.
 * Added filter to customize user list output.

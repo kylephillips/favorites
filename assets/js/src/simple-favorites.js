@@ -24,7 +24,8 @@ var Favorites = function()
 		nonce : 'simplefavorites_nonce',
 		favoritesarray : 'simplefavorites_array',
 		favorite : 'simplefavorites_favorite',
-		clearall : 'simplefavorites_clear'
+		clearall : 'simplefavorites_clear',
+		favoritelist : 'simplefavorites_list'
 	}
 
 	// DOM Selectors
@@ -65,7 +66,6 @@ var Favorites = function()
 	plugin.init = function(){
 		plugin.bindEvents();
 		plugin.generateNonce();
-		plugin.setUserFavorites(plugin.updateAllButtons);
 	}
 
 
@@ -80,6 +80,7 @@ var Favorites = function()
 			},
 			success: function(data){
 				plugin.nonce = data.nonce;
+				plugin.setUserFavorites(plugin.updateAllButtons);
 			}
 		});
 	}
@@ -274,8 +275,12 @@ var Favorites = function()
 		for ( var i = 0; i < plugin.userfavorites.length; i++ ){
 			var lists = $(plugin.lists + '[data-siteid="' + plugin.userfavorites[i].site_id + '"]');
 			for ( var c = 0; c < $(lists).length; c++ ){
-				var list = $(lists)[c];
-				plugin.updateSingleList($(list), plugin.userfavorites[i].posts);
+				if ( $(lists[c]).attr('data-userid') === "" ){
+					var list = $(lists)[c];
+					plugin.updateSingleList($(list), plugin.userfavorites[i].posts);
+				} else {
+					plugin.updateUserList(lists[c]);
+				}
 			}
 		}
 	}
@@ -317,6 +322,33 @@ var Favorites = function()
 			if ( include_buttons ) html += '</p><p>' + v.button + '</p>';
 			html += '</li>';
 			$(list).append(html);
+		});
+	}
+
+
+	// Update a specific user list
+	plugin.updateUserList = function(list)
+	{
+		var user_id = $(list).attr('data-userid');
+		var site_id = $(list).attr('data-siteid');
+		var include_links = $(list).attr('data-includelinks');
+		var include_buttons = $(list).attr('data-includebuttons');
+
+		$.ajax({
+			url: plugin.ajaxurl,
+			type: 'post',
+			datatype: 'json',
+			data: {
+				action : plugin.formactions.favoritelist,
+				nonce : plugin.nonce,
+				userid : user_id,
+				siteid : site_id,
+				includelinks : include_links,
+				includebuttons : include_buttons
+			},
+			success : function(data){
+				$(list).replaceWith(data.list);
+			}
 		});
 	}
 
