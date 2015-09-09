@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 1.2.3 =
+* Bug fix - post type parameter in shortcode being overwritten by javascript on load
+
 = 1.2.2 =
 * Bug fix - incorrect list being displayed when passing a specific user id to get_user_favorites_list();
 

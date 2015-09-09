@@ -34,6 +34,7 @@ class FavoriteList extends AJAXListenerBase
 		$this->data['site_id'] = ( isset($_POST['siteid']) ) ? intval($_POST['siteid']) : null;
 		$this->data['includelinks'] = ( isset($_POST['includelinks']) && $_POST['includelinks'] == 'true' ) ? true : false;
 		$this->data['includebuttons'] = ( isset($_POST['includebuttons']) && $_POST['includebuttons'] == 'true' ) ? true : false;
+		$this->data['posttypes'] = ( isset($_POST['posttype']) ) ? explode(',', $_POST['posttype']) : array();
 	}
 
 	/**
@@ -45,7 +46,7 @@ class FavoriteList extends AJAXListenerBase
 			$user_id = $this->data['user_id'], 
 			$site_id = $this->data['site_id'], 
 			$include_links = $this->data['includelinks'], 
-			$filters = null,
+			$filters = array('post_type'=> $this->data['posttypes']),
 			$include_button = $this->data['includebuttons']
 		);
 	}

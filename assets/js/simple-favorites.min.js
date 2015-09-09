@@ -310,9 +310,13 @@ var Favorites = function()
 			html = '<li data-nofavorites>' + $(list).attr('data-nofavoritestext') + '</li>';
 			$(list).empty().append(html);
 		}
+
+		var post_types = $(list).attr('data-posttype');
+		post_types = post_types.split(',');
 		
 		// Add favorites that arent in the list
 		$.each(favorites, function(i, v){
+			if ( post_types.length > 0 && $.inArray(v.post_type, post_types) === -1 ) return;
 			if ( $(list).find('li[data-postid=' + v.post_id + ']').length > 0 ) return;
 			html = '<li data-postid="' + v.post_id + '">';
 			if ( include_buttons ) html += '<p>';
@@ -333,6 +337,8 @@ var Favorites = function()
 		var site_id = $(list).attr('data-siteid');
 		var include_links = $(list).attr('data-includelinks');
 		var include_buttons = $(list).attr('data-includebuttons');
+		var post_type = $(list).attr('data-posttype');
+		console.log(post_type);
 
 		$.ajax({
 			url: plugin.ajaxurl,
@@ -344,7 +350,8 @@ var Favorites = function()
 				userid : user_id,
 				siteid : site_id,
 				includelinks : include_links,
-				includebuttons : include_buttons
+				includebuttons : include_buttons,
+				posttype : post_type
 			},
 			success : function(data){
 				$(list).replaceWith(data.list);

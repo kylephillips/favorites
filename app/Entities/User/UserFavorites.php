@@ -98,6 +98,12 @@ class UserFavorites
 		
 		$favorites = $this->getFavoritesArray();
 		$no_favorites = $this->settings_repo->noFavoritesText();
+
+		// Post Type filters for data attr
+		$post_types = '';
+		if ( isset($this->filters['post_type']) ){
+			$post_types = implode(',', $this->filters['post_type']);
+		}
 		
 		if ( is_multisite() ) switch_to_blog($this->site_id);
 		
@@ -105,9 +111,9 @@ class UserFavorites
 		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
 		$out .= ( $this->links ) ? ' data-includelinks="true"' : ' data-includelinks="false"';
 		$out .= ' data-nofavoritestext="' . $no_favorites . '"';
+		$out .= ' data-posttype="' . $post_types . '"';
 		$out .= '>';
 		foreach ( $favorites as $key => $favorite ){
-			
 			$out .= '<li data-postid="' . $favorite . '">';
 			if ( $include_button ) $out .= '<p>';
 			if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
