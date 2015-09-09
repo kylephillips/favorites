@@ -67,7 +67,7 @@ gulp.task('frontend_scripts', function(){
 	return gulp.src(js_frontend_source)
 		.pipe(concat('simple-favorites.min.js'))
 		.pipe(gulp.dest(js_compiled))
-		// .pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
 		.pipe(notify('Simple Favorites front end scripts compiles & compressed.'));
 });
