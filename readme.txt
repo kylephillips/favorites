@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 1.2.4 =
+* Added option to display favorite counts in admin columns on a per-post type basis. Visit Settings > Favorites > Display to enable the columns.
+
 = 1.2.3 =
 * Bug fix - post type parameter in shortcode being overwritten by javascript on load
 

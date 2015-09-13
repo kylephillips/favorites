@@ -20,6 +20,9 @@
 				<label>
 					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][postmeta]" value="true" <?php if ( isset($display['postmeta']) ) echo ' checked'; ?>/> <?php _e('Show Favorite Count on Post Entry Screen', 'simplefavorites') ?>
 				</label>
+				<label>
+					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][admincolumns]" value="true" <?php if ( isset($display['admincolumns']) ) echo ' checked'; ?>/> <?php _e('Show Favorite Count in Admin Columns', 'simplefavorites') ?>
+				</label>
 			</div>
 		</div>
 		<?php endforeach; ?>
