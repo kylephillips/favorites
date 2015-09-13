@@ -48,10 +48,10 @@ class SyncSingleFavorite
 	public function cookie()
 	{
 		if ( $this->user->isFavorite($this->post_id, $this->site_id) ){
-			setcookie('simplefavorites', json_encode($this->removeFavorite()), time()+3600, '/' );
+			setcookie('simplefavorites', json_encode($this->removeFavorite()), time()+31556926, '/' );
 			return;
 		}
-		setcookie('simplefavorites', json_encode($this->addFavorite()), time()+3600, '/' );
+		setcookie('simplefavorites', json_encode($this->addFavorite()), time()+31556926, '/' );
 		return;
 	}
 
