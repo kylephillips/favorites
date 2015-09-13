@@ -69,6 +69,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 1.2.4 =
 * Added option to display favorite counts in admin columns on a per-post type basis. Visit Settings > Favorites > Display to enable the columns.
+* Cookie expiration time extended from 12 hours to 1 year.
 
 = 1.2.3 =
 * Bug fix - post type parameter in shortcode being overwritten by javascript on load
