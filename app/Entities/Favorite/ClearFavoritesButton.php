@@ -41,7 +41,7 @@ class ClearFavoritesButton
 	public function display()
 	{
 		if ( !$this->user->getsButton() ) return false;
-		if ( !$this->text ) $this->text = $this->settings_repo->clearFavoritesText();
+		if ( !$this->text ) $this->text = html_entity_decode($this->settings_repo->clearFavoritesText());
 		if ( !$this->site_id ) $this->site_id = 1;
 		$out = '<button class="simplefavorites-clear" data-siteid="' . $this->site_id . '">' . $this->text . '</button>';
 		return $out;
