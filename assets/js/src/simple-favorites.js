@@ -6,7 +6,7 @@ jQuery(document).ready(function(){
 /**
 * Callback Functions for use in themes
 */
-function favorites_after_button_submit(favorites){}
+function favorites_after_button_submit(favorites, post_id, site_id, status){}
 function favorites_after_initial_load(favorites){}
 
 
@@ -201,7 +201,7 @@ var Favorites = function()
 				plugin.updateAllButtons();
 				plugin.updateClearButtons();
 				plugin.updateTotalFavorites();
-				favorites_after_button_submit(data.favorites);
+				favorites_after_button_submit(data.favorites, post_id, site_id, status);
 			}
 		});
 	}
