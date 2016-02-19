@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace SimpleFavorites\Entities\Favorite;
 
@@ -6,7 +6,7 @@ use SimpleFavorites\Entities\User\UserRepository;
 use SimpleFavorites\Entities\Post\FavoriteCount;
 use SimpleFavorites\Config\SettingsRepository;
 
-class FavoriteButton 
+class FavoriteButton
 {
 
 	/**
@@ -51,16 +51,16 @@ class FavoriteButton
 
 		$favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
 
-		$text = ( $favorited ) 
-			? html_entity_decode($this->settings_repo->buttonTextFavorited()) 
+		$text = ( $favorited )
+			? html_entity_decode($this->settings_repo->buttonTextFavorited())
 			: html_entity_decode($this->settings_repo->buttonText());
 
 		$out = '<button class="simplefavorite-button';
-		
+
 		// Button Classes
 		if ( $favorited ) $out .= ' active';
 		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
-		
+
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading ) $out .= ' loading';
 
 		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
@@ -71,7 +71,7 @@ class FavoriteButton
 			if ( $spinner ) $out .= $spinner;
 		} else {
 			$out .= $text;
-			if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '<span>';
+			if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '</span>';
 		}
 		$out .= '</button>';
 		return $out;
