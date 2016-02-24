@@ -36,10 +36,23 @@ class UserRepository
 	*/
 	public function getAllFavorites()
 	{
-		if ( is_user_logged_in() ) return $this->getLoggedInFavorites();
-		$saveType = $this->settings_repo->saveType();
-		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
-		return $this->favoritesWithSiteID($favorites);
+		if ( is_user_logged_in() ) {
+			$all_favorites = $this->getLoggedInFavorites();
+		} else {
+			$saveType = $this->settings_repo->saveType();
+			$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
+			$all_favorites = $this->favoritesWithSiteID($favorites);			
+		}
+		
+		/**
+		 * Filter All of current user's favorites.
+		 * 
+		 * @since	1.?
+		 * @param	array	The original current user's favorites.
+		 */
+		$all_favorites = apply_filters('favorites/user/favorites/all', $all_favorites);
+
+		return $all_favorites;
 	}
 
 	/**
@@ -48,9 +61,21 @@ class UserRepository
 	*/
 	public function getFavorites($user_id = null, $site_id = null)
 	{
-		if ( is_user_logged_in() || $user_id ) return $this->getLoggedInFavorites($user_id, $site_id);
-		$saveType = $this->settings_repo->saveType();
-		$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites($site_id) : $this->getSessionFavorites($site_id);
+		if ( is_user_logged_in() || $user_id ) {
+			$favorites = $this->getLoggedInFavorites($user_id, $site_id);
+		} else {
+			$saveType = $this->settings_repo->saveType();
+			$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites($site_id) : $this->getSessionFavorites($site_id);
+		}
+		
+		/**
+		 * Filter a User's Favorites.
+		 * 
+		 * @since	1.?
+		 * @param	array	The original User's Favorites.
+		 */
+		$favorites = apply_filters('favorites/user/favorites', $favorites);
+
 		return $favorites;
 	}
 
