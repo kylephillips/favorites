@@ -47,8 +47,6 @@ class SyncSingleFavorite
 	*/
 	public function cookie()
 	{
-		$cookie_expiration_time = 3600;
-		
 		if ( $this->user->isFavorite($this->post_id, $this->site_id) ){
 			setcookie( 'simplefavorites', json_encode( $this->removeFavorite() ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval' , 3600 ), '/' );
 			return;
