@@ -49,7 +49,7 @@ class SyncAllFavorites
 	*/
 	public function cookie()
 	{
-		setcookie( 'simplefavorites', json_encode( $this->favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval' , 3600 ), '/' );
+		setcookie( 'simplefavorites', json_encode( $this->favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
 		return;
 	}
 
