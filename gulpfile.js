@@ -3,7 +3,6 @@ var sass = require('gulp-sass');
 var autoprefix = require('gulp-autoprefixer');
 var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
-var plumber = require('gulp-plumber');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -31,7 +30,6 @@ gulp.task('scss', function(){
 		.pipe(sass({ outputStyle: 'compressed' }))
 		.pipe(autoprefix('last 15 version'))
 		.pipe(gulp.dest(css))
-		.pipe(plumber())
 		.pipe(livereload())
 		.pipe(notify('Favorites styles compiled & compressed.'));
 });
@@ -45,7 +43,6 @@ gulp.task('uncompressed_styles', function(){
 		.pipe(autoprefix('last 15 version'))
 		.pipe(rename('styles-uncompressed.css'))
 		.pipe(gulp.dest(css))
-		.pipe(plumber())
 });
 
 /**
@@ -77,7 +74,7 @@ gulp.task('frontend_scripts', function(){
 * Watch Task
 */
 gulp.task('watch', function(){
-	livereload.listen(35829);
+	livereload.listen();
 	gulp.watch(scss, ['scss', 'uncompressed_styles']);
 	gulp.watch(js_admin_source, ['admin_scripts']);
 	gulp.watch(js_frontend_source, ['frontend_scripts']);
