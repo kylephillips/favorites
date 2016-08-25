@@ -35,7 +35,7 @@ class PostFavorites
 	public function __construct($post_id, $site_id)
 	{
 		$this->post_id = ( $post_id ) ? $post_id : get_the_id();
-		$this->site_id = ( $site_id ) ? $site_id : 1;
+		$this->site_id = ( $site_id ) ? $site_id : get_current_blog_id();
 		$this->user_repo = new UserRepository;
 		$this->favorite_count = new FavoriteCount;
 	}
@@ -61,7 +61,7 @@ class PostFavorites
 	private function getAllUsers()
 	{
 		$user_query = new \WP_User_Query(array(
-			'blog_id' => ( $this->site_id ) ? $this->site_id : 1
+			'blog_id' => ( $this->site_id ) ? $this->site_id : get_current_blog_id()
 		));
 		$users = $user_query->get_results();
 		return $users;
