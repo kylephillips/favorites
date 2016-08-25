@@ -176,6 +176,24 @@ function the_users_who_favorited_post($post_id = null, $site_id = null, $separat
 	echo $users->userList($separator, $include_anonymous, $anonymous_label, $anonymous_label_single);
 }
 
+/**
+ * Get the number of anonymous users who favorited a post
+ * @param  $post_id int Defaults to current post
+ * @return int Just anonymous users
+ */
+function get_anonymous_users_who_favourited_post( $post_id = null ) {
+	$user = new PostFavorites( $post_id );
+	return $users->anonymousCount();
+}
+
+/**
+ * Echo the number of anonymous users who favorited a post
+ * @param  $post_id int Defaults to current post
+ * @return string Just anonymous users
+ */
+function the_anonymous_users_who_favourited_post( $post_id = null ) {
+	echo get_anonymous_users_who_favourited_post( $post_id );
+}
 
 /**
 * Get the clear favorites button
