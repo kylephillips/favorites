@@ -149,14 +149,15 @@ function the_user_favorites_count($user_id = null, $site_id = null, $filters = n
 
 
 /**
-* Get an array of users who have favorited a post
-* @param $post_id int, defaults to current post
-* @param $site_id int, defaults to current blog/site
-* @return array of user objects
-*/
-function get_users_who_favorited_post($post_id = null, $site_id = null)
+ *  Get an array of users who have favorited a post
+*  @param $post_id int, defaults to current post
+*  @param $site_id int, defaults to current blog/site
+ * @param $role string  defaults to empty
+ * @return array of user objects
+ */
+function get_users_who_favorited_post( $post_id = null, $site_id = null, $role = null )
 {
-	$users = new PostFavorites($post_id, $site_id);
+	$users = new PostFavorites( $post_id, $site_id, $role );
 	return $users->getUsers();
 }
 
