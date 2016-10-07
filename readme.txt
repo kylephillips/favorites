@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
-Tested up to: 4.3
+Tested up to: 4.6
 Stable tag: 1.2.3
 
 License: GPLv2 or later
@@ -69,7 +69,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 1.2.4 =
 * Added option to display favorite counts in admin columns on a per-post type basis. Visit Settings > Favorites > Display to enable the columns.
-* Cookie expiration time extended from 12 hours to 1 year.
+* Added filter option to change cookie expiration (thanks to Github user rlaan)
 
 = 1.2.3 =
 * Bug fix - post type parameter in shortcode being overwritten by javascript on load

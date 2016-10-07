@@ -3,7 +3,7 @@
 Plugin Name: Favorites
 Plugin URI: http://favoriteposts.com
 Description: Simple and flexible favorite buttons for any post type.
-Version: 1.2.3
+Version: 1.2.4
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
 Text Domain: simplefavorites
@@ -12,7 +12,7 @@ License: GPLv2 or later.
 Copyright: Kyle Phillips
 */
 
-/*  Copyright 2015 Kyle Phillips  (email : support@nestedpages.com)
+/*  Copyright 2016 Kyle Phillips
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
