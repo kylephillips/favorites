@@ -12,7 +12,7 @@
 				<?php _e('Output Plugin CSS', 'simplefavorites'); ?>
 			</label>
 			<div class="simplefavorites-dependency-content">
-				<p><em><?php _e('If you are compiling your own minified CSS, include the CSS below:', 'simplefavorites'); ?></em></p>
+				<p><em><?php _e('If you are compiling your own minified CSS, include the CSS below:', 'simplefavorites', 'simplefavorites'); ?></em></p>
 				<textarea><?php echo SimpleFavorites\Helpers::getFileContents('assets/css/styles-uncompressed.css'); ?></textarea>
 			</div>
 		</div>
