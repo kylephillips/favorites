@@ -21,6 +21,11 @@ class PostFavorites
 	private $site_id;
 
 	/**
+	* User Role
+	*/
+	private $role;
+
+	/**
 	* User Repository
 	* @var SimpleFavorites\Entities\User\UserRepository;
 	*/
@@ -32,11 +37,12 @@ class PostFavorites
 	*/
 	private $favorite_count;
 
-	public function __construct($post_id, $site_id)
+	public function __construct($post_id, $site_id, $role)
 	{
-		$this->post_id = ( $post_id ) ? $post_id : get_the_id();
-		$this->site_id = ( $site_id ) ? $site_id : 1;
-		$this->user_repo = new UserRepository;
+		$this->post_id        = ( $post_id ) ? $post_id : get_the_id();
+		$this->site_id        = ( $site_id ) ? $site_id : 1;
+		$this->role           = ( $role ) ? $role : '';
+		$this->user_repo      = new UserRepository;
 		$this->favorite_count = new FavoriteCount;
 	}
 
@@ -56,13 +62,18 @@ class PostFavorites
 	}
 
 	/**
-	* Get all Users
+	* Get all Users.
+	*
+	* If a role is defined, will fetch users of defined role
 	*/
 	private function getAllUsers()
 	{
-		$user_query = new \WP_User_Query(array(
-			'blog_id' => ( $this->site_id ) ? $this->site_id : 1
-		));
+		$user_query = new \WP_User_Query(
+			array(
+				'blog_id' => ( $this->site_id ) ? $this->site_id : 1,
+				'role'    => $this->role
+			)
+		);
 		$users = $user_query->get_results();
 		return $users;
 	}
