@@ -98,6 +98,7 @@ class UserFavorites
 		
 		$favorites = $this->getFavoritesArray();
 		$no_favorites = $this->settings_repo->noFavoritesText();
+		$favorites = ( isset($favorites[0]['site_id']) ) ? $favorites[0]['posts'] : $favorites;
 
 		// Post Type filters for data attr
 		$post_types = '';
@@ -113,20 +114,23 @@ class UserFavorites
 		$out .= ' data-nofavoritestext="' . $no_favorites . '"';
 		$out .= ' data-posttype="' . $post_types . '"';
 		$out .= '>';
-		foreach ( $favorites as $key => $favorite ){
-			$out .= '<li data-postid="' . $favorite . '">';
-			if ( $include_button ) $out .= '<p>';
-			if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
-			$out .= get_the_title($favorite);
-			if ( $this->links ) $out .= '</a>';
-			if ( $include_button ){
-				$button = new FavoriteButton($favorite, $this->site_id);
-				$out .= '</p><p>';
-				$out .= $button->display(false) . '</p>';
-			}
-			$out .= '</li>';
-		}
+
 		if ( empty($favorites) ) $out .= '<li data-postid="0" data-nofavorites>' . $no_favorites . '</li>';
+		if ( !empty($favorites) ) :
+			foreach ( $favorites as $key => $favorite ){
+				$out .= '<li data-postid="' . $favorite . '">';
+				if ( $include_button ) $out .= '<p>';
+				if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
+				$out .= get_the_title($favorite);
+				if ( $this->links ) $out .= '</a>';
+				if ( $include_button ){
+					$button = new FavoriteButton($favorite, $this->site_id);
+					$out .= '</p><p>';
+					$out .= $button->display(false) . '</p>';
+				}
+				$out .= '</li>';
+			}
+		endif;
 		$out .= '</ul>';
 		if ( is_multisite() ) restore_current_blog();
 		return $out;
