@@ -152,11 +152,12 @@ function the_user_favorites_count($user_id = null, $site_id = null, $filters = n
 * Get an array of users who have favorited a post
 * @param $post_id int, defaults to current post
 * @param $site_id int, defaults to current blog/site
+* @param $user_role string, defaults to all
 * @return array of user objects
 */
-function get_users_who_favorited_post($post_id = null, $site_id = null)
+function get_users_who_favorited_post($post_id = null, $site_id = null, $user_role = null)
 {
-	$users = new PostFavorites($post_id, $site_id);
+	$users = new PostFavorites($post_id, $site_id, $user_role);
 	return $users->getUsers();
 }
 
@@ -169,10 +170,11 @@ function get_users_who_favorited_post($post_id = null, $site_id = null)
 * @param $include_anonmyous boolean, whether to include anonmyous users
 * @param $anonymous_label string, label for anonymous user count
 * @param $anonymous_label_single string, singular label for anonymous user count
+* @param $user_role string, defaults to all
 */
-function the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User')
+function the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User', $user_role = null)
 {
-	$users = new PostFavorites($post_id, $site_id);
+	$users = new PostFavorites($post_id, $site_id, $user_role);
 	echo $users->userList($separator, $include_anonymous, $anonymous_label, $anonymous_label_single);
 }
 
