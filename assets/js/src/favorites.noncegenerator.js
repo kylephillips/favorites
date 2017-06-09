@@ -24,6 +24,10 @@ Favorites.NonceGenerator = function()
 	*/
 	plugin.getNonce = function()
 	{
+		if ( Favorites.jsData.cache_enabled === '' ){
+			Favorites.jsData.nonce = simple_favorites.nonce;
+			return;
+		}
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
 			type: 'post',

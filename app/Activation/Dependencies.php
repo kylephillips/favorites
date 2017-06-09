@@ -98,20 +98,23 @@ class Dependencies
 			array('jquery'), 
 			$this->plugin_version
 		);
+		$localized_data = array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'favorite' => $this->settings_repo->buttonText(),
+			'favorited' => $this->settings_repo->buttonTextFavorited(),
+			'includecount' => $this->settings_repo->includeCountInButton(),
+			'indicate_loading' => $this->settings_repo->includeLoadingIndicator(),
+			'loading_text' => $this->settings_repo->loadingText(),
+			'loading_image' => $this->settings_repo->loadingImage(),
+			'loading_image_active' => $this->settings_repo->loadingImage('active'),
+			'loading_image_preload' => $this->settings_repo->includeLoadingIndicatorPreload(),
+			'cache_enabled' => $this->settings_repo->cacheEnabled()
+		);
+		if ( !$this->settings_repo->cacheEnabled() ) $localized_data['nonce'] = wp_create_nonce('simple_favorites_nonce');
 		wp_localize_script(
 			'simple-favorites',
 			'simple_favorites',
-			array(
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'favorite' => $this->settings_repo->buttonText(),
-				'favorited' => $this->settings_repo->buttonTextFavorited(),
-				'includecount' => $this->settings_repo->includeCountInButton(),
-				'indicate_loading' => $this->settings_repo->includeLoadingIndicator(),
-				'loading_text' => $this->settings_repo->loadingText(),
-				'loading_image' => $this->settings_repo->loadingImage(),
-				'loading_image_active' => $this->settings_repo->loadingImage('active'),
-				'loading_image_preload' => $this->settings_repo->includeLoadingIndicatorPreload()
-			)
+			$localized_data
 		);
 	}
 

@@ -52,7 +52,8 @@ Favorites.jsData = {
 	indicate_loading : simple_favorites.indicate_loading, // Whether to include loading indication in buttons
 	loading_text : simple_favorites.loading_text, // Loading indication text
 	loading_image_active : simple_favorites.loading_image_active, // Loading spinner url in active button
-	loading_image : simple_favorites.loading_image // Loading spinner url in inactive button
+	loading_image : simple_favorites.loading_image, // Loading spinner url in inactive button
+	cache_enabled : simple_favorites.cache_enabled, // Is cache enabled on the site
 }
 
 /**
