@@ -23,7 +23,10 @@ var Favorites = Favorites || {};
 * DOM Selectors Used by the Plugin
 */
 Favorites.selectors = {
-
+	button : '.simplefavorite-button', // Favorite Buttons
+	list : '.favorites-list', // Favorite Lists
+	clear_button : '.simplefavorites-clear', // Clear Button
+	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
 }
 
 /**
