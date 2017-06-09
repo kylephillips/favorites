@@ -115,7 +115,7 @@ function the_user_favorites_list($user_id = null, $site_id = null, $include_link
 
 
 /**
-* Get an array of User Favorites
+* Get the number of posts a specific user has favorited
 * @param $user_id int, defaults to current user
 * @param $site_id int, defaults to current blog/site
 * @param $filters array of post types/taxonomies
@@ -136,7 +136,7 @@ function get_user_favorites_count($user_id = null, $site_id = null, $filters = n
 
 
 /**
-* Get an array of User Favorites
+* Print the number of posts a specific user has favorited
 * @param $user_id int, defaults to current user
 * @param $site_id int, defaults to current blog/site
 * @param $filters array of post types/taxonomies
