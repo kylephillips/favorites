@@ -47,7 +47,7 @@ class UserRepository
 		/**
 		 * Filter All of current user's favorites.
 		 * 
-		 * @since	1.?
+		 * @since	1.3.0
 		 * @param	array	The original current user's favorites.
 		 */
 		$all_favorites = apply_filters('favorites/user/favorites/all', $all_favorites);
@@ -71,7 +71,7 @@ class UserRepository
 		/**
 		 * Filter a User's Favorites.
 		 * 
-		 * @since	1.?
+		 * @since	1.3.0
 		 * @param	array	The original User's Favorites.
 		 */
 		$favorites = apply_filters('favorites/user/favorites', $favorites);
