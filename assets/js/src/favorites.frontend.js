@@ -1,9 +1,3 @@
-/**
-* Callback Functions for use in themes
-*/
-function favorites_after_button_submit(favorites, post_id, site_id, status){}
-function favorites_after_initial_load(favorites){}
-
 var Favorites = Favorites || {};
 
 /**
@@ -19,21 +13,6 @@ Favorites.FrontEnd = function()
 	plugin.lists = '.favorites-list'; // Favorites List Selector
 	plugin.clear_buttons = '.simplefavorites-clear'; // Clear Button Selector
 	plugin.total_favorites = '.simplefavorites-user-count'; // Total Favorites (from the_user_favorites_count)
-
-	// Localized Data
-	plugin.ajaxurl = simple_favorites.ajaxurl; // The WP AJAX URL
-	plugin.favorite = simple_favorites.favorite; // Active Button Text
-	plugin.favorited = simple_favorites.favorited; // Inactive Button Text
-	plugin.include_count = simple_favorites.includecount; // Whether to include the count in buttons
-	plugin.indicate_loading = simple_favorites.indicate_loading; // Whether to include loading indication in buttons
-	plugin.loading_text = simple_favorites.loading_text; // Loading indication text
-	plugin.loading_image_active = simple_favorites.loading_image_active; // Loading spinner url in active button
-	plugin.loading_image = simple_favorites.loading_image; // Loading spinner url in inactive button
-
-	// JS Data
-	plugin.nonce = ''; // The nonce, generated dynamically
-	plugin.userfavorites; // Object – User Favorites, each site is an array of post objects
-
 
 	// Bind events, called in initialization
 	plugin.bindEvents = function(){
@@ -53,20 +32,20 @@ Favorites.FrontEnd = function()
 	// Set the initial user favorites (called on page load)
 	plugin.setUserFavorites = function(callback){
 		$.ajax({
-			url: plugin.ajaxurl,
+			url: Favorites.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
 			data: {
 				action : Favorites.formActions.favoritesarray
 			},
 			success: function(data){
-				plugin.userfavorites = data.favorites;
+				Favorites.userFavorites = data.favorites;
 				plugin.updateAllLists();
 				plugin.updateAllButtons();
 				plugin.updateClearButtons();
 				plugin.updateTotalFavorites();
 				if ( callback ) callback();
-				favorites_after_initial_load(plugin.userfavorites);
+				favorites_after_initial_load(Favorites.userFavorites);
 			}
 		});
 	}
@@ -81,16 +60,16 @@ Favorites.FrontEnd = function()
 			var favorite_count = $(button).attr('data-favoritecount');
 			var html = "";
 			var site_index = plugin.siteIndex(siteid);
-			var site_favorites = plugin.userfavorites[site_index].posts;
+			var site_favorites = Favorites.userFavorites[site_index].posts;
 
 			if ( plugin.isFavorite( postid, site_favorites ) ){
-				favorite_count = plugin.userfavorites[site_index].posts[postid].total;
-				html = plugin.addFavoriteCount(plugin.favorited, favorite_count);
+				favorite_count = Favorites.userFavorites[site_index].posts[postid].total;
+				html = plugin.addFavoriteCount(Favorites.jsData.favorited, favorite_count);
 				$(button).addClass('active').html(html).removeClass('loading');
 				continue;
 			}
 
-			html = plugin.addFavoriteCount(plugin.favorite, favorite_count);
+			html = plugin.addFavoriteCount(Favorites.jsData.favorite, favorite_count);
 			$(button).removeClass('active').html(html).removeClass('loading');
 		}
 
@@ -100,8 +79,8 @@ Favorites.FrontEnd = function()
 
 	// Get Site Favorites index from All Favorites
 	plugin.siteIndex = function(siteid){
-		for ( var i = 0; i < plugin.userfavorites.length; i++ ){
-			if ( plugin.userfavorites[i].site_id !== parseInt(siteid) ) continue;
+		for ( var i = 0; i < Favorites.userFavorites.length; i++ ){
+			if ( Favorites.userFavorites[i].site_id !== parseInt(siteid) ) continue;
 			return i;
 		}
 	}
@@ -109,7 +88,7 @@ Favorites.FrontEnd = function()
 
 	// Add Favorite Count to a button
 	plugin.addFavoriteCount = function(html, count){
-		if ( plugin.include_count === '1' ){
+		if ( Favorites.jsData.include_count === '1' ){
 			html += ' <span class="simplefavorite-button-count">' + count + '</span>';
 		}
 		return html;
@@ -134,19 +113,19 @@ Favorites.FrontEnd = function()
 			$(button).removeClass('active');
 			if ( favorite_count - 1 < 0 ) favorite_count = 1;
 			$(button).attr('data-favoritecount', favorite_count - 1);
-			original_html = plugin.addFavoriteCount(plugin.favorite, favorite_count - 1);
+			original_html = plugin.addFavoriteCount(Favorites.jsData.favorite, favorite_count - 1);
 		} else {
 			status = 'active';
 			$(button).addClass('active');
 			$(button).attr('data-favoritecount', favorite_count + 1);
-			original_html = plugin.addFavoriteCount(plugin.favorited, favorite_count + 1);
+			original_html = plugin.addFavoriteCount(Favorites.jsData.favorited, favorite_count + 1);
 		}
 
 		html = plugin.addButtonLoading(original_html, status);
 		$(button).html(html);
 
 		$.ajax({
-			url: plugin.ajaxurl,
+			url: Favorites.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
 			data: {
@@ -160,7 +139,7 @@ Favorites.FrontEnd = function()
 				$(button).removeClass('loading');
 				$(button).html(original_html);
 				$(button).attr('disabled', false);
-				plugin.userfavorites = data.favorites;
+				Favorites.userFavorites = data.favorites;
 				plugin.updateAllLists();
 				plugin.updateAllButtons();
 				plugin.updateClearButtons();
@@ -173,9 +152,9 @@ Favorites.FrontEnd = function()
 
 	// Add loading indication to button
 	plugin.addButtonLoading = function(html, status){
-		if ( plugin.indicate_loading !== '1' ) return html;
-		if ( status === 'active' ) return plugin.loading_text + plugin.loading_image_active;
-		return plugin.loading_text + plugin.loading_image;
+		if ( Favorites.jsData.indicate_loading !== '1' ) return html;
+		if ( status === 'active' ) return Favorites.jsData.loading_text + Favorites.jsData.loading_image_active;
+		return Favorites.jsData.loading_text + Favorites.jsData.loading_image;
 	}
 
 
@@ -184,9 +163,9 @@ Favorites.FrontEnd = function()
 		for ( var i = 0; i < $(plugin.clear_buttons).length; i++ ){
 			var button = $(plugin.clear_buttons)[i];
 			var siteid = $(button).attr('data-siteid');
-			for ( var c = 0; c < plugin.userfavorites.length; c++ ){
-				if ( plugin.userfavorites[c].site_id !== parseInt(siteid) ) continue;
-				if ( plugin.objectLength(plugin.userfavorites[c].posts) > 0 ) {
+			for ( var c = 0; c < Favorites.userFavorites.length; c++ ){
+				if ( Favorites.userFavorites[c].site_id !== parseInt(siteid) ) continue;
+				if ( plugin.objectLength(Favorites.userFavorites[c].posts) > 0 ) {
 					$(button).attr('disabled', false);
 					continue;
 				}
@@ -202,7 +181,7 @@ Favorites.FrontEnd = function()
 		$(button).attr('disabled', 'disabled');
 		var site_id = $(button).attr('data-siteid');
 		$.ajax({
-			url: plugin.ajaxurl,
+			url: Favorites.jsData.ajaxurl,
 			type: 'post',
 			datatype: 'json',
 			data: {
@@ -211,7 +190,7 @@ Favorites.FrontEnd = function()
 				siteid : site_id,
 			},
 			success : function(data){
-				plugin.userfavorites = data.favorites;
+				Favorites.userFavorites = data.favorites;
 				$(button).removeClass('loading');
 				plugin.resetCounts();
 			}
@@ -236,12 +215,12 @@ Favorites.FrontEnd = function()
 
 	// Update all lists
 	plugin.updateAllLists = function(){
-		for ( var i = 0; i < plugin.userfavorites.length; i++ ){
-			var lists = $(plugin.lists + '[data-siteid="' + plugin.userfavorites[i].site_id + '"]');
+		for ( var i = 0; i < Favorites.userFavorites.length; i++ ){
+			var lists = $(plugin.lists + '[data-siteid="' + Favorites.userFavorites[i].site_id + '"]');
 			for ( var c = 0; c < $(lists).length; c++ ){
 				if ( $(lists[c]).attr('data-userid') === "" ){
 					var list = $(lists)[c];
-					plugin.updateSingleList($(list), plugin.userfavorites[i].posts);
+					plugin.updateSingleList($(list), Favorites.userFavorites[i].posts);
 				} else {
 					plugin.updateUserList(lists[c]);
 				}
@@ -346,8 +325,8 @@ Favorites.FrontEnd = function()
 			var count = 0;
 
 			// Loop through all sites in favorites
-			for ( var c = 0; c < plugin.userfavorites.length; c++ ){
-				var site_favorites = plugin.userfavorites[c];
+			for ( var c = 0; c < Favorites.userFavorites.length; c++ ){
+				var site_favorites = Favorites.userFavorites[c];
 				if ( site_favorites.site_id !== siteid ) continue; 
 				$.each(site_favorites.posts, function(){
 					if ( $(item).attr('data-posttypes') === 'all' ){
