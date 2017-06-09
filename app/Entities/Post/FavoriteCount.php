@@ -19,4 +19,14 @@ class FavoriteCount
 		return intval($count);
 	}
 
+	/**
+	* Get the favorite count for all posts in a site
+	*/
+	public function getAllCount($site_id = null)
+	{
+		global $wpdb;
+		$query = "SELECT SUM(meta_value) AS favorites_count FROM {$wpdb->prefix}postmeta WHERE meta_key = 'simplefavorites_count'";
+		return $wpdb->get_var( $query );
+	}
+
 }

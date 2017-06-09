@@ -201,3 +201,24 @@ function the_clear_favorites_button($site_id = null, $text = null)
 	echo get_clear_favorites_button($site_id, $text);
 }
 
+/**
+* Get the total number of favorites, for all posts and users
+* @param $site_id int, defaults to current blog/site
+* @return html
+*/
+function get_total_favorites_count($site_id = null)
+{
+	$count = new FavoriteCount();
+	return $count->getAllCount($site_id);
+}
+
+/**
+* Print the total number of favorites, for all posts and users
+* @param $site_id int, defaults to current blog/site
+* @return html
+*/
+function the_total_favorites_count($site_id = null)
+{
+	echo get_total_favorites_count($site_id);
+}
+

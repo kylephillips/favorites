@@ -68,8 +68,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 == Changelog ==
 
 = 1.3.0 =
-* Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events.
+* Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events
 * Bug fix where adding a favorite required a page refresh for it to appear in favorite lists
+* Added API function to get the total count of favorites across all posts
 * Tested with WordPress 4.8
 
 = 1.2.4 =
@@ -207,3 +208,9 @@ Displays a button that allows users to clear all of their favorites.
 * **Get function:** `get_clear_favorites_button($site_id, $text)`
 * **Print function:** `the_clear_favorites_button($site_id, $text)`
 * **Shortcode:** `[clear_favorites_button site_id="" text="Clear Favorites"]
+
+**Favorite Count (Across all Posts)**
+Displays the total number of favorites for a given site.
+
+* **Get function:** `get_total_favorites_count($site_id)`
+* **Print function:** `the_total_favorites_count($site_id)`
