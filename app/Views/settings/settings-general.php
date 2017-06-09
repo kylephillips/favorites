@@ -8,6 +8,13 @@
 	<td>
 		<div class="simplefavorites-dependency">
 			<label>
+				<input type="checkbox" name="simplefavorites_cache_enabled" value="true" <?php if ( $this->settings_repo->cacheEnabled() ) echo 'checked'; ?> />
+				<?php _e('Cache Enabled on Site (Favorites content is injected on page load with AJAX request)', 'simplefavorites'); ?>
+			</label>
+		</div>
+
+		<div class="simplefavorites-dependency">
+			<label>
 				<input type="checkbox" name="simplefavorites_dependencies[css]" value="true" class="simplefavorites-dependency-cb" <?php if ( $this->settings_repo->outputDependency('css') ) echo 'checked'; ?> />
 				<?php _e('Output Plugin CSS', 'simplefavorites'); ?>
 			</label>

@@ -49,6 +49,10 @@ class Activate
 				)
 			));
 		}
+		if ( !get_option('simplefavorites_cache_enabled')
+			&& get_option('simplefavorites_cache_enabled') !== "" ){
+			update_option('simplefavorites_cache_enabled', 'true');
+		}
 	}
 
 }

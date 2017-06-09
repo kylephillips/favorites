@@ -74,6 +74,7 @@ class Settings
 	public function registerSettings()
 	{
 		register_setting( 'simple-favorites-general', 'simplefavorites_dependencies' );
+		register_setting( 'simple-favorites-general', 'simplefavorites_cache_enabled' );
 		register_setting( 'simple-favorites-users', 'simplefavorites_users' );
 		register_setting( 'simple-favorites-display', 'simplefavorites_display' );
 	}

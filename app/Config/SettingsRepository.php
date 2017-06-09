@@ -190,4 +190,15 @@ class SettingsRepository
 		return ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'simplefavorites');
 	}
 
+	/**
+	* Is cache enabled on the site
+	* @return boolean
+	* @since 1.3.0
+	*/
+	public function cacheEnabled()
+	{
+		$option = get_option('simplefavorites_cache_enabled');
+		return ( isset($option) && $option == "true" ) ? true : false;
+	}
+
 }
