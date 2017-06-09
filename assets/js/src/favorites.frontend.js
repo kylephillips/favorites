@@ -10,13 +10,9 @@ Favorites.FrontEnd = function()
 
 	plugin.utilities = new Favorites.Utilities;
 	plugin.formatter = new Favorites.Formatter;
-	plugin.setUserFavorites = new Favorites.UserFavorites;
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('favorites-cleared', function(){
-			plugin.resetCounts();
-		});
 		$(document).on('favorites-updated-single', function(){
 			// plugin.updateAllLists();
 			// plugin.updateTotalFavorites();
@@ -25,20 +21,6 @@ Favorites.FrontEnd = function()
 			// plugin.updateAllLists();
 			// plugin.updateTotalFavorites();
 		});
-	}
-
-	
-
-
-	// Update favorite counts after a clear
-	plugin.resetCounts = function(){
-		var buttons = $('.simplefavorite-button.active.has-count');
-		for ( var i = 0; i < buttons.length; i++ ){
-			var button = $(buttons)[i];
-			var count_display = $(button).find('.simplefavorite-button-count');
-			var new_count = $(count_display).text() - 1;
-			$(button).attr('data-favoritecount', new_count);
-		}
 	}
 
 

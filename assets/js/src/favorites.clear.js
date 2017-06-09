@@ -13,6 +13,7 @@ Favorites.Clear = function()
 
 	plugin.activeButton; // The active "clear favorites" button
 	plugin.utilities = new Favorites.Utilities;
+	plugin.formatter = new Favorites.Formatter;
 
 	plugin.bindEvents = function()
 	{
@@ -47,6 +48,7 @@ Favorites.Clear = function()
 			},
 			success : function(data){
 				Favorites.userFavorites = data.favorites;
+				plugin.formatter.decrementAllCounts();
 				plugin.loading(false);
 				$(document).trigger('favorites-cleared', [plugin.activeButton]);
 			}
@@ -64,7 +66,6 @@ Favorites.Clear = function()
 			return;
 		}
 		$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
-		$(plugin.activeButton).attr('disabled', false);
 	}
 
 	/*
@@ -74,7 +75,6 @@ Favorites.Clear = function()
 	{
 		var button;
 		var siteid; 
-
 		for ( var i = 0; i < $(Favorites.selectors.clear_button).length; i++ ){
 			button = $(Favorites.selectors.clear_button)[i];
 			siteid = $(button).attr('data-siteid');
