@@ -12,7 +12,9 @@ Favorites.Button = function()
 	var plugin = this;
 	var $ = jQuery;
 
-	plugin.activeButton;
+	plugin.activeButton; // The clicked button
+	plugin.allButtons; // All favorite buttons for the current post
+
 	plugin.formatter = new Favorites.Formatter;
 	plugin.data = {};
 
@@ -21,8 +23,18 @@ Favorites.Button = function()
 		$(document).on('click', Favorites.selectors.button, function(e){
 			e.preventDefault();
 			plugin.activeButton = $(this);
+			plugin.setAllButtons();
 			plugin.submitFavorite();
 		});
+	}
+
+	/**
+	* Set all buttons
+	*/
+	plugin.setAllButtons = function()
+	{
+		var post_id = $(plugin.activeButton).attr('data-postid');
+		plugin.allButtons = $('button[data-postid="' + post_id + '"]');
 	}
 
 	/**
@@ -32,8 +44,7 @@ Favorites.Button = function()
 	{
 		plugin.data.post_id = $(plugin.activeButton).attr('data-postid');
 		plugin.data.site_id = $(plugin.activeButton).attr('data-siteid');
-		plugin.data.favorite_count = parseInt($(plugin.activeButton).attr('data-favoritecount'));
-		plugin.status = ( $(plugin.activeButton).hasClass('active') ) ? 'inactive' : 'active';
+		plugin.data.status = ( $(plugin.activeButton).hasClass('active') ) ? 'inactive' : 'active';
 	}
 
 	/**
@@ -43,7 +54,6 @@ Favorites.Button = function()
 	{
 		plugin.loading(true);
 		plugin.setData();
-
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
 			type: 'post',
@@ -57,8 +67,8 @@ Favorites.Button = function()
 			},
 			success: function(data){
 				Favorites.userFavorites = data.favorites;
-				$(plugin.activeButton).html(plugin.outputHtml());
 				plugin.loading(false);
+				plugin.resetButtons();
 				$(document).trigger('favorites-updated-single', [data.favorites, plugin.data.post_id, plugin.data.site_id, plugin.data.status]);
 
 				// Deprecated callback
@@ -70,17 +80,22 @@ Favorites.Button = function()
 	/*
 	* Set the output html
 	*/
-	plugin.outputHtml = function()
+	plugin.resetButtons = function()
 	{
-		if ( plugin.status === 'inactive' ) {
-			$(plugin.activeButton).removeClass(Favorites.cssClasses.active);
-			if ( plugin.data.favorite_count - 1 < 0 ) plugin.data.favorite_count = 1;
-			$(plugin.activeButton).attr('data-favoritecount', plugin.data.favorite_count - 1);
-			return plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, plugin.data.favorite_count - 1);
-		} 
-		$(plugin.activeButton).addClass(Favorites.cssClasses.active);
-		$(plugin.activeButton).attr('data-favoritecount', plugin.data.favorite_count + 1);
-		return plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, plugin.data.favorite_count + 1);
+		var favorite_count = parseInt($(plugin.activeButton).attr('data-favoritecount'));
+
+		$.each(plugin.allButtons, function(){
+			if ( plugin.data.status === 'inactive' ) {
+				if ( favorite_count <= 0 ) favorite_count = 1;
+				$(this).removeClass(Favorites.cssClasses.active);
+				$(this).attr('data-favoritecount', favorite_count - 1);
+				$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, (favorite_count - 1)));
+				return;
+			} 
+			$(this).addClass(Favorites.cssClasses.active);
+			$(this).attr('data-favoritecount', favorite_count + 1);
+			$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, (favorite_count + 1)));
+		});
 	}
 
 	/*
@@ -89,13 +104,17 @@ Favorites.Button = function()
 	plugin.loading = function(loading)
 	{
 		if ( loading ){
-			$(plugin.activeButton).attr('disabled', 'disabled');
-			$(plugin.activeButton).addClass(Favorites.cssClasses.loading);
-			$(plugin.activeButton).html(plugin.addLoadingIndication());
+			$.each(plugin.allButtons, function(){
+				$(this).attr('disabled', 'disabled');
+				$(this).addClass(Favorites.cssClasses.loading);
+				$(this).html(plugin.addLoadingIndication());
+			});
 			return;
 		}
-		$(plugin.activeButton).attr('disabled', false);
-		$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
+		$.each(plugin.allButtons, function(){
+			$(this).attr('disabled', false);
+			$(this).removeClass(Favorites.cssClasses.loading);
+		});
 	}
 
 	/*

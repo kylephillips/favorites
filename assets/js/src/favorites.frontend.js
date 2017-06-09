@@ -18,14 +18,14 @@ Favorites.FrontEnd = function()
 			plugin.resetCounts();
 		});
 		$(document).on('favorites-updated-single', function(){
-			plugin.updateAllLists();
-			plugin.updateClearButtons();
-			plugin.updateTotalFavorites();
+			// plugin.updateAllLists();
+			// plugin.updateClearButtons();
+			// plugin.updateTotalFavorites();
 		});
 		$(document).on('user-favorites-updated', function(){
-			plugin.updateAllLists();
-			plugin.updateClearButtons();
-			plugin.updateTotalFavorites();
+			// plugin.updateAllLists();
+			// plugin.updateClearButtons();
+			// plugin.updateTotalFavorites();
 		});
 	}
 
@@ -49,7 +49,6 @@ Favorites.FrontEnd = function()
 	// Update favorite counts after a clear
 	plugin.resetCounts = function(){
 		var buttons = $('.simplefavorite-button.active.has-count');
-
 		for ( var i = 0; i < buttons.length; i++ ){
 			var button = $(buttons)[i];
 			var count_display = $(button).find('.simplefavorite-button-count');

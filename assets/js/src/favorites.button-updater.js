@@ -16,10 +16,10 @@ Favorites.ButtonUpdater = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('favorites-updated-single', function(){
+		$(document).on('favorites-user-favorites-loaded', function(){
 			plugin.updateAllButtons();
 		});
-		$(document).on('user-favorites-updated', function(){
+		$(document).on('favorites-cleared', function(){
 			plugin.updateAllButtons();
 		});
 	}
@@ -36,11 +36,13 @@ Favorites.ButtonUpdater = function()
 			if ( plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
 				plugin.data.favorite_count = Favorites.userFavorites[plugin.data.site_index].posts[plugin.data.postid].total;
 				var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, plugin.data.favorite_count);
+				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
 				$(plugin.activeButton).html(html);
 				continue;
 			}
 
 			var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, plugin.data.favorite_count);
+			$(plugin.activeButton).removeClass(Favorites.cssClasses.active);
 			$(plugin.activeButton).html(html);
 		}
 	}

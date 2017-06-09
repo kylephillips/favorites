@@ -14,6 +14,8 @@ Favorites.Formatter = function()
 	plugin.addFavoriteCount = function(html, count)
 	{
 		if ( Favorites.jsData.include_count !== '1' ) return html;
+		if ( count <= 0 ) count = 0;
 		html += ' <span class="simplefavorite-button-count">' + count + '</span>';
+		return html;
 	}
 }
