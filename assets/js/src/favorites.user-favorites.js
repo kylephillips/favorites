@@ -21,7 +21,7 @@ Favorites.UserFavorites = function()
 	/**
 	* Get the user favorites
 	*/
-	plugin.getFavorites = function(callback)
+	plugin.getFavorites = function()
 	{
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,

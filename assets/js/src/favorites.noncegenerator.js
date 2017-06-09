@@ -33,7 +33,7 @@ Favorites.NonceGenerator = function()
 			},
 			success: function(data){
 				Favorites.jsData.nonce = data.nonce;
-				$(document).trigger('favorites-nonce-generated');
+				$(document).trigger('favorites-nonce-generated', [data.nonce]);
 			}
 		});
 	}

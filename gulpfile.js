@@ -26,6 +26,7 @@ var js_frontend_source = [
 	'assets/js/src/favorites.lists.js',
 	'assets/js/src/favorites.button.js',
 	'assets/js/src/favorites.button-updater.js',
+	'assets/js/src/favorites.total-count.js',
 	'assets/js/src/favorites.factory.js'
 ];
 

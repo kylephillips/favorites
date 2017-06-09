@@ -89,6 +89,7 @@ Favorites.Factory = function()
 		new Favorites.Clear;
 		new Favorites.Button;
 		new Favorites.ButtonUpdater;
+		new Favorites.TotalCount;
 	}
 
 	return plugin.build();
