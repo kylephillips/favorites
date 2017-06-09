@@ -17,7 +17,9 @@ var js_admin_source = [
 ];
 
 var js_frontend_source = [
-	'assets/js/src/simple-favorites.js'
+	'assets/js/src/favorites.noncegenerator.js',
+	'assets/js/src/favorites.frontend.js',
+	'assets/js/src/favorites.factory.js'
 ];
 
 var js_compiled = 'assets/js/';
@@ -64,7 +66,7 @@ gulp.task('frontend_scripts', function(){
 	return gulp.src(js_frontend_source)
 		.pipe(concat('simple-favorites.min.js'))
 		.pipe(gulp.dest(js_compiled))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
 		.pipe(notify('Simple Favorites front end scripts compiles & compressed.'));
 });

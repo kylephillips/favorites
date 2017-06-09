@@ -1,32 +1,18 @@
-jQuery(document).ready(function(){
-	new Favorites;
-});
-
-
 /**
 * Callback Functions for use in themes
 */
 function favorites_after_button_submit(favorites, post_id, site_id, status){}
 function favorites_after_initial_load(favorites){}
 
+var Favorites = Favorites || {};
 
 /**
 * Favorites Plugin
 */
-var Favorites = function()
+Favorites.FrontEnd = function()
 {
-
 	var plugin = this;
 	var $ = jQuery;
-
-	// Form Actions for AJAX calls
-	plugin.formactions = {
-		nonce : 'simplefavorites_nonce',
-		favoritesarray : 'simplefavorites_array',
-		favorite : 'simplefavorites_favorite',
-		clearall : 'simplefavorites_clear',
-		favoritelist : 'simplefavorites_list'
-	}
 
 	// DOM Selectors
 	plugin.buttons = '.simplefavorite-button'; // Favorites Button Selector
@@ -51,6 +37,9 @@ var Favorites = function()
 
 	// Bind events, called in initialization
 	plugin.bindEvents = function(){
+		$(document).on('favorites-nonce-generated', function(){
+			plugin.setUserFavorites(plugin.updateAllButtons);
+		});
 		$(document).on('click', plugin.buttons, function(e){
 			e.preventDefault();
 			plugin.submitFavorite($(this));
@@ -61,31 +50,6 @@ var Favorites = function()
 		});
 	}
 
-
-	// Initialization
-	plugin.init = function(){
-		plugin.bindEvents();
-		plugin.generateNonce();
-	}
-
-
-	// Generate a nonce (workaround for cached pages/nonces)
-	plugin.generateNonce = function(){
-		$.ajax({
-			url: plugin.ajaxurl,
-			type: 'post',
-			datatype: 'json',
-			data: {
-				action : plugin.formactions.nonce
-			},
-			success: function(data){
-				plugin.nonce = data.nonce;
-				plugin.setUserFavorites(plugin.updateAllButtons);
-			}
-		});
-	}
-
-
 	// Set the initial user favorites (called on page load)
 	plugin.setUserFavorites = function(callback){
 		$.ajax({
@@ -93,7 +57,7 @@ var Favorites = function()
 			type: 'post',
 			datatype: 'json',
 			data: {
-				action : plugin.formactions.favoritesarray
+				action : Favorites.formActions.favoritesarray
 			},
 			success: function(data){
 				plugin.userfavorites = data.favorites;
@@ -186,8 +150,8 @@ var Favorites = function()
 			type: 'post',
 			datatype: 'json',
 			data: {
-				action : plugin.formactions.favorite,
-				nonce : plugin.nonce,
+				action : Favorites.formActions.favorite,
+				nonce : Favorites.jsData.nonce,
 				postid : post_id,
 				siteid : site_id,
 				status : status
@@ -242,8 +206,8 @@ var Favorites = function()
 			type: 'post',
 			datatype: 'json',
 			data: {
-				action : plugin.formactions.clearall,
-				nonce : plugin.nonce,
+				action : Favorites.formActions.clearall,
+				nonce : Favorites.jsData.nonce,
 				siteid : site_id,
 			},
 			success : function(data){
@@ -345,8 +309,8 @@ var Favorites = function()
 			type: 'post',
 			datatype: 'json',
 			data: {
-				action : plugin.formactions.favoritelist,
-				nonce : plugin.nonce,
+				action : Favorites.formActions.favoritelist,
+				nonce : Favorites.jsData.nonce,
 				userid : user_id,
 				siteid : site_id,
 				includelinks : include_links,
@@ -425,5 +389,5 @@ var Favorites = function()
 	}
 
 
-	return plugin.init();
+	return plugin.bindEvents();
 }
