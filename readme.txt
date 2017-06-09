@@ -3,7 +3,7 @@ Contributors: kylephillips
 Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
-Tested up to: 4.6
+Tested up to: 4.8
 Stable tag: 1.2.3
 
 License: GPLv2 or later
@@ -66,6 +66,11 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 
 == Changelog ==
+
+= 1.3.0 =
+* Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events.
+* Bug fix where adding a favorite required a page refresh for it to appear in favorite lists
+* Tested with WordPress 4.8
 
 = 1.2.4 =
 * Added option to display favorite counts in admin columns on a per-post type basis. Visit Settings > Favorites > Display to enable the columns.

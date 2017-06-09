@@ -84,7 +84,6 @@ Favorites.Factory = function()
 	{
 		new Favorites.NonceGenerator;
 		new Favorites.UserFavorites;
-		new Favorites.FrontEnd;
 		new Favorites.Lists;
 		new Favorites.Clear;
 		new Favorites.Button;

@@ -44,5 +44,4 @@ Favorites.Utilities = function()
 			return i;
 		}
 	}
-
 }
