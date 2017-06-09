@@ -1,5 +1,5 @@
 /**
-* Favorite Button Submission
+* Favorite Buttons
 * Favorites/Unfavorites a specific post
 *
 * Events:
@@ -7,7 +7,7 @@
 */
 var Favorites = Favorites || {};
 
-Favorites.ButtonSubmit = function()
+Favorites.Button = function()
 {
 	var plugin = this;
 	var $ = jQuery;

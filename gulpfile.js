@@ -20,10 +20,12 @@ var js_frontend_source = [
 	'assets/js/src/favorites.utilities.js',
 	'assets/js/src/favorites.formatter.js',
 	'assets/js/src/favorites.noncegenerator.js',
+	'assets/js/src/favorites.user-favorites.js',
 	'assets/js/src/favorites.frontend.js',
 	'assets/js/src/favorites.clear.js',
 	'assets/js/src/favorites.lists.js',
-	'assets/js/src/favorites.button-submit.js',
+	'assets/js/src/favorites.button.js',
+	'assets/js/src/favorites.button-updater.js',
 	'assets/js/src/favorites.factory.js'
 ];
 

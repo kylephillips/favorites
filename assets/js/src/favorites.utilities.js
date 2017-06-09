@@ -34,4 +34,15 @@ Favorites.Utilities = function()
 		}
 		return size;
 	}
+
+	/*
+	* Get Site index from All Favorites
+	*/
+	plugin.siteIndex = function(siteid){
+		for ( var i = 0; i < Favorites.userFavorites.length; i++ ){
+			if ( Favorites.userFavorites[i].site_id !== parseInt(siteid) ) continue;
+			return i;
+		}
+	}
+
 }

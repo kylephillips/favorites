@@ -7,6 +7,7 @@
 * favorites-nonce-generated: The nonce has been generated
 * favorites-updated-single: A user's favorite has been updated. Params: favorites, post_id, site_id, status
 * favorites-cleared: The user's favorites have been cleared. Params: clear button
+* favorites-user-favorites-loaded: The user's favorites have been loaded. Params: intialLoad (bool)
 */
 
 /**
@@ -82,10 +83,12 @@ Favorites.Factory = function()
 	plugin.build = function()
 	{
 		new Favorites.NonceGenerator;
+		new Favorites.UserFavorites;
 		new Favorites.FrontEnd;
 		new Favorites.Lists;
 		new Favorites.Clear;
-		new Favorites.ButtonSubmit;
+		new Favorites.Button;
+		new Favorites.ButtonUpdater;
 	}
 
 	return plugin.build();
