@@ -5,6 +5,7 @@
 *
 * Events:
 * favorites-nonce-generated: The nonce has been generated
+* favorites-cleared: The user's favorites have been cleared
 */
 
 /**
@@ -27,6 +28,13 @@ Favorites.selectors = {
 	list : '.favorites-list', // Favorite Lists
 	clear_button : '.simplefavorites-clear', // Clear Button
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
+}
+
+/**
+* CSS Classes Used by the Plugin
+*/
+Favorites.cssClasses = {
+	loading : 'loading', // Loading State
 }
 
 /**
@@ -70,6 +78,7 @@ Favorites.Factory = function()
 	{
 		new Favorites.NonceGenerator;
 		new Favorites.FrontEnd;
+		new Favorites.Clear;
 	}
 
 	return plugin.build();

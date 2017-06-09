@@ -13,14 +13,15 @@ Favorites.FrontEnd = function()
 		$(document).on('favorites-nonce-generated', function(){
 			plugin.setUserFavorites(plugin.updateAllButtons);
 		});
+		$(document).on('favorites-cleared', function(){
+			plugin.resetCounts();
+		});
+		
 		$(document).on('click', Favorites.selectors.button, function(e){
 			e.preventDefault();
 			plugin.submitFavorite($(this));
 		});
-		$(document).on('click', Favorites.selectors.clear_button, function(e){
-			e.preventDefault();
-			plugin.clearFavorites($(this));
-		});
+		
 	}
 
 	// Set the initial user favorites (called on page load)
@@ -166,29 +167,6 @@ Favorites.FrontEnd = function()
 				$(button).attr('disabled', 'disabled');
 			}
 		}
-	}
-
-
-	// Clear all favorites
-	plugin.clearFavorites = function(button){
-		$(button).addClass('loading');
-		$(button).attr('disabled', 'disabled');
-		var site_id = $(button).attr('data-siteid');
-		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
-			datatype: 'json',
-			data: {
-				action : Favorites.formActions.clearall,
-				nonce : Favorites.jsData.nonce,
-				siteid : site_id,
-			},
-			success : function(data){
-				Favorites.userFavorites = data.favorites;
-				$(button).removeClass('loading');
-				plugin.resetCounts();
-			}
-		});
 	}
 
 

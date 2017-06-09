@@ -19,6 +19,7 @@ var js_admin_source = [
 var js_frontend_source = [
 	'assets/js/src/favorites.noncegenerator.js',
 	'assets/js/src/favorites.frontend.js',
+	'assets/js/src/favorites.clear.js',
 	'assets/js/src/favorites.factory.js'
 ];
 
