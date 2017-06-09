@@ -19,31 +19,15 @@ Favorites.FrontEnd = function()
 		});
 		$(document).on('favorites-updated-single', function(){
 			// plugin.updateAllLists();
-			// plugin.updateClearButtons();
 			// plugin.updateTotalFavorites();
 		});
 		$(document).on('user-favorites-updated', function(){
 			// plugin.updateAllLists();
-			// plugin.updateClearButtons();
 			// plugin.updateTotalFavorites();
 		});
 	}
 
-	// Update disabled status for clear buttons
-	plugin.updateClearButtons = function(){
-		for ( var i = 0; i < $(Favorites.selectors.clear_button).length; i++ ){
-			var button = $(Favorites.selectors.clear_button)[i];
-			var siteid = $(button).attr('data-siteid');
-			for ( var c = 0; c < Favorites.userFavorites.length; c++ ){
-				if ( Favorites.userFavorites[c].site_id !== parseInt(siteid) ) continue;
-				if ( plugin.utilities.objectLength(Favorites.userFavorites[c].posts) > 0 ) {
-					$(button).attr('disabled', false);
-					continue;
-				}
-				$(button).attr('disabled', 'disabled');
-			}
-		}
-	}
+	
 
 
 	// Update favorite counts after a clear
