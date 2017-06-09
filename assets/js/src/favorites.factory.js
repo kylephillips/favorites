@@ -5,7 +5,8 @@
 *
 * Events:
 * favorites-nonce-generated: The nonce has been generated
-* favorites-cleared: The user's favorites have been cleared
+* favorites-updated-single: A user's favorite has been updated. Params: favorites, post_id, site_id, status
+* favorites-cleared: The user's favorites have been cleared. Params: clear button
 */
 
 /**
@@ -35,6 +36,7 @@ Favorites.selectors = {
 */
 Favorites.cssClasses = {
 	loading : 'loading', // Loading State
+	active : 'active', // Active State
 }
 
 /**
@@ -69,6 +71,9 @@ Favorites.formActions = {
 	favoritelist : 'simplefavorites_list'
 }
 
+/**
+* Primary factory class
+*/
 Favorites.Factory = function()
 {
 	var plugin = this;
@@ -78,7 +83,9 @@ Favorites.Factory = function()
 	{
 		new Favorites.NonceGenerator;
 		new Favorites.FrontEnd;
+		new Favorites.Lists;
 		new Favorites.Clear;
+		new Favorites.ButtonSubmit;
 	}
 
 	return plugin.build();

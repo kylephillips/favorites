@@ -1,5 +1,8 @@
 /**
 * Clears all favorites for the user
+*
+* Events:
+* favorites-cleared: The user's favorites have been cleared. Params: clear button
 */
 var Favorites = Favorites || {};
 
@@ -12,7 +15,8 @@ Favorites.Clear = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('click', Favorites.selectors.clear_button, function(e){
+		$(document).on('click', Favorites.selectors.clear_button, function(e)
+		{
 			e.preventDefault();
 			plugin.activeButton = $(this);
 			plugin.clearFavorites();
@@ -22,7 +26,8 @@ Favorites.Clear = function()
 	/*
 	* Submit an AJAX request to clear all of the user's favorites
 	*/
-	plugin.clearFavorites = function(button){
+	plugin.clearFavorites = function(button)
+	{
 		plugin.loading(true);
 		var site_id = $(plugin.activeButton).attr('data-siteid');
 		$.ajax({

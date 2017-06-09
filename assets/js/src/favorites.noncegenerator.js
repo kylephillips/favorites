@@ -1,6 +1,9 @@
 /**
 * Generates a new nonce on page load via AJAX
 * Solves problem of cached pages and expired nonces
+*
+* Events:
+* favorites-nonce-generated: The nonce has been generated
 */
 var Favorites = Favorites || {};
 
