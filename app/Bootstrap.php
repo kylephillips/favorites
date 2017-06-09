@@ -1,15 +1,22 @@
 <?php 
-
 namespace SimpleFavorites;
+
+use SimpleFavorites\Config\SettingsRepository;
 
 /**
 * Plugin Bootstrap
 */
 class Bootstrap 
 {
+	/**
+	* Settings Repository
+	* @var object
+	*/
+	private $settings_repo;
 
 	public function __construct()
 	{
+		$this->settings_repo = new SettingsRepository;
 		$this->init();
 		add_action( 'init', array($this, 'startSession') );
 		add_action( 'admin_init', array($this, 'adminInit'));
@@ -72,6 +79,7 @@ class Bootstrap
 	*/
 	public function startSession()
 	{
+		if ( $this->settings_repo->saveType() !== 'session' ) return;
 		if ( !session_id() ) session_start();
 	}
 
