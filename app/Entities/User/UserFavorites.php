@@ -1,11 +1,11 @@
 <?php 
-namespace SimpleFavorites\Entities\User;
+namespace Favorites\Entities\User;
 
-use SimpleFavorites\Entities\User\UserRepository;
-use SimpleFavorites\Entities\Favorite\FavoriteFilter;
-use SimpleFavorites\Helpers;
-use SimpleFavorites\Entities\Favorite\FavoriteButton;
-use SimpleFavorites\Config\SettingsRepository;
+use Favorites\Entities\User\UserRepository;
+use Favorites\Entities\Favorite\FavoriteFilter;
+use Favorites\Helpers;
+use Favorites\Entities\Favorite\FavoriteButton;
+use Favorites\Config\SettingsRepository;
 
 class UserFavorites 
 {

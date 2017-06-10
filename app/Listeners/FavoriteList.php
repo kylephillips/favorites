@@ -1,7 +1,7 @@
 <?php
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
-use SimpleFavorites\Entities\User\UserFavorites;
+use Favorites\Entities\User\UserFavorites;
 
 class FavoriteList extends AJAXListenerBase
 {

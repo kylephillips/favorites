@@ -1,9 +1,9 @@
 <?php 
-namespace SimpleFavorites\Entities\User;
+namespace Favorites\Entities\User;
 
-use SimpleFavorites\Config\SettingsRepository;
-use SimpleFavorites\Helpers;
-use SimpleFavorites\Entities\Favorite\FavoritesArrayFormatter;
+use Favorites\Config\SettingsRepository;
+use Favorites\Helpers;
+use Favorites\Entities\Favorite\FavoritesArrayFormatter;
 
 class UserRepository 
 {

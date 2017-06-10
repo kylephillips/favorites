@@ -1,8 +1,8 @@
 <?php 
-namespace SimpleFavorites\Entities\Post;
+namespace Favorites\Entities\Post;
 
-use SimpleFavorites\Config\SettingsRepository;
-use SimpleFavorites\Entities\Favorite\FavoriteButton;
+use Favorites\Config\SettingsRepository;
+use Favorites\Entities\Favorite\FavoriteButton;
 
 /**
 * Post Actions and Filters

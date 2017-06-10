@@ -1,5 +1,5 @@
 <?php 
-namespace SimpleFavorites\Entities\PostType;
+namespace Favorites\Entities\PostType;
 
 class PostTypeRepository 
 {

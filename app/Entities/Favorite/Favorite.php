@@ -1,9 +1,9 @@
 <?php 
-namespace SimpleFavorites\Entities\Favorite;
+namespace Favorites\Entities\Favorite;
 
-use SimpleFavorites\Config\SettingsRepository;
-use SimpleFavorites\Entities\Favorite\SyncSingleFavorite;
-use SimpleFavorites\Entities\Post\SyncFavoriteCount;
+use Favorites\Config\SettingsRepository;
+use Favorites\Entities\Favorite\SyncSingleFavorite;
+use Favorites\Entities\Post\SyncFavoriteCount;
 
 class Favorite 
 {

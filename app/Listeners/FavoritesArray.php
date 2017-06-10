@@ -1,7 +1,7 @@
 <?php 
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
-use SimpleFavorites\Entities\User\UserRepository;
+use Favorites\Entities\User\UserRepository;
 
 /**
 * Return an array of user's favorited posts

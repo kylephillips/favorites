@@ -1,9 +1,9 @@
 <?php
-namespace SimpleFavorites\Entities\Favorite;
+namespace Favorites\Entities\Favorite;
 
-use SimpleFavorites\Entities\User\UserRepository;
-use SimpleFavorites\Entities\Post\FavoriteCount;
-use SimpleFavorites\Config\SettingsRepository;
+use Favorites\Entities\User\UserRepository;
+use Favorites\Entities\Post\FavoriteCount;
+use Favorites\Config\SettingsRepository;
 
 class FavoriteButton
 {

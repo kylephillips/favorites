@@ -3,11 +3,11 @@
 * Primary plugin API functions
 */
 
-use SimpleFavorites\Entities\Favorite\FavoriteButton;
-use SimpleFavorites\Entities\Post\FavoriteCount;
-use SimpleFavorites\Entities\User\UserFavorites;
-use SimpleFavorites\Entities\Post\PostFavorites;
-use SimpleFavorites\Entities\Favorite\ClearFavoritesButton;
+use Favorites\Entities\Favorite\FavoriteButton;
+use Favorites\Entities\Post\FavoriteCount;
+use Favorites\Entities\User\UserFavorites;
+use Favorites\Entities\Post\PostFavorites;
+use Favorites\Entities\Favorite\ClearFavoritesButton;
 
 
 /**

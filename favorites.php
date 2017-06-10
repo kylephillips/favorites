@@ -31,11 +31,11 @@ Copyright: Kyle Phillips
 /**
 * Check Wordpress and PHP versions before instantiating plugin
 */
-register_activation_hook( __FILE__, 'simple_favorites_check_versions' );
+register_activation_hook( __FILE__, 'favorites_check_versions' );
 
 define( 'FAVORITES_PLUGIN_FILE', __FILE__ );
 
-function simple_favorites_check_versions( $wp = '3.9', $php = '5.3.2' ) {
+function favorites_check_versions( $wp = '3.9', $php = '5.3.2' ) {
     global $wp_version;
     if ( version_compare( PHP_VERSION, $php, '<' ) ) $flag = 'PHP';
     elseif ( version_compare( $wp_version, $wp, '<' ) ) $flag = 'WordPress';
@@ -50,9 +50,9 @@ function simple_favorites_check_versions( $wp = '3.9', $php = '5.3.2' ) {
 }
 
 if( !class_exists('Bootstrap') ) :
-    simple_favorites_check_versions();
+    favorites_check_versions();
     require_once(__DIR__ . '/vendor/autoload.php');
-    require_once(__DIR__ . '/app/SimpleFavorites.php');
+    require_once(__DIR__ . '/app/Favorites.php');
     require_once(__DIR__ . '/app/API/functions.php');
-    SimpleFavorites::init();
+    Favorites::init();
 endif;

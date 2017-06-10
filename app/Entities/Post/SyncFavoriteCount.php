@@ -1,8 +1,8 @@
 <?php 
-namespace SimpleFavorites\Entities\Post;
+namespace Favorites\Entities\Post;
 
-use SimpleFavorites\Entities\Post\FavoriteCount;
-use SimpleFavorites\Entities\User\UserRepository;
+use Favorites\Entities\Post\FavoriteCount;
+use Favorites\Entities\User\UserRepository;
 
 /**
 * Updates the favorite count for a given post

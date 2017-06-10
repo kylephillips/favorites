@@ -1,8 +1,8 @@
 <?php
-namespace SimpleFavorites\Entities\Post;
+namespace Favorites\Entities\Post;
 
-use SimpleFavorites\Entities\User\UserRepository;
-use SimpleFavorites\Entities\Post\FavoriteCount;
+use Favorites\Entities\User\UserRepository;
+use Favorites\Entities\Post\FavoriteCount;
 
 /**
 * Get the users who have favorited a specific post
@@ -26,13 +26,13 @@ class PostFavorites
 
 	/**
 	* User Repository
-	* @var SimpleFavorites\Entities\User\UserRepository;
+	* @var Favorites\Entities\User\UserRepository;
 	*/
 	private $user_repo;
 
 	/**
 	* Favorite Count
-	* @var SimpleFavorites\Entities\Post\FavoriteCount
+	* @var Favorites\Entities\Post\FavoriteCount
 	*/
 	private $favorite_count;
 

@@ -1,7 +1,7 @@
 <?php 
-namespace SimpleFavorites\Config;
+namespace Favorites\Config;
 
-use SimpleFavorites\Helpers;
+use Favorites\Helpers;
 
 class SettingsRepository 
 {

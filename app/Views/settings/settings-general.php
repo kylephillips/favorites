@@ -1,7 +1,7 @@
 <?php settings_fields( 'simple-favorites-general' ); ?>
 <tr valign="top">
 	<th scope="row"><?php echo $this->plugin_name . ' '; _e('Version', 'simplefavorites'); ?></th>
-	<td><strong><?php echo SimpleFavorites\Helpers::version(); ?></strong></td>
+	<td><strong><?php echo Favorites\Helpers::version(); ?></strong></td>
 </tr>
 <tr valign="top">
 	<th scope="row"><?php _e('Depenedencies', 'simplefavorites'); ?></th>
@@ -20,7 +20,7 @@
 			</label>
 			<div class="simplefavorites-dependency-content">
 				<p><em><?php _e('If you are compiling your own minified CSS, include the CSS below:', 'simplefavorites', 'simplefavorites'); ?></em></p>
-				<textarea><?php echo SimpleFavorites\Helpers::getFileContents('assets/css/styles-uncompressed.css'); ?></textarea>
+				<textarea><?php echo Favorites\Helpers::getFileContents('assets/css/styles-uncompressed.css'); ?></textarea>
 			</div>
 		</div>
 
@@ -31,7 +31,7 @@
 			</label>
 			<div class="simplefavorites-dependency-content">
 				<p><em><?php _e('If you are compiling your own minified Javascript, include the below (required for plugin functionality):', 'simplefavorites'); ?></em></p>
-				<textarea><?php echo SimpleFavorites\Helpers::getFileContents('assets/js/src/simple-favorites.js'); ?></textarea>
+				<textarea><?php echo Favorites\Helpers::getFileContents('assets/js/src/simple-favorites.js'); ?></textarea>
 			</div>
 		</div>
 	</td>

@@ -1,8 +1,8 @@
 <?php 
-namespace SimpleFavorites\Entities\Favorite;
+namespace Favorites\Entities\Favorite;
 
-use SimpleFavorites\Entities\User\UserRepository;
-use SimpleFavorites\Helpers;
+use Favorites\Entities\User\UserRepository;
+use Favorites\Helpers;
 
 /**
 * Sync a single favorite to a given save type

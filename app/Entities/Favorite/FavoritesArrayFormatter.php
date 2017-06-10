@@ -1,8 +1,8 @@
 <?php
-namespace SimpleFavorites\Entities\Favorite;
+namespace Favorites\Entities\Favorite;
 
-use SimpleFavorites\Entities\Post\FavoriteCount;
-use SimpleFavorites\Entities\Favorite\FavoriteButton;
+use Favorites\Entities\Post\FavoriteCount;
+use Favorites\Entities\Favorite\FavoriteButton;
 
 /**
 * Format the user's favorite array to include additional post data

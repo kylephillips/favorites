@@ -1,7 +1,7 @@
 <?php
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
-use SimpleFavorites\Entities\Post\FavoriteCount as FavoriteCounter;
+use Favorites\Entities\Post\FavoriteCount as FavoriteCounter;
 
 /**
 * Return the total number of favorites for a specified post

@@ -1,8 +1,8 @@
 <?php 
-namespace SimpleFavorites\Entities\Post;
+namespace Favorites\Entities\Post;
 
-use SimpleFavorites\Config\SettingsRepository;
-use SimpleFavorites\Entities\Post\FavoriteCount;
+use Favorites\Config\SettingsRepository;
+use Favorites\Entities\Post\FavoriteCount;
 
 class PostMeta 
 {

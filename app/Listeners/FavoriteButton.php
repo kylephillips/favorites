@@ -1,14 +1,14 @@
 <?php 
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
-use SimpleFavorites\Entities\Favorite\Favorite;
-use SimpleFavorites\Entities\User\UserRepository;
+use Favorites\Entities\Favorite\Favorite;
+use Favorites\Entities\User\UserRepository;
 
 class FavoriteButton extends AJAXListenerBase
 {
 	/**
 	* User Repository
-	* @var SimpleFavorites\Entities\User\UserRepository
+	* @var Favorites\Entities\User\UserRepository
 	*/
 	private $user_repo;
 

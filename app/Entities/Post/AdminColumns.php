@@ -1,8 +1,8 @@
 <?php
-namespace SimpleFavorites\Entities\Post;
+namespace Favorites\Entities\Post;
 
-use SimpleFavorites\Config\SettingsRepository;
-use SimpleFavorites\Entities\PostType\PostTypeRepository;
+use Favorites\Config\SettingsRepository;
+use Favorites\Entities\PostType\PostTypeRepository;
 
 /**
 * Add Post Favorite Counts to Admin Columns

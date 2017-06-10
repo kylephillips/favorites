@@ -1,5 +1,5 @@
 <?php 
-namespace SimpleFavorites;
+namespace Favorites;
 
 /**
 * Static Helper Methods

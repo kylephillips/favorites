@@ -1,5 +1,5 @@
 <?php 
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
 /**
 * Creates a Nonce for Cached Pages

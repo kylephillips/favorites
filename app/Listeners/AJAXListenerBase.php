@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
 /**
 * Base AJAX class

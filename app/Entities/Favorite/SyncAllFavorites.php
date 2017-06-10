@@ -1,7 +1,7 @@
 <?php
-namespace SimpleFavorites\Entities\Favorite;
+namespace Favorites\Entities\Favorite;
 
-use SimpleFavorites\Config\SettingsRepository;
+use Favorites\Config\SettingsRepository;
 
 /**
 * Sync all favorites for a specific site

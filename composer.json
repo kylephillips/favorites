@@ -18,7 +18,7 @@
 	},
 	"autoload": {
 		"psr-4" : {
-			"SimpleFavorites\\" : "app/"
+			"Favorites\\" : "app/"
 		}
 	}
 }

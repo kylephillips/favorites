@@ -1,9 +1,9 @@
 <?php 
-namespace SimpleFavorites\Config;
+namespace Favorites\Config;
 
-use SimpleFavorites\Config\SettingsRepository;
-use SimpleFavorites\Entities\PostType\PostTypeRepository;
-use SimpleFavorites\Helpers;
+use Favorites\Config\SettingsRepository;
+use Favorites\Entities\PostType\PostTypeRepository;
+use Favorites\Helpers;
 
 /**
 * Plugin Settings

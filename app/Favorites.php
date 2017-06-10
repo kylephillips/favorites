@@ -3,7 +3,7 @@
 * Static Wrapper for Bootstrap Class
 * Prevents T_STRING error when checking for 5.3.2
 */
-class SimpleFavorites 
+class Favorites 
 {
 	public static function init()
 	{
@@ -17,6 +17,6 @@ class SimpleFavorites
 		global $simple_favorites_name;
 		$simple_favorites_name = __('Favorites', 'simplefavorites');
 
-		$app = new SimpleFavorites\Bootstrap;
+		$app = new Favorites\Bootstrap;
 	}
 }

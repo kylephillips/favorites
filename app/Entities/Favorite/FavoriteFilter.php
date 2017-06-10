@@ -1,5 +1,5 @@
 <?php 
-namespace SimpleFavorites\Entities\Favorite;
+namespace Favorites\Entities\Favorite;
 
 /**
 * Filters an array of favorites using provided array of filters

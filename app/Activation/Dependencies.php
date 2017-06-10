@@ -1,8 +1,8 @@
 <?php 
-namespace SimpleFavorites\Activation;
+namespace Favorites\Activation;
 
-use SimpleFavorites\Helpers;
-use SimpleFavorites\Config\SettingsRepository;
+use Favorites\Helpers;
+use Favorites\Config\SettingsRepository;
 
 /**
 * Plugin Dependencies

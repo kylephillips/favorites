@@ -15,7 +15,7 @@
 
 	<form method="post" enctype="multipart/form-data" action="options.php">
 		<table class="form-table">
-			<?php include(SimpleFavorites\Helpers::view('settings/settings-' . $tab)); ?>
+			<?php include(Favorites\Helpers::view('settings/settings-' . $tab)); ?>
 		</table>
 		<?php submit_button(); ?>
 	</form>

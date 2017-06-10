@@ -1,12 +1,12 @@
 <?php 
-namespace SimpleFavorites\Events;
+namespace Favorites\Events;
 
-use SimpleFavorites\Listeners\NonceHandler;
-use SimpleFavorites\Listeners\FavoriteButton;
-use SimpleFavorites\Listeners\FavoritesArray;
-use SimpleFavorites\Listeners\ClearFavorites;
-use SimpleFavorites\Listeners\FavoriteCount;
-use SimpleFavorites\Listeners\FavoriteList;
+use Favorites\Listeners\NonceHandler;
+use Favorites\Listeners\FavoriteButton;
+use Favorites\Listeners\FavoritesArray;
+use Favorites\Listeners\ClearFavorites;
+use Favorites\Listeners\FavoriteCount;
+use Favorites\Listeners\FavoriteList;
 
 class RegisterPublicEvents 
 {

@@ -1,7 +1,7 @@
 <?php 
-namespace SimpleFavorites;
+namespace Favorites;
 
-use SimpleFavorites\Config\SettingsRepository;
+use Favorites\Config\SettingsRepository;
 
 /**
 * Plugin Bootstrap

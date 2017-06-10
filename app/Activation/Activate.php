@@ -1,5 +1,5 @@
 <?php 
-namespace SimpleFavorites\Activation;
+namespace Favorites\Activation;
 
 /**
 * Plugin Activation

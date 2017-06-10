@@ -1,10 +1,10 @@
 <?php 
-namespace SimpleFavorites\Listeners;
+namespace Favorites\Listeners;
 
-use SimpleFavorites\Entities\Favorite\Favorite;
-use SimpleFavorites\Entities\User\UserRepository;
-use SimpleFavorites\Entities\Favorite\SyncAllFavorites;
-use SimpleFavorites\Entities\Post\SyncFavoriteCount;
+use Favorites\Entities\Favorite\Favorite;
+use Favorites\Entities\User\UserRepository;
+use Favorites\Entities\Favorite\SyncAllFavorites;
+use Favorites\Entities\Post\SyncFavoriteCount;
 
 class ClearFavorites extends AJAXListenerBase
 {

@@ -1,5 +1,5 @@
 <?php 
-namespace SimpleFavorites\API\Shortcodes;
+namespace Favorites\API\Shortcodes;
 
 class UserFavoriteCount 
 {
