@@ -22,6 +22,9 @@ Favorites.ButtonUpdater = function()
 		$(document).on('favorites-cleared', function(){
 			plugin.updateAllButtons();
 		});
+		$(document).on('favorites-updated-single', function(){
+			plugin.updateAllButtons();
+		});
 	}
 
 	/*

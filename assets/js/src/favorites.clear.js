@@ -47,9 +47,9 @@ Favorites.Clear = function()
 				siteid : site_id,
 			},
 			success : function(data){
-				Favorites.userFavorites = data.favorites;
 				plugin.formatter.decrementAllCounts();
 				plugin.loading(false);
+				plugin.clearSiteFavorites(site_id);
 				$(document).trigger('favorites-cleared', [plugin.activeButton]);
 			}
 		});
@@ -87,6 +87,17 @@ Favorites.Clear = function()
 				$(button).attr('disabled', 'disabled');
 			}
 		}
+	}
+
+	/**
+	* Clear out favorites for this site id (fix for cookie-enabled sites)
+	*/
+	plugin.clearSiteFavorites = function(site_id)
+	{
+		$.each(Favorites.userFavorites, function(i, v){
+			if ( this.site_id !== parseInt(site_id) ) return;
+			Favorites.userFavorites[i].posts = {};
+		});
 	}
 
 	return plugin.bindEvents();
