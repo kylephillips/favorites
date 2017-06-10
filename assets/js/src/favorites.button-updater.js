@@ -37,12 +37,14 @@ Favorites.ButtonUpdater = function()
 				plugin.data.favorite_count = Favorites.userFavorites[plugin.data.site_index].posts[plugin.data.postid].total;
 				var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, plugin.data.favorite_count);
 				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
+				$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
 				$(plugin.activeButton).html(html);
 				continue;
 			}
 
 			var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, plugin.data.favorite_count);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.active);
+			$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
 			$(plugin.activeButton).html(html);
 		}
 	}

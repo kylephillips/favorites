@@ -44,6 +44,7 @@ class FavoriteButton
 	*/
 	public function display($loading = true)
 	{
+		if ( !$this->settings_repo->cacheEnabled() ) $loading = false;
 		if ( !$this->user->getsButton() ) return false;
 
 		$count = new FavoriteCount();
