@@ -6,7 +6,7 @@ Description: Simple and flexible favorite buttons for any post type.
 Version: 1.2.4
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
-Text Domain: simplefavorites
+Text Domain: favorites
 Domain Path: /languages/
 License: GPLv2 or later.
 Copyright: Kyle Phillips

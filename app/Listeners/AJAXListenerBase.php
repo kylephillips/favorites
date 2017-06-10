@@ -32,7 +32,7 @@ abstract class AJAXListenerBase
 	*/
 	protected function sendError($error = null)
 	{
-		$error = ( $error ) ? $error : __('Invalid form field', 'simplefavorites');
+		$error = ( $error ) ? $error : __('Invalid form field', 'favorites');
 		return wp_send_json(array(
 			'status' => 'error', 
 			'message' => $error

@@ -49,7 +49,7 @@ class Settings
 	public function registerSettingsPage()
 	{
 		add_options_page( 
-			$this->plugin_name . ' ' . __('Settings', 'simplefavorites'),
+			$this->plugin_name . ' ' . __('Settings', 'favorites'),
 			$this->plugin_name,
 			'manage_options',
 			'simple-favorites', 

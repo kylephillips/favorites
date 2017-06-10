@@ -67,7 +67,7 @@ class SettingsRepository
 	{
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['buttontext']) || $option['buttontext'] == "" ) 
-			return __('Favorite', 'simplefavorites');
+			return __('Favorite', 'favorites');
 		return esc_html($option['buttontext']);
 	}
 
@@ -79,7 +79,7 @@ class SettingsRepository
 	{
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['buttontextfavorited']) || $option['buttontextfavorited'] == "" ) 
-			return __('Favorited', 'simplefavorites');
+			return __('Favorited', 'favorites');
 		return esc_html($option['buttontextfavorited']);
 	}
 
@@ -91,7 +91,7 @@ class SettingsRepository
 	{
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['clearfavorites']) || $option['clearfavorites'] == "" ) 
-			return __('Clear Favorites', 'simplefavorites');
+			return __('Clear Favorites', 'favorites');
 		return esc_html($option['clearfavorites']);
 	}
 
@@ -151,7 +151,7 @@ class SettingsRepository
 	public function loadingText()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['loadingindicator']['text']) ) ? esc_html($option['loadingindicator']['text']) : __('Loading', 'simplefavorites');
+		return ( isset($option['loadingindicator']['text']) ) ? esc_html($option['loadingindicator']['text']) : __('Loading', 'favorites');
 	}
 
 	/**
@@ -185,7 +185,7 @@ class SettingsRepository
 	public function noFavoritesText()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'simplefavorites');
+		return ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'favorites');
 	}
 
 	/**

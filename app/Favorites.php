@@ -15,7 +15,7 @@ class Favorites
 		$simple_favorites_version = '1.2.4';
 
 		global $simple_favorites_name;
-		$simple_favorites_name = __('Favorites', 'simplefavorites');
+		$simple_favorites_name = __('Favorites', 'favorites');
 
 		$app = new Favorites\Bootstrap;
 	}

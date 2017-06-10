@@ -36,8 +36,8 @@ class Activate
 		if ( !get_option('simplefavorites_display')
 			&& get_option('simplefavorites_display') !== "" ){
 			update_option('simplefavorites_display', array(
-				'buttontext' => __('Favorite <i class="sf-icon-star-empty"></i>', 'simplefavorites'),
-				'buttontextfavorited' => __('Favorited <i class="sf-icon-star-full"></i>', 'simplefavorites'),
+				'buttontext' => __('Favorite <i class="sf-icon-star-empty"></i>', 'favorites'),
+				'buttontextfavorited' => __('Favorited <i class="sf-icon-star-full"></i>', 'favorites'),
 				'posttypes' => array(
 					'post' => array(
 						'display' => true,

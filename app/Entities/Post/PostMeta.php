@@ -24,8 +24,8 @@ class PostMeta
 	{
 		foreach ( $this->settings_repo->metaEnabled() as $type ){
 			add_meta_box(
-				'simplefavorites',
-				__( 'Favorites', 'simplefavorites' ),
+				'favorites',
+				__( 'Favorites', 'favorites' ),
 				array($this, 'favoriteCount'),
 				$type,
 				'side',
@@ -41,7 +41,7 @@ class PostMeta
 	{
 		global $post;
 		$count = new FavoriteCount;
-		echo '<strong>' . __('Total Favorites', 'simplefavorites') . ':</strong> ';
+		echo '<strong>' . __('Total Favorites', 'favorites') . ':</strong> ';
 		echo $count->getCount($post->ID);
 		echo '<input type="hidden" name="simplefavorites_count" value="' . $count->getCount($post->ID) . '">';
 	}

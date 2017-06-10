@@ -24,8 +24,8 @@ class PostFavoritesShortcode
 			'site_id' => '',
 			'separator' => 'list',
 			'include_anonymous' => 'true',
-			'anonymous_label' => __('Anonymous Users', 'simplefavorites'),
-			'anonymous_label_single' => __('Anonymous User', 'simplefavorites')
+			'anonymous_label' => __('Anonymous Users', 'favorites'),
+			'anonymous_label_single' => __('Anonymous User', 'favorites')
 		), $options);
 	}
 

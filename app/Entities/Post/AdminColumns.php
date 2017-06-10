@@ -60,7 +60,7 @@ class AdminColumns
 	*/
 	public function addColumn($columns)
 	{
-		$new_column = array('favorites' => __('Favorites', 'simplefavorites'));
+		$new_column = array('favorites' => __('Favorites', 'favorites'));
 		return array_merge($columns, $new_column);
 	}
 
