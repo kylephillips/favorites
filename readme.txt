@@ -4,7 +4,7 @@ Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
 Tested up to: 4.8
-Stable tag: 1.2.3
+Stable tag: 2.0.1
 
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -68,7 +68,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 == Changelog ==
 
 = 2.0.1 =
-* Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events
+* Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in a later version. Please see the plugin documentation on using the new events
 * App namespace renamed to "Favorites". Important: any developers extending the plugin core should update any references in PHP namespaces to \Favorites\
 * Plugin text domain updated to "favorites" to follow WordPress requirements
 * AJAX actions renamed to remove "simple" prefix
