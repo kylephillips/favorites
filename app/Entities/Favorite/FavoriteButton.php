@@ -61,9 +61,7 @@ class FavoriteButton
 		// Button Classes
 		if ( $favorited ) $out .= ' active';
 		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
-
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading ) $out .= ' loading';
-
 		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
 
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading){

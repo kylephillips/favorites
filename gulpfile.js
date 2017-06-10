@@ -12,7 +12,8 @@ var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
 var js_admin_source = [
-	'assets/js/src/simple-favorites-admin.js'
+	'assets/js/src-admin/favorites-admin.settings.js',
+	'assets/js/src-admin/favorites-admin.factory.js'
 ];
 
 var js_frontend_source = [
@@ -76,7 +77,6 @@ gulp.task('frontend_scripts', function(){
 		.pipe(gulp.dest(js_compiled))
 		.pipe(notify('Simple Favorites front end scripts compiles & compressed.'));
 });
-
 
 /**
 * Watch Task
