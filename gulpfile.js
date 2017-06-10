@@ -59,11 +59,11 @@ gulp.task('uncompressed_styles', function(){
 */
 gulp.task('admin_scripts', function(){
 	return gulp.src(js_admin_source)
-		.pipe(concat('simple-favorites-admin.min.js'))
+		.pipe(concat('favorites-admin.min.js'))
 		.pipe(gulp.dest(js_compiled))
 		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Simple Favorites admin scripts compiles & compressed.'));
+		.pipe(notify('Favorites admin scripts compiles & compressed.'));
 });
 
 /**
@@ -71,11 +71,11 @@ gulp.task('admin_scripts', function(){
 */
 gulp.task('frontend_scripts', function(){
 	return gulp.src(js_frontend_source)
-		.pipe(concat('simple-favorites.min.js'))
+		.pipe(concat('favorites.min.js'))
 		.pipe(gulp.dest(js_compiled))
-		//.pipe(uglify())
+		.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Simple Favorites front end scripts compiles & compressed.'));
+		.pipe(notify('Favorites front end scripts compiles & compressed.'));
 });
 
 /**

@@ -64,7 +64,7 @@ class Dependencies
 	{
 		wp_enqueue_script(
 			'simple-favorites-admin', 
-			$this->plugin_dir . '/assets/js/simple-favorites-admin.min.js', 
+			$this->plugin_dir . '/assets/js/favorites-admin.min.js', 
 			array('jquery'), 
 			$this->plugin_version
 		);
@@ -78,7 +78,7 @@ class Dependencies
 		if ( !$this->settings_repo->outputDependency('css') ) return;
 		wp_enqueue_style(
 			'simple-favorites', 
-			$this->plugin_dir . '/assets/css/simple-favorites.css', 
+			$this->plugin_dir . '/assets/css/favorites.css', 
 			array(), 
 			$this->plugin_version
 		);
@@ -92,7 +92,7 @@ class Dependencies
 		if ( !$this->settings_repo->outputDependency('js') ) return;
 		wp_enqueue_script(
 			'simple-favorites', 
-			$this->plugin_dir . '/assets/js/simple-favorites.min.js', 
+			$this->plugin_dir . '/assets/js/favorites.min.js', 
 			array('jquery'), 
 			$this->plugin_version
 		);
