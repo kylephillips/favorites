@@ -40,8 +40,8 @@ class Dependencies
 	*/
 	private function setPluginVersion()
 	{
-		global $simple_favorites_version;
-		$this->plugin_version = $simple_favorites_version;
+		global $favorites_version;
+		$this->plugin_version = $favorites_version;
 	}
 
 	/**

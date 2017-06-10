@@ -27,8 +27,8 @@ class Helpers
 	*/
 	public static function version()
 	{
-		global $simple_favorites_version;
-		return $simple_favorites_version;
+		global $favorites_version;
+		return $favorites_version;
 	}
 
 	/**

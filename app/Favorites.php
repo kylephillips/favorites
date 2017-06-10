@@ -8,14 +8,14 @@ class Favorites
 	public static function init()
 	{
 		// dev/live
-		global $simple_favorites_env;
-		$simple_favorites_env = 'live';
+		global $favorites_env;
+		$favorites_env = 'live';
 
-		global $simple_favorites_version;
-		$simple_favorites_version = '1.2.4';
+		global $favorites_version;
+		$favorites_version = '2.0.1';
 
-		global $simple_favorites_name;
-		$simple_favorites_name = __('Favorites', 'favorites');
+		global $favorites_name;
+		$favorites_name = __('Favorites', 'favorites');
 
 		$app = new Favorites\Bootstrap;
 	}

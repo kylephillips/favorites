@@ -39,8 +39,8 @@ class Settings
 	*/
 	private function setName()
 	{
-		global $simple_favorites_name;
-		$this->plugin_name = $simple_favorites_name;
+		global $favorites_name;
+		$this->plugin_name = $favorites_name;
 	}
 
 	/**
