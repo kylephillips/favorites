@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Listeners;
 
 /**
@@ -7,7 +6,6 @@ namespace SimpleFavorites\Listeners;
 */
 class NonceHandler 
 {
-
 	public function __construct()
 	{
 		$this->generateNonce();
@@ -21,5 +19,4 @@ class NonceHandler
 		);
 		return wp_send_json($data);
 	}
-
 }

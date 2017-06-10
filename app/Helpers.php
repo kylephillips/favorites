@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites;
 
 /**
@@ -7,7 +6,6 @@ namespace SimpleFavorites;
 */
 class Helpers 
 {
-
 	/**
 	* Plugin Root Directory
 	*/
@@ -87,6 +85,4 @@ class Helpers
 		}
 		return array();
 	}
-
-
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\User\UserRepository;
@@ -8,7 +7,6 @@ use SimpleFavorites\Config\SettingsRepository;
 
 class FavoriteButton
 {
-
 	/**
 	* The Post ID
 	*/
@@ -75,5 +73,4 @@ class FavoriteButton
 		$out .= '</button>';
 		return $out;
 	}
-
 }

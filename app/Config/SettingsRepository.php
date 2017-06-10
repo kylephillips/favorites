@@ -1,12 +1,10 @@
 <?php 
-
 namespace SimpleFavorites\Config;
 
 use SimpleFavorites\Helpers;
 
 class SettingsRepository 
 {
-
 	/**
 	* Output Dependency
 	* @return boolean
@@ -200,5 +198,4 @@ class SettingsRepository
 		$option = get_option('simplefavorites_cache_enabled');
 		return ( isset($option) && $option == "true" ) ? true : false;
 	}
-
 }

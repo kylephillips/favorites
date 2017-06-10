@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Post;
 
 /**
@@ -31,5 +30,4 @@ class FavoriteCount
 		if ( (is_multisite()) && (isset($site_id) && ($site_id !== "")) ) restore_current_blog();
 		return intval($count);
 	}
-
 }

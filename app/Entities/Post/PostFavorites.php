@@ -1,5 +1,4 @@
 <?php
-
 namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Entities\User\UserRepository;

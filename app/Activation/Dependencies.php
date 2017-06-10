@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Activation;
 
 use SimpleFavorites\Helpers;
@@ -10,7 +9,6 @@ use SimpleFavorites\Config\SettingsRepository;
 */
 class Dependencies 
 {
-
 	/**
 	* Plugin Directory
 	*/
@@ -117,5 +115,4 @@ class Dependencies
 			$localized_data
 		);
 	}
-
 }

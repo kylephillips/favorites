@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Activation;
 
 /**
@@ -7,7 +6,6 @@ namespace SimpleFavorites\Activation;
 */
 class Activate 
 {
-
 	public function __construct()
 	{
 		$this->setOptions();
@@ -54,5 +52,4 @@ class Activate
 			update_option('simplefavorites_cache_enabled', 'true');
 		}
 	}
-
 }

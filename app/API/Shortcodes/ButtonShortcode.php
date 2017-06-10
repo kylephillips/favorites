@@ -1,10 +1,8 @@
 <?php 
-
 namespace SimpleFavorites\API\Shortcodes;
 
 class ButtonShortcode 
 {
-
 	/**
 	* Shortcode Options
 	* @var array
@@ -36,5 +34,4 @@ class ButtonShortcode
 		$this->setOptions($options);
 		return get_favorites_button($this->options['post_id'], $this->options['site_id']);
 	}
-
 }

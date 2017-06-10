@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Config\SettingsRepository;
@@ -10,7 +9,6 @@ use SimpleFavorites\Entities\Favorite\FavoriteButton;
 */
 class PostHooks 
 {
-
 	/**
 	* Settings Repository
 	*/
@@ -66,5 +64,4 @@ class PostHooks
 		}
 		return $output;
 	}
-
 }

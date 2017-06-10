@@ -82,5 +82,4 @@ class Bootstrap
 		if ( $this->settings_repo->saveType() !== 'session' ) return;
 		if ( !session_id() ) session_start();
 	}
-
 }

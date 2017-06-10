@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Entities\User\UserRepository;
@@ -10,7 +9,6 @@ use SimpleFavorites\Config\SettingsRepository;
 
 class UserFavorites 
 {
-
 	/**
 	* User ID
 	* @var int
@@ -144,5 +142,4 @@ class UserFavorites
 		$status = get_post_status($id);
 		return( !$status || $status !== 'publish') ? false : true;
 	}
-
 }

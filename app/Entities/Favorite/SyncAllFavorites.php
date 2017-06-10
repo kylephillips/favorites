@@ -1,5 +1,4 @@
 <?php
-
 namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Config\SettingsRepository;

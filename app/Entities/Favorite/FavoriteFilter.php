@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Favorite;
 
 /**
@@ -7,7 +6,6 @@ namespace SimpleFavorites\Entities\Favorite;
 */
 class FavoriteFilter 
 {
-
 	/**
 	* Favorites
 	* @var array of post IDs
@@ -90,5 +88,4 @@ class FavoriteFilter
 
 		$this->favorites = $favorites;
 	}
-
 }

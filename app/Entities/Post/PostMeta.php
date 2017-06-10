@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Config\SettingsRepository;
@@ -7,13 +6,11 @@ use SimpleFavorites\Entities\Post\FavoriteCount;
 
 class PostMeta 
 {
-
 	/**
 	* Settings Repository
 	*/
 	private $settings_repo;
 
-	
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
@@ -48,5 +45,4 @@ class PostMeta
 		echo $count->getCount($post->ID);
 		echo '<input type="hidden" name="simplefavorites_count" value="' . $count->getCount($post->ID) . '">';
 	}
-
 }

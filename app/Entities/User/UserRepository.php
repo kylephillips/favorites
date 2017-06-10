@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\User;
 
 use SimpleFavorites\Config\SettingsRepository;
@@ -8,7 +7,6 @@ use SimpleFavorites\Entities\Favorite\FavoritesArrayFormatter;
 
 class UserRepository 
 {
-
 	/**
 	* Settings Repository
 	*/
@@ -175,5 +173,4 @@ class UserRepository
 		$formatter = new FavoritesArrayFormatter;
 		return $formatter->format($favorites, $post_id, $site_id, $status);
 	}
-
 }

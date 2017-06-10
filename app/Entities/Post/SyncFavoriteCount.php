@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Post;
 
 use SimpleFavorites\Entities\Post\FavoriteCount;
@@ -10,7 +9,6 @@ use SimpleFavorites\Entities\User\UserRepository;
 */
 class SyncFavoriteCount 
 {
-
 	/**
 	* Post ID
 	* @var int
@@ -59,5 +57,4 @@ class SyncFavoriteCount
 		$count = ( $this->status == 'active' ) ? $count + 1 : max(0, $count - 1);
 		return update_post_meta($this->post_id, 'simplefavorites_count', $count);
 	}
-
 }

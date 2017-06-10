@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
@@ -67,5 +66,4 @@ class FavoriteButton extends AJAXListenerBase
 		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
 		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
 	}
-
 }

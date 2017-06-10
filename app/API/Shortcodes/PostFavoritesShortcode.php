@@ -1,10 +1,8 @@
 <?php 
-
 namespace SimpleFavorites\API\Shortcodes;
 
 class PostFavoritesShortcode 
 {
-
 	/**
 	* Shortcode Options
 	* @var array
@@ -50,5 +48,4 @@ class PostFavoritesShortcode
 			$anonymous_label_single =  $this->options['anonymous_label_single']
 		);
 	}
-
 }

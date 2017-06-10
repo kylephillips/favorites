@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\Favorite\Favorite;
@@ -79,5 +78,4 @@ class ClearFavorites extends AJAXListenerBase
 			'favorites' => $favorites
 		));
 	}
-
 }

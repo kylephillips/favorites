@@ -1,10 +1,8 @@
 <?php 
-
 namespace SimpleFavorites\API\Shortcodes;
 
 class UserFavoriteCount 
 {
-
 	/**
 	* Shortcode Options
 	* @var array
@@ -58,5 +56,4 @@ class UserFavoriteCount
 		
 		return get_user_favorites_count($this->options['user_id'], $this->options['site_id'], $this->filters, true);
 	}
-
 }

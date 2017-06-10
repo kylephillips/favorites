@@ -1,5 +1,4 @@
 <?php
-
 namespace SimpleFavorites\Listeners;
 
 /**
@@ -7,7 +6,6 @@ namespace SimpleFavorites\Listeners;
 */
 abstract class AJAXListenerBase
 {
-
 	/**
 	* Form Data
 	*/

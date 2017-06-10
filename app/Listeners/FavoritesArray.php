@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Listeners;
 
 use SimpleFavorites\Entities\User\UserRepository;

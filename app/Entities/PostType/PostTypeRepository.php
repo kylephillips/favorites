@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\PostType;
 
 class PostTypeRepository 
@@ -17,5 +16,4 @@ class PostTypeRepository
 		);
 		return get_post_types($args, $return);
 	}
-
 }

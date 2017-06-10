@@ -1,12 +1,10 @@
 <?php 
-
 namespace SimpleFavorites\API\Shortcodes;
 
 use SimpleFavorites\Entities\User\UserFavorites;
 
 class UserFavoritesShortcode 
 {
-
 	/**
 	* Shortcode Options
 	* @var array
@@ -65,5 +63,4 @@ class UserFavoritesShortcode
 		$favorites = new UserFavorites($this->options['user_id'], $this->options['site_id'], $this->options['include_links'], $this->filters);
 		return $favorites->getFavoritesList($this->options['include_buttons']);
 	}
-
 }

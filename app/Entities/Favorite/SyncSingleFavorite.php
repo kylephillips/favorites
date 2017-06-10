@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\User\UserRepository;
@@ -10,7 +9,6 @@ use SimpleFavorites\Helpers;
 */
 class SyncSingleFavorite 
 {
-
 	/**
 	* The Post ID
 	*/
@@ -99,5 +97,4 @@ class SyncSingleFavorite
 		$this->updateUserMeta($favorites);
 		return $favorites;
 	}
-
 }

@@ -5,7 +5,6 @@
 */
 class SimpleFavorites 
 {
-
 	public static function init()
 	{
 		// dev/live

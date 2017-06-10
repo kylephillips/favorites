@@ -1,10 +1,8 @@
 <?php 
-
 namespace SimpleFavorites\API\Shortcodes;
 
 class ClearFavoritesShortcode
 {
-
 	/**
 	* Shortcode Options
 	* @var array
@@ -36,5 +34,4 @@ class ClearFavoritesShortcode
 		$this->setOptions($options);
 		return get_clear_favorites_button($this->options['site_id'], $this->options['text']);
 	}
-
 }

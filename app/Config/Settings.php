@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Config;
 
 use SimpleFavorites\Config\SettingsRepository;
@@ -11,7 +10,6 @@ use SimpleFavorites\Helpers;
 */
 class Settings 
 {
-
 	/**
 	* Plugin Name
 	*/
@@ -78,5 +76,4 @@ class Settings
 		register_setting( 'simple-favorites-users', 'simplefavorites_users' );
 		register_setting( 'simple-favorites-display', 'simplefavorites_display' );
 	}
-
 }

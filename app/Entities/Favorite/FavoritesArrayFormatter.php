@@ -1,5 +1,4 @@
 <?php
-
 namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Entities\Post\FavoriteCount;
@@ -113,6 +112,4 @@ class FavoritesArrayFormatter
 			}
 		}
 	}
-
-
 }

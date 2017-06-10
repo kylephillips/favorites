@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Events;
 
 use SimpleFavorites\Listeners\NonceHandler;
@@ -11,7 +10,6 @@ use SimpleFavorites\Listeners\FavoriteList;
 
 class RegisterPublicEvents 
 {
-
 	public function __construct()
 	{
 		// Generate a Nonce
@@ -87,5 +85,4 @@ class RegisterPublicEvents
 	{
 		new FavoriteList;
 	}
-
 }

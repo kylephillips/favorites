@@ -1,5 +1,4 @@
 <?php 
-
 namespace SimpleFavorites\Entities\Favorite;
 
 use SimpleFavorites\Config\SettingsRepository;
@@ -30,5 +29,4 @@ class Favorite
 		$postsync = new SyncFavoriteCount($post_id, $status, $site_id);
 		$postsync->sync();
 	}
-
 }
