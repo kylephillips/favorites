@@ -44,16 +44,16 @@ Favorites.cssClasses = {
 * Localized JS Data Used by the Plugin
 */
 Favorites.jsData = {
-	ajaxurl : simple_favorites.ajaxurl, // The WP AJAX URL
+	ajaxurl : favorites_data.ajaxurl, // The WP AJAX URL
 	nonce : null, // The Dynamically-Generated Nonce
-	favorite : simple_favorites.favorite, // Active Button Text/HTML
-	favorited : simple_favorites.favorited, // Inactive Button Text
-	include_count : simple_favorites.includecount, // Whether to include the count in buttons
-	indicate_loading : simple_favorites.indicate_loading, // Whether to include loading indication in buttons
-	loading_text : simple_favorites.loading_text, // Loading indication text
-	loading_image_active : simple_favorites.loading_image_active, // Loading spinner url in active button
-	loading_image : simple_favorites.loading_image, // Loading spinner url in inactive button
-	cache_enabled : simple_favorites.cache_enabled, // Is cache enabled on the site
+	favorite : favorites_data.favorite, // Active Button Text/HTML
+	favorited : favorites_data.favorited, // Inactive Button Text
+	include_count : favorites_data.includecount, // Whether to include the count in buttons
+	indicate_loading : favorites_data.indicate_loading, // Whether to include loading indication in buttons
+	loading_text : favorites_data.loading_text, // Loading indication text
+	loading_image_active : favorites_data.loading_image_active, // Loading spinner url in active button
+	loading_image : favorites_data.loading_image, // Loading spinner url in inactive button
+	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
 }
 
 /**

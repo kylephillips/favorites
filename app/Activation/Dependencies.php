@@ -91,7 +91,7 @@ class Dependencies
 	{
 		if ( !$this->settings_repo->outputDependency('js') ) return;
 		wp_enqueue_script(
-			'simple-favorites', 
+			'favorites', 
 			$this->plugin_dir . '/assets/js/favorites.min.js', 
 			array('jquery'), 
 			$this->plugin_version
@@ -110,8 +110,8 @@ class Dependencies
 		);
 		if ( !$this->settings_repo->cacheEnabled() ) $localized_data['nonce'] = wp_create_nonce('simple_favorites_nonce');
 		wp_localize_script(
-			'simple-favorites',
-			'simple_favorites',
+			'favorites',
+			'favorites_data',
 			$localized_data
 		);
 	}
