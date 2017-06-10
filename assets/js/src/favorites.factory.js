@@ -66,11 +66,11 @@ Favorites.userFavorites = null;
 * WP Form Actions Used by the Plugin
 */
 Favorites.formActions = {
-	nonce : 'simplefavorites_nonce',
-	favoritesarray : 'simplefavorites_array',
-	favorite : 'simplefavorites_favorite',
-	clearall : 'simplefavorites_clear',
-	favoritelist : 'simplefavorites_list'
+	nonce : 'favorites_nonce',
+	favoritesarray : 'favorites_array',
+	favorite : 'favorites_favorite',
+	clearall : 'favorites_clear',
+	favoritelist : 'favorites_list'
 }
 
 /**

@@ -71,6 +71,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 * Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events
 * App namespace renamed to "Favorites". Important: any developers extending the plugin core should update any references in PHP namespaces to \Favorites\
 * Plugin text domain updated to "favorites" to follow WordPress requirements
+* AJAX actions renamed to remove "simple" prefix
 * Bug fix where adding a favorite required a page refresh for it to appear in favorite lists
 * Added API function to get the total count of favorites across all posts
 * Tested with WordPress 4.8
