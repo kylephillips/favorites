@@ -38,7 +38,6 @@ Favorites.Lists = function()
 		}
 	}
 
-
 	// Update a single list html
 	plugin.updateSingleList = function(list, favorites)
 	{
@@ -75,7 +74,7 @@ Favorites.Lists = function()
 			html = '<li data-postid="' + v.post_id + '">';
 			if ( include_thumbnails ){
 				var thumb_url = plugin.utilities.getThumbnail(v, thumbnail_size);
-				if ( thumb_url ) html += '<img src="' + thumb_url + '" alt="' + v.title + '" class="favorites-list-image" />';
+				if ( thumb_url ) html += thumb_url;
 			}
 			html += '<p>';
 			if ( include_links ) html += '<a href="' + v.permalink + '">';

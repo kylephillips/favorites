@@ -125,7 +125,10 @@ class UserFavorites
 				$out .= '<li data-postid="' . $favorite . '">';
 				if ( $include_thumbnails ) {
 					$thumb_url = get_the_post_thumbnail_url($favorite, $thumbnail_size);
-					if ( $thumb_url ) $out .= '<img src="' . esc_url($thumb_url) . '" alt="' . get_the_title($favorite) . '" class="favorites-list-image" />';
+					if ( $thumb_url ){
+						$img = '<img src="' . $thumb_url . '" alt="' . get_the_title($favorite) . '" class="favorites-list-thumbnail" />';
+						$out .= apply_filters('favorites/list/thumbnail', $img, $favorite, $thumbnail_size);
+					};
 				}
 				if ( $this->links ) $out .= '<p><a href="' . get_permalink($favorite) . '">';
 				$out .= get_the_title($favorite);

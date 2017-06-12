@@ -122,8 +122,10 @@ class FavoritesArrayFormatter
 	{
 		$sizes = get_intermediate_image_sizes();
 		$thumbnails = array();
-		foreach ( $sizes as $size ) {
-			$thumbnails[$size] = get_the_post_thumbnail_url($post_id, $size);
+		foreach ( $sizes as $size ){
+			$url = get_the_post_thumbnail_url($post_id, $size);
+			$img = '<img src="' . $url . '" alt="' . get_the_title($post_id) . '" class="favorites-list-thumbnail" />';
+			$thumbnails[$size] = apply_filters('favorites/list/thumbnail', $img, $post_id, $size);
 		}
 		return $thumbnails;
 	}
