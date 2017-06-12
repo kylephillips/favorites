@@ -87,6 +87,8 @@ class FavoritesArrayFormatter
 				$this->formatted_favorites[$site]['posts'][$key]['title'] = get_the_title($key);
 				$this->formatted_favorites[$site]['posts'][$key]['permalink'] = get_the_permalink($key);
 				$this->formatted_favorites[$site]['posts'][$key]['total'] = $this->counter->getCount($key, $site_id);
+				$this->formatted_favorites[$site]['posts'][$key]['thumbnails'] = $this->addThumbnails($key);
+				$this->formatted_favorites[$site]['posts'][$key]['excerpt'] = apply_filters('the_excerpt', get_post_field('post_excerpt', $key));
 				$button = new FavoriteButton($key, $site_id);
 				$this->formatted_favorites[$site]['posts'][$key]['button'] = $button->display(false);
 			}
@@ -111,5 +113,20 @@ class FavoritesArrayFormatter
 				}
 			}
 		}
+	}
+
+	/**
+	* Add thumbnail urls to the array
+	*/
+	private function addThumbnails($post_id)
+	{
+		$sizes = get_intermediate_image_sizes();
+		$thumbnails = array();
+		foreach ( $sizes as $size ){
+			$url = get_the_post_thumbnail_url($post_id, $size);
+			$img = '<img src="' . $url . '" alt="' . get_the_title($post_id) . '" class="favorites-list-thumbnail" />';
+			$thumbnails[$size] = apply_filters('favorites/list/thumbnail', $img, $post_id, $size);
+		}
+		return $thumbnails;
 	}
 }

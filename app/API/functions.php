@@ -88,15 +88,18 @@ function get_user_favorites($user_id = null, $site_id = null, $filters = null)
 * @param $site_id int, defaults to current blog/site
 * @param $filters array of post types/taxonomies
 * @param $include_button boolean, whether to include the favorite button for each item
+* @param $include_thumbnails boolean, whether to include the thumbnail for each item
+* @param $thumbnail_size string, the thumbnail size to display
+* @param $include_excpert boolean, whether to include the excerpt for each item
 * @return html
 */
-function get_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null, $include_button = false)
+function get_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
 {
 	global $blog_id;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !is_multisite() ) $site_id = 1;
 	$favorites = new UserFavorites($user_id, $site_id, $include_links, $filters);
-	return $favorites->getFavoritesList($include_button);
+	return $favorites->getFavoritesList($include_button, $include_thumbnails, $thumbnail_size, $include_excerpt);
 }
 
 
@@ -106,11 +109,14 @@ function get_user_favorites_list($user_id = null, $site_id = null, $include_link
 * @param $site_id int, defaults to current blog/site
 * @param $filters array of post types/taxonomies
 * @param $include_button boolean, whether to include the favorite button for each item
+* @param $include_thumbnails boolean, whether to include the thumbnail for each item
+* @param $thumbnail_size string, the thumbnail size to display
+* @param $include_excpert boolean, whether to include the excerpt for each item
 * @return html
 */
-function the_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null, $include_button = false)
+function the_user_favorites_list($user_id = null, $site_id = null, $include_links = false, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
 {
-	echo get_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button);
+	echo get_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button, $include_thumbnails, $thumbnail_size, $include_excerpt);
 }
 
 

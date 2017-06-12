@@ -38,10 +38,24 @@ Favorites.Utilities = function()
 	/*
 	* Get Site index from All Favorites
 	*/
-	plugin.siteIndex = function(siteid){
+	plugin.siteIndex = function(siteid)
+	{
 		for ( var i = 0; i < Favorites.userFavorites.length; i++ ){
 			if ( Favorites.userFavorites[i].site_id !== parseInt(siteid) ) continue;
 			return i;
 		}
+	}
+
+	/*
+	* Get a specific thumbnail size
+	*/
+	plugin.getThumbnail = function(favorite, size)
+	{
+		var thumbnails = favorite.thumbnails;
+		if ( typeof thumbnails === 'undefined' || thumbnails.length == 0 ) return false;
+		var thumbnail_url = thumbnails[size];
+		if ( typeof thumbnail_url === 'undefined' ) return false;
+		if ( !thumbnail_url ) return false;
+		return thumbnail_url;
 	}
 }
