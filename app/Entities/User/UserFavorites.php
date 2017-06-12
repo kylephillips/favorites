@@ -90,8 +90,10 @@ class UserFavorites
 	* Return an HTML list of favorites for specified user
 	* @param $include_button boolean - whether to include the favorite button
 	* @param $include_thumbnails boolean - whether to include post thumbnails
+	* @param $thumbnail_size string - thumbnail size to display
+	* @param $include_excerpt boolean - whether to include the post excerpt
 	*/
-	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail')
+	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
 	{
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
 		
@@ -111,6 +113,7 @@ class UserFavorites
 		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
 		$out .= ( $this->links ) ? ' data-includelinks="true"' : ' data-includelinks="false"';
 		$out .= ( $include_thumbnails ) ? ' data-includethumbnails="true"' : ' data-includethumbnails="false"';
+		$out .= ( $include_excerpt ) ? ' data-includeexcerpts="true"' : ' data-includeexcerpts="false"';
 		$out .= ' data-thumbnailsize="' . $thumbnail_size . '"';
 		$out .= ' data-nofavoritestext="' . $no_favorites . '"';
 		$out .= ' data-posttype="' . $post_types . '"';
@@ -124,14 +127,16 @@ class UserFavorites
 					$thumb_url = get_the_post_thumbnail_url($favorite, $thumbnail_size);
 					if ( $thumb_url ) $out .= '<img src="' . esc_url($thumb_url) . '" alt="' . get_the_title($favorite) . '" class="favorites-list-image" />';
 				}
-				if ( $include_button ) $out .= '<p>';
-				if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
+				if ( $this->links ) $out .= '<p><a href="' . get_permalink($favorite) . '">';
 				$out .= get_the_title($favorite);
-				if ( $this->links ) $out .= '</a>';
+				if ( $this->links ) $out .= '</a></p>';
+				if ( $include_excerpt ) {
+					$excerpt = apply_filters('the_excerpt', get_post_field('post_excerpt', $favorite));
+					if ( $excerpt ) $out .= '<p class="excerpt">' . apply_filters('favorites/list/excerpt', $excerpt) . '</p>';
+				}
 				if ( $include_button ){
 					$button = new FavoriteButton($favorite, $this->site_id);
-					$out .= '</p><p>';
-					$out .= $button->display(false) . '</p>';
+					$out .= '<p>' . $button->display(false) . '</p>';
 				}
 				$out .= '</li>';
 			}

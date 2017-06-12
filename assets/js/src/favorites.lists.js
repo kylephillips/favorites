@@ -47,6 +47,7 @@ Favorites.Lists = function()
 		var include_buttons = ( $(list).attr('data-includebuttons') === 'true' ) ? true : false;
 		var include_links = ( $(list).attr('data-includelinks') === 'true' ) ? true : false;
 		var include_thumbnails = ( $(list).attr('data-includethumbnails') === 'true' ) ? true : false;
+		var include_excerpts = ( $(list).attr('data-includeexcerpts') === 'true' ) ? true : false;
 		var thumbnail_size = $(list).attr('data-thumbnailsize');
 
 		// Remove list items without a data-postid attribute (backwards compatibility plugin v < 1.2)
@@ -76,11 +77,16 @@ Favorites.Lists = function()
 				var thumb_url = plugin.utilities.getThumbnail(v, thumbnail_size);
 				if ( thumb_url ) html += '<img src="' + thumb_url + '" alt="' + v.title + '" class="favorites-list-image" />';
 			}
-			if ( include_buttons ) html += '<p>';
+			html += '<p>';
 			if ( include_links ) html += '<a href="' + v.permalink + '">';
 			html += v.title;
 			if ( include_links ) html += '</a>';
-			if ( include_buttons ) html += '</p><p>' + v.button + '</p>';
+			html += '</p>';
+			if ( include_excerpts ) {
+				var excerpt = v.excerpt;
+				if ( typeof excerpt !== 'undefined' ) html += '<p class="excerpt">' + excerpt + '</p>';
+			}
+			if ( include_buttons ) html += '<p>' + v.button + '</p>';
 			html += '</li>';
 			$(list).append(html);
 		});

@@ -88,6 +88,7 @@ class FavoritesArrayFormatter
 				$this->formatted_favorites[$site]['posts'][$key]['permalink'] = get_the_permalink($key);
 				$this->formatted_favorites[$site]['posts'][$key]['total'] = $this->counter->getCount($key, $site_id);
 				$this->formatted_favorites[$site]['posts'][$key]['thumbnails'] = $this->addThumbnails($key);
+				$this->formatted_favorites[$site]['posts'][$key]['excerpt'] = apply_filters('the_excerpt', get_post_field('post_excerpt', $key));
 				$button = new FavoriteButton($key, $site_id);
 				$this->formatted_favorites[$site]['posts'][$key]['button'] = $button->display(false);
 			}
