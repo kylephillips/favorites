@@ -14,6 +14,7 @@ FavoritesAdmin.Settings = function()
 			plugin.toggleAnonymousSave();
 			plugin.togglePostTypeOptions();
 			plugin.toggleLoadingIndicators();
+			plugin.toggleLoadingTypeLoad();
 			$.each($(FavoritesAdmin.selectors.dependencyItem), function(){
 				plugin.toggleDependencyContent($(this));
 			});
@@ -30,6 +31,9 @@ FavoritesAdmin.Settings = function()
 		});
 		$(document).on('change', '.simplefavorites-display-loading', function(){
 			plugin.toggleLoadingIndicators();
+		});
+		$(document).on('change', '[data-favorites-spinner-type]', function(){
+			plugin.toggleLoadingType($(this));
 		});
 	}
 
@@ -83,6 +87,32 @@ FavoritesAdmin.Settings = function()
 			return;
 		}
 		$('.simplefavorites-loading-fields').hide();
+	}
+
+	/**
+	* Toggle Loading Html/Image checkboxes (only allow one)
+	*/
+	plugin.toggleLoadingTypeLoad = function()
+	{
+		var ImageCheckbox = $('[data-favorites-spinner-type="image"]');
+		if ( $(ImageCheckbox).is(':checked') ){
+			$('[data-favorites-spinner-type="html"]').attr('checked', false);
+			return;
+		}
+		$('[data-favorites-spinner-type="image"]').attr('checked', false);
+	}
+
+	/**
+	* Toggle Loading Html/Image checkboxes (only allow one)
+	*/
+	plugin.toggleLoadingType = function(checkbox)
+	{
+		var attr = $(checkbox).attr('data-favorites-spinner-type');
+		if ( attr === 'image' ){
+			$('[data-favorites-spinner-type="html"]').attr('checked', false);
+			return;
+		}
+		$('[data-favorites-spinner-type="image"]').attr('checked', false);
 	}
 
 	return plugin.bindEvents();

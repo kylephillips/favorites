@@ -70,16 +70,22 @@
 			</p>
 			<p style="padding-top:10px;">
 				<label>
-					<input type="checkbox" name="simplefavorites_display[loadingindicator][include_image]" value="true" <?php if ( $this->settings_repo->loadingImage() ) echo 'checked'; ?>>
+					<input type="checkbox" name="simplefavorites_display[loadingindicator][include_html]" value="true" <?php if ( $this->settings_repo->loadingIndicatorType('include_html') ) echo 'checked'; ?> data-favorites-spinner-type="html">
+					<?php _e('Include loading indicator css spinner', 'favorites'); ?>
+				</label>
+			</p>
+			<p style="padding-top:10px;">
+				<label>
+					<input type="checkbox" name="simplefavorites_display[loadingindicator][include_image]" value="true" <?php if ( $this->settings_repo->loadingIndicatorType('include_image') ) echo 'checked'; ?> data-favorites-spinner-type="image">
 					<?php _e('Include loading indicator image', 'favorites'); ?>
 				</label>
 			</p>
 			<p style="padding-top:10px;">
 				<label>
 					<input type="checkbox" name="simplefavorites_display[loadingindicator][include_preload]" value="true" <?php if ( $this->settings_repo->includeLoadingIndicatorPreload() ) echo 'checked'; ?>>
-					<?php _e('Include loading indicator image on page load', 'favorites'); ?>
+					<?php _e('Include loading indicator on page load', 'favorites'); ?>
 				</label>
-			</p>
+			</p>			
 		</div>
 	</td>
 </tr>

@@ -164,6 +164,7 @@ class SettingsRepository
 	public function loadingImage($state = 'inactive')
 	{
 		$option = get_option('simplefavorites_display');
+		if ( isset($option['loadingindicator']['include_html']) && $option['loadingindicator']['include_html'] ) return $this->loadingHtml();
 		if ( !isset($option['loadingindicator']['include_image']) || $option['loadingindicator']['include_image'] !== 'true' ) return false;
 		$image_url = Helpers::plugin_url() . '/assets/images/loading.gif';
 		
@@ -175,6 +176,35 @@ class SettingsRepository
 		// active state (some users might want different color for active)
 		$image = '<img src="' . apply_filters('simplefavorites_spinner_url_active', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
 		return $image;
+	}
+
+	/**
+	* Loading indicator type
+	* @return boolean
+	* @param $state string
+	* @since 2.0.2
+	*/
+	public function loadingIndicatorType($type = 'include_image')
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['loadingindicator'][$type]) || $option['loadingindicator'][$type] !== 'true' ) return false;
+		return true;
+	}
+
+	/**
+	* Loading CSS/Icon 
+	* @return string
+	* @param $state string
+	* @uses simplefavorites_spinner_html filter, simplefavorites_spinner_html_active filter
+	* @since 2.0.2
+	*/
+	public function loadingHtml($state = 'inactive')
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['loadingindicator']['include_html']) || $option['loadingindicator']['include_html'] !== 'true' ) return false;
+		
+		if ( $state == 'inactive' )	return apply_filters('simplefavorites_spinner_html', '<span class="sf-icon-spinner-wrapper"><i class="sf-icon-spinner"></i></span>');
+		return apply_filters('simplefavorites_spinner_html_ative', '<span class="sf-icon-spinner-wrapper active"><i class="sf-icon-spinner active"></i></span>');
 	}
 
 	/**
