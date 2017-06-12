@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.0.2 =
+* Option added to use a css/html loading indicator in place of an image. Additional filters added for theme use.
+
 = 2.0.1 =
 * Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events
 * App namespace renamed to "Favorites". Important: any developers extending the plugin core should update any references in PHP namespaces to \Favorites\

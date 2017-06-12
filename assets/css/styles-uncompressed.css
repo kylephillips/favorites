@@ -10,6 +10,63 @@
   margin-left: 8px;
 }
 
+.sf-icon-spinner-wrapper {
+  display: inline-block;
+  position: relative;
+  min-width: 1em;
+  min-height: 1em;
+}
+
+.sf-icon-spinner {
+  -webkit-animation: sf_rotate linear 2s infinite;
+          animation: sf_rotate linear 2s infinite;
+  position: absolute;
+  top: .15em;
+  left: 0;
+}
+
+@-webkit-keyframes sf_rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+  }
+}
+
+@keyframes sf_rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+  }
+}
+
 @font-face {
   font-family: 'favorites';
   src: url("fonts/favorites.eot");

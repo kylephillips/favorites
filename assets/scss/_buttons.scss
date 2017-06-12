@@ -15,3 +15,32 @@
 .simplefavorites-loading {
 	margin-left: 8px;
 }
+
+.sf-icon-spinner-wrapper {
+	display: inline-block;
+	position: relative;
+	min-width: 1em;
+	min-height: 1em;
+}
+
+.sf-icon-spinner {
+	animation: sf_rotate linear 2s infinite;
+	position: absolute;
+	top: .15em;
+	left: 0;
+}
+
+@keyframes sf_rotate {
+	0% {
+		transform: rotate(0deg);
+		transform-origin: center center;
+	}
+	50% {
+		transform: rotate(180deg);
+		transform-origin: center center;
+	}
+	100% {
+		transform: rotate(360deg);
+		transform-origin: center center;
+	}
+}
