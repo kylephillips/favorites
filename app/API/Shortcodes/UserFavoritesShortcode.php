@@ -32,7 +32,9 @@ class UserFavoritesShortcode
 			'site_id' => '',
 			'include_links' => 'true',
 			'post_types' => '',
-			'include_buttons' => 'false'
+			'include_buttons' => 'false',
+			'include_thumbnails' => 'false',
+			'thumbnail_size' => 'small'
 		), $options);
 	}
 
@@ -57,10 +59,11 @@ class UserFavoritesShortcode
 		
 		$this->options['include_links'] = ( $this->options['include_links'] == 'true' ) ? true : false;
 		$this->options['include_buttons'] = ( $this->options['include_buttons'] == 'true' ) ? true : false;
+		$this->options['include_thumbnails'] = ( $this->options['include_thumbnails'] == 'true' ) ? true : false;
 		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
 		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
 
 		$favorites = new UserFavorites($this->options['user_id'], $this->options['site_id'], $this->options['include_links'], $this->filters);
-		return $favorites->getFavoritesList($this->options['include_buttons']);
+		return $favorites->getFavoritesList($this->options['include_buttons'], $this->options['include_thumbnails'], $this->options['thumbnail_size']);
 	}
 }

@@ -89,8 +89,9 @@ class UserFavorites
 	/**
 	* Return an HTML list of favorites for specified user
 	* @param $include_button boolean - whether to include the favorite button
+	* @param $include_thumbnails boolean - whether to include post thumbnails
 	*/
-	public function getFavoritesList($include_button = false)
+	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail')
 	{
 		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
 		
@@ -109,6 +110,8 @@ class UserFavorites
 		$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '" ';
 		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
 		$out .= ( $this->links ) ? ' data-includelinks="true"' : ' data-includelinks="false"';
+		$out .= ( $include_thumbnails ) ? ' data-includethumbnails="true"' : ' data-includethumbnails="false"';
+		$out .= ' data-thumbnailsize="' . $thumbnail_size . '"';
 		$out .= ' data-nofavoritestext="' . $no_favorites . '"';
 		$out .= ' data-posttype="' . $post_types . '"';
 		$out .= '>';
@@ -117,6 +120,10 @@ class UserFavorites
 		if ( !empty($favorites) ) :
 			foreach ( $favorites as $key => $favorite ){
 				$out .= '<li data-postid="' . $favorite . '">';
+				if ( $include_thumbnails ) {
+					$thumb_url = get_the_post_thumbnail_url($favorite, $thumbnail_size);
+					if ( $thumb_url ) $out .= '<img src="' . esc_url($thumb_url) . '" alt="' . get_the_title($favorite) . '" class="favorites-list-image" />';
+				}
 				if ( $include_button ) $out .= '<p>';
 				if ( $this->links ) $out .= '<a href="' . get_permalink($favorite) . '">';
 				$out .= get_the_title($favorite);
