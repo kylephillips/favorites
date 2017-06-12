@@ -69,6 +69,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 2.0.2 =
 * Option added to use a css/html loading indicator in place of an image. Additional filters added for theme use.
+* Shortcode option added to the favorites list "user_favorites" for including the post thumbnail. To include the thumbnail, pass the option include_thumbnails="true". To specify a thumbnail size, pass it in as an option: thumbnail_size="thumbnail".
+* Shortcode option added to the favorites list "user_favorites" for including the post excerpt. To include the excerpt, pass the option include_excerpt="true".
+* Filters added for the list thumbnail and list excerpt. See plugin documentation for names and parameters.
 
 = 2.0.1 =
 * Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in version 2.0. Please see the plugin documentation on using the new events
@@ -194,9 +197,9 @@ Displays the total number of favorites a user has favorited. Template functions 
 User favorites are stored as an array of post ids. Logged-in users' favorites are stored as a custom user meta field, while anonymous users' favorites are stored in either the session or browser cookie (configurable in the plugin settings). If the user id parameter is omitted, the favorites default to the current user. The site id parameter is optional, for use in multisite installations (defaults to current site).
 
 * **Get function (returns array of IDs):** `get_user_favorites($user_id, $site_id)`
-* **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button)`
-* **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button)`
-* **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id="" include_buttons="false" post_types="post"]
+* **Get function (returns html list):** `get_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)`
+* **Print function (prints an html list):** `the_user_favorites_list($user_id, $site_id, $include_links, $filters, $include_button, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)`
+* **Shortcode (prints an html list, with the option of omitting links):** `[user_favorites user_id="" include_links="true" site_id="" include_buttons="false" post_types="post" include_thumbnails="false" thumbnail_size="thumbnail" include_excerpt="false"]
 
 **List Users Who Have Favorited a Post**
 
