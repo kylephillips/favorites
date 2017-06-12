@@ -67,6 +67,33 @@
   }
 }
 
+.favorites-list {
+  list-style: none;
+}
+
+.favorites-list li {
+  zoom: 1;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: .75em 0;
+  margin: 0;
+}
+
+.favorites-list li:before, .favorites-list li:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.favorites-list li:after {
+  clear: both;
+}
+
+.favorites-list li img {
+  float: left;
+  margin-right: 1em;
+}
+
 @font-face {
   font-family: 'favorites';
   src: url("fonts/favorites.eot");
