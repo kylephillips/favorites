@@ -204,7 +204,7 @@ class SettingsRepository
 		if ( !isset($option['loadingindicator']['include_html']) || $option['loadingindicator']['include_html'] !== 'true' ) return false;
 		
 		if ( $state == 'inactive' )	return apply_filters('simplefavorites_spinner_html', '<span class="sf-icon-spinner-wrapper"><i class="sf-icon-spinner"></i></span>');
-		return apply_filters('simplefavorites_spinner_html_ative', '<span class="sf-icon-spinner-wrapper active"><i class="sf-icon-spinner active"></i></span>');
+		return apply_filters('simplefavorites_spinner_html_active', '<span class="sf-icon-spinner-wrapper active"><i class="sf-icon-spinner active"></i></span>');
 	}
 
 	/**
