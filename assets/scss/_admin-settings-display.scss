@@ -56,5 +56,9 @@
 		input[type="text"]{
 			width: 100%;
 		}
+		.authentication-modal-content {
+			padding-top: 2em;
+			display: none;
+		}
 	}
 } // simple-favorites-display-settings

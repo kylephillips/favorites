@@ -8,6 +8,7 @@
 * favorites-updated-single: A user's favorite has been updated. Params: favorites, post_id, site_id, status
 * favorites-cleared: The user's favorites have been cleared. Params: clear button
 * favorites-user-favorites-loaded: The user's favorites have been loaded. Params: intialLoad (bool)
+* favorites-require-authentication: An unauthenticated user has attempted to favorite a post (The Require Login & Show Modal setting is checked)
 */
 
 /**
@@ -30,6 +31,8 @@ Favorites.selectors = {
 	list : '.favorites-list', // Favorite Lists
 	clear_button : '.simplefavorites-clear', // Clear Button
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
+	modals : 'data-favorites-modal', // Modals
+	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
 }
 
 /**
@@ -54,6 +57,7 @@ Favorites.jsData = {
 	loading_image_active : favorites_data.loading_image_active, // Loading spinner url in active button
 	loading_image : favorites_data.loading_image, // Loading spinner url in inactive button
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
+	authentication_modal_content : favorites_data.authentication_modal_content // Content to display in authentication gate modal
 }
 
 /**
@@ -90,6 +94,7 @@ Favorites.Factory = function()
 		new Favorites.Button;
 		new Favorites.ButtonUpdater;
 		new Favorites.TotalCount;
+		new Favorites.RequireAuthentication;
 	}
 
 	return plugin.build();

@@ -1,0 +1,88 @@
+//
+// Modals
+// --------------------------------------------------
+.simplefavorites-modal-backdrop {
+	position: fixed;
+	width: 0;
+	height: 0;
+	background-color: rgba(0,0,0,.85);
+	top: 0;
+	left: 50%;
+	z-index: 998;
+	opacity: 0;
+	transition: opacity 200ms ease;
+	&.active {
+		width: 100%;
+		height: 100%;
+		left: 0;
+		opacity: 1;
+		transition: opacity 200ms ease;
+	}
+}
+
+.simplefavorites-modal-content {
+	z-index: 999;
+	position: fixed;
+	top: -200%;
+	left: 50%;
+	width: 50%;
+	background-color: $white;
+	border-radius: 2px;
+	transform: translateX(-50%);
+	transition: all 200ms ease;
+	box-shadow: 2px 2px 20px 0px rgba($black, .5);
+	&.small {
+		width: 400px;
+	}
+	&.active {
+		top: 50px;
+		transition: all 200ms ease;
+	}
+	&.loading {
+		.modal-content-body {
+			display: none;
+		}
+		.modal-content-loading {
+			display: block;
+		}
+	}
+}
+
+.simplefavorites-modal-content-body {
+	padding: 1em;
+	max-height: 300px;
+	overflow: auto;
+	@include clearfix;
+	&.no-padding {
+		padding: 0;
+	}
+}
+
+.simplefavorites-modal-content-footer {
+	@include clearfix;
+	padding: .7em;
+	border-radius: 0 0 2px 2px;
+}
+
+@media (max-width: 767px)
+{
+	.simplefavorites-modal-content {
+		width: 90%;
+		&.active {
+			top: 20px;
+		}
+	}
+	.simplefavorites-modal-content-body {
+		height: 300px;
+		overflow-y: scroll;
+		-webkit-overflow-scrolling: touch;
+		overflow-x: hidden;
+	}
+}
+
+@media print {
+	.simplefavorites-modal-backdrop,
+	.simplefavorites-modal-content {
+		display: none;
+	}
+}

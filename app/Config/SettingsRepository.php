@@ -34,6 +34,42 @@ class SettingsRepository
 	}
 
 	/**
+	* Require Login? Shows button to unauthenticated users, but opens modal when trying to save
+	* @since 2.0.3
+	* @return boolean
+	*/
+	public function requireLogin()
+	{
+		$option = get_option('simplefavorites_users');
+		if ( isset($option['anonymous']['display']) 
+			&& $option['anonymous']['display'] == 'true') {
+			return false;
+		}
+		if ( isset($option['require_login']) 
+			&& $option['require_login'] == 'true') {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	* Authentication Gate Modal Content
+	* @since 2.0.3
+	* @return html
+	*/
+	public function authenticationModalContent()
+	{
+		$option = get_option('simplefavorites_users');
+		if ( isset($option['authentication_modal']) 
+			&& $option['authentication_modal'] !== '') {
+			return apply_filters('favorites/authentication_modal_content', $option['authentication_modal']);
+		}
+		$html = '<p>' . __('Please login to add favorites.', 'favorites') . '</p>';
+		$html .= '<p><a href="#" data-favorites-modal-close>' . __('Dismiss this notice', 'favorites') . '</a></p>';
+		return $html;
+	}
+
+	/**
 	* Method of saving favorites for anonymous users
 	* @return string - cookie/session
 	*/

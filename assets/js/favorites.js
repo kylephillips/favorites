@@ -439,6 +439,7 @@ Favorites.Button = function()
 
 	plugin.activeButton; // The clicked button
 	plugin.allButtons; // All favorite buttons for the current post
+	plugin.authenticated = true;
 
 	plugin.formatter = new Favorites.Formatter;
 	plugin.data = {};
@@ -491,6 +492,14 @@ Favorites.Button = function()
 				status : plugin.data.status
 			},
 			success: function(data){
+				if ( data.status === 'unauthenticated' ){
+					plugin.loading(false);
+					plugin.data.status = 'inactive';
+					plugin.authenticated = false;
+					plugin.resetButtons();
+					$(document).trigger('favorites-require-authentication', [plugin.data]);
+					return;
+				}
 				Favorites.userFavorites = data.favorites;
 				plugin.loading(false);
 				plugin.resetButtons();
@@ -514,7 +523,11 @@ Favorites.Button = function()
 				if ( favorite_count <= 0 ) favorite_count = 1;
 				$(this).removeClass(Favorites.cssClasses.active);
 				$(this).attr('data-favoritecount', favorite_count - 1);
-				$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, (favorite_count - 1)));
+				if ( plugin.authenticated ){
+					$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, (favorite_count - 1)));
+				} else {
+					$(this).html(Favorites.jsData.favorite);
+				}
 				return;
 			} 
 			$(this).addClass(Favorites.cssClasses.active);
@@ -674,6 +687,67 @@ Favorites.TotalCount = function()
 	return plugin.bindEvents();
 }
 /**
+* Favorites Require Authentication
+*/
+var Favorites = Favorites || {};
+
+Favorites.RequireAuthentication = function()
+{
+	var plugin = this;
+	var $ = jQuery;
+
+	plugin.bindEvents = function()
+	{
+		$(document).on('favorites-require-authentication', function(){
+			plugin.openModal();
+		});
+		$(document).on('click', '.simplefavorites-modal-backdrop', function(e){
+			plugin.closeModal();
+		});
+		$(document).on('click', '[' + Favorites.selectors.close_modals + ']', function(e){
+			e.preventDefault();
+			plugin.closeModal();
+		});
+	}
+
+	/**
+	* Open the Moda
+	*/
+	plugin.openModal = function()
+	{
+		plugin.buildModal();
+		setTimeout(function(){
+			$('[' + Favorites.selectors.modals + ']').addClass('active');
+		}, 10);
+	}
+
+	/**
+	* Build the Modal
+	*/
+	plugin.buildModal = function()
+	{
+		var modal = $('[' + Favorites.selectors.modals + ']');
+		if ( modal.length > 0 ) return;
+		var html = '<div class="simplefavorites-modal-backdrop" ' + Favorites.selectors.modals + '></div>';
+		html += '<div class="simplefavorites-modal-content" ' + Favorites.selectors.modals + '>';
+		html += '<div class="simplefavorites-modal-content-body">';
+		html += Favorites.jsData.authentication_modal_content;
+		html += '</div><!-- .simplefavorites-modal-content-body -->';
+		html += '</div><!-- .simplefavorites-modal-content -->';
+		$('body').prepend(html);
+	}
+
+	/**
+	* Close the Moda
+	*/
+	plugin.closeModal = function()
+	{
+		$('[' + Favorites.selectors.modals + ']').removeClass('active');
+	}
+
+	return plugin.bindEvents();
+}
+/**
 * Primary Favorites Initialization
 * @package Favorites
 * @author Kyle Phillips - https://github.com/kylephillips/favorites
@@ -683,6 +757,7 @@ Favorites.TotalCount = function()
 * favorites-updated-single: A user's favorite has been updated. Params: favorites, post_id, site_id, status
 * favorites-cleared: The user's favorites have been cleared. Params: clear button
 * favorites-user-favorites-loaded: The user's favorites have been loaded. Params: intialLoad (bool)
+* favorites-require-authentication: An unauthenticated user has attempted to favorite a post (The Require Login & Show Modal setting is checked)
 */
 
 /**
@@ -705,6 +780,8 @@ Favorites.selectors = {
 	list : '.favorites-list', // Favorite Lists
 	clear_button : '.simplefavorites-clear', // Clear Button
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
+	modals : 'data-favorites-modal', // Modals
+	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
 }
 
 /**
@@ -729,6 +806,7 @@ Favorites.jsData = {
 	loading_image_active : favorites_data.loading_image_active, // Loading spinner url in active button
 	loading_image : favorites_data.loading_image, // Loading spinner url in inactive button
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
+	authentication_modal_content : favorites_data.authentication_modal_content // Content to display in authentication gate modal
 }
 
 /**
@@ -765,6 +843,7 @@ Favorites.Factory = function()
 		new Favorites.Button;
 		new Favorites.ButtonUpdater;
 		new Favorites.TotalCount;
+		new Favorites.RequireAuthentication;
 	}
 
 	return plugin.build();

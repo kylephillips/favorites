@@ -14,6 +14,7 @@ Favorites.Button = function()
 
 	plugin.activeButton; // The clicked button
 	plugin.allButtons; // All favorite buttons for the current post
+	plugin.authenticated = true;
 
 	plugin.formatter = new Favorites.Formatter;
 	plugin.data = {};
@@ -66,6 +67,14 @@ Favorites.Button = function()
 				status : plugin.data.status
 			},
 			success: function(data){
+				if ( data.status === 'unauthenticated' ){
+					plugin.loading(false);
+					plugin.data.status = 'inactive';
+					plugin.authenticated = false;
+					plugin.resetButtons();
+					$(document).trigger('favorites-require-authentication', [plugin.data]);
+					return;
+				}
 				Favorites.userFavorites = data.favorites;
 				plugin.loading(false);
 				plugin.resetButtons();
@@ -89,7 +98,11 @@ Favorites.Button = function()
 				if ( favorite_count <= 0 ) favorite_count = 1;
 				$(this).removeClass(Favorites.cssClasses.active);
 				$(this).attr('data-favoritecount', favorite_count - 1);
-				$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, (favorite_count - 1)));
+				if ( plugin.authenticated ){
+					$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, (favorite_count - 1)));
+				} else {
+					$(this).html(Favorites.jsData.favorite);
+				}
 				return;
 			} 
 			$(this).addClass(Favorites.cssClasses.active);

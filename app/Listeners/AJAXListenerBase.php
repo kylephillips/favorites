@@ -1,6 +1,8 @@
 <?php
 namespace Favorites\Listeners;
 
+use Favorites\Config\SettingsRepository;
+
 /**
 * Base AJAX class
 */
@@ -11,9 +13,16 @@ abstract class AJAXListenerBase
 	*/
 	protected $data;
 
+	/**
+	* Settings Repo
+	*/
+	protected $settings_repo;
+
 	public function __construct()
 	{
+		$this->settings_repo = new SettingsRepository;
 		$this->validateNonce();
+		$this->checkLogIn();
 	}
 
 	/**
@@ -37,6 +46,16 @@ abstract class AJAXListenerBase
 			'status' => 'error', 
 			'message' => $error
 		));
+	}
+
+	/**
+	* Check if logged in
+	*/
+	protected function checkLogIn()
+	{
+		if ( is_user_logged_in() ) return true;
+		if ( $this->settings_repo->anonymous('display') ) return true;
+		if ( $this->settings_repo->requireLogin() ) return $this->response(array('status' => 'unauthenticated'));
 	}
 
 	/**

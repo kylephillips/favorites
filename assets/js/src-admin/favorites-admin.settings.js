@@ -13,6 +13,7 @@ FavoritesAdmin.Settings = function()
 		$(document).ready(function(){
 			plugin.toggleAnonymousSave();
 			plugin.toggleLoadingTypeLoad();
+			plugin.toggleAuthModalContentField();
 			$.each($('[data-favorites-dependency-checkbox]'), function(){
 				var item = $(this).parents('.field');
 				plugin.toggleDependencyContent(item);
@@ -26,6 +27,10 @@ FavoritesAdmin.Settings = function()
 		// User settings
 		$(document).on('change', '*[data-favorites-anonymous-checkbox]', function(){
 			plugin.toggleAnonymousSave();
+			plugin.toggleAuthModalContentField();
+		});
+		$(document).on('change', '[data-favorites-require-login-checkbox]', function(){
+			plugin.toggleAuthModalContentField();
 		});
 
 		// Post type settings
@@ -90,9 +95,11 @@ FavoritesAdmin.Settings = function()
 	{
 		if ( $('[data-favorites-anonymous-checkbox]').is(':checked') ){
 			$('[data-favorites-anonymous-count]').show();
+			$('[data-favorites-require-login]').hide().find('input[type="checkbox"]').attr('checked', false);
 			return;
 		}
 		$('[data-favorites-anonymous-count]').hide().find('input[type="checkbox"]').attr('checked', false);
+		$('[data-favorites-require-login]').show();
 	}
 
 	/**
@@ -119,6 +126,19 @@ FavoritesAdmin.Settings = function()
 			return;
 		}
 		$('[data-favorites-spinner-type="image"]').attr('checked', false);
+	}
+
+	/**
+	* Toggle the authentication modal content field
+	*/
+	plugin.toggleAuthModalContentField = function()
+	{
+		var checked = ( $('[data-favorites-require-login-checkbox]').is(':checked') ) ? true : false;
+		if ( checked ){
+			$('[data-favorites-authentication-modal-content]').show();
+			return;
+		}
+		$('[data-favorites-authentication-modal-content]').hide();
 	}
 
 	return plugin.bindEvents();

@@ -25,6 +25,7 @@ class UserRepository
 	{
 		if ( is_user_logged_in() ) return true;
 		if ( $this->settings_repo->anonymous('display') ) return true;
+		if ( $this->settings_repo->requireLogin() ) return true;
 		return false;
 	}
 

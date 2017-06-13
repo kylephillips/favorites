@@ -67,6 +67,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.0.3 =
+* Option added to enable a modal notification for anonymous users. Modal content is editable under Settings > Favorites > Users. Anonymous users must be disabled, and the "Require Login & Show Modal" must be checked. The content is also available via a filter: favorites/authentication_modal_content. If the plugin css has been disabled and this feature is required, please see the plugin styles for new css classes required for modals to function.
+
 = 2.0.2 =
 * Option added to use a css/html loading indicator in place of an image. Additional filters added for theme use
 * Shortcode option added to the favorites list "user_favorites" for including the post thumbnail. To include the thumbnail, pass the option include_thumbnails="true". To specify a thumbnail size, pass it in as an option: thumbnail_size="thumbnail"
