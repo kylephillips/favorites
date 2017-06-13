@@ -120,6 +120,7 @@ class FavoritesArrayFormatter
 	*/
 	private function addThumbnails($post_id)
 	{
+		if ( !has_post_thumbnail($post_id) ) return false;
 		$sizes = get_intermediate_image_sizes();
 		$thumbnails = array();
 		foreach ( $sizes as $size ){
