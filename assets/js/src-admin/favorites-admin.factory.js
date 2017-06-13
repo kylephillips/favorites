@@ -15,11 +15,6 @@ var FavoritesAdmin = FavoritesAdmin || {};
 * DOM Selectors Used by the Plugin
 */
 FavoritesAdmin.selectors = {
-	dependencyCheckbox : '.simplefavorites-dependency-cb',
-	dependencyItem : '.simplefavorites-dependency',
-	dependencyContent : '.simplefavorites-dependency-content',
-	anonymousCheckbox : '.simplefavorites-display-anonymous',
-	anonymousCount : '.simplefavorites-save-anonymous'
 }
 
 /**

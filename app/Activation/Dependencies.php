@@ -51,7 +51,7 @@ class Dependencies
 	{
 		wp_enqueue_style(
 			'simple-favorites-admin', 
-			$this->plugin_dir . '/assets/css/simple-favorites-admin.css', 
+			$this->plugin_dir . '/assets/css/favorites-admin.css', 
 			array(), 
 			$this->plugin_version
 		);

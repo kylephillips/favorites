@@ -68,10 +68,11 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 == Changelog ==
 
 = 2.0.2 =
-* Option added to use a css/html loading indicator in place of an image. Additional filters added for theme use.
-* Shortcode option added to the favorites list "user_favorites" for including the post thumbnail. To include the thumbnail, pass the option include_thumbnails="true". To specify a thumbnail size, pass it in as an option: thumbnail_size="thumbnail".
-* Shortcode option added to the favorites list "user_favorites" for including the post excerpt. To include the excerpt, pass the option include_excerpt="true".
-* Filters added for the list thumbnail and list excerpt. See plugin documentation for names and parameters.
+* Option added to use a css/html loading indicator in place of an image. Additional filters added for theme use
+* Shortcode option added to the favorites list "user_favorites" for including the post thumbnail. To include the thumbnail, pass the option include_thumbnails="true". To specify a thumbnail size, pass it in as an option: thumbnail_size="thumbnail"
+* Shortcode option added to the favorites list "user_favorites" for including the post excerpt. To include the excerpt, pass the option include_excerpt="true"
+* Filters added for the list thumbnail and list excerpt. See plugin documentation for names and parameters
+* Plugin settings redesigned
 
 = 2.0.1 =
 * Javascript callback functions have been deprecated in place of events. Deprecated functions will be removed in a later version. Please see the plugin documentation on using the new events

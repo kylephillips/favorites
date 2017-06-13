@@ -44,7 +44,7 @@ gulp.task('scss', function(){
 });
 
 /**
-* uncompressed styles
+* Uncompressed styles
 */
 gulp.task('uncompressed_styles', function(){
 	return gulp.src(scss)
@@ -79,6 +79,15 @@ gulp.task('frontend_scripts', function(){
 });
 
 /**
+* Front end Scripts - Unminified
+*/
+gulp.task('frontend_scripts_pretty', function(){
+	return gulp.src(js_frontend_source)
+		.pipe(concat('favorites.js'))
+		.pipe(gulp.dest(js_compiled));
+});
+
+/**
 * Watch Task
 */
 gulp.task('watch', function(){
@@ -86,9 +95,10 @@ gulp.task('watch', function(){
 	gulp.watch(scss, ['scss', 'uncompressed_styles']);
 	gulp.watch(js_admin_source, ['admin_scripts']);
 	gulp.watch(js_frontend_source, ['frontend_scripts']);
+	gulp.watch(js_frontend_source, ['frontend_scripts_pretty']);
 });
 
 /**
 * Default
 */
-gulp.task('default', ['scss', 'uncompressed_styles', 'admin_scripts', 'frontend_scripts', 'watch']);
+gulp.task('default', ['scss', 'uncompressed_styles', 'admin_scripts', 'frontend_scripts', 'frontend_scripts_pretty', 'watch']);

@@ -13,3 +13,48 @@
 		}
 	}
 }
+
+.simple-favorites-display-settings {
+	@include wptable;
+	background-color: $white;
+	margin-bottom: 3em;
+	.row {
+		display: table;
+		width: 100%;
+		border-top: 1px solid $border;
+		&:first-child {
+			border: 0;
+		}
+	}
+	.description {
+		display: table-cell;
+		width: 25%;
+		padding: 20px 10px;
+		background-color: $gray-lighter;
+		border-right: 1px solid $border;
+		vertical-align: top;
+		h5 {
+			margin: 0 0 5px 0;
+			font-size: 1.1em;
+			line-height: 1.2;
+			color: $black;
+		}
+		p {
+			margin: 0;
+			font-size: .9em;
+			line-height: 1.3;
+			color: darken($white, 50%);
+		}
+	} // .description
+	.field {
+		padding: 20px 10px;
+		vertical-align: top;
+		label.block {
+			display: block;
+			margin-bottom: 3px;
+		}
+		input[type="text"]{
+			width: 100%;
+		}
+	}
+} // simple-favorites-display-settings

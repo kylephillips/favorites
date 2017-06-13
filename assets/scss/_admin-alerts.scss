@@ -1,0 +1,12 @@
+//
+// Admin Alerts
+// --------------------------------------------------
+.favorites-alert {
+	display: block;
+	background-color: $white;
+	@include wptable;
+	margin: 1em 0;
+	border-left: 4px solid $blue;
+	padding-left: 1em;
+	font-size: 1.1em;
+}

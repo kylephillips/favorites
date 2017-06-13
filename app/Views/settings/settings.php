@@ -9,14 +9,12 @@
 			<?php _e('Users', 'favorites'); ?>
 		</a>
 		<a class="nav-tab <?php if ( $tab == 'display' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=simple-favorites&tab=display">
-			<?php _e('Display', 'favorites'); ?>
+			<?php _e('Display & Post Types', 'favorites'); ?>
 		</a>
 	</h2>
 
 	<form method="post" enctype="multipart/form-data" action="options.php">
-		<table class="form-table">
-			<?php include(Favorites\Helpers::view('settings/settings-' . $tab)); ?>
-		</table>
+		<?php include(Favorites\Helpers::view('settings/settings-' . $tab)); ?>
 		<?php submit_button(); ?>
 	</form>
 </div><!-- .wrap -->

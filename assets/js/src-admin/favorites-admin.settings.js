@@ -12,28 +12,62 @@ FavoritesAdmin.Settings = function()
 	{
 		$(document).ready(function(){
 			plugin.toggleAnonymousSave();
-			plugin.togglePostTypeOptions();
-			plugin.toggleLoadingIndicators();
 			plugin.toggleLoadingTypeLoad();
-			$.each($(FavoritesAdmin.selectors.dependencyItem), function(){
-				plugin.toggleDependencyContent($(this));
+			$.each($('[data-favorites-dependency-checkbox]'), function(){
+				var item = $(this).parents('.field');
+				plugin.toggleDependencyContent(item);
 			});
 		});
-		$(document).on('change', FavoritesAdmin.selectors.dependencyCheckbox, function(){
-			var item = $(this).parents(FavoritesAdmin.selectors.dependencyItem);
+		$(document).on('change', '[data-favorites-dependency-checkbox]', function(){
+			var item = $(this).parents('.field');
 			plugin.toggleDependencyContent(item);
 		});
-		$(document).on('change', FavoritesAdmin.selectors.anonymousCheckbox, function(){
+
+		// User settings
+		$(document).on('change', '*[data-favorites-anonymous-checkbox]', function(){
 			plugin.toggleAnonymousSave();
 		});
-		$(document).on('change', '*[data-sf-posttype]', function(){
-			plugin.togglePostTypeOptions();
+
+		// Post type settings
+		$(document).on('change', '*[data-favorites-posttype-checkbox]', function(){
+			plugin.togglePostTypeOptionsButtons();
 		});
-		$(document).on('change', '.simplefavorites-display-loading', function(){
-			plugin.toggleLoadingIndicators();
+		$(document).on('click', '[data-favorites-toggle-post-type-settings]', function(e){
+			e.preventDefault();
+			plugin.togglePostTypeOptions($(this));
 		});
+
+		// Other Display Settings
 		$(document).on('change', '[data-favorites-spinner-type]', function(){
 			plugin.toggleLoadingType($(this));
+		});
+	}
+
+	/**
+	* Toggle Post Type Options under Display
+	*/
+	plugin.togglePostTypeOptions = function(button)
+	{
+		$(button).parents('.post-type-row').find('.post-type-settings').toggle();
+		$(button).toggleClass('button-primary');
+	}
+
+	/**
+	* Toggle the "Options" button under post type rows
+	*/
+	plugin.togglePostTypeOptionsButtons = function()
+	{
+		var postTypeCheckboxes = $('[data-favorites-posttype-checkbox]');
+		$.each(postTypeCheckboxes, function(){
+			var checked = ( $(this).is(':checked') ) ? true : false;
+			var row = $(this).parents('.post-type-row');
+			var button = $(row).find('[data-favorites-toggle-post-type-settings]');
+			if ( checked ){
+				$(button).show();
+				return;
+			}
+			$(button).hide();
+			$(row).find('.post-type-settings').hide();
 		});
 	}
 
@@ -42,11 +76,11 @@ FavoritesAdmin.Settings = function()
 	*/
 	plugin.toggleDependencyContent = function(item)
 	{
-		if ( $(item).find(FavoritesAdmin.selectors.dependencyCheckbox).is(':checked') ){
-			$(item).find(FavoritesAdmin.selectors.dependencyContent).hide();
+		if ( $(item).find('[data-favorites-dependency-checkbox]').is(':checked') ){
+			$(item).find('[data-favorites-dependency-content]').hide();
 			return;
 		}
-		$(item).find(FavoritesAdmin.selectors.dependencyContent).show();
+		$(item).find('[data-favorites-dependency-content]').show();
 	}
 
 	/**
@@ -54,39 +88,11 @@ FavoritesAdmin.Settings = function()
 	*/
 	plugin.toggleAnonymousSave = function()
 	{
-		if ( $(FavoritesAdmin.selectors.anonymousCheckbox).is(':checked') ){
-			$(FavoritesAdmin.selectors.anonymousCount).show();
+		if ( $('[data-favorites-anonymous-checkbox]').is(':checked') ){
+			$('[data-favorites-anonymous-count]').show();
 			return;
 		}
-		$(FavoritesAdmin.selectors.anonymousCount).hide().find('input[type="checkbox"]').attr('checked', false);
-	}
-
-	/**
-	* Toggle Post Type Options under Display
-	*/
-	plugin.togglePostTypeOptions = function()
-	{
-		var posttypes = $('*[data-sf-posttype]');
-		$.each(posttypes, function(i, v){
-			var selections = $(this).parents('.simple-favorites-posttype').find('.simple-favorites-posttype-locations');
-			if ( $(this).is(':checked') ){
-				$(selections).show();
-			} else {
-				$(selections).hide();
-			}
-		});
-	}
-
-	/**
-	* Toggle Loading Indicators
-	*/
-	plugin.toggleLoadingIndicators = function()
-	{
-		if ( $('.simplefavorites-display-loading').is(':checked') ){
-			$('.simplefavorites-loading-fields').show();
-			return;
-		}
-		$('.simplefavorites-loading-fields').hide();
+		$('[data-favorites-anonymous-count]').hide().find('input[type="checkbox"]').attr('checked', false);
 	}
 
 	/**
