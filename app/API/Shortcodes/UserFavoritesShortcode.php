@@ -34,7 +34,7 @@ class UserFavoritesShortcode
 			'post_types' => '',
 			'include_buttons' => 'false',
 			'include_thumbnails' => 'false',
-			'thumbnail_size' => 'small',
+			'thumbnail_size' => 'thumbnail',
 			'include_excerpts' => 'false'
 		), $options);
 	}
