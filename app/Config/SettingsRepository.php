@@ -164,7 +164,7 @@ class SettingsRepository
 	public function loadingImage($state = 'inactive')
 	{
 		$option = get_option('simplefavorites_display');
-		if ( isset($option['loadingindicator']['include_html']) && $option['loadingindicator']['include_html'] ) return $this->loadingHtml();
+		if ( isset($option['loadingindicator']['include_html']) && $option['loadingindicator']['include_html'] ) return $this->loadingHtml($state);
 		if ( !isset($option['loadingindicator']['include_image']) || $option['loadingindicator']['include_image'] !== 'true' ) return false;
 		$image_url = Helpers::plugin_url() . '/assets/images/loading.gif';
 		
