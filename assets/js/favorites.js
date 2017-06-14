@@ -74,7 +74,7 @@ Favorites.Formatter = function()
 	*/
 	plugin.addFavoriteCount = function(html, count)
 	{
-		if ( Favorites.jsData.include_count !== '1' ) return html;
+		if ( !Favorites.jsData.button_options.include_count ) return html;
 		if ( count <= 0 ) count = 0;
 		html += ' <span class="simplefavorite-button-count">' + count + '</span>';
 		return html;
@@ -90,6 +90,82 @@ Favorites.Formatter = function()
 			var count_display = $(button).find('.simplefavorite-button-count');
 			var new_count = $(count_display).text() - 1;
 			$(button).attr('data-favoritecount', new_count);
+		}
+	}
+}
+/**
+* Builds the favorite button html
+*/
+var Favorites = Favorites || {};
+
+Favorites.ButtonOptionsFormatter = function()
+{
+	var plugin = this;
+	var $ = jQuery;
+
+	plugin.options = Favorites.jsData.button_options;
+	plugin.formatter = new Favorites.Formatter;
+
+	plugin.format = function(button, isFavorite)
+	{
+		if ( plugin.options.custom_colors ) plugin.colors(button, isFavorite);
+		plugin.html(button, isFavorite);
+	}
+
+	plugin.html = function(button, isFavorite)
+	{
+		var count = $(button).attr('data-favoritecount');
+		var options = plugin.options.button_type;
+		var html = '';
+
+		if ( plugin.options.button_type === 'custom' ){
+			if ( isFavorite ) $(button).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, count));
+			if ( !isFavorite ) $(button).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, count));
+			return;
+		}
+		if ( isFavorite ){
+			html += '<i class="' + options.icon_class + '"></i> ';
+			html += options.state_active;
+			$(button).html(plugin.formatter.addFavoriteCount(html, count));
+			return;
+		}
+		html += '<i class="' + options.icon_class + '"></i> ';
+		html += options.state_default;
+		$(button).html(plugin.formatter.addFavoriteCount(html, count));
+		plugin.applyIconColor(button, isFavorite);
+	}
+
+	plugin.colors = function(button, isFavorite)
+	{
+		if ( isFavorite ){
+			var options = plugin.options.active;
+			if ( options.background_active ) $(button).css('background-color', options.background_active);
+			if ( options.border_active ) $(button).css('border-color', options.border_active);
+			if ( options.text_active ) $(button).css('color', options.text_active);
+			return;
+		}
+		var options = plugin.options.default;
+		if ( options.background_default ) $(button).css('background-color', options.background_default);
+		if ( options.border_default ) $(button).css('border-color', options.border_default);
+		if ( options.text_default ) $(button).css('color', options.text_default);
+		plugin.boxShadow(button);
+	}
+
+	plugin.boxShadow = function(button)
+	{
+		if ( plugin.options.box_shadow ) return;
+		$(button).css('box-shadow', 'none');
+		$(button).css('-webkit-box-shadow', 'none');
+		$(button).css('-moz-box-shadow', 'none');
+	}
+
+	plugin.applyIconColor = function(button, isFavorite)
+	{
+		if ( isFavorite && plugin.options.active.icon_active ) {
+			$(button).find('i').css('color', plugin.options.active.icon_active);
+		}
+		if ( !isFavorite && plugin.options.default.icon_default ) {
+			$(button).find('i').css('color', plugin.options.default.icon_default);
 		}
 	}
 }
@@ -579,6 +655,7 @@ Favorites.ButtonUpdater = function()
 
 	plugin.utilities = new Favorites.Utilities;
 	plugin.formatter = new Favorites.Formatter;
+	plugin.buttonFormatter = new Favorites.ButtonOptionsFormatter;
 
 	plugin.activeButton;
 	plugin.data = {};
@@ -606,18 +683,15 @@ Favorites.ButtonUpdater = function()
 			plugin.setButtonData();
 
 			if ( plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
-				plugin.data.favorite_count = Favorites.userFavorites[plugin.data.site_index].posts[plugin.data.postid].total;
-				var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, plugin.data.favorite_count);
+				plugin.buttonFormatter.format($(plugin.activeButton), true);
 				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
 				$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
-				$(plugin.activeButton).html(html);
 				continue;
 			}
 
-			var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, plugin.data.favorite_count);
+			plugin.buttonFormatter.format($(plugin.activeButton), false);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.active);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
-			$(plugin.activeButton).html(html);
 		}
 	}
 
@@ -806,7 +880,8 @@ Favorites.jsData = {
 	loading_image_active : favorites_data.loading_image_active, // Loading spinner url in active button
 	loading_image : favorites_data.loading_image, // Loading spinner url in inactive button
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
-	authentication_modal_content : favorites_data.authentication_modal_content // Content to display in authentication gate modal
+	authentication_modal_content : favorites_data.authentication_modal_content, // Content to display in authentication gate modal
+	button_options : favorites_data.button_options // Custom button options
 }
 
 /**

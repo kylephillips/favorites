@@ -57,7 +57,8 @@ Favorites.jsData = {
 	loading_image_active : favorites_data.loading_image_active, // Loading spinner url in active button
 	loading_image : favorites_data.loading_image, // Loading spinner url in inactive button
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
-	authentication_modal_content : favorites_data.authentication_modal_content // Content to display in authentication gate modal
+	authentication_modal_content : favorites_data.authentication_modal_content, // Content to display in authentication gate modal
+	button_options : favorites_data.button_options // Custom button options
 }
 
 /**

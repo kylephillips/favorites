@@ -114,6 +114,9 @@ class FavoriteButton
 			}
 			return $html;
 		}
+
+		if ( !$this->button_options['box_shadow'] ) $html .= 'box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none;';
+
 		if ( $this->favorited ) {
 			if ( $active_colors['background_active'] ) $html .= 'background-color:' . $active_colors['background_active'] . ';';
 			if ( $active_colors['border_active'] ) $html .= 'border-color:' . $active_colors['border_active'] . ';';

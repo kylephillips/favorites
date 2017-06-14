@@ -288,38 +288,38 @@ class SettingsRepository
 		$buttons = array(
 			'favorite' => array(
 				'label' => __('Favorite', 'favorites'),
-				'icon' => '<i class="sf-icon-favorite"></i>',
-				'icon_class' => 'sf-icon-favorite',
-				'state_default' => __('Favorite', 'favorites'),
-				'state_active' => __('Favorited', 'favorites')
+				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-favorite"></i>', 'favorite'),
+				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-favorite', 'favorite'),
+				'state_default' => apply_filters('favorites/button/text/default', __('Favorite', 'favorites'), 'favorite'),
+				'state_active' => apply_filters('favorites/button/text/active', __('Favorited', 'favorites'), 'favorite')
 			),
 			'like' => array(
 				'label' => __('Like', 'favorites'),
-				'icon' => '<i class="sf-icon-like"></i>',
-				'icon_class' => 'sf-icon-like',
-				'state_default' => __('Like', 'favorites'),
-				'state_active' => __('Liked', 'favorites')
+				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-like"></i>', 'like'),
+				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-like', 'like'),
+				'state_default' => apply_filters('favorites/button/text/default', __('Like', 'favorites'), 'like'),
+				'state_active' => apply_filters('favorites/button/text/active', __('Liked', 'favorites'), 'like')
 			),
 			'love' => array(
 				'label' => __('Love', 'favorites'),
-				'icon' => '<i class="sf-icon-love"></i>',
-				'icon_class' => 'sf-icon-love',
-				'state_default' => __('Love', 'favorites'),
-				'state_active' => __('Loved', 'favorites')
+				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-love"></i>', 'love'),
+				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-love', 'love'),
+				'state_default' => apply_filters('favorites/button/text/default', __('Love', 'favorites'), 'love'),
+				'state_active' => apply_filters('favorites/button/text/active', __('Loved', 'favorites'), 'love')
 			),
 			'bookmark' => array(
 				'label' => __('Bookmark', 'favorites'),
-				'icon' => '<i class="sf-icon-bookmark"></i>',
-				'icon_class' => 'sf-icon-bookmark',
-				'state_default' => __('Bookmarked', 'favorites'),
-				'state_active' => __('Bookmarked', 'favorites')
+				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-bookmark"></i>', 'bookmark'),
+				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-bookmark', 'bookmark'),
+				'state_default' => apply_filters('favorites/button/text/default', __('Bookmark', 'favorites'), 'bookmark'),
+				'state_active' => apply_filters('favorites/button/text/active', __('Bookmarked', 'favorites'), 'bookmark')
 			),
 			'wishlist' => array(
 				'label' => __('Wishlist', 'favorites'),
-				'icon' => '<i class="sf-icon-wishlist"></i>',
-				'icon_class' => 'sf-icon-wishlist',
-				'state_default' => __('Add to Wishlist', 'favorites'),
-				'state_active' => __('Added to Wishlist', 'favorites')
+				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-wishlist"></i>', 'wishlist'),
+				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-wishlist', 'wishlist'),
+				'state_default' => apply_filters('favorites/button/text/default', __('Add to Wishlist', 'favorites'), 'wishlist'),
+				'state_active' => apply_filters('favorites/button/text/active', __('Added to Wishlist', 'favorites'), 'wishlist')
 			)
 		);
 		if ( $button == 'all' ) return $buttons;

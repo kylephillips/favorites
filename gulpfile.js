@@ -20,6 +20,7 @@ var js_admin_source = [
 var js_frontend_source = [
 	'assets/js/src/favorites.utilities.js',
 	'assets/js/src/favorites.formatter.js',
+	'assets/js/src/favorites.button-options-formatter.js',
 	'assets/js/src/favorites.noncegenerator.js',
 	'assets/js/src/favorites.user-favorites.js',
 	'assets/js/src/favorites.clear.js',

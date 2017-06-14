@@ -10,6 +10,7 @@ Favorites.ButtonUpdater = function()
 
 	plugin.utilities = new Favorites.Utilities;
 	plugin.formatter = new Favorites.Formatter;
+	plugin.buttonFormatter = new Favorites.ButtonOptionsFormatter;
 
 	plugin.activeButton;
 	plugin.data = {};
@@ -37,18 +38,15 @@ Favorites.ButtonUpdater = function()
 			plugin.setButtonData();
 
 			if ( plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
-				plugin.data.favorite_count = Favorites.userFavorites[plugin.data.site_index].posts[plugin.data.postid].total;
-				var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, plugin.data.favorite_count);
+				plugin.buttonFormatter.format($(plugin.activeButton), true);
 				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
 				$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
-				$(plugin.activeButton).html(html);
 				continue;
 			}
 
-			var html = plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, plugin.data.favorite_count);
+			plugin.buttonFormatter.format($(plugin.activeButton), false);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.active);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
-			$(plugin.activeButton).html(html);
 		}
 	}
 
