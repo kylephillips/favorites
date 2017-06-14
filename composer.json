@@ -1,13 +1,13 @@
 {
-	"name": "kylephillips/wp-favorites",
+	"name": "kylephillips/favorites",
 	"description": "Favorites for WordPress",
 	"keywords": ["wordpress", "plugin", "favorite", "bookmark"],
-	"homepage": "http://favoriteposts.com",
+	"homepage": "https://favoriteposts.com",
 	"license": "GPL",
 	"authors": [
 		{
 			"name": "Kyle Phillips",
-			"email": "support@nestedpages.com",
+			"email": "kylephillipsdesign@gmail.com",
 			"homepage": "https://github.com/kylephillips"
 		}
 	],
