@@ -141,8 +141,8 @@ $button_type_selected = $this->settings_repo->getButtonType();
 	</div><!-- .row -->
 	<div class="row" data-favorites-custom-button-option>
 		<div class="description">
-			<h5><?php _e('Button Text: Unfavorited', 'favorites'); ?></h5>
-			<p><?php _e('The button text, in an unfavorited state.', 'favorites'); ?></p>
+			<h5><?php _e('Button Markup: Unfavorited', 'favorites'); ?></h5>
+			<p><?php _e('The button inner html, in an unfavorited state.', 'favorites'); ?></p>
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('Text/HTML', 'favorites'); ?></label>
@@ -151,8 +151,8 @@ $button_type_selected = $this->settings_repo->getButtonType();
 	</div><!-- .row -->
 	<div class="row" data-favorites-custom-button-option>
 		<div class="description">
-			<h5><?php _e('Button Text: Favorited', 'favorites'); ?></h5>
-			<p><?php _e('The button text, in a favorited state.', 'favorites'); ?></p>
+			<h5><?php _e('Button Markup: Favorited', 'favorites'); ?></h5>
+			<p><?php _e('The button inner html, in a favorited state.', 'favorites'); ?></p>
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('Text/HTML', 'favorites'); ?></label>
