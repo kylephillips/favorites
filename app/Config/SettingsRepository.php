@@ -317,8 +317,8 @@ class SettingsRepository
 				'state_active' => __('Added to Wishlist', 'favorites')
 			)
 		);
-		if ( $button = 'all' ) return $buttons;
-		if ( isset($buttons[$button]) ) return $button;
+		if ( $button == 'all' ) return $buttons;
+		if ( isset($buttons[$button]) ) return $buttons[$button];
 		return $buttons['favorite'];
 	}
 
@@ -362,6 +362,39 @@ class SettingsRepository
 			)
 		);
 		return $options[$group];
+	}
+
+	/**
+	* Format colors
+	*/
+	public function formattedButtonOptions()
+	{
+		$option = get_option('simplefavorites_display');
+		$option = $option['button_colors'];
+
+		// Button Type
+		$button_type = $this->getButtonType();
+		if ( $button_type == 'custom' ) {
+			$values['button_type'] = 'custom';
+		} else {
+			$values['button_type'] = $this->presetButton($button_type);
+		}
+
+		// Use Custom Colors?
+		$values['custom_colors'] = $this->buttonColors('custom');
+
+		// Box shadow
+		$values['box_shadow'] = ( isset($option['box_shadow']) && $option['box_shadow'] == 'true' ) ? true : false;
+
+		// Default colors
+		foreach( $this->colorOptions('default') as $key => $label ){
+			$values['default'][$key] = ( isset($option[$key]) && $option[$key] !== '' ) ? $option[$key] : false;
+		}
+		// Active colors
+		foreach( $this->colorOptions('active') as $key => $label ){
+			$values['active'][$key] = ( isset($option[$key]) && $option[$key] !== '' ) ? $option[$key] : false;
+		}
+		return $values;
 	}
 
 
