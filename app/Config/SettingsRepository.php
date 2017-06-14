@@ -356,7 +356,7 @@ class SettingsRepository
 			'active' => array(
 				'background_active' => __('Background Color', 'favorites'),
 				'border_active' => __('Border Color', 'favorites'),
-				'text_activet' => __('Text Color', 'favorites'),
+				'text_active' => __('Text Color', 'favorites'),
 			)
 		);
 		return $options[$group];
