@@ -335,6 +335,7 @@ class SettingsRepository
 	public function buttonColors($color = 'background_default')
 	{
 		$option = get_option('simplefavorites_display');
+		if ( !isset($option['button_colors']) ) $option['button_colors'] = array();
 		$option = $option['button_colors'];
 
 		if ( $color == 'custom' )
@@ -375,6 +376,7 @@ class SettingsRepository
 	public function formattedButtonOptions()
 	{
 		$option = get_option('simplefavorites_display');
+		if ( !isset($option['button_colors']) ) $option['button_colors'] = array();
 		$option = $option['button_colors'];
 
 		// Button Type
