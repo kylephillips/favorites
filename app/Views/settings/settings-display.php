@@ -61,6 +61,18 @@
 <div class="simple-favorites-display-settings">
 	<div class="row">
 		<div class="description">
+			<h5><?php _e('Button Type', 'favorites'); ?></h5>
+			<p><?php _e('Use a predefined button or add your own markup.', 'favorites'); ?></p>
+		</div>
+		<div class="field">
+			<label class="block"><?php _e('Button Type', 'favorites'); ?></label>
+			<select name="simplefavorites_display[buttontype]">
+				<option value="custom"><?php _e('Custom Markup', 'favorites'); ?></option>
+			</select>
+		</div>
+	</div><!-- .row -->
+	<div class="row">
+		<div class="description">
 			<h5><?php _e('Button Text: Unfavorited', 'favorites'); ?></h5>
 			<p><?php _e('The button text, in an unfavorited state.', 'favorites'); ?></p>
 		</div>

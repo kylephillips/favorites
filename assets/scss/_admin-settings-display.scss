@@ -53,7 +53,8 @@
 			display: block;
 			margin-bottom: 3px;
 		}
-		input[type="text"]{
+		input[type="text"],
+		select {
 			width: 100%;
 		}
 		.authentication-modal-content {
