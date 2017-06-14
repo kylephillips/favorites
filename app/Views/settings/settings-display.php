@@ -85,7 +85,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 				<h4><?php _e('Preview', 'favorites'); ?></h4>
 				<?php
 				foreach ( $preset_buttons as $button_name => $attrs ){
-					$out = '<button class="simplefavorites-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . '</button>';
+					$out = '<button class="simplefavorite-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . '</button>';
 					echo $out;
 				}
 				?>
@@ -98,7 +98,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 			<p><?php _e('If colors are not specified, theme colors will apply. Note: theme styles will effect the appearance of the favorites button. The button is displayed in a button element, with a css class of "simplefavorites-button".', 'favorites'); ?></p>
 		</div>
 		<div class="field">
-			<label class="block"><input type="checkbox" name="simplefavorites_display[button_colors][custom]" value="true" data-favorites-custom-colors-checkbox <?php if ( $this->settings_repo->buttonColors('custom') ) echo 'checked'; ?> /><?php _e('Specify custom colors.', 'favorites'); ?></label>
+			<label class="block"><input type="checkbox" name="simplefavorites_display[button_colors][custom]" value="true" data-favorites-custom-colors-checkbox <?php if ( $this->settings_repo->buttonColors('custom') ) echo 'checked'; ?> /><?php _e('Specify custom colors', 'favorites'); ?></label>
 			<div class="color-options" data-favorites-custom-colors-options>
 				<div class="option-group">
 					<h4><?php _e('Default Button State (Unfavorited)', 'favorites'); ?></h4>

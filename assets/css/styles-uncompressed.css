@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.simplefavorites-button.preset {
+.simplefavorite-button.preset {
   display: inline-block;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -27,17 +27,17 @@
   transition: all 200ms ease;
 }
 
-.simplefavorites-button.preset:active, .simplefavorites-button.preset:focus {
+.simplefavorite-button.preset:active, .simplefavorite-button.preset:focus {
   outline: none;
 }
 
-.simplefavorites-button.preset i {
+.simplefavorite-button.preset i {
   position: absolute;
   font-size: 1.3em;
   left: .3em;
 }
 
-.simplefavorites-button.preset:hover {
+.simplefavorite-button.preset:hover {
   background-color: #333;
   border-color: #333;
   color: #ffffff;
@@ -46,10 +46,11 @@
   transition: all 200ms ease;
 }
 
-.simplefavorites-button.preset.active {
+.simplefavorite-button.preset.active {
   background-color: #333;
   color: #ffffff;
   border-color: #333;
+  opacity: 1;
 }
 
 .simplefavorites-loading {

@@ -23,6 +23,23 @@ class FavoriteButton
 	private $user;
 
 	/**
+	* Favorite Count Object
+	*/
+	private $count;
+
+	/**
+	* Button Options
+	* @var array
+	*/
+	private $button_options;
+
+	/**
+	* Favorited?
+	* @var bool
+	*/
+	private $favorited;
+
+	/**
 	* Settings Repository
 	*/
 	private $settings_repo;
@@ -31,6 +48,7 @@ class FavoriteButton
 	{
 		$this->user = new UserRepository;
 		$this->settings_repo = new SettingsRepository;
+		$this->count = new FavoriteCount;
 		$this->post_id = $post_id;
 		$this->site_id = $site_id;
 	}
@@ -45,32 +63,81 @@ class FavoriteButton
 		if ( !$this->settings_repo->cacheEnabled() ) $loading = false;
 		if ( !$this->user->getsButton() ) return false;
 
-		$count = new FavoriteCount();
-		$count = $count->getCount($this->post_id, $this->site_id);
+		$this->button_options = $this->settings_repo->formattedButtonOptions();
+		$this->favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
+		$count = $this->count->getCount($this->post_id, $this->site_id);
+		$html = $this->html();
 
-		$favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
-
-		$text = ( $favorited )
-			? html_entity_decode($this->settings_repo->buttonTextFavorited())
-			: html_entity_decode($this->settings_repo->buttonText());
-
-		$out = '<button class="simplefavorite-button';
-
-		// Button Classes
-		if ( $favorited ) $out .= ' active';
-		if ( $this->settings_repo->includeCountInButton() ) $out .= ' has-count';
-		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading ) $out .= ' loading';
-		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '">';
+		$out = '<button class="' . $this->cssClasses($loading) . '"';		
+		
+		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
 
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading){
 			$out .= $this->settings_repo->loadingText();
-			$spinner = ($favorited) ? $this->settings_repo->loadingImage('active') : $this->settings_repo->loadingImage();
+			$spinner = ( $this->favorited ) ? $this->settings_repo->loadingImage('active') : $this->settings_repo->loadingImage();
 			if ( $spinner ) $out .= $spinner;
 		} else {
-			$out .= $text;
-			if ( $this->settings_repo->includeCountInButton() ) $out .= '<span class="simplefavorite-button-count">' . $count . '</span>';
+			$out .= $html;
+			if ( $this->button_options['include_count'] ) $out .= '<span class="simplefavorite-button-count">' . $this->count->getCount($this->post_id, $this->site_id) . '</span>';
 		}
 		$out .= '</button>';
 		return $out;
+	}
+
+	/**
+	* Add CSS Classes
+	*/
+	private function cssClasses($loading)
+	{
+		$classes = 'simplefavorite-button';
+		if ( $this->favorited ) $classes .= ' active';
+		if ( $this->button_options['include_count'] ) $classes .= ' has-count';
+		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading ) $classes .= ' loading';
+		if ( is_array($this->button_options['button_type']) ) $classes .= ' preset';
+		return $classes;
+	}
+
+	/**
+	* Add Style Attributes
+	*/
+	private function styleAttributes($icon = false)
+	{
+		if ( !$this->button_options['custom_colors'] ) return null;
+		$html = '';
+		$default_colors = $this->button_options['default'];
+		$active_colors = $this->button_options['active'];
+		if ( $icon ){
+			if ( $this->favorited ){
+				if ( $active_colors['icon_active'] ) $html .= 'color:' . $active_colors['icon_active'] . ';';
+			} else {
+				if ( $default_colors['icon_default'] ) $html .= 'color:' . $default_colors['icon_default'] . ';';
+			}
+			return $html;
+		}
+		if ( $this->favorited ) {
+			if ( $active_colors['background_active'] ) $html .= 'background-color:' . $active_colors['background_active'] . ';';
+			if ( $active_colors['border_active'] ) $html .= 'border-color:' . $active_colors['border_active'] . ';';
+			if ( $active_colors['text_active'] ) $html .= 'color:' . $active_colors['text_active'] . ';';
+			return $html;
+		}
+		if ( $default_colors['background_default'] ) $html .= 'background-color:' . $default_colors['background_default'] . ';';
+		if ( $default_colors['border_default'] ) $html .= 'border-color:' . $default_colors['border_default'] . ';';
+		if ( $default_colors['text_default'] ) $html .= 'color:' . $default_colors['text_default'] . ';';
+		return $html;
+	}
+
+	/**
+	* Build the HTML for the button
+	*/
+	private function html()
+	{
+		$html = '';
+		if ( is_array($this->button_options['button_type']) ) {
+			$html .= '<i class="' . $this->button_options['button_type']['icon_class'] . '" style="' . $this->styleAttributes(true) . '"></i>';
+			$html .= ( $this->favorited ) ? $this->button_options['button_type']['state_active'] : $this->button_options['button_type']['state_default'];
+		} else {
+			$html .= ( $this->favorited ) ? html_entity_decode($this->settings_repo->buttonTextFavorited()) : html_entity_decode($this->settings_repo->buttonText());
+		}
+		return $html;
 	}
 }

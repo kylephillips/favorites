@@ -11,7 +11,7 @@
 }
 
 // Preset Buttons
-.simplefavorites-button.preset {
+.simplefavorite-button.preset {
 	display: inline-block;
 	-webkit-appearance: none;
 	appearance: none;
@@ -43,6 +43,7 @@
 		background-color: $black;
 		color: $white;
 		border-color: $black;
+		opacity: 1;
 	}
 } // .preset
 

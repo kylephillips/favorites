@@ -289,30 +289,35 @@ class SettingsRepository
 			'favorite' => array(
 				'label' => __('Favorite', 'favorites'),
 				'icon' => '<i class="sf-icon-favorite"></i>',
+				'icon_class' => 'sf-icon-favorite',
 				'state_default' => __('Favorite', 'favorites'),
 				'state_active' => __('Favorited', 'favorites')
 			),
 			'like' => array(
 				'label' => __('Like', 'favorites'),
 				'icon' => '<i class="sf-icon-like"></i>',
+				'icon_class' => 'sf-icon-like',
 				'state_default' => __('Like', 'favorites'),
 				'state_active' => __('Liked', 'favorites')
 			),
 			'love' => array(
 				'label' => __('Love', 'favorites'),
 				'icon' => '<i class="sf-icon-love"></i>',
+				'icon_class' => 'sf-icon-love',
 				'state_default' => __('Love', 'favorites'),
 				'state_active' => __('Loved', 'favorites')
 			),
 			'bookmark' => array(
 				'label' => __('Bookmark', 'favorites'),
 				'icon' => '<i class="sf-icon-bookmark"></i>',
+				'icon_class' => 'sf-icon-bookmark',
 				'state_default' => __('Bookmarked', 'favorites'),
 				'state_active' => __('Bookmarked', 'favorites')
 			),
 			'wishlist' => array(
 				'label' => __('Wishlist', 'favorites'),
 				'icon' => '<i class="sf-icon-wishlist"></i>',
+				'icon_class' => 'sf-icon-wishlist',
 				'state_default' => __('Add to Wishlist', 'favorites'),
 				'state_active' => __('Added to Wishlist', 'favorites')
 			)
@@ -385,6 +390,9 @@ class SettingsRepository
 
 		// Box shadow
 		$values['box_shadow'] = ( isset($option['box_shadow']) && $option['box_shadow'] == 'true' ) ? true : false;
+
+		// Include the count?
+		$values['include_count'] = $this->includeCountInButton();
 
 		// Default colors
 		foreach( $this->colorOptions('default') as $key => $label ){
