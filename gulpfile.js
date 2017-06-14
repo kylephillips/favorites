@@ -12,6 +12,7 @@ var scss = 'assets/scss/**/*';
 var css = 'assets/css/';
 
 var js_admin_source = [
+	'assets/js/src/lib/attrchange.js',
 	'assets/js/src-admin/favorites-admin.settings.js',
 	'assets/js/src-admin/favorites-admin.factory.js'
 ];

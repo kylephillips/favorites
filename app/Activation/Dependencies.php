@@ -49,6 +49,7 @@ class Dependencies
 	*/
 	public function adminStyles()
 	{
+		wp_enqueue_style('wp-color-picker');
 		wp_enqueue_style(
 			'simple-favorites-admin', 
 			$this->plugin_dir . '/assets/css/favorites-admin.css', 
@@ -65,7 +66,7 @@ class Dependencies
 		wp_enqueue_script(
 			'simple-favorites-admin', 
 			$this->plugin_dir . '/assets/js/favorites-admin.min.js', 
-			array('jquery'), 
+			array('jquery', 'wp-color-picker'), 
 			$this->plugin_version
 		);
 	}

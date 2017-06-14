@@ -321,4 +321,46 @@ class SettingsRepository
 		if ( isset($buttons[$button]) ) return $button;
 		return $buttons['favorite'];
 	}
+
+	/**
+	* Custom Colors
+	* @return bool if no custom colors
+	* @return array if custom colors
+	*/
+	public function buttonColors($color = 'background_default')
+	{
+		$option = get_option('simplefavorites_display');
+		$option = $option['button_colors'];
+
+		if ( $color == 'custom' )
+			return ( !isset($option['custom']) || $option['custom'] !== "true" ) ? false : true;
+
+		if ( $color == 'box_shadow' )
+			return ( !isset($option['box_shadow']) || $option['box_shadow'] !== "true" ) ? false : true;
+
+		return ( isset($option[$color]) ) ? $option[$color] : false;
+	}
+
+	/**
+	* Color Options
+	* @return array
+	*/
+	public function colorOptions($group = 'default')
+	{
+		$options = array(
+			'default' => array(
+				'background_default' => __('Background Color', 'favorites'),
+				'border_default' => __('Border Color', 'favorites'),
+				'text_default' => __('Text Color', 'favorites'),
+			),
+			'active' => array(
+				'background_active' => __('Background Color', 'favorites'),
+				'border_active' => __('Border Color', 'favorites'),
+				'text_activet' => __('Text Color', 'favorites'),
+			)
+		);
+		return $options[$group];
+	}
+
+
 }

@@ -92,6 +92,53 @@ $button_type_selected = $this->settings_repo->getButtonType();
 			</div><!-- .favorite-button-previews -->
 		</div>
 	</div><!-- .row -->
+	<div class="row">
+		<div class="description">
+			<h5><?php _e('Color Options', 'favorites'); ?></h5>
+			<p><?php _e('If colors are not specified, theme colors will apply.', 'favorites'); ?></p>
+		</div>
+		<div class="field">
+			<label class="block"><input type="checkbox" name="simplefavorites_display[button_colors][custom]" value="true" data-favorites-custom-colors-checkbox <?php if ( $this->settings_repo->buttonColors('custom') ) echo 'checked'; ?> /><?php _e('Specify custom colors.', 'favorites'); ?></label>
+			<div class="color-options" data-favorites-custom-colors-options>
+				<div class="option-group">
+					<h4><?php _e('Default Button State (Unfavorited)', 'favorites'); ?></h4>
+					<?php
+					$default_options = $this->settings_repo->colorOptions('default');
+					foreach ( $default_options as $option => $label ){
+						$out = '<div class="option">';
+						$out .= '<label>' . $label . '</label>';
+						$out .= '<input type="text" data-favorites-color-picker="' . $option . '" name="simplefavorites_display[button_colors][' . $option . ']"';
+						$out .= ' value="';
+						if ( $this->settings_repo->buttonColors($option) ) $out .= $this->settings_repo->buttonColors($option);
+						$out .= '" />';
+						$out .= '</div><!-- .option -->';
+						echo $out;
+					}
+					?>
+				</div><!-- .option-group -->
+				<div class="option-group">
+					<h4><?php _e('Active Button State (Favorited)', 'favorites'); ?></h4>
+					<?php
+					$default_options = $this->settings_repo->colorOptions('active');
+					foreach ( $default_options as $option => $label ){
+						$out = '<div class="option">';
+						$out .= '<label>' . $label . '</label>';
+						$out .= '<input type="text" data-favorites-color-picker="' . $option . '" name="simplefavorites_display[button_colors][' . $option . ']"';
+						if ( $this->settings_repo->buttonColors($option) ) $out .= ' value="' . $this->settings_repo->buttonColors($option) . '"';
+						$out .= '" />';
+						$out .= '</div><!-- .option -->';
+						echo $out;
+					}
+					?>
+				</div><!-- .option-group -->
+				<div class="option-group">
+					<div class="option box-shadow">
+						<label><input type="checkbox" name="simplefavorites_display[button_colors][box_shadow]" value="true" <?php if ( $this->settings_repo->buttonColors('box_shadow') ) echo 'checked'; ?> data-favorites-button-shadow /><?php _e('Include button shadow', 'favorites'); ?>
+					</div>
+				</div>
+			</div><!-- .color-options -->
+		</div>
+	</div><!-- .row -->
 	<div class="row" data-favorites-custom-button-option>
 		<div class="description">
 			<h5><?php _e('Button Text: Unfavorited', 'favorites'); ?></h5>

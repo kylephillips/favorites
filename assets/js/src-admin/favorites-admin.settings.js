@@ -15,9 +15,17 @@ FavoritesAdmin.Settings = function()
 			plugin.toggleAnonymousSave();
 			plugin.toggleLoadingTypeLoad();
 			plugin.toggleAuthModalContentField();
+			plugin.toggleCustomColorOptions();
+			plugin.enableColorPickers();
+			plugin.toggleButtonPreviewColors();
 			$.each($('[data-favorites-dependency-checkbox]'), function(){
 				var item = $(this).parents('.field');
 				plugin.toggleDependencyContent(item);
+			});
+			$('.wp-color-result').attrchange({
+				callback: function(){
+					plugin.toggleButtonPreviewColors();	
+				}
 			});
 		});
 		$(document).on('change', '[data-favorites-dependency-checkbox]', function(){
@@ -60,9 +68,23 @@ FavoritesAdmin.Settings = function()
 			var defaultText = $(this).attr('data-favorites-button-default-content');
 			if ( $(this).hasClass('active') ){
 				$(this).html(icon + ' ' + activeText);
-				return;
+			} else {
+				$(this).html(icon + ' ' + defaultText);
 			}
-			$(this).html(icon + ' ' + defaultText);
+			setTimeout(function(){
+				plugin.toggleButtonPreviewColors();
+			}, 10);
+		});
+
+		// Favorite Button Colors
+		$(document).on('change', '[data-favorites-custom-colors-checkbox]', function(){
+			plugin.toggleCustomColorOptions();
+		});
+		$(document).on('change', '[data-favorites-button-shadow]', function(){
+			plugin.toggleButtonPreviewColors();
+		});
+		$(document).on('change', '[data-favorites-color-picker]', function(){
+			plugin.toggleButtonPreviewColors();
 		});
 	}
 
@@ -177,6 +199,111 @@ FavoritesAdmin.Settings = function()
 		$(previewButtons).hide();
 		$(previewCont).show();
 		$('[data-favorites-button-preview="' + type + '"]').show();
+	}
+
+	/**
+	* Toggle the custom color options
+	*/
+	plugin.toggleCustomColorOptions = function()
+	{
+		var checked = ( $('[data-favorites-custom-colors-checkbox]').is(':checked') ) ? true : false;
+		plugin.toggleButtonPreviewColors();
+		if ( checked ){
+			$('[data-favorites-custom-colors-options]').show();
+			return;
+		}
+		$('[data-favorites-custom-colors-options]').hide();
+	}
+
+	/**
+	* Enable Color Pickers
+	*/
+	plugin.enableColorPickers = function()
+	{
+		$('[data-favorites-color-picker]').wpColorPicker({
+			change : function(event, ui){
+				setTimeout(function(){
+					plugin.toggleButtonPreviewColors();
+				}, 10);
+			}
+		});
+	}
+
+	/**
+	* Toggle the button preview colors
+	*/
+	plugin.toggleButtonPreviewColors = function()
+	{
+		var button = $('[data-favorites-button-preview]');
+		var buttonVisible = $('[data-favorites-button-preview]:visible');
+
+		if ( !$('[data-favorites-custom-colors-checkbox]').is(':checked') ) {
+			$(button).removeAttr('style');
+			plugin.toggleButtonTypes();
+			return;
+		}
+
+		var shadowCheckbox = $('[data-favorites-button-shadow]');
+
+		// Color Values
+		var background_default = plugin.getCurrentColor('background_default');
+		var border_default = plugin.getCurrentColor('border_default');
+		var text_default = plugin.getCurrentColor('text_default');
+		var background_active = plugin.getCurrentColor('background_active');
+		var border_active = plugin.getCurrentColor('border_active');
+		var text_active = plugin.getCurrentColor('text_active');
+
+		// Toggle the shadow
+		if ( $(shadowCheckbox).is(':checked') ){
+			$(button).css('box-shadow', '');
+		} else {
+			$(button).css('box-shadow', 'none');
+		}
+
+		if ( $(buttonVisible).hasClass('active') ){
+			if ( background_active !== '' ) {
+				$(button).css('background-color', background_active);
+			} else {
+				$(button).css('background-color', '');
+			}
+			if ( border_active !== '' ) {
+				$(button).css('border-color', border_active);
+			} else {
+				$(button).css('border-color', '');
+			}
+			if ( text_active !== '' ) {
+				$(button).css('color', text_active);
+			} else {
+				$(button).css('color', '');
+			}
+			return;
+		} //  active
+
+		if ( background_default !== '' ) {
+			$(button).css('background-color', background_default);
+		} else {
+			$(button).css('background-color', '');
+		}
+		if ( border_default !== '' ) {
+			$(button).css('border-color', border_default);
+		} else {
+			$(button).css('border-color', '');
+		}
+		if ( text_default !== '' ) {
+			$(button).css('color', text_default);
+		} else {
+			$(button).css('color', '');
+		}
+	} // toggleButtonPreviewColors
+
+	/**
+	* Workaround for Iris color picker not triggering change event on clear
+	*/
+	plugin.getCurrentColor = function(property)
+	{
+		var input = $('[data-favorites-color-picker="' + property + '"]');
+		value = $(input).val();
+		return value;
 	}
 
 	return plugin.bindEvents();
