@@ -236,6 +236,7 @@ FavoritesAdmin.Settings = function()
 	{
 		var button = $('[data-favorites-button-preview]');
 		var buttonVisible = $('[data-favorites-button-preview]:visible');
+		var icon = $(button).find('i');
 
 		if ( !$('[data-favorites-custom-colors-checkbox]').is(':checked') ) {
 			$(button).removeAttr('style');
@@ -249,9 +250,11 @@ FavoritesAdmin.Settings = function()
 		var background_default = plugin.getCurrentColor('background_default');
 		var border_default = plugin.getCurrentColor('border_default');
 		var text_default = plugin.getCurrentColor('text_default');
+		var icon_default = plugin.getCurrentColor('icon_default');
 		var background_active = plugin.getCurrentColor('background_active');
 		var border_active = plugin.getCurrentColor('border_active');
 		var text_active = plugin.getCurrentColor('text_active');
+		var icon_active = plugin.getCurrentColor('icon_active');
 
 		// Toggle the shadow
 		if ( $(shadowCheckbox).is(':checked') ){
@@ -276,6 +279,11 @@ FavoritesAdmin.Settings = function()
 			} else {
 				$(button).css('color', '');
 			}
+			if ( icon_active !== '' ) {
+				$(icon).css('color', icon_active);
+			} else {
+				$(icon).css('color', '');
+			}
 			return;
 		} //  active
 
@@ -293,6 +301,11 @@ FavoritesAdmin.Settings = function()
 			$(button).css('color', text_default);
 		} else {
 			$(button).css('color', '');
+		}
+		if ( icon_default !== '' ) {
+			$(icon).css('color', icon_default);
+		} else {
+			$(icon).css('color', '');
 		}
 	} // toggleButtonPreviewColors
 
