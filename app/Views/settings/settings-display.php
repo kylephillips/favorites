@@ -1,4 +1,8 @@
-<?php settings_fields( 'simple-favorites-display' ); ?>
+<?php 
+settings_fields( 'simple-favorites-display' ); 
+$preset_buttons = $this->settings_repo->presetButton();
+$button_type_selected = $this->settings_repo->getButtonType();
+?>
 
 <h3><?php _e('Enabled Favorites for:', 'favorites'); ?></h3>
 <div class="simple-favorites-post-types">
@@ -66,12 +70,29 @@
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('Button Type', 'favorites'); ?></label>
-			<select name="simplefavorites_display[buttontype]">
+			<select name="simplefavorites_display[buttontype]" data-favorites-preset-button-select>
 				<option value="custom"><?php _e('Custom Markup', 'favorites'); ?></option>
+				<?php 
+				foreach ( $preset_buttons as $button_name => $attrs ){
+					$out = '<option value="' . $button_name . '"';
+					if ( $button_name == $button_type_selected ) $out .= ' selected';
+					$out .= '>' . $attrs['label'] . '</option>';
+					echo $out;
+				}
+				?>
 			</select>
+			<div class="favorite-button-previews" data-favorites-preset-button-previews>
+				<h4><?php _e('Preview', 'favorites'); ?></h4>
+				<?php
+				foreach ( $preset_buttons as $button_name => $attrs ){
+					$out = '<button class="simplefavorites-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . '</button>';
+					echo $out;
+				}
+				?>
+			</div><!-- .favorite-button-previews -->
 		</div>
 	</div><!-- .row -->
-	<div class="row">
+	<div class="row" data-favorites-custom-button-option>
 		<div class="description">
 			<h5><?php _e('Button Text: Unfavorited', 'favorites'); ?></h5>
 			<p><?php _e('The button text, in an unfavorited state.', 'favorites'); ?></p>
@@ -81,7 +102,7 @@
 			<input type="text" name="simplefavorites_display[buttontext]" value="<?php echo $this->settings_repo->buttonText(); ?>" />
 		</div>
 	</div><!-- .row -->
-	<div class="row">
+	<div class="row" data-favorites-custom-button-option>
 		<div class="description">
 			<h5><?php _e('Button Text: Favorited', 'favorites'); ?></h5>
 			<p><?php _e('The button text, in a favorited state.', 'favorites'); ?></p>

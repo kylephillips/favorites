@@ -264,4 +264,61 @@ class SettingsRepository
 		$option = get_option('simplefavorites_cache_enabled');
 		return ( isset($option) && $option == "true" ) ? true : false;
 	}
+
+	/**
+	* Get the button type
+	* @return string
+	* @since 2.0.3
+	*/
+	public function getButtonType()
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['buttontype']) || $option['buttontype'] == "" ) return 'custom';
+		return $option['buttontype'];
+	}
+
+	/**
+	* Preset Buttons
+	* @param string $button - which button to return
+	* @return array
+	* @since 2.0.3
+	*/
+	public function presetButton($button = 'all')
+	{
+		$buttons = array(
+			'favorite' => array(
+				'label' => __('Favorite', 'favorites'),
+				'icon' => '<i class="sf-icon-favorite"></i>',
+				'state_default' => __('Favorite', 'favorites'),
+				'state_active' => __('Favorited', 'favorites')
+			),
+			'like' => array(
+				'label' => __('Like', 'favorites'),
+				'icon' => '<i class="sf-icon-like"></i>',
+				'state_default' => __('Like', 'favorites'),
+				'state_active' => __('Liked', 'favorites')
+			),
+			'love' => array(
+				'label' => __('Love', 'favorites'),
+				'icon' => '<i class="sf-icon-love"></i>',
+				'state_default' => __('Love', 'favorites'),
+				'state_active' => __('Loved', 'favorites')
+			),
+			'bookmark' => array(
+				'label' => __('Bookmark', 'favorites'),
+				'icon' => '<i class="sf-icon-bookmark"></i>',
+				'state_default' => __('Bookmarked', 'favorites'),
+				'state_active' => __('Bookmarked', 'favorites')
+			),
+			'wishlist' => array(
+				'label' => __('Wishlist', 'favorites'),
+				'icon' => '<i class="sf-icon-wishlist"></i>',
+				'state_default' => __('Add to Wishlist', 'favorites'),
+				'state_active' => __('Added to Wishlist', 'favorites')
+			)
+		);
+		if ( $button = 'all' ) return $buttons;
+		if ( isset($buttons[$button]) ) return $button;
+		return $buttons['favorite'];
+	}
 }

@@ -11,6 +11,7 @@ FavoritesAdmin.Settings = function()
 	plugin.bindEvents = function()
 	{
 		$(document).ready(function(){
+			plugin.toggleButtonTypes();
 			plugin.toggleAnonymousSave();
 			plugin.toggleLoadingTypeLoad();
 			plugin.toggleAuthModalContentField();
@@ -45,6 +46,23 @@ FavoritesAdmin.Settings = function()
 		// Other Display Settings
 		$(document).on('change', '[data-favorites-spinner-type]', function(){
 			plugin.toggleLoadingType($(this));
+		});
+
+		// Favorite Button Content
+		$(document).on('change', '[data-favorites-preset-button-select]', function(){
+			plugin.toggleButtonTypes();
+		});
+		$(document).on('click', '[data-favorites-button-preview]', function(e){
+			e.preventDefault();
+			$(this).toggleClass('active');
+			var icon = $(this).attr('data-favorites-button-icon');
+			var activeText = $(this).attr('data-favorites-button-active-content');
+			var defaultText = $(this).attr('data-favorites-button-default-content');
+			if ( $(this).hasClass('active') ){
+				$(this).html(icon + ' ' + activeText);
+				return;
+			}
+			$(this).html(icon + ' ' + defaultText);
 		});
 	}
 
@@ -139,6 +157,26 @@ FavoritesAdmin.Settings = function()
 			return;
 		}
 		$('[data-favorites-authentication-modal-content]').hide();
+	}
+
+	/**
+	* Toggle the favorite button type previews
+	*/
+	plugin.toggleButtonTypes = function()
+	{
+		var type = $('[data-favorites-preset-button-select]').val();
+		var previewCont = $('[data-favorites-preset-button-previews]');
+		var previewButtons = $('[data-favorites-button-preview]');
+		var customOptions = $('[data-favorites-custom-button-option]');
+		if ( type === 'custom' ){
+			$(previewCont).hide();
+			$(customOptions).show();
+			return;
+		}
+		$(customOptions).hide();
+		$(previewButtons).hide();
+		$(previewCont).show();
+		$('[data-favorites-button-preview="' + type + '"]').show();
 	}
 
 	return plugin.bindEvents();
