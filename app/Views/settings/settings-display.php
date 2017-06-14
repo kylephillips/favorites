@@ -95,7 +95,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 	<div class="row">
 		<div class="description">
 			<h5><?php _e('Color Options', 'favorites'); ?></h5>
-			<p><?php _e('If colors are not specified, theme colors will apply.', 'favorites'); ?></p>
+			<p><?php _e('If colors are not specified, theme colors will apply. Note: theme styles will effect the appearance of the favorites button. The button is displayed in a button element, with a css class of "simplefavorites-button".', 'favorites'); ?></p>
 		</div>
 		<div class="field">
 			<label class="block"><input type="checkbox" name="simplefavorites_display[button_colors][custom]" value="true" data-favorites-custom-colors-checkbox <?php if ( $this->settings_repo->buttonColors('custom') ) echo 'checked'; ?> /><?php _e('Specify custom colors.', 'favorites'); ?></label>
