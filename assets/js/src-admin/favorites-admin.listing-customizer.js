@@ -16,6 +16,10 @@ FavoritesAdmin.ListingCustomizer = function()
 		$(document).on('change', '[data-favorites-listing-customizer-checkbox]', function(){
 			plugin.toggleListingCustomizer();
 		});
+		$(document).on('click', '[data-favorites-listing-customizer-variable-button]', function(e){
+			e.preventDefault();
+			plugin.addFieldToEditor($(this));
+		});
 	}
 
 	/**
@@ -28,6 +32,15 @@ FavoritesAdmin.ListingCustomizer = function()
 			return;
 		}
 		$('[data-favorites-listing-customizer]').hide();
+	}
+
+	/**
+	* Add a field to the editor
+	*/
+	plugin.addFieldToEditor = function(button)
+	{
+		var field = $(button).siblings('select').val();
+		tinymce.activeEditor.execCommand('mceInsertContent', false, field);
 	}
 
 	return plugin.bindEvents();

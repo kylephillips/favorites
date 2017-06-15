@@ -3,4 +3,36 @@
 // --------------------------------------------------
 .simple-favorites-listing-customizer {
 	display: none;
-}
+	.variable-tools {
+		background-color: $gray-lighter;
+		border: 1px solid $border;
+		padding: 1em .5em;
+		margin-bottom: 1em;
+		@include clearfix;
+		h4 {
+			margin: 0 0 .2em 0;
+		}
+		p {
+			margin-top: 0;
+		}
+		.variables {
+			box-sizing: border-box;
+			float: left;
+			width: 48%;
+			position: relative;
+			padding-right: 55px;
+			&.right {
+				float: right;
+			}
+			label {
+				display: block;
+				font-weight: bold;
+			}
+			button {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+		} // .variables
+	} // .variable-tools
+} // .simple-favorites-listing-customizer

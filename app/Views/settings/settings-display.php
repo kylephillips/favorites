@@ -274,7 +274,40 @@ $button_type_selected = $this->settings_repo->getButtonType();
 						<label class="block"><input type="checkbox" name="simplefavorites_display[listing][customize_markup]" value="true" data-favorites-listing-customizer-checkbox <?php if ( $this->settings_repo->listCustomization('customize_markup') ) echo 'checked'; ?>/><?php _e('Customize Content', 'favorites'); ?></label>
 					</p>
 					<div class="simple-favorites-listing-customizer" data-favorites-listing-customizer>
-						Listing Customizer
+						<div class="variable-tools">
+							<h4><?php _e('Add Dynamic Fields', 'favorites'); ?></h4>
+							<p><?php _e('To add a custom meta field, use the format <code>[custom_field:custom_field_name]</code>', 'favorites'); ?></p>
+							<hr>
+							<div class="variables">
+								<label><?php _e('Post Fields', 'favorites'); ?></label>
+								<select>
+									<option value="[post_title]"><?php _e('Post Title', 'favorites'); ?></option>
+									<option value="[post_excerpt]"><?php _e('Excerpt', 'favorites'); ?></option>
+									<option value="[post_permalink]"><?php _e('Permalink', 'favorites'); ?></option>
+									<option value="[post_thumbnail size='thumbnail']"><?php _e('Thumbnail', 'favorites'); ?></option>
+								</select>
+								<button data-favorites-listing-customizer-variable-button class="button"><?php _e('Add', 'favorites'); ?></button>
+							</div><!-- .variables -->
+							<div class="variables right">
+								<label><?php _e('Favorites Fields', 'favorites'); ?></label>
+								<select>
+									<option value="[favorites_button]"><?php _e('Favorite Button', 'favorites'); ?></option>
+									<option value="[favorites_count]"><?php _e('Favorite Count', 'favorites'); ?></option>
+								</select>
+								<button data-favorites-listing-customizer-variable-button class="button"><?php _e('Add', 'favorites'); ?></button>
+							</div><!-- .variables -->
+						</div><!-- .variable-tools -->
+						<?php
+							wp_editor(
+								$this->settings_repo->listCustomization('custom_markup_html'), 
+								'simplefavorites_display_listing_custom_markup', 
+								array(
+									'textarea_name' => 'simplefavorites_display[listing][custom_markup_html]',
+									'tabindex' => 1,
+									'wpautop' => true
+								)
+							);
+						?>
 					</div>
 				</div><!-- .field -->
 			</div><!-- .row -->
