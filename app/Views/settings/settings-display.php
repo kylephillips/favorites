@@ -224,10 +224,10 @@ $button_type_selected = $this->settings_repo->getButtonType();
 			<input type="checkbox" name="simplefavorites_display[listing][customize]" value="true" <?php if ( $this->settings_repo->listCustomization() ) echo 'checked'; ?> data-favorites-posttype-checkbox />
 		</div>
 		<div class="post-type-name">
-			<?php _e('Customize the favorites list display', 'favorites'); ?>
+			<?php _e('Customize the favorites list HTML', 'favorites'); ?>
 			<button class="button" data-favorites-toggle-post-type-settings <?php if ( !$this->settings_repo->listCustomization() ) echo 'style="display:none;"';?>><?php _e('Settings', 'favorites'); ?></button>
 		</div>
-		<div class="post-type-settings">
+		<div class="post-type-settings" style="display:block;">
 			<div class="row">
 				<div class="description">
 					<h5><?php _e('List Wrapper Element', 'favorites') ?></h5>
@@ -236,8 +236,8 @@ $button_type_selected = $this->settings_repo->getButtonType();
 				<div class="field">
 					<label class="block"><?php _e('List Wrapper Type', 'favorites'); ?></label>
 					<select name="simplefavorites_display[listing][wrapper_type]">
-						<option value="ul" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'ul' ) echo 'selected';?>><?php _e('Unordered List', 'favorites'); ?></option>
-						<option value="ol" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'ol' ) echo 'selected';?>><?php _e('Ordered List', 'favorites'); ?></option>
+						<option value="ul" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'ul' ) echo 'selected';?>><?php _e('Unordered List (ul)', 'favorites'); ?></option>
+						<option value="ol" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'ol' ) echo 'selected';?>><?php _e('Ordered List (ol)', 'favorites'); ?></option>
 						<option value="div" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'div' ) echo 'selected';?>><?php _e('Div', 'favorites'); ?></option>
 					</select>
 					<p>
@@ -245,6 +245,38 @@ $button_type_selected = $this->settings_repo->getButtonType();
 						<input type="text" name="simplefavorites_display[listing][wrapper_css]" value="<?php echo $this->settings_repo->listCustomization('wrapper_css'); ?>" />
 					</p>
 				</div>
+			</div><!-- .row -->
+			<div class="row">
+				<div class="description">
+					<h5><?php _e('Single List Element', 'favorites') ?></h5>
+					<p><?php _e('The individual listing html element. Defaults to an html li item.', 'favorites'); ?></p>
+				</div>
+				<div class="field">
+					<label class="block"><?php _e('List Element Type', 'favorites'); ?></label>
+					<select name="simplefavorites_display[listing][listing_type]">
+						<option value="li" <?php if ( $this->settings_repo->listCustomization('listing_type') == 'ul' ) echo 'selected';?>><?php _e('List Item (li)', 'favorites'); ?></option>
+						<option value="p" <?php if ( $this->settings_repo->listCustomization('listing_type') == 'ol' ) echo 'selected';?>><?php _e('Paragraph (p)', 'favorites'); ?></option>
+						<option value="div" <?php if ( $this->settings_repo->listCustomization('listing_type') == 'div' ) echo 'selected';?>><?php _e('Div', 'favorites'); ?></option>
+					</select>
+					<p>
+						<label class="block"><?php _e('Listing CSS Classes', 'favorites'); ?></label>
+						<input type="text" name="simplefavorites_display[listing][listing_css]" value="<?php echo $this->settings_repo->listCustomization('listing_css'); ?>" />
+					</p>
+				</div>
+			</div><!-- .row -->
+			<div class="row">
+				<div class="description">
+					<h5><?php _e('Single Listing Content Markup', 'favorites') ?></h5>
+					<p><?php _e('Optionally customize the single listing markup.', 'favorites'); ?></p>
+				</div>
+				<div class="field">
+					<p>
+						<label class="block"><input type="checkbox" name="simplefavorites_display[listing][customize_markup]" value="true" data-favorites-listing-customizer-checkbox <?php if ( $this->settings_repo->listCustomization('customize_markup') ) echo 'checked'; ?>/><?php _e('Customize Content', 'favorites'); ?></label>
+					</p>
+					<div class="simple-favorites-listing-customizer" data-favorites-listing-customizer>
+						Listing Customizer
+					</div>
+				</div><!-- .field -->
 			</div><!-- .row -->
 		</div><!-- .post-type-settings -->
 	</div><!-- .post-type-row -->

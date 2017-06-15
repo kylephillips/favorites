@@ -416,6 +416,7 @@ class SettingsRepository
 		if ( !isset($option['listing']['customize']) || $option['listing']['customize'] !== 'true' ) return false;
 		if ( $setting == 'customize' ) return true;
 		$option = $option['listing'];
+
 		return ( isset($option[$setting]) ) ? $option[$setting] : false;
 	}
 

@@ -14,6 +14,7 @@ var css = 'assets/css/';
 var js_admin_source = [
 	'assets/js/src/lib/attrchange.js',
 	'assets/js/src-admin/favorites-admin.settings.js',
+	'assets/js/src-admin/favorites-admin.listing-customizer.js',
 	'assets/js/src-admin/favorites-admin.factory.js'
 ];
 

@@ -46,6 +46,7 @@ FavoritesAdmin.Factory = function()
 	plugin.build = function()
 	{
 		new FavoritesAdmin.Settings;
+		new FavoritesAdmin.ListingCustomizer;
 	}
 
 	return plugin.build();
