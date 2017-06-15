@@ -414,6 +414,7 @@ class SettingsRepository
 	{
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['listing']['customize']) || $option['listing']['customize'] !== 'true' ) return false;
+		if ( $setting == 'all' && isset($option['listing']) ) return $option['listing'];
 		if ( $setting == 'customize' ) return true;
 		$option = $option['listing'];
 

@@ -3,9 +3,7 @@ namespace Favorites\Entities\User;
 
 use Favorites\Entities\User\UserRepository;
 use Favorites\Entities\Favorite\FavoriteFilter;
-use Favorites\Helpers;
-use Favorites\Entities\Favorite\FavoriteButton;
-use Favorites\Config\SettingsRepository;
+use Favorites\Entities\FavoriteList\FavoriteList;
 
 class UserFavorites 
 {
@@ -38,11 +36,6 @@ class UserFavorites
 	*/
 	private $user_repo;
 
-	/**
-	* Settings Repository
-	*/
-	private $settings_repo;
-
 	public function __construct($user_id = null, $site_id = null, $links = false, $filters = null)
 	{
 		$this->user_id = $user_id;
@@ -50,15 +43,17 @@ class UserFavorites
 		$this->links = $links;
 		$this->filters = $filters;
 		$this->user_repo = new UserRepository;
-		$this->settings_repo = new SettingsRepository;
 	}
 
 	/**
 	* Get an array of favorites for specified user
 	*/
-	public function getFavoritesArray()
+	public function getFavoritesArray($user_id = null, $site_id = null, $filters = null)
 	{
-		$favorites = $this->user_repo->getFavorites($this->user_id, $this->site_id);
+		$user_id = ( isset($user_id) ) ? $user_id : $this->user_id;
+		$site_id = ( isset($site_id) ) ? $site_id : $this->site_id;
+		$favorites = $this->user_repo->getFavorites($user_id, $site_id);
+		if ( isset($filters) ) $this->filters = $filters;
 		if ( isset($this->filters) && is_array($this->filters) ) $favorites = $this->filterFavorites($favorites);
 		return $this->removeInvalidFavorites($favorites);
 	}
@@ -95,58 +90,18 @@ class UserFavorites
 	*/
 	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
 	{
-		if ( is_null($this->site_id) || $this->site_id == '' ) $this->site_id = get_current_blog_id();
-		
-		$favorites = $this->getFavoritesArray();
-		$no_favorites = $this->settings_repo->noFavoritesText();
-		$favorites = ( isset($favorites[0]['site_id']) ) ? $favorites[0]['posts'] : $favorites;
-
-		// Post Type filters for data attr
-		$post_types = '';
-		if ( isset($this->filters['post_type']) ){
-			$post_types = implode(',', $this->filters['post_type']);
-		}
-		
-		if ( is_multisite() ) switch_to_blog($this->site_id);
-		
-		$out = '<ul class="favorites-list" data-userid="' . $this->user_id . '" data-links="true" data-siteid="' . $this->site_id . '" ';
-		$out .= ( $include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
-		$out .= ( $this->links ) ? ' data-includelinks="true"' : ' data-includelinks="false"';
-		$out .= ( $include_thumbnails ) ? ' data-includethumbnails="true"' : ' data-includethumbnails="false"';
-		$out .= ( $include_excerpt ) ? ' data-includeexcerpts="true"' : ' data-includeexcerpts="false"';
-		$out .= ' data-thumbnailsize="' . $thumbnail_size . '"';
-		$out .= ' data-nofavoritestext="' . $no_favorites . '"';
-		$out .= ' data-posttype="' . $post_types . '"';
-		$out .= '>';
-
-		if ( empty($favorites) ) $out .= '<li data-postid="0" data-nofavorites>' . $no_favorites . '</li>';
-		if ( !empty($favorites) ) :
-			foreach ( $favorites as $key => $favorite ){
-				$out .= '<li data-postid="' . $favorite . '">';
-				if ( $include_thumbnails ) {
-					$thumb_url = get_the_post_thumbnail_url($favorite, $thumbnail_size);
-					if ( $thumb_url ){
-						$img = '<img src="' . $thumb_url . '" alt="' . get_the_title($favorite) . '" class="favorites-list-thumbnail" />';
-						$out .= apply_filters('favorites/list/thumbnail', $img, $favorite, $thumbnail_size);
-					};
-				}
-				if ( $this->links ) $out .= '<p><a href="' . get_permalink($favorite) . '">';
-				$out .= get_the_title($favorite);
-				if ( $this->links ) $out .= '</a></p>';
-				if ( $include_excerpt ) {
-					$excerpt = apply_filters('the_excerpt', get_post_field('post_excerpt', $favorite));
-					if ( $excerpt ) $out .= '<p class="excerpt">' . apply_filters('favorites/list/excerpt', $excerpt) . '</p>';
-				}
-				if ( $include_button ){
-					$button = new FavoriteButton($favorite, $this->site_id);
-					$out .= '<p>' . $button->display(false) . '</p>';
-				}
-				$out .= '</li>';
-			}
-		endif;
-		$out .= '</ul>';
-		if ( is_multisite() ) restore_current_blog();
-		return $out;
+		$list_args = [
+			'include_button' => $include_button,
+			'include_thumbnails' => $include_thumbnails,
+			'thumbnail_size' => $thumbnail_size,
+			'include_excerpt' => $include_excerpt,
+			'include_links' => $this->links,
+			'site_id' => $this->site_id,
+			'user_id' => $this->user_id,
+			'filters' => $this->filters
+		];
+		$list = new FavoriteList($list_args);
+		return $list->getList();
 	}
 
 	/**
