@@ -227,7 +227,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 			<?php _e('Customize the favorites list HTML', 'favorites'); ?>
 			<button class="button" data-favorites-toggle-post-type-settings <?php if ( !$this->settings_repo->listCustomization() ) echo 'style="display:none;"';?>><?php _e('Settings', 'favorites'); ?></button>
 		</div>
-		<div class="post-type-settings" style="display:block;">
+		<div class="post-type-settings">
 			<div class="row">
 				<div class="description">
 					<h5><?php _e('List Wrapper Element', 'favorites') ?></h5>
