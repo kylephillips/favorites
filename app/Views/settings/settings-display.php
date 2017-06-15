@@ -217,6 +217,40 @@ $button_type_selected = $this->settings_repo->getButtonType();
 	</div><!-- .post-type-row -->
 </div><!-- .simple-favorites-post-types -->
 
+<h3><?php _e('Listing Display', 'favorites'); ?></h3>
+<div class="simple-favorites-post-types">
+	<div class="post-type-row">
+		<div class="post-type-checkbox">
+			<input type="checkbox" name="simplefavorites_display[listing][customize]" value="true" <?php if ( $this->settings_repo->listCustomization() ) echo 'checked'; ?> data-favorites-posttype-checkbox />
+		</div>
+		<div class="post-type-name">
+			<?php _e('Customize the favorites list display', 'favorites'); ?>
+			<button class="button" data-favorites-toggle-post-type-settings <?php if ( !$this->settings_repo->listCustomization() ) echo 'style="display:none;"';?>><?php _e('Settings', 'favorites'); ?></button>
+		</div>
+		<div class="post-type-settings">
+			<div class="row">
+				<div class="description">
+					<h5><?php _e('List Wrapper Element', 'favorites') ?></h5>
+					<p><?php _e('The list wrapper html element. Defaults to an html ul list.', 'favorites'); ?></p>
+				</div>
+				<div class="field">
+					<label class="block"><?php _e('List Wrapper Type', 'favorites'); ?></label>
+					<select name="simplefavorites_display[listing][wrapper_type]">
+						<option value="ul" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'ul' ) echo 'selected';?>><?php _e('Unordered List', 'favorites'); ?></option>
+						<option value="ol" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'ol' ) echo 'selected';?>><?php _e('Ordered List', 'favorites'); ?></option>
+						<option value="div" <?php if ( $this->settings_repo->listCustomization('wrapper_type') == 'div' ) echo 'selected';?>><?php _e('Div', 'favorites'); ?></option>
+					</select>
+					<p>
+						<label class="block"><?php _e('Wrapper CSS Classes', 'favorites'); ?></label>
+						<input type="text" name="simplefavorites_display[listing][wrapper_css]" value="<?php echo $this->settings_repo->listCustomization('wrapper_css'); ?>" />
+					</p>
+				</div>
+			</div><!-- .row -->
+		</div><!-- .post-type-settings -->
+	</div><!-- .post-type-row -->
+</div><!-- .simple-favorites-post-types -->
+
+
 <h3><?php _e('Additional Display Settings', 'favorites'); ?></h3>
 <div class="simple-favorites-display-settings">
 	<div class="row">
