@@ -274,6 +274,9 @@ $button_type_selected = $this->settings_repo->getButtonType();
 						<label class="block"><input type="checkbox" name="simplefavorites_display[listing][customize_markup]" value="true" data-favorites-listing-customizer-checkbox <?php if ( $this->settings_repo->listCustomization('customize_markup') ) echo 'checked'; ?>/><?php _e('Customize Content', 'favorites'); ?></label>
 					</p>
 					<div class="simple-favorites-listing-customizer" data-favorites-listing-customizer>
+						<div class="favorites-alert">
+							<p><strong><?php _e('Important:', 'favorites'); ?></strong> <?php _e('By customizing the listing content, some shortcode options will not apply. These options include: include_links, include_buttons, include_thumbnails, and thumbnail_size', 'favorites'); ?></p>
+						</div>
 						<div class="variable-tools">
 							<h4><?php _e('Add Dynamic Fields', 'favorites'); ?></h4>
 							<p><?php _e('To add a custom meta field, use the format <code>[custom_field:custom_field_name]</code>', 'favorites'); ?></p>
