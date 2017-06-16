@@ -70,7 +70,7 @@ class FavoriteButton
 
 		$out = '<button class="' . $this->cssClasses($loading) . '"';		
 		
-		$out .= '" data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
+		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
 
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading){
 			$out .= $this->settings_repo->loadingText();
@@ -149,7 +149,16 @@ class FavoriteButton
 	*/
 	private function addCount()
 	{
-		$html = '<span class="simplefavorite-button-count">' . $this->count->getCount($this->post_id, $this->site_id) . '</span>';
+		$default_colors = $this->button_options['default'];
+		$active_colors = $this->button_options['active'];
+
+		$html = '<span class="simplefavorite-button-count" style="';
+		if ( $this->favorited ){
+			if ( $active_colors['count_active'] ) $html .= 'color:' . $active_colors['count_active'] . ';';
+		} else {
+			if ( $default_colors['count_default'] ) $html .= 'color:' . $default_colors['count_default'] . ';';
+		}
+		$html .= '">' . $this->count->getCount($this->post_id, $this->site_id) . '</span>';
 		return apply_filters('favorites/button/count', $html);
 	}
 }

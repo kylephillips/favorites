@@ -133,6 +133,7 @@ Favorites.ButtonOptionsFormatter = function()
 		html += options.state_default;
 		$(button).html(plugin.formatter.addFavoriteCount(html, count));
 		plugin.applyIconColor(button, isFavorite);
+		plugin.applyCountColor(button, isFavorite);
 	}
 
 	plugin.colors = function(button, isFavorite)
@@ -166,6 +167,17 @@ Favorites.ButtonOptionsFormatter = function()
 		}
 		if ( !isFavorite && plugin.options.default.icon_default ) {
 			$(button).find('i').css('color', plugin.options.default.icon_default);
+		}
+	}
+
+	plugin.applyCountColor = function(button, isFavorite)
+	{
+		if ( isFavorite && plugin.options.active.count_active ) {
+			$(button).find(Favorites.selectors.count).css('color', plugin.options.active.count_active);
+			return;
+		}
+		if ( !isFavorite && plugin.options.default.count_default ) {
+			$(button).find(Favorites.selectors.count).css('color', plugin.options.default.count_default);
 		}
 	}
 }
@@ -828,6 +840,7 @@ Favorites.selectors = {
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
 	modals : 'data-favorites-modal', // Modals
 	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
+	count : '.simplefavorite-button-count' // The count inside the favorites button
 }
 
 /**

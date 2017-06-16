@@ -331,9 +331,13 @@ FavoritesAdmin.Settings = function()
 		var checked = ( $('[data-favorites-include-count-checkbox]').is(':checked') ) ? true : false;
 		if ( checked ){
 			$('.simplefavorite-button-count').show();
+			$('[data-favorites-color-option="count_default"]').show();
+			$('[data-favorites-color-option="count_active"]').show();
 			return;
 		}
 		$('.simplefavorite-button-count').hide();
+		$('[data-favorites-color-option="count_default"]').hide();
+		$('[data-favorites-color-option="count_active"]').hide();
 	}
 
 	return plugin.bindEvents();

@@ -378,12 +378,14 @@ class SettingsRepository
 				'border_default' => __('Border Color', 'favorites'),
 				'text_default' => __('Text Color', 'favorites'),
 				'icon_default' => __('Icon Color', 'favorites'),
+				'count_default' => __('Count Color', 'favorites')
 			),
 			'active' => array(
 				'background_active' => __('Background Color', 'favorites'),
 				'border_active' => __('Border Color', 'favorites'),
 				'text_active' => __('Text Color', 'favorites'),
 				'icon_active' => __('Icon Color', 'favorites'),
+				'count_active' => __('Count Color', 'favorites')
 			)
 		);
 		return $options[$group];

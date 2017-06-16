@@ -105,7 +105,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					<?php
 					$default_options = $this->settings_repo->colorOptions('default');
 					foreach ( $default_options as $option => $label ){
-						$out = '<div class="option">';
+						$out = '<div class="option" data-favorites-color-option="' . $option . '">';
 						$out .= '<label>' . $label . '</label>';
 						$out .= '<input type="text" data-favorites-color-picker="' . $option . '" name="simplefavorites_display[button_colors][' . $option . ']"';
 						$out .= ' value="';
@@ -121,7 +121,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					<?php
 					$default_options = $this->settings_repo->colorOptions('active');
 					foreach ( $default_options as $option => $label ){
-						$out = '<div class="option">';
+						$out = '<div class="option" data-favorites-color-option="' . $option . '">';
 						$out .= '<label>' . $label . '</label>';
 						$out .= '<input type="text" data-favorites-color-picker="' . $option . '" name="simplefavorites_display[button_colors][' . $option . ']"';
 						if ( $this->settings_repo->buttonColors($option) ) $out .= ' value="' . $this->settings_repo->buttonColors($option) . '"';

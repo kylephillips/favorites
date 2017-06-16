@@ -33,6 +33,7 @@ Favorites.selectors = {
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
 	modals : 'data-favorites-modal', // Modals
 	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
+	count : '.simplefavorite-button-count' // The count inside the favorites button
 }
 
 /**
