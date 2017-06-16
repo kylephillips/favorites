@@ -94,7 +94,7 @@ abstract class FavoriteListTypeBase
 	protected function listOpening()
 	{
 		$out = '<' . $this->list_options->wrapper_type;
-		$out .= ' class="favorites-list ' . $this->list_options->wrapper_css . '" data-userid="' . $this->list_options->user_id . '" data-links="true" data-siteid="' . $this->list_options->site_id . '" ';
+		$out .= ' class="favorites-list ' . $this->list_options->wrapper_css . '" data-userid="' . $this->list_options->user_id . '" data-siteid="' . $this->list_options->site_id . '" ';
 		$out .= ( $this->list_options->include_button ) ? 'data-includebuttons="true"' : 'data-includebuttons="false"';
 		$out .= ( $this->list_options->include_links ) ? ' data-includelinks="true"' : ' data-includelinks="false"';
 		$out .= ( $this->list_options->include_thumbnails ) ? ' data-includethumbnails="true"' : ' data-includethumbnails="false"';
@@ -121,9 +121,9 @@ abstract class FavoriteListTypeBase
 	{
 		if ( !empty($this->favorites) ) return;
 		$out = $this->listOpening();
-		$out = '<' . $this->list_options->wrapper_type;
+		$out .= '<' . $this->list_options->wrapper_type;
 		$out .= ' data-postid="0" data-nofavorites>' . $this->list_options->no_favorites;
-		$out .= '<' . $this->list_options->wrapper_type . '>';
+		$out .= '</' . $this->list_options->wrapper_type . '>';
 		$out .= $this->listClosing();
 		return $out;
 	}

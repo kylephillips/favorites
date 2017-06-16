@@ -58,7 +58,7 @@ Favorites.Button = function()
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
 			type: 'post',
-			datatype: 'json',
+			dataType: 'json',
 			data: {
 				action : Favorites.formActions.favorite,
 				nonce : Favorites.jsData.nonce,

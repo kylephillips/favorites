@@ -58,7 +58,7 @@ class FavoriteButton
 	* @param boolean loading - whether to include loading class
 	* @return html
 	*/
-	public function display($loading = true)
+	public function display($loading = false)
 	{
 		if ( !$this->settings_repo->cacheEnabled() ) $loading = false;
 		if ( !$this->user->getsButton() ) return false;
@@ -94,7 +94,7 @@ class FavoriteButton
 		if ( $this->button_options['include_count'] ) $classes .= ' has-count';
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading ) $classes .= ' loading';
 		if ( is_array($this->button_options['button_type']) ) $classes .= ' preset';
-		return $classes;
+		return apply_filters('favorites/button/css_classes', $classes, $this->post_id, $this->site_id);
 	}
 
 	/**

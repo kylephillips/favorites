@@ -3,6 +3,7 @@ namespace Favorites\Entities\Favorite;
 
 use Favorites\Entities\Post\FavoriteCount;
 use Favorites\Entities\Favorite\FavoriteButton;
+use Favorites\Entities\FavoriteList\FavoriteList;
 
 /**
 * Format the user's favorite array to include additional post data
@@ -87,7 +88,7 @@ class FavoritesArrayFormatter
 				$this->formatted_favorites[$site]['posts'][$key]['title'] = get_the_title($key);
 				$this->formatted_favorites[$site]['posts'][$key]['permalink'] = get_the_permalink($key);
 				$this->formatted_favorites[$site]['posts'][$key]['total'] = $this->counter->getCount($key, $site_id);
-				$this->formatted_favorites[$site]['posts'][$key]['thumbnails'] = $this->addThumbnails($key);
+				$this->formatted_favorites[$site]['posts'][$key]['thumbnails'] = $this->getThumbnails($key);
 				$this->formatted_favorites[$site]['posts'][$key]['excerpt'] = apply_filters('the_excerpt', get_post_field('post_excerpt', $key));
 				$button = new FavoriteButton($key, $site_id);
 				$this->formatted_favorites[$site]['posts'][$key]['button'] = $button->display(false);
@@ -118,7 +119,7 @@ class FavoritesArrayFormatter
 	/**
 	* Add thumbnail urls to the array
 	*/
-	private function addThumbnails($post_id)
+	private function getThumbnails($post_id)
 	{
 		if ( !has_post_thumbnail($post_id) ) return false;
 		$sizes = get_intermediate_image_sizes();
