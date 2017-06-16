@@ -78,7 +78,7 @@ class FavoriteButton
 			if ( $spinner ) $out .= $spinner;
 		} else {
 			$out .= $html;
-			if ( $this->button_options['include_count'] ) $out .= '<span class="simplefavorite-button-count">' . $this->count->getCount($this->post_id, $this->site_id) . '</span>';
+			if ( $this->button_options['include_count'] ) $out .= $this->addCount();
 		}
 		$out .= '</button>';
 		return $out;
@@ -142,5 +142,14 @@ class FavoriteButton
 			$html .= ( $this->favorited ) ? html_entity_decode($this->settings_repo->buttonTextFavorited()) : html_entity_decode($this->settings_repo->buttonText());
 		}
 		return apply_filters('favorites/button/html', $html, $this->post_id, $this->favorited, $this->site_id);
+	}
+
+	/**
+	* Add the favorite count
+	*/
+	private function addCount()
+	{
+		$html = '<span class="simplefavorite-button-count">' . $this->count->getCount($this->post_id, $this->site_id) . '</span>';
+		return apply_filters('favorites/button/count', $html);
 	}
 }
