@@ -71,9 +71,8 @@ class FavoriteList
 	public function getList()
 	{
 		$list = ( !$this->list_options->customize_markup ) 
-			? new FavoriteListDefault($this->list_options)
-			: new FavoriteListCustom($this->list_options);
+			? new FavoriteListTypeDefault($this->list_options)
+			: new FavoriteListTypeCustom($this->list_options);
 		return $list->getMarkup();
 	}
-
 }
