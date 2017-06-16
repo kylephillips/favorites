@@ -61,7 +61,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 	<?php endforeach; ?>
 </div><!-- .simple-favorites-post-types -->
 
-<h3><?php _e('Favorite Button Content', 'favorites'); ?></h3>
+<h3><?php _e('Favorite Button Content & Appearance', 'favorites'); ?></h3>
 <div class="simple-favorites-display-settings">
 	<div class="row">
 		<div class="description">
@@ -85,7 +85,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 				<h4><?php _e('Preview', 'favorites'); ?></h4>
 				<?php
 				foreach ( $preset_buttons as $button_name => $attrs ){
-					$out = '<button class="simplefavorite-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . '</button>';
+					$out = '<button class="simplefavorite-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . ' <span class="simplefavorite-button-count" style="display:none;">2</span></button>';
 					echo $out;
 				}
 				?>
@@ -165,7 +165,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 			<p><?php _e('Adds the total number of times the post has been favorited to the button.', 'favorites'); ?></p>
 		</div>
 		<div class="field">
-			<label><input type="checkbox" name="simplefavorites_display[buttoncount]" value="true" <?php if ( $this->settings_repo->includeCountInButton() ) echo 'checked'; ?> /> <?php _e('Include count in button', 'favorites'); ?></label>
+			<label><input type="checkbox" name="simplefavorites_display[buttoncount]" value="true" <?php if ( $this->settings_repo->includeCountInButton() ) echo 'checked'; ?> data-favorites-include-count-checkbox /> <?php _e('Include count in button', 'favorites'); ?></label>
 		</div>
 	</div><!-- .row -->
 </div><!-- .favorites-display-settings -->

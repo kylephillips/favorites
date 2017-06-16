@@ -18,6 +18,7 @@ FavoritesAdmin.Settings = function()
 			plugin.toggleCustomColorOptions();
 			plugin.enableColorPickers();
 			plugin.toggleButtonPreviewColors();
+			plugin.toggleCountOptions();
 			$.each($('[data-favorites-dependency-checkbox]'), function(){
 				var item = $(this).parents('.field');
 				plugin.toggleDependencyContent(item);
@@ -74,6 +75,9 @@ FavoritesAdmin.Settings = function()
 			setTimeout(function(){
 				plugin.toggleButtonPreviewColors();
 			}, 10);
+		});
+		$(document).on('change', '[data-favorites-include-count-checkbox]', function(){
+			plugin.toggleCountOptions();
 		});
 
 		// Favorite Button Colors
@@ -317,6 +321,19 @@ FavoritesAdmin.Settings = function()
 		var input = $('[data-favorites-color-picker="' + property + '"]');
 		value = $(input).val();
 		return value;
+	}
+
+	/**
+	* Toggle Count options
+	*/
+	plugin.toggleCountOptions = function()
+	{
+		var checked = ( $('[data-favorites-include-count-checkbox]').is(':checked') ) ? true : false;
+		if ( checked ){
+			$('.simplefavorite-button-count').show();
+			return;
+		}
+		$('.simplefavorite-button-count').hide();
 	}
 
 	return plugin.bindEvents();
