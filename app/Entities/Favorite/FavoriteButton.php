@@ -141,6 +141,6 @@ class FavoriteButton
 		} else {
 			$html .= ( $this->favorited ) ? html_entity_decode($this->settings_repo->buttonTextFavorited()) : html_entity_decode($this->settings_repo->buttonText());
 		}
-		return $html;
+		return apply_filters('favorites/button/html', $html, $this->post_id, $this->favorited, $this->site_id);
 	}
 }
