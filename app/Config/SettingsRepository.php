@@ -205,12 +205,22 @@ class SettingsRepository
 		$image_url = Helpers::plugin_url() . '/assets/images/loading.gif';
 		
 		if ( $state == 'inactive' ){
-			$image = '<img src="' . apply_filters('simplefavorites_spinner_url', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
+			$image_url = apply_filters('simplefavorites_spinner_url', $image_url);
+			$image_url = apply_filters('favorites/button/loading/image_url', $image_url);
+			// deprecated filter
+			$image = '<img src="' . $image_url . '" class="simplefavorites-loading" aria-hidden="true" />';
+			$image = '<img src="' . $image_url . '" class="simplefavorites-loading" aria-hidden="true" />';
 			return $image;
 		}
 		
 		// active state (some users might want different color for active)
-		$image = '<img src="' . apply_filters('simplefavorites_spinner_url_active', $image_url) . '" class="simplefavorites-loading" aria-hidden="true" />';
+
+		// deprecated filter
+		$image_url = apply_filters('simplefavorites_spinner_url_active', $image_url);
+		$image_url = apply_filters('favorites/button/loading/image_url_active', $image_url);
+
+		$image = '<img src="' . $image_url . '" class="simplefavorites-loading" aria-hidden="true" />';
+		$image = '<img src="' . $image_url . '" class="simplefavorites-loading" aria-hidden="true" />';
 		return $image;
 	}
 
@@ -239,8 +249,17 @@ class SettingsRepository
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['loadingindicator']['include_html']) || $option['loadingindicator']['include_html'] !== 'true' ) return false;
 		
-		if ( $state == 'inactive' )	return apply_filters('simplefavorites_spinner_html', '<span class="sf-icon-spinner-wrapper"><i class="sf-icon-spinner"></i></span>');
-		return apply_filters('simplefavorites_spinner_html_active', '<span class="sf-icon-spinner-wrapper active"><i class="sf-icon-spinner active"></i></span>');
+		if ( $state == 'inactive' )	{
+			// Deprecated filter
+			$html = apply_filters('simplefavorites_spinner_html', '<span class="sf-icon-spinner-wrapper"><i class="sf-icon-spinner"></i></span>');
+			$html = apply_filters('favorites/button/loading/html', $html);
+			return $html;
+		}
+
+		// Deprecated filter
+		$html = apply_filters('simplefavorites_spinner_html_active', '<span class="sf-icon-spinner-wrapper active"><i class="sf-icon-spinner active"></i></span>');
+		$html = apply_filters('favorites/button/loading/html_active', $html);
+		return $html;
 	}
 
 	/**
