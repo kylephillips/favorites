@@ -9,16 +9,14 @@ use Favorites\Config\SettingsRepository;
 */
 class FavoriteListTypeCustom extends FavoriteListTypeBase
 {
+
 	public function __construct($list_options)
 	{
 		parent::__construct($list_options);
 	}
 
-	public function getMarkup()
+	public function listing($favorite)
 	{
-		$out = 'testing';
-		if ( is_multisite() ) switch_to_blog($this->list_options->site_id);
-		if ( is_multisite() ) restore_current_blog();
-		return $out;
+		return $this->listing_presenter->present($this->list_options, $this->list_options->custom_markup_html, $favorite);
 	}
 }

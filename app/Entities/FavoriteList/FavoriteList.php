@@ -61,8 +61,10 @@ class FavoriteList
 			if ( $option == 'customize' ) continue;
 			if ( $val == '' ) continue;
 			$this->list_options->$option = ( $val == 'true' ) ? true : sanitize_text_field($val);
+			if ( $option == 'custom_markup_html' ) $this->list_options->custom_markup_html = $val;
 		}
 		if ( !property_exists($this->list_options, 'customize_markup') ) $this->list_options->customize_markup = false;
+		if ( !property_exists($this->list_options, 'custom_markup_html') ) $this->list_options->custom_markup_html = false;
 	}
 
 	/**
@@ -70,9 +72,9 @@ class FavoriteList
 	*/
 	public function getList()
 	{
-		$list = ( !$this->list_options->customize_markup ) 
+		$list = ( !$this->list_options->customize_markup || !$this->list_options->custom_markup_html ) 
 			? new FavoriteListTypeDefault($this->list_options)
 			: new FavoriteListTypeCustom($this->list_options);
-		return $list->getMarkup();
+		return $list->getListMarkup();
 	}
 }

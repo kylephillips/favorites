@@ -287,7 +287,12 @@ $button_type_selected = $this->settings_repo->getButtonType();
 									<option value="[post_title]"><?php _e('Post Title', 'favorites'); ?></option>
 									<option value="[post_excerpt]"><?php _e('Excerpt', 'favorites'); ?></option>
 									<option value="[post_permalink]"><?php _e('Permalink', 'favorites'); ?></option>
-									<option value="[post_thumbnail size='thumbnail']"><?php _e('Thumbnail', 'favorites'); ?></option>
+									<?php
+									$thumbnail_sizes = get_intermediate_image_sizes();
+									foreach ( $thumbnail_sizes as $size ){
+										echo '<option value="[post_thumbnail_' . $size . ']">' . __('Thumbnail: ', 'favorites') . $size . '</option>';
+									}
+									?>
 								</select>
 								<button data-favorites-listing-customizer-variable-button class="button"><?php _e('Add', 'favorites'); ?></button>
 							</div><!-- .variables -->

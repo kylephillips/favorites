@@ -3,6 +3,7 @@ namespace Favorites\Entities\FavoriteList;
 
 use Favorites\Entities\User\UserFavorites;
 use Favorites\Config\SettingsRepository;
+use Favorites\Entities\FavoriteList\FavoriteListingPresenter;
 
 /**
 * Base class for favorite lists
@@ -30,10 +31,16 @@ abstract class FavoriteListTypeBase
 	*/
 	protected $favorites;
 
+	/**
+	* Listing Presenter
+	*/
+	protected $listing_presenter;
+
 	public function __construct($list_options)
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->user_favorites = new UserFavorites;
+		$this->listing_presenter = new FavoriteListingPresenter;
 		$this->list_options = $list_options;
 		$this->setApiOptions();
 		$this->setFavorites();
@@ -113,9 +120,28 @@ abstract class FavoriteListTypeBase
 	protected function noFavorites()
 	{
 		if ( !empty($this->favorites) ) return;
+		$out = $this->listOpening();
 		$out = '<' . $this->list_options->wrapper_type;
 		$out .= ' data-postid="0" data-nofavorites>' . $this->list_options->no_favorites;
 		$out .= '<' . $this->list_options->wrapper_type . '>';
+		$out .= $this->listClosing();
+		return $out;
+	}
+
+	/**
+	* Get the markup for a full list
+	*/
+	public function getListMarkup()
+	{
+		if ( is_multisite() ) switch_to_blog($this->list_options->site_id);
+		if ( empty($this->favorites) ) return $this->noFavorites();
+
+		$out = $this->listOpening();	
+		foreach ( $this->favorites as $key => $favorite ){
+			$out .= $this->listing($favorite);
+		}
+		$out .= $this->listClosing();
+		if ( is_multisite() ) restore_current_blog();
 		return $out;
 	}
 }
