@@ -58,14 +58,24 @@ class UserFavoritesShortcode
 		$this->setOptions($options);
 		$this->parsePostTypes();
 		
+		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
+		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
 		$this->options['include_links'] = ( $this->options['include_links'] == 'true' ) ? true : false;
 		$this->options['include_buttons'] = ( $this->options['include_buttons'] == 'true' ) ? true : false;
 		$this->options['include_thumbnails'] = ( $this->options['include_thumbnails'] == 'true' ) ? true : false;
 		$this->options['include_excerpts'] = ( $this->options['include_excerpts'] == 'true' ) ? true : false;
-		if ( $this->options['user_id'] == "" ) $this->options['user_id'] = null;
-		if ( $this->options['site_id'] == "" ) $this->options['site_id'] = null;
 
-		$favorites = new UserFavorites($this->options['user_id'], $this->options['site_id'], $this->options['include_links'], $this->filters);
-		return $favorites->getFavoritesList($this->options['include_buttons'], $this->options['include_thumbnails'], $this->options['thumbnail_size'], $this->options['include_excerpts']);
+		$favorites = new UserFavorites(
+			$this->options['user_id'], 
+			$this->options['site_id'], 
+			$this->options['include_links'], 
+			$this->filters
+		);
+		return $favorites->getFavoritesList(
+			$this->options['include_buttons'], 
+			$this->options['include_thumbnails'], 
+			$this->options['thumbnail_size'], 
+			$this->options['include_excerpts']
+		);
 	}
 }

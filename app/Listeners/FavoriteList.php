@@ -47,7 +47,9 @@ class FavoriteList extends AJAXListenerBase
 		global $blog_id;
 		$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 		if ( !is_multisite() ) $site_id = 1;
-		$filters = ( !empty($this->data['posttypes']) ) ? array('post_type' => $this->data['posttypes']) : null;
+
+		$filters = ( !empty($this->data['post_types']) ) ? array('post_type' => $this->data['post_types']) : null;
+		
 		$favorites = new UserFavorites(
 			$this->data['user_id'], 
 			$this->data['site_id'], 
