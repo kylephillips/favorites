@@ -9,6 +9,7 @@ Favorites.Lists = function()
 	var $ = jQuery;
 
 	plugin.utilities = new Favorites.Utilities;
+	plugin.buttonFormatter = new Favorites.ButtonOptionsFormatter;
 
 	plugin.bindEvents = function()
 	{
@@ -68,11 +69,26 @@ Favorites.Lists = function()
 				post_types : post_types
 			},
 			success : function(data){
-				$(list).replaceWith(data.list);
+				var newlist = $(data.list);
+				$(list).replaceWith(newlist);
+				plugin.removeButtonLoading(newlist);
 			},
 			error : function(data){
 				console.log(data);
 			}
+		});
+	}
+
+	/**
+	* Remove loading state from buttons in the list
+	*/
+	plugin.removeButtonLoading = function(list)
+	{
+		var buttons = $(list).find(Favorites.selectors.button);
+		$.each(buttons, function(){
+			plugin.buttonFormatter.format($(this), false);
+			$(this).removeClass(Favorites.cssClasses.active);
+			$(this).removeClass(Favorites.cssClasses.loading);
 		});
 	}
 

@@ -58,7 +58,7 @@ class FavoriteButton
 	* @param boolean loading - whether to include loading class
 	* @return html
 	*/
-	public function display($loading = false)
+	public function display($loading = true)
 	{
 		if ( !$this->settings_repo->cacheEnabled() ) $loading = false;
 		if ( !$this->user->getsButton() ) return false;
