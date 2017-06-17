@@ -24,6 +24,7 @@
 			</label>
 			<div class="authentication-modal-content" data-favorites-authentication-modal-content>
 				<h3><?php _e('Edit the Modal Content Below', 'favorites'); ?></h3>
+				<p><strong><?php _e('Important: ', 'favorites'); ?></strong> <?php _e('If plugin css or javascript has been disabled, the modal window will not display correctly.', 'favorites'); ?></p>
 				<p><?php _e('To add "close" button or link, give it a data attribute of "data-favorites-modal-close".', 'favorites'); ?></p>
 				<?php
 					wp_editor($this->settings_repo->authenticationModalContent(), 'simplefavorites_users_authentication_modal', 
