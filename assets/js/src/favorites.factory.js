@@ -69,6 +69,12 @@ Favorites.jsData = {
 Favorites.userFavorites = null;
 
 /**
+* Is the user authenticated
+* @var object
+*/
+Favorites.authenticated = true;
+
+/**
 * WP Form Actions Used by the Plugin
 */
 Favorites.formActions = {

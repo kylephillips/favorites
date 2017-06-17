@@ -33,6 +33,7 @@ Favorites.UserFavorites = function()
 			success: function(data){
 				Favorites.userFavorites = data.favorites;
 				$(document).trigger('favorites-user-favorites-loaded', [plugin.initalLoad]);
+				$(document).trigger('favorites-update-all-buttons');
 
 				// Deprecated Callback
 				if ( plugin.initalLoad ) favorites_after_initial_load(Favorites.userFavorites);

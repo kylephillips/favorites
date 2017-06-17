@@ -55,6 +55,7 @@ Favorites.RequireAuthentication = function()
 	plugin.closeModal = function()
 	{
 		$('[' + Favorites.selectors.modals + ']').removeClass('active');
+		$(document).trigger('favorites-modal-closed');
 	}
 
 	return plugin.bindEvents();

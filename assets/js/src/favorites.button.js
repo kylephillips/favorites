@@ -68,10 +68,10 @@ Favorites.Button = function()
 			},
 			success: function(data){
 				if ( data.status === 'unauthenticated' ){
+					Favorites.authenticated = false;
 					plugin.loading(false);
 					plugin.data.status = 'inactive';
-					plugin.authenticated = false;
-					plugin.resetButtons();
+					$(document).trigger('favorites-update-all-buttons');
 					$(document).trigger('favorites-require-authentication', [plugin.data]);
 					return;
 				}
@@ -79,6 +79,7 @@ Favorites.Button = function()
 				plugin.loading(false);
 				plugin.resetButtons();
 				$(document).trigger('favorites-updated-single', [data.favorites, plugin.data.post_id, plugin.data.site_id, plugin.data.status]);
+				$(document).trigger('favorites-update-all-buttons');
 
 				// Deprecated callback
 				favorites_after_button_submit(data.favorites, plugin.data.post_id, plugin.data.site_id, plugin.data.status);
@@ -98,16 +99,12 @@ Favorites.Button = function()
 				if ( favorite_count <= 0 ) favorite_count = 1;
 				$(this).removeClass(Favorites.cssClasses.active);
 				$(this).attr('data-favoritecount', favorite_count - 1);
-				if ( plugin.authenticated ){
-					$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, (favorite_count - 1)));
-				} else {
-					$(this).html(Favorites.jsData.favorite);
-				}
+				$(this).find(Favorites.selectors.count).text(favorite_count - 1);
 				return;
 			} 
 			$(this).addClass(Favorites.cssClasses.active);
 			$(this).attr('data-favoritecount', favorite_count + 1);
-			$(this).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, (favorite_count + 1)));
+			$(this).find(Favorites.selectors.count).text(favorite_count + 1);
 		});
 	}
 

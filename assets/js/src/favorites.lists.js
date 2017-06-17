@@ -13,6 +13,9 @@ Favorites.Lists = function()
 
 	plugin.bindEvents = function()
 	{
+		$(document).on('favorites-update-all-lists', function(){
+			plugin.updateAllLists();
+		});
 		$(document).on('favorites-updated-single', function(){
 			plugin.updateAllLists();
 		});

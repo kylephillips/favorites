@@ -51,6 +51,7 @@ Favorites.Clear = function()
 				plugin.loading(false);
 				plugin.clearSiteFavorites(site_id);
 				$(document).trigger('favorites-cleared', [plugin.activeButton]);
+				$(document).trigger('favorites-update-all-buttons');
 			}
 		});
 	}

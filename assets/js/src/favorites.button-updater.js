@@ -17,13 +17,7 @@ Favorites.ButtonUpdater = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('favorites-user-favorites-loaded', function(){
-			plugin.updateAllButtons();
-		});
-		$(document).on('favorites-cleared', function(){
-			plugin.updateAllButtons();
-		});
-		$(document).on('favorites-updated-single', function(){
+		$(document).on('favorites-update-all-buttons', function(){
 			plugin.updateAllButtons();
 		});
 		$(document).on('favorites-list-updated', function(event, list){
