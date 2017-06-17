@@ -83,7 +83,7 @@ abstract class FavoriteListTypeBase
 	*/
 	protected function setPostTypes()
 	{
-		$this->list_options->post_types = '';
+		$this->list_options->post_types = 'post';
 		if ( isset($this->list_options->filters['post_type']) )	
 			$this->list_options->post_types = implode(',', $this->list_options->filters['post_type']);
 	}
