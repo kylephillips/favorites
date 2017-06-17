@@ -11,21 +11,28 @@ Favorites.ButtonOptionsFormatter = function()
 	plugin.options = Favorites.jsData.button_options;
 	plugin.formatter = new Favorites.Formatter;
 
+	/**
+	* Format the button according to plugin options
+	*/
 	plugin.format = function(button, isFavorite)
 	{
 		if ( plugin.options.custom_colors ) plugin.colors(button, isFavorite);
 		plugin.html(button, isFavorite);
 	}
 
+	/**
+	* Set the HTML content for the button
+	*/
 	plugin.html = function(button, isFavorite)
 	{
 		var count = $(button).attr('data-favoritecount');
 		var options = plugin.options.button_type;
 		var html = '';
-
 		if ( plugin.options.button_type === 'custom' ){
 			if ( isFavorite ) $(button).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorited, count));
 			if ( !isFavorite ) $(button).html(plugin.formatter.addFavoriteCount(Favorites.jsData.favorite, count));
+			plugin.applyIconColor(button, isFavorite);
+			plugin.applyCountColor(button, isFavorite);
 			return;
 		}
 		if ( isFavorite ){
@@ -41,8 +48,12 @@ Favorites.ButtonOptionsFormatter = function()
 		plugin.applyCountColor(button, isFavorite);
 	}
 
+	/**
+	* Apply custom colors to the button if the option is selected
+	*/
 	plugin.colors = function(button, isFavorite)
 	{
+		if ( !plugin.options.custom_colors ) return;
 		if ( isFavorite ){
 			var options = plugin.options.active;
 			if ( options.background_active ) $(button).css('background-color', options.background_active);
@@ -57,6 +68,9 @@ Favorites.ButtonOptionsFormatter = function()
 		plugin.boxShadow(button);
 	}
 
+	/**
+	* Remove the box shadow from the button if the option is selected
+	*/
 	plugin.boxShadow = function(button)
 	{
 		if ( plugin.options.box_shadow ) return;
@@ -65,8 +79,12 @@ Favorites.ButtonOptionsFormatter = function()
 		$(button).css('-moz-box-shadow', 'none');
 	}
 
+	/**
+	* Apply custom colors to the icon if the option is selected
+	*/
 	plugin.applyIconColor = function(button, isFavorite)
 	{
+		if ( !plugin.options.custom_colors ) return;
 		if ( isFavorite && plugin.options.active.icon_active ) {
 			$(button).find('i').css('color', plugin.options.active.icon_active);
 		}
@@ -75,8 +93,12 @@ Favorites.ButtonOptionsFormatter = function()
 		}
 	}
 
+	/**
+	* Apply custom colors to the favorite count if the option is selected
+	*/
 	plugin.applyCountColor = function(button, isFavorite)
 	{
+		if ( !plugin.options.custom_colors ) return;
 		if ( isFavorite && plugin.options.active.count_active ) {
 			$(button).find(Favorites.selectors.count).css('color', plugin.options.active.count_active);
 			return;
