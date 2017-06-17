@@ -72,8 +72,11 @@ Favorites.Lists = function()
 				var newlist = $(data.list);
 				$(list).replaceWith(newlist);
 				plugin.removeButtonLoading(newlist);
+				$(document).trigger('favorites-list-updated', [newlist]);
 			},
 			error : function(data){
+				console.log('There was an error updating the list.');
+				console.log(list);
 				console.log(data);
 			}
 		});

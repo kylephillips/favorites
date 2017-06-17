@@ -26,15 +26,23 @@ Favorites.ButtonUpdater = function()
 		$(document).on('favorites-updated-single', function(){
 			plugin.updateAllButtons();
 		});
+		$(document).on('favorites-list-updated', function(event, list){
+			plugin.updateAllButtons(list);
+		});
 	}
 
 	/*
 	* Update all favorites buttons to match the user favorites
+	* @param list object (optionally updates button in list)
 	*/
-	plugin.updateAllButtons = function()
+	plugin.updateAllButtons = function(list)
 	{
-		for ( var i = 0; i < $(Favorites.selectors.button).length; i++ ){
-			plugin.activeButton = $(Favorites.selectors.button)[i];
+		var buttons = ( typeof list === undefined && list !== '' ) 
+			? $(list).find(Favorites.selectors.button) 
+			: $(Favorites.selectors.button);
+		
+		for ( var i = 0; i < $(buttons).length; i++ ){
+			plugin.activeButton = $(buttons)[i];
 			plugin.setButtonData();
 
 			if ( plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
@@ -49,6 +57,7 @@ Favorites.ButtonUpdater = function()
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
 		}
 	}
+
 
 	/**
 	* Set the button data
