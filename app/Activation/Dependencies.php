@@ -109,7 +109,7 @@ class Dependencies
 			'loading_image_preload' => $this->settings_repo->includeLoadingIndicatorPreload(),
 			'cache_enabled' => $this->settings_repo->cacheEnabled(),
 			'button_options' => $this->settings_repo->formattedButtonOptions(),
-			'authentication_modal_content' => apply_filters('the_content', $this->settings_repo->authenticationModalContent())
+			'authentication_modal_content' => apply_filters('the_content', $this->settings_repo->authenticationModalContent(), 'favorites-modal')
 		);
 		if ( !$this->settings_repo->cacheEnabled() ) $localized_data['nonce'] = wp_create_nonce('simple_favorites_nonce');
 		wp_localize_script(
