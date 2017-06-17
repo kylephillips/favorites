@@ -58,11 +58,17 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 2. Enable for anonymous users and save in the session or a browser cookie. Logged-in users' favorites are saved in a custom user meta field.
 
-3. Enable and display per post type, or use the functions/shortcodes to manually add to templates.
+3. Optionally add a modal authentication gate for unauthenticated users
 
-4. Add a favorites button to any post type. Customize the button text and/or icon.
+4. Enable and display per post type, or use the functions/shortcodes to manually add to templates.
 
-5. Use the included functions or shortcodes to display a list of user favorites. A template function is also provided to fetch an array of user favorite post ids.
+5. Customize the button markup to fit your theme
+
+6. Or use a predefined button type and customize colors to fit your site's style.
+
+7. Every option is customizable, including the loading state for favorite buttons.
+
+8. Customize favorite lists
 
 
 == Changelog ==
