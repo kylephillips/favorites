@@ -45,8 +45,9 @@ abstract class FavoriteListBase
 		$this->list_options->wrapper_css = '';
 		$this->list_options->listing_type = 'li';
 		$this->list_options->listing_css = '';
-		if ( !$this->list_options->customized ) return;
 		$this->setCustomOptions();
+		if ( !property_exists($this->list_options, 'customize_markup') ) $this->list_options->customize_markup = false;
+		if ( !property_exists($this->list_options, 'custom_markup_html') ) $this->list_options->custom_markup_html = false;
 	}
 
 	/**
@@ -55,13 +56,12 @@ abstract class FavoriteListBase
 	protected function setCustomOptions()
 	{
 		$options = $this->settings_repo->listCustomization('all');
+		if ( !$options ) return;
 		foreach ( $options as $option => $val ){
 			if ( $option == 'customize' ) continue;
 			if ( $val == '' ) continue;
 			$this->list_options->$option = ( $val == 'true' ) ? true : sanitize_text_field($val);
 			if ( $option == 'custom_markup_html' ) $this->list_options->custom_markup_html = $val;
 		}
-		if ( !property_exists($this->list_options, 'customize_markup') ) $this->list_options->customize_markup = false;
-		if ( !property_exists($this->list_options, 'custom_markup_html') ) $this->list_options->custom_markup_html = false;
 	}
 }
