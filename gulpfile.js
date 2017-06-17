@@ -65,7 +65,7 @@ gulp.task('admin_scripts', function(){
 	return gulp.src(js_admin_source)
 		.pipe(concat('favorites-admin.min.js'))
 		.pipe(gulp.dest(js_compiled))
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest(js_compiled))
 		.pipe(notify('Favorites admin scripts compiles & compressed.'));
 });

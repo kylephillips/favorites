@@ -63,18 +63,7 @@ FavoritesAdmin.Settings = function()
 		});
 		$(document).on('click', '[data-favorites-button-preview]', function(e){
 			e.preventDefault();
-			$(this).toggleClass('active');
-			var icon = $(this).attr('data-favorites-button-icon');
-			var activeText = $(this).attr('data-favorites-button-active-content');
-			var defaultText = $(this).attr('data-favorites-button-default-content');
-			if ( $(this).hasClass('active') ){
-				$(this).html(icon + ' ' + activeText);
-			} else {
-				$(this).html(icon + ' ' + defaultText);
-			}
-			setTimeout(function(){
-				plugin.toggleButtonPreviewColors();
-			}, 10);
+			plugin.togglePreviewButtonState($(this));
 		});
 		$(document).on('change', '[data-favorites-include-count-checkbox]', function(){
 			plugin.toggleCountOptions();
@@ -186,6 +175,25 @@ FavoritesAdmin.Settings = function()
 	}
 
 	/**
+	* Toggle the active state for the preview button
+	*/
+	plugin.togglePreviewButtonState = function(button)
+	{
+		$(button).toggleClass('active');
+		var icon = $(button).attr('data-favorites-button-icon');
+		var activeText = $(button).attr('data-favorites-button-active-content');
+		var defaultText = $(button).attr('data-favorites-button-default-content');
+		var text = ( $(button).hasClass('active') ) ? activeText : defaultText;
+		var html = icon + ' ' + text;
+		if ( $('[data-favorites-include-count-checkbox]').is(':checked') )
+			html += ' <span class="simplefavorite-button-count">2</span>';
+		$(button).html(html);
+		setTimeout(function(){
+			plugin.toggleButtonPreviewColors();
+		}, 10);
+	}
+
+	/**
 	* Toggle the favorite button type previews
 	*/
 	plugin.toggleButtonTypes = function()
@@ -240,7 +248,6 @@ FavoritesAdmin.Settings = function()
 	{
 		var button = $('[data-favorites-button-preview]');
 		var buttonVisible = $('[data-favorites-button-preview]:visible');
-		var icon = $(button).find('i');
 
 		if ( !$('[data-favorites-custom-colors-checkbox]').is(':checked') ) {
 			$(button).removeAttr('style');
@@ -248,69 +255,18 @@ FavoritesAdmin.Settings = function()
 			return;
 		}
 
-		var shadowCheckbox = $('[data-favorites-button-shadow]');
-
-		// Color Values
-		var background_default = plugin.getCurrentColor('background_default');
-		var border_default = plugin.getCurrentColor('border_default');
-		var text_default = plugin.getCurrentColor('text_default');
-		var icon_default = plugin.getCurrentColor('icon_default');
-		var background_active = plugin.getCurrentColor('background_active');
-		var border_active = plugin.getCurrentColor('border_active');
-		var text_active = plugin.getCurrentColor('text_active');
-		var icon_active = plugin.getCurrentColor('icon_active');
+		var count_active = plugin.getCurrentColor('count_active');
 
 		// Toggle the shadow
-		if ( $(shadowCheckbox).is(':checked') ){
-			$(button).css('box-shadow', '');
-		} else {
-			$(button).css('box-shadow', 'none');
-		}
+		var shadow = ( $('[data-favorites-button-shadow]').is(':checked') ) ? '' : 'none';
+		$(button).css('box-shadow', shadow);
 
-		if ( $(buttonVisible).hasClass('active') ){
-			if ( background_active !== '' ) {
-				$(button).css('background-color', background_active);
-			} else {
-				$(button).css('background-color', '');
-			}
-			if ( border_active !== '' ) {
-				$(button).css('border-color', border_active);
-			} else {
-				$(button).css('border-color', '');
-			}
-			if ( text_active !== '' ) {
-				$(button).css('color', text_active);
-			} else {
-				$(button).css('color', '');
-			}
-			if ( icon_active !== '' ) {
-				$(icon).css('color', icon_active);
-			} else {
-				$(icon).css('color', '');
-			}
-			return;
-		} //  active
-
-		if ( background_default !== '' ) {
-			$(button).css('background-color', background_default);
-		} else {
-			$(button).css('background-color', '');
-		}
-		if ( border_default !== '' ) {
-			$(button).css('border-color', border_default);
-		} else {
-			$(button).css('border-color', '');
-		}
-		if ( text_default !== '' ) {
-			$(button).css('color', text_default);
-		} else {
-			$(button).css('color', '');
-		}
-		if ( icon_default !== '' ) {
-			$(icon).css('color', icon_default);
-		} else {
-			$(icon).css('color', '');
-		}
+		var propertyState = ( $(buttonVisible).hasClass('active') ) ? '_active' : '_default';
+		$(button).css('background-color', plugin.getCurrentColor('background' + propertyState));
+		$(button).css('border-color', plugin.getCurrentColor('border' + propertyState));
+		$(button).css('color', plugin.getCurrentColor('text' + propertyState));
+		$(button).find('i').css('color', plugin.getCurrentColor('icon' + propertyState));
+		$(button).find('.simplefavorite-button-count').css('color', plugin.getCurrentColor('count' + propertyState));
 	} // toggleButtonPreviewColors
 
 	/**

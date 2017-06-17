@@ -85,7 +85,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 				<h4><?php _e('Preview', 'favorites'); ?></h4>
 				<?php
 				foreach ( $preset_buttons as $button_name => $attrs ){
-					$out = '<button class="simplefavorite-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . ' <span class="simplefavorite-button-count" style="display:none;">2</span></button>';
+					$out = '<button class="simplefavorite-button preset '  . $button_name . '" data-favorites-button-preview="' . $button_name . '" data-favorites-button-active-content="' . $attrs['state_active'] . '" data-favorites-button-default-content="' . $attrs['state_default'] . '" data-favorites-button-icon="' . htmlentities($attrs['icon']) . '">' . $attrs['icon'] . ' ' . $attrs['state_default'] . ' <span class="simplefavorite-button-count" >2</span></button>';
 					echo $out;
 				}
 				?>
