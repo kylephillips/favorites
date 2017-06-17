@@ -1,0 +1,632 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Favorites\n"
+"POT-Creation-Date: 2017-06-17 13:56-0500\n"
+"PO-Revision-Date: 2017-06-17 13:57-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: app/API/Shortcodes/PostFavoritesShortcode.php:27
+#: app/Views/settings/settings-users.php:7
+msgid "Anonymous Users"
+msgstr ""
+
+#: app/API/Shortcodes/PostFavoritesShortcode.php:28
+msgid "Anonymous User"
+msgstr ""
+
+#: app/Activation/Activate.php:39
+msgid "Favorite <i class=\"sf-icon-star-empty\"></i>"
+msgstr ""
+
+#: app/Activation/Activate.php:40
+msgid "Favorited <i class=\"sf-icon-star-full\"></i>"
+msgstr ""
+
+#: app/Bootstrap.php:59 app/Config/Settings.php:52
+#: app/Views/settings/settings-display.php:20
+#: app/Views/settings/settings-display.php:181
+#: app/Views/settings/settings-display.php:228
+#: app/Views/settings/settings.php:2
+msgid "Settings"
+msgstr ""
+
+#: app/Bootstrap.php:60
+msgid "FAQ"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:67
+msgid "Please login to add favorites."
+msgstr ""
+
+#: app/Config/SettingsRepository.php:68
+msgid "Dismiss this notice"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:106 app/Config/SettingsRepository.php:309
+#: app/Config/SettingsRepository.php:312
+msgid "Favorite"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:118 app/Config/SettingsRepository.php:313
+msgid "Favorited"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:130
+msgid "Clear Favorites"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:190
+msgid "Loading"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:273
+msgid "No Favorites"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:316 app/Config/SettingsRepository.php:319
+msgid "Like"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:320
+msgid "Liked"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:323 app/Config/SettingsRepository.php:326
+msgid "Love"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:327
+msgid "Loved"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:330 app/Config/SettingsRepository.php:333
+msgid "Bookmark"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:334
+msgid "Bookmarked"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:337
+msgid "Wishlist"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:340
+msgid "Add to Wishlist"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:341
+msgid "Added to Wishlist"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:377 app/Config/SettingsRepository.php:384
+msgid "Background Color"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:378 app/Config/SettingsRepository.php:385
+msgid "Border Color"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:379 app/Config/SettingsRepository.php:386
+msgid "Text Color"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:380 app/Config/SettingsRepository.php:387
+msgid "Icon Color"
+msgstr ""
+
+#: app/Config/SettingsRepository.php:381 app/Config/SettingsRepository.php:388
+msgid "Count Color"
+msgstr ""
+
+#: app/Entities/Post/AdminColumns.php:63 app/Entities/Post/PostMeta.php:28
+#: app/Favorites.php:18
+msgid "Favorites"
+msgstr ""
+
+#: app/Entities/Post/PostMeta.php:44
+msgid "Total Favorites"
+msgstr ""
+
+#: app/Listeners/AJAXListenerBase.php:44
+msgid "Invalid form field"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:7
+msgid "Enabled Favorites for:"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:25
+msgid "Insert Favorite button before content"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:26
+msgid ""
+"Favorite buttons are automatically inserted before the content using "
+"the_content filter."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:29
+msgid "Include before content"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:34
+msgid "Insert Favorite button after content"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:35
+msgid ""
+"Favorite buttons are automatically inserted after the content using "
+"the_content filter."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:38
+msgid "Include after content"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:43
+msgid "Show favorite count on post edit screen"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:44
+msgid ""
+"Adds a meta box with the total number of favorites the post has received."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:47
+msgid "Add meta box"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:52
+msgid "Show favorite count in admin columns"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:53
+msgid "Adds a column to the admin listing with the total favorite count."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:56
+msgid "Add admin column"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:64
+msgid "Favorite Button Content & Appearance"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:68
+#: app/Views/settings/settings-display.php:72
+msgid "Button Type"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:69
+msgid "Use a predefined button or add your own markup."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:74
+msgid "Custom Markup"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:85
+msgid "Preview"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:97
+msgid "Color Options"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:98
+msgid ""
+"If colors are not specified, theme colors will apply. Note: theme styles "
+"will effect the appearance of the favorites button. The button is displayed "
+"in a button element, with a css class of \"simplefavorites-button\"."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:101
+msgid "Specify custom colors"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:104
+msgid "Default Button State (Unfavorited)"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:120
+msgid "Active Button State (Favorited)"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:136
+msgid "Include button shadow"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:144
+msgid "Button Markup: Unfavorited"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:145
+msgid "The button inner html, in an unfavorited state."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:148
+#: app/Views/settings/settings-display.php:158
+msgid "Text/HTML"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:154
+msgid "Button Markup: Favorited"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:155
+msgid "The button inner html, in a favorited state."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:164
+msgid "Include Total Favorite Count"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:165
+msgid ""
+"Adds the total number of times the post has been favorited to the button."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:168
+msgid "Include count in button"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:173
+msgid "Favorite Button Loading Indication"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:180
+msgid "Display loading indicator for buttons"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:180
+msgid "Helpful for slow sites with cache enabled"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:186
+msgid "Loading Text"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:187
+msgid ""
+"Replaces the unfavorited/favorited button text during the loading state."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:190
+msgid "Loading Text/HTML"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:196
+msgid "Loading Spinner"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:197
+msgid ""
+"Adds a spinner to the button during loading state. See plugin documentation "
+"for filters available for theme customization."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:200
+msgid "Use CSS/HTML Spinner"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:202
+msgid "Use Image/GIF Spinner"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:208
+msgid "Page Load"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:209
+msgid ""
+"Adds the loading state to favorites buttons during page load. Helpful on "
+"sites with page cache enabled."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:212
+msgid "Add loading state on page load"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:220
+msgid "Listing Display"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:227
+msgid "Customize the favorites list HTML"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:233
+msgid "List Wrapper Element"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:234
+msgid "The list wrapper html element. Defaults to an html ul list."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:237
+msgid "List Wrapper Type"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:239
+msgid "Unordered List (ul)"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:240
+msgid "Ordered List (ol)"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:241
+#: app/Views/settings/settings-display.php:259
+msgid "Div"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:244
+msgid "Wrapper CSS Classes"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:251
+msgid "Single List Element"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:252
+msgid "The individual listing html element. Defaults to an html li item."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:255
+msgid "List Element Type"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:257
+msgid "List Item (li)"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:258
+msgid "Paragraph (p)"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:262
+msgid "Listing CSS Classes"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:269
+msgid "Single Listing Content Markup"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:270
+msgid "Optionally customize the single listing markup."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:274
+msgid "Customize Content"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:278
+msgid "Important:"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:278
+msgid ""
+"By customizing the listing content, some shortcode options will not apply. "
+"These options include: include_links, include_buttons, include_thumbnails, "
+"and thumbnail_size"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:281
+msgid "Add Dynamic Fields"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:282
+msgid ""
+"To add a custom meta field, use the format <code>[custom_field:"
+"custom_field_name]</code>"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:285
+msgid "Post Fields"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:287
+msgid "Post Title"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:288
+msgid "Excerpt"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:289
+msgid "Permalink"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:293
+msgid "Thumbnail: "
+msgstr ""
+
+#: app/Views/settings/settings-display.php:297
+#: app/Views/settings/settings-display.php:305
+msgid "Add"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:300
+msgid "Favorites Fields"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:302
+msgid "Favorite Button"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:303
+msgid "Favorite Count"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:327
+msgid "Additional Display Settings"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:331
+msgid "Clear Favorites Button Text"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:332
+msgid ""
+"The text that appears in the \"Clear Favorites\" button by default. Note, "
+"the text may be overridden in the shortcode or function call."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:335
+msgid "Clear Favorites Button Text/HTML"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:341
+msgid "No Favorites Text"
+msgstr ""
+
+#: app/Views/settings/settings-display.php:342
+msgid "Appears in user favorite lists when they have not favorited any posts."
+msgstr ""
+
+#: app/Views/settings/settings-display.php:345
+msgid "No Favorites Text/HTML"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:3
+msgid "Page Cache"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:10
+msgid ""
+"Cache Enabled on Site (Favorites content is injected on page load with AJAX "
+"request)"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:15
+msgid "Dependencies"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:19
+msgid "Enqueue Plugin CSS"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:22
+msgid "Output Plugin CSS"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:25
+msgid "If you are compiling your own minified CSS, include the CSS below:"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:32
+msgid "Enqueue Plugin Javascript"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:33
+msgid ""
+"Important: The plugin JavaScript is required for core functions. If this is "
+"disabled, the plugin JS <strong>must</strong> be included with the theme "
+"along with the global JS variables."
+msgstr ""
+
+#: app/Views/settings/settings-general.php:37
+msgid "Output Plugin JavaScript"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:40
+msgid ""
+"If you are compiling your own minified Javascript, include the below "
+"(required for plugin functionality):"
+msgstr ""
+
+#: app/Views/settings/settings-general.php:48
+msgid "Favorites Version"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:3
+msgid "User Settings"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:8
+msgid "Enable favoriting functionality for unauthenticated users."
+msgstr ""
+
+#: app/Views/settings/settings-users.php:11
+msgid "Enable Anonymous Users"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:13
+msgid "Include in Post Favorite Count"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:19
+msgid "Require Login to Favorite"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:20
+msgid ""
+"Show the buttons to unauthenticated users, but display a modal window "
+"prompting them to login to save favorites."
+msgstr ""
+
+#: app/Views/settings/settings-users.php:23
+msgid "Require Login & Show Modal to Anonymous Users"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:26
+msgid "Edit the Modal Content Below"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:27
+msgid "Important: "
+msgstr ""
+
+#: app/Views/settings/settings-users.php:27
+msgid ""
+"If plugin css or javascript has been disabled, the modal window will not "
+"display correctly."
+msgstr ""
+
+#: app/Views/settings/settings-users.php:28
+msgid ""
+"To add \"close\" button or link, give it a data attribute of \"data-"
+"favorites-modal-close\"."
+msgstr ""
+
+#: app/Views/settings/settings-users.php:43
+msgid "Save Unauthenticated Favorites as"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:44
+msgid ""
+"Unauthenticated users' favorites may be saved in either cookies or session. "
+"Authenticated users' favorites are saved as user meta."
+msgstr ""
+
+#: app/Views/settings/settings-users.php:47
+msgid "Cookie"
+msgstr ""
+
+#: app/Views/settings/settings-users.php:50
+msgid "Session"
+msgstr ""
+
+#: app/Views/settings/settings.php:6
+msgid "General"
+msgstr ""
+
+#: app/Views/settings/settings.php:9
+msgid "Users"
+msgstr ""
+
+#: app/Views/settings/settings.php:12
+msgid "Display & Post Types"
+msgstr ""
