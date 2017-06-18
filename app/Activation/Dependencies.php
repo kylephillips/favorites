@@ -63,6 +63,9 @@ class Dependencies
 	*/
 	public function adminScripts()
 	{
+		$screen = get_current_screen();
+		$settings_page = ( strpos($screen->id, 'simple-favorites') ) ? true : false;
+		if ( !$settings_page ) return;
 		wp_enqueue_script(
 			'simple-favorites-admin', 
 			$this->plugin_dir . '/assets/js/favorites-admin.min.js', 

@@ -73,6 +73,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.1.1 =
+* Fixes bug where Favorites admin javascript was loading outside the plugin settings area, causing preventing some sites from saving posts.
+
 = 2.1.0 =
 * Option added to enable a modal notification for anonymous users. Modal content is editable under Settings > Favorites > Users. Anonymous users must be disabled, and the "Require Login & Show Modal" must be checked. The content is also available via a filter: favorites/authentication_modal_content. If the plugin css has been disabled and this feature is required, please see the plugin styles for new css classes required for modals to function.
 * Button customization options added, including color settings and preset button types. Visit Settings > Favorites > Display & Post Types to customize the button. In addition to now having the ability to choose a preset button type, button colors may be specified to better match your theme without editing CSS files.
