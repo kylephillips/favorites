@@ -9,6 +9,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "3.1.0",
     "gulp-uglify": "3.0.0",
-    "gulp-watch": "^4.3.9"
+    "gulp-watch": "^4.3.9",
+    "pump": "0.1.7"
   }
 }

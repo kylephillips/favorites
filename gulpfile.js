@@ -6,6 +6,7 @@ var notify = require('gulp-notify');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var pump = require('pump');
 
 // Paths
 var scss = 'assets/scss/**/*';
@@ -38,57 +39,67 @@ var js_compiled = 'assets/js/';
 /**
 * Smush the admin Styles and output
 */
-gulp.task('scss', function(){
-	return gulp.src(scss)
-		.pipe(sass({ outputStyle: 'compressed' }))
-		.pipe(autoprefix('last 15 version'))
-		.pipe(gulp.dest(css))
-		.pipe(livereload())
-		.pipe(notify('Favorites styles compiled & compressed.'));
+gulp.task('scss', function(callback){
+	pump([
+		gulp.src(scss),
+		sass({ outputStyle: 'compressed' }),
+		autoprefix('last 15 version'),
+		gulp.dest(css),
+		livereload(),
+		notify('Favorites styles compiled & compressed.')
+	], callback);
 });
 
 /**
 * Uncompressed styles
 */
-gulp.task('uncompressed_styles', function(){
-	return gulp.src(scss)
-		.pipe(sass({ outputStyle: 'expanded' }))
-		.pipe(autoprefix('last 15 version'))
-		.pipe(rename('styles-uncompressed.css'))
-		.pipe(gulp.dest(css))
+gulp.task('uncompressed_styles', function(callback){
+	pump([
+		gulp.src(scss),
+		sass({ outputStyle: 'expanded' }),
+		autoprefix('last 15 version'),
+		rename('styles-uncompressed.css'),
+		gulp.dest(css)
+	], callback);
 });
 
 /**
 * Admin Scripts
 */
-gulp.task('admin_scripts', function(){
-	return gulp.src(js_admin_source)
-		.pipe(concat('favorites-admin.min.js'))
-		.pipe(gulp.dest(js_compiled))
-		//.pipe(uglify())
-		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Favorites admin scripts compiles & compressed.'));
+gulp.task('admin_scripts', function(callback){
+	pump([
+		gulp.src(js_admin_source),
+		concat('favorites-admin.min.js'),
+		gulp.dest(js_compiled),
+		uglify(),
+		gulp.dest(js_compiled),
+		notify('Favorites admin scripts compiles & compressed.')
+	], callback);
 });
 
 /**
 * Front end Scripts
 */
-gulp.task('frontend_scripts', function(){
-	return gulp.src(js_frontend_source)
-		.pipe(concat('favorites.min.js'))
-		.pipe(gulp.dest(js_compiled))
-		.pipe(uglify())
-		.pipe(gulp.dest(js_compiled))
-		.pipe(notify('Favorites front end scripts compiles & compressed.'));
+gulp.task('frontend_scripts', function(callback){
+	pump([
+		gulp.src(js_frontend_source),
+		concat('favorites.min.js'),
+		gulp.dest(js_compiled),
+		uglify(),
+		gulp.dest(js_compiled),
+		notify('Favorites front end scripts compiles & compressed.')
+	], callback);
 });
 
 /**
 * Front end Scripts - Unminified
 */
-gulp.task('frontend_scripts_pretty', function(){
-	return gulp.src(js_frontend_source)
-		.pipe(concat('favorites.js'))
-		.pipe(gulp.dest(js_compiled));
+gulp.task('frontend_scripts_pretty', function(callback){
+	pump([
+		gulp.src(js_frontend_source),
+		concat('favorites.js'),
+		gulp.dest(js_compiled)
+	], callback);
 });
 
 /**
