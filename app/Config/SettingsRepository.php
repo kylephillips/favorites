@@ -297,6 +297,18 @@ class SettingsRepository
 	}
 
 	/**
+	* Get the button element type
+	* @return string
+	* @since 2.1.2
+	*/
+	public function getButtonHtmlType()
+	{
+		$option = get_option('simplefavorites_display');
+		if ( !isset($option['button_element_type']) || $option['button_element_type'] == "" ) return 'button';
+		return $option['button_element_type'];
+	}
+
+	/**
 	* Preset Buttons
 	* @param string $button - which button to return
 	* @return array

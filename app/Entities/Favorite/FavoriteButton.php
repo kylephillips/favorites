@@ -66,9 +66,10 @@ class FavoriteButton
 		$this->button_options = $this->settings_repo->formattedButtonOptions();
 		$this->favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
 		$count = $this->count->getCount($this->post_id, $this->site_id);
+		$button_html_type = apply_filters('favorites/button/element_type', $this->settings_repo->getButtonHtmlType(), $this->post_id, $this->site_id);
 		$html = $this->html();
 
-		$out = '<button class="' . $this->cssClasses($loading) . '"';		
+		$out = '<' . $button_html_type . ' class="' . $this->cssClasses($loading) . '"';		
 		
 		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
 
@@ -80,7 +81,7 @@ class FavoriteButton
 			$out .= $html;
 			if ( $this->button_options['include_count'] ) $out .= $this->addCount();
 		}
-		$out .= '</button>';
+		$out .= '</' . $button_html_type . '>';
 		return $out;
 	}
 
