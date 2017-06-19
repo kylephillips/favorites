@@ -67,6 +67,10 @@ Favorites.Button = function()
 				status : plugin.data.status
 			},
 			success: function(data){
+				if ( Favorites.jsData.dev_mode ) {
+					console.log('The favorite was successfully saved.');
+					console.log(data);
+				}
 				if ( data.status === 'unauthenticated' ){
 					Favorites.authenticated = false;
 					plugin.loading(false);
@@ -83,6 +87,11 @@ Favorites.Button = function()
 
 				// Deprecated callback
 				favorites_after_button_submit(data.favorites, plugin.data.post_id, plugin.data.site_id, plugin.data.status);
+			},
+			error: function(data){
+				if ( !Favorites.jsData.dev_mode ) return;
+				console.log('There was an error saving the favorite.');
+				console.log(data);
 			}
 		});
 	}

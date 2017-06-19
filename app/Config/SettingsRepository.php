@@ -18,6 +18,17 @@ class SettingsRepository
 	}
 
 	/**
+	* Is Development Mode Enabled
+	* @return boolean
+	* @since 2.1.2
+	*/
+	public function devMode()
+	{
+		$option = get_option('simplefavorites_dev_mode');
+		return ( isset($option) && $option == 'true' ) ? true : false;
+	}
+
+	/**
 	* Anonymous Display Options
 	* @param string option (array key)
 	* @since 1.0

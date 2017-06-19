@@ -72,12 +72,18 @@ Favorites.Lists = function()
 				post_types : post_types
 			},
 			success : function(data){
+				if ( Favorites.jsData.dev_mode ){
+					console.log('Favorites list successfully retrieved.');
+					console.log($(list));
+					console.log(data);
+				}
 				var newlist = $(data.list);
 				$(list).replaceWith(newlist);
 				plugin.removeButtonLoading(newlist);
 				$(document).trigger('favorites-list-updated', [newlist]);
 			},
 			error : function(data){
+				if ( !Favorites.jsData.dev_mode ) return;
 				console.log('There was an error updating the list.');
 				console.log(list);
 				console.log(data);

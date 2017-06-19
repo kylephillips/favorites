@@ -15,6 +15,10 @@ Favorites.NonceGenerator = function()
 	plugin.bindEvents = function()
 	{
 		$(document).ready(function(){
+			if ( Favorites.jsData.dev_mode ){
+				console.log('Favorites Localized Data');
+				console.log(Favorites.jsData);
+			}
 			plugin.getNonce();
 		});
 	}

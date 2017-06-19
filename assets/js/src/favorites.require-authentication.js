@@ -11,6 +11,9 @@ Favorites.RequireAuthentication = function()
 	plugin.bindEvents = function()
 	{
 		$(document).on('favorites-require-authentication', function(){
+			if ( Favorites.jsData.dev_mode ){
+				console.log('Unauthenticated user was prevented from favoriting.');
+			}
 			plugin.openModal();
 		});
 		$(document).on('click', '.simplefavorites-modal-backdrop', function(e){

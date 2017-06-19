@@ -31,12 +31,21 @@ Favorites.UserFavorites = function()
 				action : Favorites.formActions.favoritesarray
 			},
 			success: function(data){
+				if ( Favorites.jsData.dev_mode ) {
+					console.log('The current user favorites were successfully loaded.');
+					console.log(data);
+				}
 				Favorites.userFavorites = data.favorites;
 				$(document).trigger('favorites-user-favorites-loaded', [plugin.initalLoad]);
 				$(document).trigger('favorites-update-all-buttons');
 
 				// Deprecated Callback
 				if ( plugin.initalLoad ) favorites_after_initial_load(Favorites.userFavorites);
+			},
+			error: function(data){
+				if ( !Favorites.jsData.dev_mode ) return;
+				console.log('The was an error loading the user favorites.');
+				console.log(data);
 			}
 		});
 	}

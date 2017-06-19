@@ -47,11 +47,20 @@ Favorites.Clear = function()
 				siteid : site_id,
 			},
 			success : function(data){
+				if ( Favorites.jsData.dev_mode ){
+					console.log('Favorites list successfully cleared.');
+					console.log(data);
+				}
 				plugin.formatter.decrementAllCounts();
 				plugin.loading(false);
 				plugin.clearSiteFavorites(site_id);
 				$(document).trigger('favorites-cleared', [plugin.activeButton]);
 				$(document).trigger('favorites-update-all-buttons');
+			},
+			error : function(data){
+				if ( !Favorites.jsData.dev_mode ) return;
+				console.log('There was an error clearing the favorites list.');
+				console.log(data);
 			}
 		});
 	}

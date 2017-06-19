@@ -12,6 +12,18 @@
 	</div><!-- .post-type-row -->
 </div><!-- .simple-favorites-post-types -->
 
+<h3><?php _e('Development Mode', 'favorites'); ?></h3>
+<div class="simple-favorites-post-types">
+	<div class="post-type-row">
+		<div class="post-type-checkbox">
+			<input type="checkbox" name="simplefavorites_dev_mode" value="true" <?php if ( $this->settings_repo->devMode() ) echo 'checked'; ?> />
+		</div>
+		<div class="post-type-name">
+			<?php _e('Enable Development Mode (logs JS responses in the console for debugging)'); ?>
+		</div>
+	</div><!-- .post-type-row -->
+</div><!-- .simple-favorites-post-types -->
+
 <h3><?php _e('Dependencies', 'favorites'); ?></h3>
 <div class="simple-favorites-display-settings">
 	<div class="row">
