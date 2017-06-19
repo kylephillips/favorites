@@ -76,6 +76,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 = 2.1.2 =
 * Added additional filters for the listing wrapper CSS classes and the listing element CSS classes. See the plugin website for details.
 * Added plugin setting and filter for customizing the button html element type.
+* Added a "Development Mode" setting for logging various data to the browser console in order to help with support and debugging.
 
 = 2.1.1 =
 * Fixes bug where Favorites admin javascript was loading outside the plugin settings area, causing preventing some sites from saving posts.
