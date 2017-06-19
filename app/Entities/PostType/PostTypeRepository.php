@@ -8,12 +8,18 @@ class PostTypeRepository
 	* @since 1.0
 	* @return array
 	*/
-	public function getAllPostTypes($return = 'names')
+	public function getAllPostTypes($return = 'names', $flat_array = false)
 	{
 		$args = array(
 			'public' => true,
 			'show_ui' => true
 		);
-		return get_post_types($args, $return);
+		$post_types = get_post_types($args, $return);
+		if ( !$flat_array ) return $post_types;
+		$post_types_flat = array();
+		foreach ($post_types as $key => $value) {
+			$post_types_flat[] = $value;
+		}
+		return $post_types_flat;
 	}
 }

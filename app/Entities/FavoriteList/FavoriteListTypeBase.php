@@ -4,6 +4,7 @@ namespace Favorites\Entities\FavoriteList;
 use Favorites\Entities\User\UserFavorites;
 use Favorites\Config\SettingsRepository;
 use Favorites\Entities\FavoriteList\FavoriteListingPresenter;
+use Favorites\Entities\PostType\PostTypeRepository;
 
 /**
 * Base class for favorite lists
@@ -27,6 +28,11 @@ abstract class FavoriteListTypeBase
 	protected $settings_repo;
 
 	/**
+	* Post Type Repo
+	*/
+	protected $post_type_repo;
+
+	/**
 	* User's Favorites
 	*/
 	protected $favorites;
@@ -39,6 +45,7 @@ abstract class FavoriteListTypeBase
 	public function __construct($list_options)
 	{
 		$this->settings_repo = new SettingsRepository;
+		$this->post_type_repo = new PostTypeRepository;
 		$this->user_favorites = new UserFavorites;
 		$this->listing_presenter = new FavoriteListingPresenter;
 		$this->list_options = $list_options;
@@ -83,7 +90,7 @@ abstract class FavoriteListTypeBase
 	*/
 	protected function setPostTypes()
 	{
-		$this->list_options->post_types = 'post';
+		$this->list_options->post_types = $this->post_type_repo->getAllPostTypes('names', true);
 		if ( isset($this->list_options->filters['post_type']) )	
 			$this->list_options->post_types = implode(',', $this->list_options->filters['post_type']);
 	}
