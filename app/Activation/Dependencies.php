@@ -94,9 +94,10 @@ class Dependencies
 	public function frontendScripts()
 	{
 		if ( !$this->settings_repo->outputDependency('js') ) return;
+		$file = ( $this->settings_repo->devMode() ) ? 'favorites.js' : 'favorites.min.js';
 		wp_enqueue_script(
 			'favorites', 
-			$this->plugin_dir . '/assets/js/favorites.min.js', 
+			$this->plugin_dir . '/assets/js/' . $file, 
 			array('jquery'), 
 			$this->plugin_version
 		);
