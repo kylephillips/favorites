@@ -248,3 +248,18 @@ function the_total_favorites_count($site_id = null)
 	echo get_total_favorites_count($site_id);
 }
 
+/**
+* Custom content filter
+* Allows the use of the_content filters, while preventing favorite buttons from appearing in auth modals
+*/
+function _favorites_content($content)
+{
+	$content = wptexturize($content);
+	$content = convert_smilies($content);
+	$content = convert_chars($content);
+	$content = wpautop($content);
+	$content = shortcode_unautop($content);
+	$content = prepend_attachment($content);
+	return $content;
+}
+
