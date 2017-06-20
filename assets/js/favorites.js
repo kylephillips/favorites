@@ -730,9 +730,9 @@ Favorites.ButtonUpdater = function()
 		
 		for ( var i = 0; i < $(buttons).length; i++ ){
 			plugin.activeButton = $(buttons)[i];
-			plugin.setButtonData();
+			if ( Favorites.authenticated ) plugin.setButtonData();
 
-			if ( plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
+			if ( Favorites.authenticated && plugin.utilities.isFavorite( plugin.data.postid, plugin.data.site_favorites ) ){
 				plugin.buttonFormatter.format($(plugin.activeButton), true);
 				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
 				$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
