@@ -21,7 +21,8 @@ class ButtonShortcode
 	{
 		$this->options = shortcode_atts(array(
 			'post_id' => null,
-			'site_id' => null
+			'site_id' => null,
+			'group_id' => null
 		), $options);
 	}
 
@@ -32,6 +33,6 @@ class ButtonShortcode
 	public function renderView($options)
 	{
 		$this->setOptions($options);
-		return get_favorites_button($this->options['post_id'], $this->options['site_id']);
+		return get_favorites_button($this->options['post_id'], $this->options['site_id'], $this->options['group_id']);
 	}
 }

@@ -16,10 +16,11 @@ use Favorites\Entities\Favorite\ClearFavoritesButton;
 * @param $site_id int, defaults to current blog/site
 * @return html
 */
-function get_favorites_button($post_id = null, $site_id = null)
+function get_favorites_button($post_id = null, $site_id = null, $group_id = null)
 {
 	global $blog_id;
 	if ( !$post_id ) $post_id = get_the_id();
+	if ( !$group_id ) $group_id = 1;
 	$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 	if ( !is_multisite() ) $site_id = 1;
 	$button = new FavoriteButton($post_id, $site_id);
@@ -33,9 +34,9 @@ function get_favorites_button($post_id = null, $site_id = null)
 * @param $site_id int, defaults to current blog/site
 * @return html
 */
-function the_favorites_button($post_id = null, $site_id = null)
+function the_favorites_button($post_id = null, $site_id = null, $group_id = null)
 {	
-	echo get_favorites_button($post_id, $site_id);
+	echo get_favorites_button($post_id, $site_id, $group_id);
 }
 
 

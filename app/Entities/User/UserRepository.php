@@ -58,13 +58,15 @@ class UserRepository
 	* Get User's Favorites by Site ID (includes a single site)
 	* @return array (flat)
 	*/
-	public function getFavorites($user_id = null, $site_id = null)
+	public function getFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
 		if ( is_user_logged_in() || $user_id ) {
-			$favorites = $this->getLoggedInFavorites($user_id, $site_id);
+			$favorites = $this->getLoggedInFavorites($user_id, $site_id, $group_id);
 		} else {
 			$saveType = $this->settings_repo->saveType();
-			$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites($site_id) : $this->getSessionFavorites($site_id);
+			$favorites = ( $saveType == 'cookie' ) 
+				? $this->getCookieFavorites($site_id, $group_id) 
+				: $this->getSessionFavorites($site_id, $group_id);
 		}
 		
 		/**
@@ -105,50 +107,82 @@ class UserRepository
 	}
 
 	/**
+	* Check for Groups array in user's favorites
+	* Add all favorites to the default group if it doesn't exist
+	* Compatibility for < 2.2
+	* @since 2.2
+	*/
+	private function favoritesWithGroups($favorites)
+	{
+		if ( Helpers::groupsExist($favorites[0]) ) return $favorites;
+		$favorites[0]['groups'] = array(
+			array(
+				'group_id' => 1,
+				'site_id' => $favorites[0]['site_id'],
+				'group_name' => __('Default List', 'favorites'),
+				'posts' => $favorites[0]['posts']
+			)
+		);
+		return $favorites;
+	}
+
+	/**
 	* Get Logged In User Favorites
 	*/
-	private function getLoggedInFavorites($user_id = null, $site_id = null)
+	private function getLoggedInFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
 		$user_id = ( isset($user_id) ) ? $user_id : get_current_user_id();
 		$favorites = get_user_meta($user_id, 'simplefavorites');
 		
-		if ( empty($favorites) ) return array(array('site_id'=>1, 'posts' => array()));
+		if ( empty($favorites) ) return array(array('site_id'=> 1, 'posts' => array(), 'groups' => array() ));
 		
 		$favorites = $this->favoritesWithSiteID($favorites[0]);
+		$favorites = $this->favoritesWithGroups($favorites);
 
-		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
+		if ( !is_null($site_id) && is_null($group_id) ) $favorites = Helpers::pluckSiteFavorites($site_id, $favorites);
+		if ( !is_null($group_id) ) $favorites = Helpers::pluckGroupFavorites($group_id, $site_id, $favorites);
+
+		return $favorites;
 	}
 
 	/**
 	* Get Session Favorites
 	*/
-	private function getSessionFavorites($site_id = null)
+	private function getSessionFavorites($site_id = null, $group_id = null)
 	{
 		if ( !isset($_SESSION['simplefavorites']) ) $_SESSION['simplefavorites'] = array();
 		$favorites = $_SESSION['simplefavorites'];
 		$favorites = $this->favoritesWithSiteID($favorites);
-		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
+		$favorites = $this->favoritesWithGroups($favorites);
+		if ( !is_null($site_id) && is_null($group_id) ) $favorites = Helpers::pluckSiteFavorites($site_id, $favorites);
+		if ( !is_null($group_id) ) $favorites = Helpers::pluckGroupFavorites($group_id, $site_id, $favorites);
+		return $favorites;
 	}
 
 	/**
 	* Get Cookie Favorites
 	*/
-	private function getCookieFavorites($site_id = null)
+	private function getCookieFavorites($site_id = null, $group_id = null)
 	{
 		if ( !isset($_COOKIE['simplefavorites']) ) $_COOKIE['simplefavorites'] = json_encode(array());
 		$favorites = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
 		$favorites = $this->favoritesWithSiteID($favorites);
-		return ( !is_null($site_id) ) ? Helpers::pluckSiteFavorites($site_id, $favorites) : $favorites;
+		$favorites = $this->favoritesWithGroups($favorites);
+		if ( !is_null($site_id) && is_null($group_id) ) $favorites = Helpers::pluckSiteFavorites($site_id, $favorites);
+		if ( !is_null($group_id) ) $favorites = Helpers::pluckGroupFavorites($group_id, $site_id, $favorites);
+		return $favorites;
 	}
 
 	/**
 	* Has the user favorited a specified post?
 	* @param int $post_id
 	* @param int $site_id
+	* @param int $user_id
+	* @param int $group_id
 	*/
-	public function isFavorite($post_id, $site_id = 1, $user_id = null)
+	public function isFavorite($post_id, $site_id = 1, $user_id = null, $group_id = null)
 	{
-		$favorites = $this->getFavorites($user_id, $site_id);
+		$favorites = $this->getFavorites($user_id, $site_id, $group_id);
 		if ( in_array($post_id, $favorites) ) return true;
 		return false;
 	}

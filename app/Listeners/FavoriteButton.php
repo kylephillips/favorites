@@ -28,6 +28,7 @@ class FavoriteButton extends AJAXListenerBase
 		$this->data['postid'] = intval(sanitize_text_field($_POST['postid']));
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
 		$this->data['status'] = ( $_POST['status'] == 'active') ? 'active' : 'inactive';
+		$this->data['groupid'] = ( isset($_POST['groupid']) && $_POST['groupid'] !== '' ) ? intval($_POST['groupid']) : 1;
 	}
 
 	/**
@@ -37,12 +38,17 @@ class FavoriteButton extends AJAXListenerBase
 	{
 		$this->beforeUpdateAction();
 		$favorite = new Favorite;
-		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid']);
+		$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid'], $this->data['groupid']);
 		$this->afterUpdateAction();
 
 		$this->response(array(
 			'status' => 'success', 
-			'favorite_data' => array('id' => $this->data['postid'], 'siteid' => $this->data['siteid'], 'status' => $this->data['status']),
+			'favorite_data' => array(
+				'id' => $this->data['postid'], 
+				'siteid' => $this->data['siteid'], 
+				'status' => $this->data['status'],
+				'groupid' => $this->data['groupid']
+			),
 			'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'], $this->data['status'])
 		));
 	}

@@ -18,6 +18,11 @@ class FavoriteButton
 	private $site_id;
 
 	/**
+	* Group ID
+	*/
+	private $group_id;
+
+	/**
 	* User Respository
 	*/
 	private $user;
@@ -44,13 +49,14 @@ class FavoriteButton
 	*/
 	private $settings_repo;
 
-	public function __construct($post_id, $site_id)
+	public function __construct($post_id, $site_id, $group_id = 1)
 	{
 		$this->user = new UserRepository;
 		$this->settings_repo = new SettingsRepository;
 		$this->count = new FavoriteCount;
 		$this->post_id = $post_id;
 		$this->site_id = $site_id;
+		$this->group_id = $group_id;
 	}
 
 	/**
@@ -64,14 +70,14 @@ class FavoriteButton
 		if ( !$this->user->getsButton() ) return false;
 
 		$this->button_options = $this->settings_repo->formattedButtonOptions();
-		$this->favorited = ( $this->user->isFavorite($this->post_id, $this->site_id) ) ? true : false;
+		$this->favorited = ( $this->user->isFavorite($this->post_id, $this->site_id, null, $this->group_id) ) ? true : false;
 		$count = $this->count->getCount($this->post_id, $this->site_id);
 		$button_html_type = apply_filters('favorites/button/element_type', $this->settings_repo->getButtonHtmlType(), $this->post_id, $this->site_id);
 		$html = $this->html();
 
 		$out = '<' . $button_html_type . ' class="' . $this->cssClasses($loading) . '"';		
 		
-		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
+		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-groupid="' . $this->group_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
 
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading){
 			$out .= $this->settings_repo->loadingText();

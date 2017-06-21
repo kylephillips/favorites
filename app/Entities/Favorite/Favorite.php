@@ -20,10 +20,10 @@ class Favorite
 	/**
 	* Save the Favorite
 	*/
-	public function update($post_id, $status, $site_id)
+	public function update($post_id, $status, $site_id, $group_id = 1)
 	{
 		$saveType = $this->settings_repo->saveType();
-		$usersync = new SyncSingleFavorite($post_id, $site_id);
+		$usersync = new SyncSingleFavorite($post_id, $site_id, $group_id);
 		$usersync->$saveType();
 		
 		$postsync = new SyncFavoriteCount($post_id, $status, $site_id);
