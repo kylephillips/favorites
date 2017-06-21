@@ -90,7 +90,7 @@ abstract class FavoriteListTypeBase
 	*/
 	protected function setPostTypes()
 	{
-		$this->list_options->post_types = $this->post_type_repo->getAllPostTypes('names', true);
+		$this->list_options->post_types = implode(',', $this->post_type_repo->getAllPostTypes('names', true));
 		if ( isset($this->list_options->filters['post_type']) )	
 			$this->list_options->post_types = implode(',', $this->list_options->filters['post_type']);
 	}
