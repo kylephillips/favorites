@@ -75,6 +75,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 = 2.1.4 =
 * Post favorite counts using the shortcode [favorite_count] or the functions get_favorites_count/the_favorites_count now update without page reload.
 * Adds parameter to the [user_favorites] shortcode for "No Favorites" text. Overrides the plugin setting. [user_favorites no_favorites="Your Custom Text"]
+* Updated code that was breaking in PHP versions less than 5.4. End-of-life PHP version support will be dropped in Favorites v2.2.0
 
 = 2.1.3 =
 * Bug fix where authentication gate modal was not appearing correctly due to a Javascript error on sites with the cache option disabled.
