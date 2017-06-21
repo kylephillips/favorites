@@ -1,5 +1,5 @@
 /**
-* Total Favorites Count Updates
+* Total User Favorites Count Updates
 */
 var Favorites = Favorites || {};
 

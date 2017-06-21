@@ -54,7 +54,7 @@ Favorites.Clear = function()
 				plugin.formatter.decrementAllCounts();
 				plugin.loading(false);
 				plugin.clearSiteFavorites(site_id);
-				$(document).trigger('favorites-cleared', [plugin.activeButton]);
+				$(document).trigger('favorites-cleared', [plugin.activeButton, data.old_favorites]);
 				$(document).trigger('favorites-update-all-buttons');
 			},
 			error : function(data){

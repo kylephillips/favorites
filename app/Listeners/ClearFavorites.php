@@ -34,6 +34,7 @@ class ClearFavorites extends AJAXListenerBase
 	private function setFormData()
 	{
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
+		$this->data['old_favorites'] = $this->user_repo->formattedFavorites();
 	}
 
 	/**
@@ -75,6 +76,7 @@ class ClearFavorites extends AJAXListenerBase
 		$favorites = $this->user_repo->formattedFavorites();
 		$this->response(array(
 			'status' => 'success',
+			'old_favorites' => $this->data['old_favorites'],
 			'favorites' => $favorites
 		));
 	}

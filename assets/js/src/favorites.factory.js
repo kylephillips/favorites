@@ -33,7 +33,8 @@ Favorites.selectors = {
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
 	modals : 'data-favorites-modal', // Modals
 	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
-	count : '.simplefavorite-button-count' // The count inside the favorites button
+	count : '.simplefavorite-button-count', // The count inside the favorites button 
+	post_favorite_count : 'data-favorites-post-count-id' // The total number of times a post has been favorited
 }
 
 /**
@@ -103,6 +104,7 @@ Favorites.Factory = function()
 		new Favorites.Button;
 		new Favorites.ButtonUpdater;
 		new Favorites.TotalCount;
+		new Favorites.PostFavoriteCount;
 		new Favorites.RequireAuthentication;
 	}
 
