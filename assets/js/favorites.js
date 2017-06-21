@@ -477,6 +477,7 @@ Favorites.Lists = function()
 		var thumbnail_size = $(list).attr('data-thumbnailsize');
 		var include_excerpt = $(list).attr('data-includeexcerpts');
 		var post_types = $(list).attr('data-posttypes');
+		var no_favorites = $(list).attr('data-nofavoritestext');
 
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
@@ -492,6 +493,7 @@ Favorites.Lists = function()
 				include_thumbnails : include_thumbnails,
 				thumbnail_size : thumbnail_size,
 				include_excerpt : include_excerpt,
+				no_favorites : no_favorites,
 				post_types : post_types
 			},
 			success : function(data){

@@ -64,7 +64,7 @@ abstract class FavoriteListTypeBase
 			? get_current_blog_id() : $this->list_options->site_id;
 		$this->list_options->user_id = ( is_null($this->list_options->user_id) || $this->list_options->user_id == '' ) 
 			? null : $this->list_options->user_id;
-		$this->list_options->filters= ( is_null($this->list_options->filters) || $this->list_options->filters == '' ) 
+		$this->list_options->filters = ( is_null($this->list_options->filters) || $this->list_options->filters == '' ) 
 			? null : $this->list_options->filters;
 	}
 
@@ -82,7 +82,8 @@ abstract class FavoriteListTypeBase
 	*/
 	protected function setNoFavoritesText()
 	{
-		$this->list_options->no_favorites = $this->settings_repo->noFavoritesText();
+		if ( $this->list_options->no_favorites == '' ) 
+			$this->list_options->no_favorites = $this->settings_repo->noFavoritesText();
 	}
 
 	/**
@@ -130,7 +131,7 @@ abstract class FavoriteListTypeBase
 		if ( !empty($this->favorites) ) return;
 		$out = $this->listOpening();
 		$out .= '<' . $this->list_options->wrapper_type;
-		$out .= ' data-postid="0" data-nofavorites>' . $this->list_options->no_favorites;
+		$out .= ' data-postid="0" data-nofavorites class="no-favorites">' . $this->list_options->no_favorites;
 		$out .= '</' . $this->list_options->wrapper_type . '>';
 		$out .= $this->listClosing();
 		return $out;

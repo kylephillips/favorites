@@ -88,7 +88,7 @@ class UserFavorites
 	* @param $thumbnail_size string - thumbnail size to display
 	* @param $include_excerpt boolean - whether to include the post excerpt
 	*/
-	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false)
+	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false, $no_favorites = '')
 	{
 		$list_args = [
 			'include_button' => $include_button,
@@ -98,7 +98,8 @@ class UserFavorites
 			'include_links' => $this->links,
 			'site_id' => $this->site_id,
 			'user_id' => $this->user_id,
-			'filters' => $this->filters
+			'no_favorites' => $no_favorites,
+			'filters' => $this->filters,
 		];
 		$list = new FavoriteList($list_args);
 		return $list->getList();

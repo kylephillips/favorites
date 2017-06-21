@@ -35,7 +35,8 @@ class UserFavoritesShortcode
 			'include_buttons' => 'false',
 			'include_thumbnails' => 'false',
 			'thumbnail_size' => 'thumbnail',
-			'include_excerpts' => 'false'
+			'include_excerpts' => 'false',
+			'no_favorites' => ''
 		), $options);
 	}
 
@@ -75,7 +76,8 @@ class UserFavoritesShortcode
 			$this->options['include_buttons'], 
 			$this->options['include_thumbnails'], 
 			$this->options['thumbnail_size'], 
-			$this->options['include_excerpts']
+			$this->options['include_excerpts'],
+			$this->options['no_favorites']
 		);
 	}
 }
