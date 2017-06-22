@@ -41,6 +41,9 @@ Favorites.NonceGenerator = function()
 			},
 			success: function(data){
 				Favorites.jsData.nonce = data.nonce;
+				if ( Favorites.jsData.dev_mode ){
+					console.log('Nonce successfully generated: ' + data.nonce);
+				}
 				$(document).trigger('favorites-nonce-generated', [data.nonce]);
 			}
 		});

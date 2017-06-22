@@ -41,7 +41,7 @@ abstract class AJAXListenerBase
 	*/
 	protected function sendError($error = null)
 	{
-		$error = ( $error ) ? $error : __('Invalid form field', 'favorites');
+		$error = ( $error ) ? $error : __('The nonce could not be verified.', 'favorites');
 		return wp_send_json(array(
 			'status' => 'error', 
 			'message' => $error

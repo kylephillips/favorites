@@ -78,6 +78,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 * Updated code that was breaking in PHP versions less than 5.4. End-of-life PHP version support will be dropped in Favorites v3
 * Bug fix where total favorite count was showing "1" before a user had favorited any posts
 * Adds additional permalink field under the customized listing visual editor
+* Bug fix where nonce was not loading correctly on some sites, resulting in an "Incorrect form field" error
 
 = 2.1.3 =
 * Bug fix where authentication gate modal was not appearing correctly due to a Javascript error on sites with the cache option disabled.

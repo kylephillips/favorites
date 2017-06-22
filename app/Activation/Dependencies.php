@@ -103,6 +103,7 @@ class Dependencies
 		);
 		$localized_data = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce('simple_favorites_nonce'),
 			'favorite' => $this->settings_repo->buttonText(),
 			'favorited' => $this->settings_repo->buttonTextFavorited(),
 			'includecount' => $this->settings_repo->includeCountInButton(),
