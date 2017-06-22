@@ -110,7 +110,10 @@ class UserFavorites
 	*/
 	private function postExists($id)
 	{
+		$allowed_statuses = ( isset($this->filters['status']) && is_array($this->filters['status']) ) ? $this->filters['status'] : array('publish');
 		$status = get_post_status($id);
-		return( !$status || $status !== 'publish') ? false : true;
+		if ( !$status ) return false;
+		if ( !in_array($status, $allowed_statuses) ) return false;
+		return true;
 	}
 }

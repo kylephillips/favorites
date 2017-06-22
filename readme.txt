@@ -79,6 +79,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 * Bug fix where total favorite count was showing "1" before a user had favorited any posts
 * Adds additional permalink field under the customized listing visual editor
 * Bug fix where nonce was not loading correctly on some sites, resulting in an "Incorrect form field" error
+* Adds status filter to function filter parameters
 
 = 2.1.3 =
 * Bug fix where authentication gate modal was not appearing correctly due to a Javascript error on sites with the cache option disabled.

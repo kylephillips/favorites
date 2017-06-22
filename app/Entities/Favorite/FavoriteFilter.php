@@ -43,6 +43,7 @@ class FavoriteFilter
 	{
 		if ( isset($this->filters['post_type']) && is_array($this->filters['post_type']) ) $this->filterByPostType();
 		if ( isset($this->filters['terms']) && is_array($this->filters['terms']) ) $this->filterByTerm();
+		if ( isset($this->filters['status']) && is_array($this->filters['status']) ) $this->filterByStatus();
 		return $this->favorites;
 	}
 
@@ -56,6 +57,18 @@ class FavoriteFilter
 		foreach($this->favorites as $key => $favorite){
 			$post_type = get_post_type($favorite);
 			if ( !in_array($post_type, $this->filters['post_type']) ) unset($this->favorites[$key]);
+		}
+	}
+
+	/**
+	* Filter favorites by status
+	* @since 2.1.4
+	*/
+	private function filterByStatus()
+	{
+		foreach($this->favorites as $key => $favorite){
+			$status = get_post_status($favorite);
+			if ( !in_array($status, $this->filters['status']) ) unset($this->favorites[$key]);
 		}
 	}
 
