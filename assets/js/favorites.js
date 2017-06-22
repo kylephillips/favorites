@@ -741,12 +741,14 @@ Favorites.ButtonUpdater = function()
 				plugin.buttonFormatter.format($(plugin.activeButton), true);
 				$(plugin.activeButton).addClass(Favorites.cssClasses.active);
 				$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
+				$(plugin.activeButton).find(Favorites.selectors.count).text(plugin.data.favorite_count);
 				continue;
 			}
 
 			plugin.buttonFormatter.format($(plugin.activeButton), false);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.active);
 			$(plugin.activeButton).removeClass(Favorites.cssClasses.loading);
+			$(plugin.activeButton).find(Favorites.selectors.count).text(plugin.data.favorite_count);
 		}
 	}
 
@@ -761,6 +763,7 @@ Favorites.ButtonUpdater = function()
 		plugin.data.favorite_count = $(plugin.activeButton).attr('data-favoritecount');
 		plugin.data.site_index = plugin.utilities.siteIndex(plugin.data.siteid);
 		plugin.data.site_favorites = Favorites.userFavorites[plugin.data.site_index].posts;
+		if ( plugin.data.favorite_count <= 0 ) plugin.data.favorite_count = 0;
 	}
 
 	return plugin.bindEvents();

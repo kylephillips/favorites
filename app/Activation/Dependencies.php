@@ -104,8 +104,8 @@ class Dependencies
 		$localized_data = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'nonce' => wp_create_nonce('simple_favorites_nonce'),
-			'favorite' => $this->settings_repo->buttonText(),
-			'favorited' => $this->settings_repo->buttonTextFavorited(),
+			'favorite' => apply_filters('favorites/button/html', $this->settings_repo->buttonText(), null, false, null),
+			'favorited' => apply_filters('favorites/button/html', $this->settings_repo->buttonTextFavorited(), null, true, null),
 			'includecount' => $this->settings_repo->includeCountInButton(),
 			'indicate_loading' => $this->settings_repo->includeLoadingIndicator(),
 			'loading_text' => $this->settings_repo->loadingText(),
