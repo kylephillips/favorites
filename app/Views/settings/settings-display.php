@@ -302,7 +302,8 @@ $button_type_selected = $this->settings_repo->getButtonType();
 								<select>
 									<option value="[post_title]"><?php _e('Post Title', 'favorites'); ?></option>
 									<option value="[post_excerpt]"><?php _e('Excerpt', 'favorites'); ?></option>
-									<option value="[post_permalink]"><?php _e('Permalink', 'favorites'); ?></option>
+									<option value="[post_permalink]"><?php _e('Permalink (raw link)', 'favorites'); ?></option>
+									<option value="[permalink][/permalink]"><?php _e('Permalink (as link)', 'favorites'); ?></option>
 									<?php
 									$thumbnail_sizes = get_intermediate_image_sizes();
 									foreach ( $thumbnail_sizes as $size ){
