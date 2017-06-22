@@ -141,10 +141,11 @@ function get_user_favorites_count($user_id = null, $site_id = null, $filters = n
 {
 	$favorites = get_user_favorites($user_id, $site_id, $filters);
 	$posttypes = ( isset($filters['post_type']) ) ? implode(',', $filters['post_type']) : 'all';
+	$count = ( isset($favorites[0]['site_id']) ) ? count($favorites[0]['posts']) : count($favorites);
 	$out = "";
 	if ( !$site_id ) $site_id = 1;
 	if ( $html ) $out .= '<span class="simplefavorites-user-count" data-posttypes="' . $posttypes . '" data-siteid="' . $site_id . '">';
-	$out .= count($favorites);
+	$out .= $count;
 	if ( $html ) $out .= '</span>';
 	return $out;
 }
