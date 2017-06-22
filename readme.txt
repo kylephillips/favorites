@@ -72,6 +72,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.1.5 =
+* Bug fix where button HTML filters were not being applied to AJAX/cache enabled sites. The post id is not available as a parameter on button html on cache-enabled sites.
+
 = 2.1.4 =
 * Post favorite counts using the shortcode [favorite_count] or the functions get_favorites_count/the_favorites_count now update without page reload.
 * Adds parameter to the [user_favorites] shortcode for "No Favorites" text. Overrides the plugin setting. [user_favorites no_favorites="Your Custom Text"]
