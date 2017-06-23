@@ -47,7 +47,8 @@ class FavoriteButton extends AJAXListenerBase
 				'id' => $this->data['postid'], 
 				'siteid' => $this->data['siteid'], 
 				'status' => $this->data['status'],
-				'groupid' => $this->data['groupid']
+				'groupid' => $this->data['groupid'],
+				'save_type' => $favorite->saveType()
 			),
 			'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'], $this->data['status'])
 		));

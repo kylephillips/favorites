@@ -12,6 +12,11 @@ class Favorite
 	*/
 	private $settings_repo;
 
+	/**
+	* Save Type
+	*/
+	private $save_type;
+
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
@@ -22,11 +27,20 @@ class Favorite
 	*/
 	public function update($post_id, $status, $site_id, $group_id = 1)
 	{
-		$saveType = $this->settings_repo->saveType();
+		$this->save_type = $this->settings_repo->saveType();
 		$usersync = new SyncSingleFavorite($post_id, $site_id, $group_id);
-		$usersync->$saveType();
+		$saveType = $this->save_type;
+		$usersync->$saveType;
 		
 		$postsync = new SyncFavoriteCount($post_id, $status, $site_id);
 		$postsync->sync();
+	}
+
+	/**
+	* Get the Save Type
+	*/
+	public function saveType()
+	{
+		return $this->save_type;
 	}
 }
