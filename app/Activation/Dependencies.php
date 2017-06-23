@@ -117,7 +117,6 @@ class Dependencies
 			'authentication_modal_content' => _favorites_content($this->settings_repo->authenticationModalContent()),
 			'dev_mode' => $this->settings_repo->devMode()
 		);
-		if ( !$this->settings_repo->cacheEnabled() ) $localized_data['nonce'] = wp_create_nonce('simple_favorites_nonce');
 		wp_localize_script(
 			'favorites',
 			'favorites_data',
