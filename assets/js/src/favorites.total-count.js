@@ -16,6 +16,9 @@ Favorites.TotalCount = function()
 		$(document).on('favorites-cleared', function(){
 			plugin.updateTotal();
 		});
+		$(document).on('favorites-user-favorites-loaded', function(){
+			plugin.updateTotal();
+		});
 	}
 
 	/*
