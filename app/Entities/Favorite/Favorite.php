@@ -30,7 +30,7 @@ class Favorite
 		$this->save_type = $this->settings_repo->saveType();
 		$usersync = new SyncSingleFavorite($post_id, $site_id, $group_id);
 		$saveType = $this->save_type;
-		$usersync->$saveType;
+		$usersync->$saveType();
 		
 		$postsync = new SyncFavoriteCount($post_id, $status, $site_id);
 		$postsync->sync();
