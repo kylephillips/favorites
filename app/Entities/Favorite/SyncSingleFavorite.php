@@ -52,10 +52,12 @@ class SyncSingleFavorite
 	public function cookie()
 	{
 		if ( $this->user->isFavorite($this->post_id, $this->site_id) ){
-			setcookie( 'simplefavorites', json_encode( $this->removeFavorite() ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
+			$favorites = $this->removeFavorite();
+			setcookie( 'simplefavorites', json_encode( $favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
 			return;
 		}
-		setcookie( 'simplefavorites', json_encode( $this->addFavorite() ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
+		$favorites = $this->addFavorite();
+		setcookie( 'simplefavorites', json_encode( $favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
 		return;
 	}
 
@@ -65,7 +67,7 @@ class SyncSingleFavorite
 	public function updateUserMeta($favorites)
 	{
 		if ( !is_user_logged_in() ) return false;
-		return update_user_meta( get_current_user_id(), 'simplefavorites', $favorites );
+		update_user_meta( get_current_user_id(), 'simplefavorites', $favorites );
 	}
 
 	/**
@@ -74,6 +76,7 @@ class SyncSingleFavorite
 	private function removeFavorite()
 	{
 		$favorites = $this->user->getAllFavorites($this->site_id);
+
 		foreach($favorites as $key => $site_favorites){
 			if ( $site_favorites['site_id'] !== $this->site_id ) continue;
 			foreach($site_favorites['posts'] as $k => $fav){

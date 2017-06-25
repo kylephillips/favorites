@@ -17,8 +17,7 @@ class Bootstrap
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
-		$this->init();
-		add_action( 'init', array($this, 'startSession') );
+		add_action( 'init', array($this, 'init') );
 		add_action( 'admin_init', array($this, 'adminInit'));
 		add_filter( 'plugin_action_links_' . 'favorites/favorites.php', array($this, 'settingsLink' ) );
 		add_action( 'plugins_loaded', array($this, 'addLocalization') );
@@ -41,6 +40,7 @@ class Bootstrap
 		new API\Shortcodes\UserFavoriteCount;
 		new API\Shortcodes\PostFavoritesShortcode;
 		new API\Shortcodes\ClearFavoritesShortcode;
+		$this->startSession();
 	}
 
 	/**
