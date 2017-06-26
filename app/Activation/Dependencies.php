@@ -95,6 +95,7 @@ class Dependencies
 	{
 		if ( !$this->settings_repo->outputDependency('js') ) return;
 		$file = ( $this->settings_repo->devMode() ) ? 'favorites.js' : 'favorites.min.js';
+		$ajax_type = $this->settings_repo->ajaxType();
 		wp_enqueue_script(
 			'favorites', 
 			$this->plugin_dir . '/assets/js/' . $file, 
@@ -115,8 +116,13 @@ class Dependencies
 			'cache_enabled' => $this->settings_repo->cacheEnabled(),
 			'button_options' => $this->settings_repo->formattedButtonOptions(),
 			'authentication_modal_content' => _favorites_content($this->settings_repo->authenticationModalContent()),
-			'dev_mode' => $this->settings_repo->devMode()
+			'dev_mode' => $this->settings_repo->devMode(),
+			'ajax_type' => $ajax_type
 		);
+		if ( $ajax_type == 'wp_api' ){
+			$localized_data['api_endpoint'] = 'favorites/v1';
+			$localized_data['api_nonce'] = wp_create_nonce( 'wp_rest' );
+		}
 		wp_localize_script(
 			'favorites',
 			'favorites_data',
