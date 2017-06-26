@@ -237,14 +237,26 @@ Favorites.NonceGenerator = function()
 			Favorites.jsData.nonce = favorites_data.nonce;
 			return;
 		}
-		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
-			datatype: 'json',
-			data: {
+
+		if ( Favorites.jsData.ajax_type === 'wp_api' ){
+			var url = Favorites.api_endpoints.nonce;
+			var type = 'GET';
+			var data = {};
+		} else {
+			var url = Favorites.jsData.ajaxurl;
+			var type = 'POST';
+			var data = {
 				action : Favorites.formActions.nonce
-			},
+			}
+		}
+		
+		$.ajax({
+			url: url,
+			type: type,
+			datatype: 'json',
+			data: data,
 			success: function(data){
+				console.log(data);
 				Favorites.jsData.nonce = data.nonce;
 				if ( Favorites.jsData.dev_mode ){
 					console.log('Nonce successfully generated: ' + data.nonce);
@@ -281,14 +293,27 @@ Favorites.UserFavorites = function()
 	*/
 	plugin.getFavorites = function()
 	{
+		if ( Favorites.jsData.ajax_type === 'wp_api' ){
+			var url = Favorites.api_endpoints.user_favorites;
+			var data = {
+				// user_id : Favorites.jsData.user_id
+				user_id : 2
+			};
+		} else {
+			var url = Favorites.jsData.ajaxurl;
+			var data = {
+				action : Favorites.formActions.nonce
+			}
+		}
+
 		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
+			url: url,
+			type: 'POST',
 			datatype: 'json',
-			data: {
-				action : Favorites.formActions.favoritesarray
-			},
+			data: data,
 			success: function(data){
+				console.log(data);
+				console.log(url);
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The current user favorites were successfully loaded.');
 					console.log(data);
@@ -1025,7 +1050,9 @@ Favorites.jsData = {
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
 	authentication_modal_content : favorites_data.authentication_modal_content, // Content to display in authentication gate modal
 	button_options : favorites_data.button_options, // Custom button options
-	dev_mode : favorites_data.dev_mode // Is Dev mode enabled
+	dev_mode : favorites_data.dev_mode, // Is Dev mode enabled
+	ajax_type : favorites_data.ajax_type, // admin_ajax or wp_api
+	user_id : favorites_data.user_id // current user id
 }
 
 /**
@@ -1061,6 +1088,7 @@ Favorites.Factory = function()
 
 	plugin.build = function()
 	{
+		plugin.setAjaxType();
 		new Favorites.NonceGenerator;
 		new Favorites.UserFavorites;
 		new Favorites.Lists;
@@ -1070,6 +1098,15 @@ Favorites.Factory = function()
 		new Favorites.TotalCount;
 		new Favorites.PostFavoriteCount;
 		new Favorites.RequireAuthentication;
+	}
+
+	plugin.setAjaxType = function()
+	{
+		if ( Favorites.jsData.ajax_type === 'admin_ajax' ) return;
+		Favorites.api_endpoints = {
+			nonce : favorites_data.api_endpoint + '/generate-nonce',
+			user_favorites : favorites_data.api_endpoint + '/user-favorites'
+		}
 	}
 
 	return plugin.build();

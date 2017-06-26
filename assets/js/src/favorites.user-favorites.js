@@ -23,14 +23,27 @@ Favorites.UserFavorites = function()
 	*/
 	plugin.getFavorites = function()
 	{
+		if ( Favorites.jsData.ajax_type === 'wp_api' ){
+			var url = Favorites.api_endpoints.user_favorites;
+			var data = {
+				// user_id : Favorites.jsData.user_id
+				user_id : 2
+			};
+		} else {
+			var url = Favorites.jsData.ajaxurl;
+			var data = {
+				action : Favorites.formActions.nonce
+			}
+		}
+
 		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
+			url: url,
+			type: 'POST',
 			datatype: 'json',
-			data: {
-				action : Favorites.formActions.favoritesarray
-			},
+			data: data,
 			success: function(data){
+				console.log(data);
+				console.log(url);
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The current user favorites were successfully loaded.');
 					console.log(data);

@@ -32,14 +32,26 @@ Favorites.NonceGenerator = function()
 			Favorites.jsData.nonce = favorites_data.nonce;
 			return;
 		}
-		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
-			datatype: 'json',
-			data: {
+
+		if ( Favorites.jsData.ajax_type === 'wp_api' ){
+			var url = Favorites.api_endpoints.nonce;
+			var type = 'GET';
+			var data = {};
+		} else {
+			var url = Favorites.jsData.ajaxurl;
+			var type = 'POST';
+			var data = {
 				action : Favorites.formActions.nonce
-			},
+			}
+		}
+		
+		$.ajax({
+			url: url,
+			type: type,
+			datatype: 'json',
+			data: data,
 			success: function(data){
+				console.log(data);
 				Favorites.jsData.nonce = data.nonce;
 				if ( Favorites.jsData.dev_mode ){
 					console.log('Nonce successfully generated: ' + data.nonce);

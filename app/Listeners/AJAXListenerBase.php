@@ -14,6 +14,11 @@ abstract class AJAXListenerBase
 	protected $data;
 
 	/**
+	* AJAX Type
+	*/
+	protected $ajax_type;
+
+	/**
 	* Settings Repo
 	*/
 	protected $settings_repo;
@@ -21,8 +26,17 @@ abstract class AJAXListenerBase
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
+		$this->setAjaxType();
 		$this->validateNonce();
 		$this->checkLogIn();
+	}
+
+	/**
+	* Set the AJAX type
+	*/
+	protected function setAjaxType()
+	{
+		$this->ajax_type = $this->settings_repo->ajaxType();
 	}
 
 	/**
@@ -30,6 +44,7 @@ abstract class AJAXListenerBase
 	*/
 	protected function validateNonce()
 	{
+		if ( $this->ajax_type == 'wp_api' ) return;
 		if ( !isset($_POST['nonce']) ) return $this->sendError();
 		$nonce = sanitize_text_field($_POST['nonce']);
 		if ( !wp_verify_nonce( $nonce, 'simple_favorites_nonce' ) ) return $this->sendError();
@@ -63,6 +78,12 @@ abstract class AJAXListenerBase
 	*/
 	protected function response($response)
 	{
+		$response['ajax_type'] = $this->ajax_type;
+		if ( $this->ajax_type == 'wp_api' ){
+			$response['using_api'] = true;
+			return new \WP_REST_Response($response);
+		}
+		$response['using_api'] = false;
 		return wp_send_json($response);
 	}
 }

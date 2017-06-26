@@ -21,9 +21,15 @@ class FavoritesArray extends AJAXListenerBase
 
 	public function __construct()
 	{
+		parent::__construct();
 		$this->user = new UserRepository;
 		$this->setFavorites();
 		$this->response(array('status'=>'success', 'favorites' => $this->favorites));
+	}
+
+	public function getResponse()
+	{
+		return $this->response(array('status'=>'success', 'favorites' => $this->favorites ));
 	}
 
 	/**
@@ -31,7 +37,8 @@ class FavoritesArray extends AJAXListenerBase
 	*/
 	private function setFavorites()
 	{
-		$favorites = $this->user->formattedFavorites();
+		$user_id = ( isset($_POST['user_id']) ) ? intval($_POST['user_id']) : null;
+		$favorites = $this->user->formattedFavorites(null, null, null, $user_id);
 		$this->favorites = $favorites;
 	}
 }

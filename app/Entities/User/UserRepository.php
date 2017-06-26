@@ -33,10 +33,10 @@ class UserRepository
 	* Get All of current user's favorites (includes all sites)
 	* @return array (multidimensional)
 	*/
-	public function getAllFavorites()
+	public function getAllFavorites($user_id = null)
 	{
-		if ( is_user_logged_in() ) {
-			$all_favorites = $this->getLoggedInFavorites();
+		if ( is_user_logged_in() || !is_null($user_id) ) {
+			$all_favorites = $this->getLoggedInFavorites($user_id);
 		} else {
 			$saveType = $this->settings_repo->saveType();
 			$favorites = ( $saveType == 'cookie' ) ? $this->getCookieFavorites() : $this->getSessionFavorites();
@@ -60,7 +60,7 @@ class UserRepository
 	*/
 	public function getFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
-		if ( is_user_logged_in() || $user_id ) {
+		if ( isset($user_id) ) {
 			$favorites = $this->getLoggedInFavorites($user_id, $site_id, $group_id);
 		} else {
 			$saveType = $this->settings_repo->saveType();
@@ -131,7 +131,9 @@ class UserRepository
 	*/
 	private function getLoggedInFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
-		$user_id = ( isset($user_id) ) ? $user_id : get_current_user_id();
+		$user_id = ( !is_null($user_id) ) ? $user_id : get_current_user_id();
+		if ( is_user_logged_in() ) $user_id = get_current_user_id();
+		
 		$favorites = get_user_meta($user_id, 'simplefavorites');
 		
 		if ( empty($favorites) ) return array(array('site_id'=> 1, 'posts' => array(), 'groups' => array() ));
@@ -202,9 +204,9 @@ class UserRepository
 	* @param $post_id - int, post to add to array (for session/cookie favorites)
 	* @param $site_id - int, site id for post_id
 	*/
-	public function formattedFavorites($post_id = null, $site_id = null, $status = null)
+	public function formattedFavorites($post_id = null, $site_id = null, $status = null, $user_id = null)
 	{
-		$favorites = $this->getAllFavorites();
+		$favorites = $this->getAllFavorites($user_id);
 		$formatter = new FavoritesArrayFormatter;
 		return $formatter->format($favorites, $post_id, $site_id, $status);
 	}

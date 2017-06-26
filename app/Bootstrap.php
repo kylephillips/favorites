@@ -18,6 +18,7 @@ class Bootstrap
 	{
 		$this->settings_repo = new SettingsRepository;
 		add_action( 'init', array($this, 'init') );
+		add_action( 'rest_api_init', array($this, 'apiInit'));
 		add_action( 'admin_init', array($this, 'adminInit'));
 		add_filter( 'plugin_action_links_' . 'favorites/favorites.php', array($this, 'settingsLink' ) );
 		add_action( 'plugins_loaded', array($this, 'addLocalization') );
@@ -41,6 +42,14 @@ class Bootstrap
 		new API\Shortcodes\PostFavoritesShortcode;
 		new API\Shortcodes\ClearFavoritesShortcode;
 		$this->startSession();
+	}
+
+	/**
+	* API Initialization
+	*/
+	public function apiInit()
+	{
+		new Events\RegisterAPIEndpoints;
 	}
 
 	/**

@@ -120,8 +120,9 @@ class Dependencies
 			'ajax_type' => $ajax_type
 		);
 		if ( $ajax_type == 'wp_api' ){
-			$localized_data['api_endpoint'] = 'favorites/v1';
+			$localized_data['api_endpoint'] = get_site_url() . '/wp-json/favorites/v1';
 			$localized_data['api_nonce'] = wp_create_nonce( 'wp_rest' );
+			$localized_data['user_id'] = get_current_user_id();
 		}
 		wp_localize_script(
 			'favorites',
