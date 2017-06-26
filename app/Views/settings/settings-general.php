@@ -36,7 +36,6 @@
 			</label>
 			<label class="block"><input type="radio" name="simplefavorites_ajax_type" value="wp_api" <?php if ( $this->settings_repo->ajaxType() == 'wp_api' ) echo 'checked'; ?> /><?php _e('Use WP API', 'favorites'); ?>
 			</label>
-			</div>
 		</div>
 	</div><!-- .row -->
 </div><!-- .favorites-display-settings -->
