@@ -72,7 +72,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
-= 2.1.5 =
+= 2.2.0 =
 * Bug fix where button HTML filters were not being applied to AJAX/cache enabled sites. The post id is not available as a parameter on button html on cache-enabled sites.
 
 = 2.1.4 =

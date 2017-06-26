@@ -24,6 +24,23 @@
 	</div><!-- .post-type-row -->
 </div><!-- .simple-favorites-post-types -->
 
+<h3><?php _e('AJAX Endpoint', 'favorites'); ?></h3>
+<div class="simple-favorites-display-settings">
+	<div class="row">
+		<div class="description">
+			<h5><?php _e('AJAX Endpoint', 'favorites'); ?></h5>
+			<p><?php _e('Enable the use of the WP API or use the traditional admin-ajax.php', 'favorites'); ?></p>
+		</div>
+		<div class="field">
+			<label class="block"><input type="radio" name="simplefavorites_ajax_type" value="admin_ajax" <?php if ( $this->settings_repo->ajaxType() == 'admin_ajax' ) echo 'checked'; ?> /><?php _e('Use admin-ajax.php', 'favorites'); ?>
+			</label>
+			<label class="block"><input type="radio" name="simplefavorites_ajax_type" value="wp_api" <?php if ( $this->settings_repo->ajaxType() == 'wp_api' ) echo 'checked'; ?> /><?php _e('Use WP API', 'favorites'); ?>
+			</label>
+			</div>
+		</div>
+	</div><!-- .row -->
+</div><!-- .favorites-display-settings -->
+
 <h3><?php _e('Dependencies', 'favorites'); ?></h3>
 <div class="simple-favorites-display-settings">
 	<div class="row">

@@ -45,6 +45,18 @@ class SettingsRepository
 	}
 
 	/**
+	* AJAX Type
+	* @since 2.2
+	* @return string
+	*/
+	public function ajaxType()
+	{
+		$option = get_option('simplefavorites_ajax_type');
+		if ( isset($option) && $option == 'wp_api') return 'wp_api';
+		return 'admin_ajax';
+	}
+
+	/**
 	* Require Login? Shows button to unauthenticated users, but opens modal when trying to save
 	* @since 2.0.3
 	* @return boolean
