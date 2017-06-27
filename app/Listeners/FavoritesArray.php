@@ -27,7 +27,7 @@ class FavoritesArray extends AJAXListenerBase
 		$this->response(array('status'=>'success', 'favorites' => $this->favorites));
 	}
 
-	public function getResponse()
+	public function getApiResponse()
 	{
 		return $this->response(array('status'=>'success', 'favorites' => $this->favorites ));
 	}

@@ -63,7 +63,8 @@ Favorites.jsData = {
 	button_options : favorites_data.button_options, // Custom button options
 	dev_mode : favorites_data.dev_mode, // Is Dev mode enabled
 	ajax_type : favorites_data.ajax_type, // admin_ajax or wp_api
-	user_id : favorites_data.user_id // current user id
+	user_id : favorites_data.user_id, // current user id, 0 if not logged in
+	logged_in : favorites_data.logged_in // is the current user logged in
 }
 
 /**
@@ -116,7 +117,8 @@ Favorites.Factory = function()
 		if ( Favorites.jsData.ajax_type === 'admin_ajax' ) return;
 		Favorites.api_endpoints = {
 			nonce : favorites_data.api_endpoint + '/generate-nonce',
-			user_favorites : favorites_data.api_endpoint + '/user-favorites'
+			user_favorites : favorites_data.api_endpoint + '/user-favorites',
+			favorite_button : favorites_data.api_endpoint + '/favorite-button'
 		}
 	}
 

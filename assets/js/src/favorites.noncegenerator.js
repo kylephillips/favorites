@@ -51,7 +51,6 @@ Favorites.NonceGenerator = function()
 			datatype: 'json',
 			data: data,
 			success: function(data){
-				console.log(data);
 				Favorites.jsData.nonce = data.nonce;
 				if ( Favorites.jsData.dev_mode ){
 					console.log('Nonce successfully generated: ' + data.nonce);

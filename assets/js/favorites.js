@@ -256,7 +256,6 @@ Favorites.NonceGenerator = function()
 			datatype: 'json',
 			data: data,
 			success: function(data){
-				console.log(data);
 				Favorites.jsData.nonce = data.nonce;
 				if ( Favorites.jsData.dev_mode ){
 					console.log('Nonce successfully generated: ' + data.nonce);
@@ -293,16 +292,22 @@ Favorites.UserFavorites = function()
 	*/
 	plugin.getFavorites = function()
 	{
+		var url;
+		var data;
+
 		if ( Favorites.jsData.ajax_type === 'wp_api' ){
-			var url = Favorites.api_endpoints.user_favorites;
-			var data = {
-				// user_id : Favorites.jsData.user_id
-				user_id : 2
+			url = Favorites.api_endpoints.user_favorites;
+			data = {
+				user_id : Favorites.jsData.user_id,
+				logged_in : Favorites.jsData.logged_in
 			};
 		} else {
-			var url = Favorites.jsData.ajaxurl;
-			var data = {
-				action : Favorites.formActions.nonce
+			url = Favorites.jsData.ajaxurl;
+			data = {
+				action : Favorites.formActions.favoritesarray,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id,
+				nonce: Favorites.jsData.nonce
 			}
 		}
 
@@ -312,8 +317,6 @@ Favorites.UserFavorites = function()
 			datatype: 'json',
 			data: data,
 			success: function(data){
-				console.log(data);
-				console.log(url);
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The current user favorites were successfully loaded.');
 					console.log(data);
@@ -628,17 +631,37 @@ Favorites.Button = function()
 	{
 		plugin.loading(true);
 		plugin.setData();
-		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
-			dataType: 'json',
-			data: {
-				action : Favorites.formActions.favorite,
-				nonce : Favorites.jsData.nonce,
+
+		var url;
+		var data;
+
+		if ( Favorites.jsData.ajax_type === 'wp_api' ){
+			url = Favorites.api_endpoints.favorite_button;
+			data = {
+				user_id : Favorites.jsData.user_id,
+				logged_in : Favorites.jsData.logged_in,
 				postid : plugin.data.post_id,
 				siteid : plugin.data.site_id,
 				status : plugin.data.status
-			},
+			};
+		} else {
+			url = Favorites.jsData.ajaxurl;
+			data = {
+				action : Favorites.formActions.favorite,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id,
+				nonce: Favorites.jsData.nonce,
+				postid : plugin.data.post_id,
+				siteid : plugin.data.site_id,
+				status : plugin.data.status
+			}
+		}
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The favorite was successfully saved.');
@@ -1052,7 +1075,8 @@ Favorites.jsData = {
 	button_options : favorites_data.button_options, // Custom button options
 	dev_mode : favorites_data.dev_mode, // Is Dev mode enabled
 	ajax_type : favorites_data.ajax_type, // admin_ajax or wp_api
-	user_id : favorites_data.user_id // current user id
+	user_id : favorites_data.user_id, // current user id, 0 if not logged in
+	logged_in : favorites_data.logged_in // is the current user logged in
 }
 
 /**
@@ -1105,7 +1129,8 @@ Favorites.Factory = function()
 		if ( Favorites.jsData.ajax_type === 'admin_ajax' ) return;
 		Favorites.api_endpoints = {
 			nonce : favorites_data.api_endpoint + '/generate-nonce',
-			user_favorites : favorites_data.api_endpoint + '/user-favorites'
+			user_favorites : favorites_data.api_endpoint + '/user-favorites',
+			favorite_button : favorites_data.api_endpoint + '/favorite-button'
 		}
 	}
 

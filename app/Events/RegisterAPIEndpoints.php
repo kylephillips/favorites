@@ -16,6 +16,10 @@ class RegisterAPIEndpoints
 			'methods' => 'POST',
 			'callback' => array($this, 'getFavorites')
 		));
+		register_rest_route( 'favorites/v1', '/favorite-button/', array(
+			'methods' => 'POST',
+			'callback' => array($this, 'favoriteButton')
+		));
 	}
 
 	public function getNonce(\WP_REST_Request $request)
@@ -27,6 +31,12 @@ class RegisterAPIEndpoints
 	public function getFavorites()
 	{
 		$favorites = new FavoritesArray();
-		return $favorites->getResponse();
+		return $favorites->getApiResponse();
+	}
+
+	public function favoriteButton()
+	{
+		$button_listenter = new FavoriteButton;
+		// return $button_listenter->getApiResponse();
 	}
 }

@@ -23,16 +23,22 @@ Favorites.UserFavorites = function()
 	*/
 	plugin.getFavorites = function()
 	{
+		var url;
+		var data;
+
 		if ( Favorites.jsData.ajax_type === 'wp_api' ){
-			var url = Favorites.api_endpoints.user_favorites;
-			var data = {
-				// user_id : Favorites.jsData.user_id
-				user_id : 2
+			url = Favorites.api_endpoints.user_favorites;
+			data = {
+				user_id : Favorites.jsData.user_id,
+				logged_in : Favorites.jsData.logged_in
 			};
 		} else {
-			var url = Favorites.jsData.ajaxurl;
-			var data = {
-				action : Favorites.formActions.nonce
+			url = Favorites.jsData.ajaxurl;
+			data = {
+				action : Favorites.formActions.favoritesarray,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id,
+				nonce: Favorites.jsData.nonce
 			}
 		}
 
@@ -42,8 +48,6 @@ Favorites.UserFavorites = function()
 			datatype: 'json',
 			data: data,
 			success: function(data){
-				console.log(data);
-				console.log(url);
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The current user favorites were successfully loaded.');
 					console.log(data);

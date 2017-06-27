@@ -117,12 +117,13 @@ class Dependencies
 			'button_options' => $this->settings_repo->formattedButtonOptions(),
 			'authentication_modal_content' => _favorites_content($this->settings_repo->authenticationModalContent()),
 			'dev_mode' => $this->settings_repo->devMode(),
-			'ajax_type' => $ajax_type
+			'ajax_type' => $ajax_type,
+			'user_id' => get_current_user_id(),
+			'logged_in' => is_user_logged_in()
 		);
 		if ( $ajax_type == 'wp_api' ){
 			$localized_data['api_endpoint'] = get_site_url() . '/wp-json/favorites/v1';
 			$localized_data['api_nonce'] = wp_create_nonce( 'wp_rest' );
-			$localized_data['user_id'] = get_current_user_id();
 		}
 		wp_localize_script(
 			'favorites',

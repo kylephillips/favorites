@@ -131,8 +131,8 @@ class UserRepository
 	*/
 	private function getLoggedInFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
-		$user_id = ( !is_null($user_id) ) ? $user_id : get_current_user_id();
-		if ( is_user_logged_in() ) $user_id = get_current_user_id();
+		$user_id = ( !is_null($user_id) ) ? $user_id : intval($_POST['user_id']);
+		if ( isset($_POST['logged_in']) && $_POST['logged_in'] == '1' ) $user_id = intval($_POST['user_id']);
 		
 		$favorites = get_user_meta($user_id, 'simplefavorites');
 		

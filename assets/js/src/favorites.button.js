@@ -55,17 +55,37 @@ Favorites.Button = function()
 	{
 		plugin.loading(true);
 		plugin.setData();
-		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'post',
-			dataType: 'json',
-			data: {
-				action : Favorites.formActions.favorite,
-				nonce : Favorites.jsData.nonce,
+
+		var url;
+		var data;
+
+		if ( Favorites.jsData.ajax_type === 'wp_api' ){
+			url = Favorites.api_endpoints.favorite_button;
+			data = {
+				user_id : Favorites.jsData.user_id,
+				logged_in : Favorites.jsData.logged_in,
 				postid : plugin.data.post_id,
 				siteid : plugin.data.site_id,
 				status : plugin.data.status
-			},
+			};
+		} else {
+			url = Favorites.jsData.ajaxurl;
+			data = {
+				action : Favorites.formActions.favorite,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id,
+				nonce: Favorites.jsData.nonce,
+				postid : plugin.data.post_id,
+				siteid : plugin.data.site_id,
+				status : plugin.data.status
+			}
+		}
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The favorite was successfully saved.');
