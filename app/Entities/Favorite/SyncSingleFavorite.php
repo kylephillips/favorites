@@ -66,8 +66,9 @@ class SyncSingleFavorite
 	*/
 	public function updateUserMeta($favorites)
 	{
-		if ( !is_user_logged_in() ) return false;
-		update_user_meta( get_current_user_id(), 'simplefavorites', $favorites );
+		if ( !isset($_POST['logged_in']) || intval($_POST['logged_in']) !== 1 ) return false;
+		if ( !isset($_POST['user_id']) ) return false;
+		update_user_meta( intval($_POST['user_id']), 'simplefavorites', $favorites );
 	}
 
 	/**

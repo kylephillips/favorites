@@ -29,6 +29,8 @@ class FavoriteButton extends AJAXListenerBase
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
 		$this->data['status'] = ( $_POST['status'] == 'active') ? 'active' : 'inactive';
 		$this->data['groupid'] = ( isset($_POST['groupid']) && $_POST['groupid'] !== '' ) ? intval($_POST['groupid']) : 1;
+		$this->data['logged_in'] = ( isset($_POST['logged_in']) && $_POST['logged_in'] !== '' ) ? true : null;
+		$this->data['user_id'] = ( isset($_POST['user_id']) && $_POST['user_id'] !== '' ) ? intval($_POST['user_id']) : null;
 	}
 
 	/**
@@ -48,7 +50,9 @@ class FavoriteButton extends AJAXListenerBase
 					'siteid' => $this->data['siteid'], 
 					'status' => $this->data['status'],
 					'groupid' => $this->data['groupid'],
-					'save_type' => $favorite->saveType()
+					'save_type' => $favorite->saveType(),
+					'logged_in' => $this->data['logged_in'],
+					'user_id' => $this->data['user_id']
 				),
 				'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'], $this->data['status'])
 			));

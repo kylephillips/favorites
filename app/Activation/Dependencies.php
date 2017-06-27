@@ -115,7 +115,9 @@ class Dependencies
 			'cache_enabled' => $this->settings_repo->cacheEnabled(),
 			'button_options' => $this->settings_repo->formattedButtonOptions(),
 			'authentication_modal_content' => _favorites_content($this->settings_repo->authenticationModalContent()),
-			'dev_mode' => $this->settings_repo->devMode()
+			'dev_mode' => $this->settings_repo->devMode(),
+			'logged_in' => is_user_logged_in(),
+			'user_id' => get_current_user_id()
 		);
 		wp_localize_script(
 			'favorites',

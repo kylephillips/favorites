@@ -239,10 +239,12 @@ Favorites.NonceGenerator = function()
 		}
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
-			type: 'post',
+			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.nonce
+				action : Favorites.formActions.nonce,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success: function(data){
 				Favorites.jsData.nonce = data.nonce;
@@ -283,10 +285,12 @@ Favorites.UserFavorites = function()
 	{
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
-			type: 'post',
+			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.favoritesarray
+				action : Favorites.formActions.favoritesarray,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
@@ -357,12 +361,15 @@ Favorites.Clear = function()
 				action : Favorites.formActions.clearall,
 				nonce : Favorites.jsData.nonce,
 				siteid : site_id,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){
 					console.log('Favorites list successfully cleared.');
 					console.log(data);
 				}
+				Favorites.userFavorites = data.favorites;
 				plugin.formatter.decrementAllCounts();
 				plugin.loading(false);
 				plugin.clearSiteFavorites(site_id);
@@ -497,7 +504,9 @@ Favorites.Lists = function()
 				thumbnail_size : thumbnail_size,
 				include_excerpt : include_excerpt,
 				no_favorites : no_favorites,
-				post_types : post_types
+				post_types : post_types,
+				user_id_current : Favorites.jsData.user_id,
+				logged_in : Favorites.jsData.logged_in
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){
@@ -612,7 +621,9 @@ Favorites.Button = function()
 				nonce : Favorites.jsData.nonce,
 				postid : plugin.data.post_id,
 				siteid : plugin.data.site_id,
-				status : plugin.data.status
+				status : plugin.data.status,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
@@ -1025,7 +1036,9 @@ Favorites.jsData = {
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
 	authentication_modal_content : favorites_data.authentication_modal_content, // Content to display in authentication gate modal
 	button_options : favorites_data.button_options, // Custom button options
-	dev_mode : favorites_data.dev_mode // Is Dev mode enabled
+	dev_mode : favorites_data.dev_mode, // Is Dev mode enabled
+	logged_in : favorites_data.logged_in, // Is the user logged in
+	user_id : favorites_data.user_id // The current user ID (0 if logged out)
 }
 
 /**

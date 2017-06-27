@@ -45,12 +45,15 @@ Favorites.Clear = function()
 				action : Favorites.formActions.clearall,
 				nonce : Favorites.jsData.nonce,
 				siteid : site_id,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){
 					console.log('Favorites list successfully cleared.');
 					console.log(data);
 				}
+				Favorites.userFavorites = data.favorites;
 				plugin.formatter.decrementAllCounts();
 				plugin.loading(false);
 				plugin.clearSiteFavorites(site_id);

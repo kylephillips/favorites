@@ -61,7 +61,9 @@ Favorites.jsData = {
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
 	authentication_modal_content : favorites_data.authentication_modal_content, // Content to display in authentication gate modal
 	button_options : favorites_data.button_options, // Custom button options
-	dev_mode : favorites_data.dev_mode // Is Dev mode enabled
+	dev_mode : favorites_data.dev_mode, // Is Dev mode enabled
+	logged_in : favorites_data.logged_in, // Is the user logged in
+	user_id : favorites_data.user_id // The current user ID (0 if logged out)
 }
 
 /**

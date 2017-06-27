@@ -64,7 +64,9 @@ Favorites.Button = function()
 				nonce : Favorites.jsData.nonce,
 				postid : plugin.data.post_id,
 				siteid : plugin.data.site_id,
-				status : plugin.data.status
+				status : plugin.data.status,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {

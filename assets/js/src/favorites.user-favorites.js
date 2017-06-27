@@ -25,10 +25,12 @@ Favorites.UserFavorites = function()
 	{
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
-			type: 'post',
+			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.favoritesarray
+				action : Favorites.formActions.favoritesarray,
+				logged_in : Favorites.jsData.logged_in,
+				user_id : Favorites.jsData.user_id
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
