@@ -27,16 +27,16 @@ class PostHooks
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
-		add_filter('the_content', array($this, 'filterContent'), 10, 2);
+		add_filter('the_content', array($this, 'filterContent'));
 	}
 
 	/**
 	* Filter the Content
 	*/
-	public function filterContent($content, $modal = null)
+	public function filterContent($content)
 	{
-		if ( isset($modal) && $modal == 'favorites-modal' ) return $content;
 		global $post;
+		if ( !$post ) return $content;
 		$this->post = $post;
 		$this->content = $content;
 
