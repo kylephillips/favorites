@@ -60,6 +60,8 @@ Favorites.jsData = {
 	loading_image : favorites_data.loading_image, // Loading spinner url in inactive button
 	cache_enabled : favorites_data.cache_enabled, // Is cache enabled on the site
 	authentication_modal_content : favorites_data.authentication_modal_content, // Content to display in authentication gate modal
+	authentication_redirect : favorites_data.authentication_redirect, // Whether to redirect unauthenticated users to a page
+	authentication_redirect_url : favorites_data.authentication_redirect_url, // URL to redirect to
 	button_options : favorites_data.button_options, // Custom button options
 	dev_mode : favorites_data.dev_mode, // Is Dev mode enabled
 	logged_in : favorites_data.logged_in, // Is the user logged in

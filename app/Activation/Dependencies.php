@@ -115,10 +115,13 @@ class Dependencies
 			'cache_enabled' => $this->settings_repo->cacheEnabled(),
 			'button_options' => $this->settings_repo->formattedButtonOptions(),
 			'authentication_modal_content' => _favorites_content($this->settings_repo->authenticationModalContent()),
+			'authentication_redirect' => $this->settings_repo->redirectAnonymous(),
 			'dev_mode' => $this->settings_repo->devMode(),
 			'logged_in' => is_user_logged_in(),
 			'user_id' => get_current_user_id()
 		);
+		$redirect_url = $this->settings_repo->redirectAnonymousId();
+		$localized_data['authentication_redirect_url'] = ( $redirect_url ) ? get_the_permalink($redirect_url) : wp_login_url();
 		wp_localize_script(
 			'favorites',
 			'favorites_data',

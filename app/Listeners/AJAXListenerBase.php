@@ -56,6 +56,7 @@ abstract class AJAXListenerBase
 		if ( isset($_POST['logged_in']) && intval($_POST['logged_in']) == 1 ) return true;
 		if ( $this->settings_repo->anonymous('display') ) return true;
 		if ( $this->settings_repo->requireLogin() ) return $this->response(array('status' => 'unauthenticated'));
+		if ( $this->settings_repo->redirectAnonymous() ) return $this->response(array('status' => 'unauthenticated'));
 	}
 
 	/**

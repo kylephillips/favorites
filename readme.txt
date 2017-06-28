@@ -72,6 +72,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.1.6 =
+* Adds option of redirecting to a page/post by ID if an anonmyous user attempts to favorite an item
+
 = 2.1.5 =
 * Bug fix where button HTML filters were not being applied to AJAX/cache enabled sites. The post id is not available as a parameter on button html on cache-enabled sites.
 * Adds additional compatibility for logged-in favoriting on hosts with aggressive server-side caching

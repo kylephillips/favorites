@@ -14,6 +14,10 @@ Favorites.RequireAuthentication = function()
 			if ( Favorites.jsData.dev_mode ){
 				console.log('Unauthenticated user was prevented from favoriting.');
 			}
+			if ( Favorites.jsData.authentication_redirect ){
+				plugin.redirect();
+				return;
+			}
 			plugin.openModal();
 		});
 		$(document).on('click', '.simplefavorites-modal-backdrop', function(e){
@@ -26,7 +30,15 @@ Favorites.RequireAuthentication = function()
 	}
 
 	/**
-	* Open the Moda
+	* Redirect to a page
+	*/
+	plugin.redirect = function()
+	{
+		window.location = Favorites.jsData.authentication_redirect_url;
+	}
+
+	/**
+	* Open the Modal
 	*/
 	plugin.openModal = function()
 	{

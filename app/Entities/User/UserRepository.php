@@ -26,6 +26,7 @@ class UserRepository
 		if ( is_user_logged_in() ) return true;
 		if ( $this->settings_repo->anonymous('display') ) return true;
 		if ( $this->settings_repo->requireLogin() ) return true;
+		if ( $this->settings_repo->redirectAnonymous() ) return true;
 		return false;
 	}
 
