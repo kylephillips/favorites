@@ -64,6 +64,44 @@ class SettingsRepository
 	}
 
 	/**
+	* Redirect anonymous users to a page?
+	* @since 2.2.6
+	* @return boolean
+	*/
+	public function redirectAnonymous()
+	{
+		$option = get_option('simplefavorites_users');
+		if ( isset($option['anonymous']['display']) 
+			&& $option['anonymous']['display'] == 'true') {
+			return false;
+		}
+		if ( isset($option['redirect_anonymous']) 
+			&& $option['redirect_anonymous'] == 'true') {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	* Redirect post id for anonmyous users
+	* @since 2.2.6
+	* @return boolean
+	*/
+	public function redirectAnonymousId()
+	{
+		$option = get_option('simplefavorites_users');
+		if ( isset($option['anonymous']['display']) 
+			&& $option['anonymous']['display'] == 'true') {
+			return false;
+		}
+		if ( isset($option['anonymous_redirect_id']) 
+			&& $option['anonymous_redirect_id'] !== '') {
+			return $option['anonymous_redirect_id'];
+		}
+		return false;
+	}
+
+	/**
 	* Authentication Gate Modal Content
 	* @since 2.0.3
 	* @return html

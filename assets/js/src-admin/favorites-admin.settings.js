@@ -14,7 +14,7 @@ FavoritesAdmin.Settings = function()
 			plugin.toggleButtonTypes();
 			plugin.toggleAnonymousSave();
 			plugin.toggleLoadingTypeLoad();
-			plugin.toggleAuthModalContentField();
+			plugin.toggleAnonymousSettings();
 			plugin.toggleCustomColorOptions();
 			plugin.enableColorPickers();
 			plugin.toggleButtonPreviewColors();
@@ -37,10 +37,10 @@ FavoritesAdmin.Settings = function()
 		// User settings
 		$(document).on('change', '*[data-favorites-anonymous-checkbox]', function(){
 			plugin.toggleAnonymousSave();
-			plugin.toggleAuthModalContentField();
+			plugin.toggleAnonymousSettings();
 		});
-		$(document).on('change', '[data-favorites-require-login-checkbox]', function(){
-			plugin.toggleAuthModalContentField();
+		$(document).on('change', '[data-favorites-anonymous-settings]', function(){
+			plugin.toggleAnonymousSettings($(this));
 		});
 
 		// Post type settings
@@ -136,6 +136,34 @@ FavoritesAdmin.Settings = function()
 	}
 
 	/**
+	* Toggle Anonymous Users Settings
+	*/
+	plugin.toggleAnonymousSettings = function(checkbox)
+	{
+		if ( typeof checkbox === 'undefined' || checkbox === '' ){
+			var allCheckboxes = $('[data-favorites-anonymous-settings]');
+			$.each(allCheckboxes, function(){
+				plugin.toggleAnonymousSettings($(this));
+			});
+		}
+		var attr = $(checkbox).attr('data-favorites-anonymous-settings');
+		if ( attr === 'modal' && $(checkbox).is(':checked') ){
+			$('[data-favorites-authentication-modal-content]').show();
+			$('[data-favorites-anonymous-redirect-content]').hide();
+			$('[data-favorites-anonymous-settings="redirect"]').attr('checked', false);
+			return;
+		}
+		if ( attr === 'redirect' && $(checkbox).is(':checked') ){
+			$('[data-favorites-anonymous-redirect-content]').show();
+			$('[data-favorites-authentication-modal-content]').hide();
+			$('[data-favorites-anonymous-settings="modal"]').attr('checked', false);
+			return;
+		}
+		if ( !$('[data-favorites-anonymous-settings="redirect"]').is(':checked') ) $('[data-favorites-anonymous-redirect-content]').hide();
+		if ( !$('[data-favorites-anonymous-settings="modal"]').is(':checked') )$('[data-favorites-authentication-modal-content]').hide();
+	}
+
+	/**
 	* Toggle Loading Html/Image checkboxes (only allow one)
 	*/
 	plugin.toggleLoadingTypeLoad = function()
@@ -159,19 +187,6 @@ FavoritesAdmin.Settings = function()
 			return;
 		}
 		$('[data-favorites-spinner-type="image"]').attr('checked', false);
-	}
-
-	/**
-	* Toggle the authentication modal content field
-	*/
-	plugin.toggleAuthModalContentField = function()
-	{
-		var checked = ( $('[data-favorites-require-login-checkbox]').is(':checked') ) ? true : false;
-		if ( checked ){
-			$('[data-favorites-authentication-modal-content]').show();
-			return;
-		}
-		$('[data-favorites-authentication-modal-content]').hide();
 	}
 
 	/**

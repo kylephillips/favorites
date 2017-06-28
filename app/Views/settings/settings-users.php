@@ -16,11 +16,13 @@
 	</div><!-- .row -->
 	<div class="row" data-favorites-require-login>
 		<div class="description">
-			<h5><?php _e('Require Login to Favorite', 'favorites'); ?></h5>
-			<p><?php _e('Show the buttons to unauthenticated users, but display a modal window prompting them to login to save favorites.', 'favorites'); ?></p>
+			<h5><?php _e('Anonymous Favoriting Behavior', 'favorites'); ?></h5>
+			<p><?php _e('By default, favorite buttons are hidden from unauthenticated users if anonymous users are disabled.', 'favorites'); ?></p>
 		</div>
 		<div class="field">
-			<label class="block"><input type="checkbox" name="simplefavorites_users[require_login]" value="true" <?php if ( $this->settings_repo->requireLogin() ) echo ' checked'; ?> data-favorites-require-login-checkbox /><?php _e('Require Login & Show Modal to Anonymous Users', 'favorites'); ?>
+			<label class="block"><input type="checkbox" name="simplefavorites_users[require_login]" value="true" <?php if ( $this->settings_repo->requireLogin() ) echo ' checked'; ?> data-favorites-require-login-checkbox data-favorites-anonymous-settings="modal" /><?php _e('Show Buttons and Display Modal for Anonymous Users', 'favorites'); ?>
+			</label>
+			<label class="block"><input type="checkbox" name="simplefavorites_users[redirect_anonymous]" value="true" <?php if ( $this->settings_repo->redirectAnonymous() ) echo ' checked'; ?> data-favorites-redirect-anonymous-checkbox data-favorites-anonymous-settings="redirect" /><?php _e('Redirect Anonymous Users to a Page', 'favorites'); ?>
 			</label>
 			<div class="authentication-modal-content" data-favorites-authentication-modal-content>
 				<h3><?php _e('Edit the Modal Content Below', 'favorites'); ?></h3>
@@ -35,6 +37,10 @@
 						)
 					); 
 				?>
+			</div>
+			<div class="anonymous-redirect-content" data-favorites-anonymous-redirect-content>
+				<label><?php _e('Enter the Page/Post ID to redirect to (defaults to the site url)', 'sscblog'); ?></label>
+				<input type="text" name="simplefavorites_users[anonymous_redirect_id]" value="<?php echo $this->settings_repo->redirectAnonymousId(); ?>" />
 			</div>
 		</div>
 	</div><!-- .row -->

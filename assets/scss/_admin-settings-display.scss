@@ -61,6 +61,13 @@
 			padding-top: 2em;
 			display: none;
 		}
+		.anonymous-redirect-content {
+			display: none;
+			background-color: $gray-lighter;
+			padding: .75em;
+			border: 1px solid $border;
+			margin-top: 1em;
+		}
 		.color-options {
 			margin-top: 1em;
 			border: 1px solid $border;
