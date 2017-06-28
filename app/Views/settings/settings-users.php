@@ -29,7 +29,7 @@
 				<p><strong><?php _e('Important: ', 'favorites'); ?></strong> <?php _e('If plugin css or javascript has been disabled, the modal window will not display correctly.', 'favorites'); ?></p>
 				<p><?php _e('To add "close" button or link, give it a data attribute of "data-favorites-modal-close".', 'favorites'); ?></p>
 				<?php
-					wp_editor($this->settings_repo->authenticationModalContent(), 'simplefavorites_users_authentication_modal', 
+					wp_editor($this->settings_repo->authenticationModalContent(true), 'simplefavorites_users_authentication_modal', 
 					array(
 						'textarea_name' => 'simplefavorites_users[authentication_modal]',
 						'tabindex' => 1,

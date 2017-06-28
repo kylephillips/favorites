@@ -114,7 +114,7 @@ class Dependencies
 			'loading_image_preload' => $this->settings_repo->includeLoadingIndicatorPreload(),
 			'cache_enabled' => $this->settings_repo->cacheEnabled(),
 			'button_options' => $this->settings_repo->formattedButtonOptions(),
-			'authentication_modal_content' => _favorites_content($this->settings_repo->authenticationModalContent()),
+			'authentication_modal_content' => $this->settings_repo->authenticationModalContent(),
 			'authentication_redirect' => $this->settings_repo->redirectAnonymous(),
 			'dev_mode' => $this->settings_repo->devMode(),
 			'logged_in' => is_user_logged_in(),

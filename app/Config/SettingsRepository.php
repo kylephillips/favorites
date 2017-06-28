@@ -106,12 +106,21 @@ class SettingsRepository
 	* @since 2.0.3
 	* @return html
 	*/
-	public function authenticationModalContent()
+	public function authenticationModalContent($raw = false)
 	{
 		$option = get_option('simplefavorites_users');
 		if ( isset($option['authentication_modal']) 
 			&& $option['authentication_modal'] !== '') {
-			return apply_filters('favorites/authentication_modal_content', $option['authentication_modal']);
+			$content = $option['authentication_modal'];
+			if ( $raw ) return $content;
+			add_filter('favorites/authentication_modal_content', 'wptexturize');
+			add_filter('favorites/authentication_modal_content', 'convert_smilies');
+			add_filter('favorites/authentication_modal_content', 'convert_chars');
+			add_filter('favorites/authentication_modal_content', 'wpautop');
+			add_filter('favorites/authentication_modal_content', 'prepend_attachment');
+			add_filter('favorites/authentication_modal_content', 'shortcode_unautop');
+			add_filter('favorites/authentication_modal_content', 'do_shortcode');
+			return apply_filters('favorites/authentication_modal_content', $content);
 		}
 		$html = '<p>' . __('Please login to add favorites.', 'favorites') . '</p>';
 		$html .= '<p><a href="#" data-favorites-modal-close>' . __('Dismiss this notice', 'favorites') . '</a></p>';
