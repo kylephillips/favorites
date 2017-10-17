@@ -121,7 +121,7 @@ class Dependencies
 			'user_id' => get_current_user_id()
 		);
 		$redirect_url = $this->settings_repo->redirectAnonymousId();
-		$localized_data['authentication_redirect_url'] = ( $redirect_url ) ? get_the_permalink($redirect_url) : wp_login_url();
+		$localized_data['authentication_redirect_url'] = ( $redirect_url ) ? get_the_permalink($redirect_url) : apply_filters( 'favorites/authentication_redirect_url', wp_login_url() );
 		wp_localize_script(
 			'favorites',
 			'favorites_data',
