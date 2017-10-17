@@ -1,0 +1,658 @@
+# Translation of Plugins - Favorites - Development (trunk) in Arabic
+# This file is distributed under the same license as the Plugins - Favorites - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-10-14 07:53+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Language: ar\n"
+"Project-Id-Version: Plugins - Favorites - Development (trunk)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+
+#: app/Views/settings/settings-users.php:42
+msgid "Enter the Page/Post ID to redirect to (defaults to the site url)"
+msgstr "أدخل معرف الصفحة/المقال للتوجيه إليه (إفتراضيًا إلى رابط الموقع)"
+
+#: app/Views/settings/settings-users.php:25
+msgid "Redirect Anonymous Users to a Page"
+msgstr "توجيه المستخدمين المجهولين إلى صفحة"
+
+#: app/Views/settings/settings-users.php:23
+msgid "Show Buttons and Display Modal for Anonymous Users"
+msgstr "إظهار الأزرار والعرض المشروط للمستخدمين المجهولين"
+
+#: app/Views/settings/settings-users.php:20
+msgid "By default, favorite buttons are hidden from unauthenticated users if anonymous users are disabled."
+msgstr "إفتراضيًا، تكون أزرار التفضيل مخفية عن المستخديمن غير المصادق عليهم إذا تم تعطيل الستخدمين المجهولين."
+
+#: app/Views/settings/settings-users.php:19
+msgid "Anonymous Favoriting Behavior"
+msgstr "سلوك التفضيل للمجهولين"
+
+#: app/Views/settings/settings-display.php:306
+msgid "Permalink (as link)"
+msgstr "الرابط الثابت (كرابط)"
+
+#: app/Views/settings/settings-display.php:305
+msgid "Permalink (raw link)"
+msgstr "الرابط الثابت (الرابط الخام)"
+
+#: app/Listeners/AJAXListenerBase.php:44
+msgid "The nonce could not be verified."
+msgstr "لم يتم الحقق من المناسبة."
+
+#: app/Entities/Favorite/SyncSingleFavorite.php:121
+#: app/Entities/User/UserRepository.php:124
+msgid "Default List"
+msgstr "القائمة الافتراضية"
+
+#: app/Views/settings/settings-general.php:22
+msgid "Enable Development Mode (logs JS responses in the console for debugging)"
+msgstr "تمكين وضع التطوير (تسجل ردود الجافا سكريبت في وحدة التحكم لتصحيح الأخطاء)"
+
+#: app/Views/settings/settings-general.php:15
+msgid "Development Mode"
+msgstr "وضع التطوير"
+
+#: app/Views/settings/settings-display.php:78
+msgid "Span"
+msgstr "سبان"
+
+#: app/Views/settings/settings-display.php:76
+msgid "a (link)"
+msgstr "رابط"
+
+#: app/Views/settings/settings-display.php:75
+msgid "Button"
+msgstr "زر"
+
+#: app/Views/settings/settings-display.php:69
+msgid "By default, the button is displayed in an HTML button element."
+msgstr "إفتراضيًا، يتم عرض الزر في عنصر زر html."
+
+#: app/Views/settings/settings-display.php:68
+#: app/Views/settings/settings-display.php:72
+msgid "Button HTML Element"
+msgstr "عنصر زر HTML "
+
+#: app/Views/settings/settings-users.php:30
+msgid "To add \"close\" button or link, give it a data attribute of \"data-favorites-modal-close\"."
+msgstr "لإضافة زر \"إغلاق\" أو رابط، قم بإعطائه سمة البيانات \"data-favorites-modal-close\"."
+
+#: app/Views/settings/settings-users.php:29
+msgid "If plugin css or javascript has been disabled, the modal window will not display correctly."
+msgstr "إذا تم تعطيل css أو الجافا سكريبتت الخاص بالإضافة، لن يتم عرض النافذة المشروطة بشكل صحيح."
+
+#: app/Views/settings/settings-users.php:29
+msgid "Important: "
+msgstr "هام: "
+
+#: app/Views/settings/settings-users.php:28
+msgid "Edit the Modal Content Below"
+msgstr "تعديل محتوى الشرط أدناه"
+
+#: app/Views/settings/settings-display.php:319
+msgid "Favorite Button"
+msgstr "زر التفضيل"
+
+#: app/Views/settings/settings-display.php:317
+msgid "Favorites Fields"
+msgstr "حقول التفضيلات"
+
+#: app/Views/settings/settings-display.php:314
+#: app/Views/settings/settings-display.php:322
+msgid "Add"
+msgstr "إضافة"
+
+#: app/Views/settings/settings-display.php:310
+msgid "Thumbnail: "
+msgstr "الصورة المصغرة: "
+
+#: app/Views/settings/settings-display.php:304
+msgid "Excerpt"
+msgstr "مقتطف"
+
+#: app/Views/settings/settings-display.php:303
+msgid "Post Title"
+msgstr "عنوان المقال"
+
+#: app/Views/settings/settings-display.php:301
+msgid "Post Fields"
+msgstr "حقول المقال"
+
+#: app/Views/settings/settings-display.php:298
+msgid "To add a custom meta field, use the format <code>[custom_field:custom_field_name]</code>"
+msgstr "لإضافة حقل ميتا مخصص، استخدم الصيغة <code>[custom_field:custom_field_name]</code>"
+
+#: app/Views/settings/settings-display.php:297
+msgid "Add Dynamic Fields"
+msgstr "إضافة حقول ديناميكية"
+
+#: app/Views/settings/settings-display.php:294
+msgid "By customizing the listing content, some shortcode options will not apply. These options include: include_links, include_buttons, include_thumbnails, and thumbnail_size"
+msgstr "من خلال تخصيص محتوى القائمة، لن يتم تطبيق بعض خيارات الكود القصير. وتشمل هذه الخيارات: include_links, include_buttons, include_thumbnails, and thumbnail_size"
+
+#: app/Views/settings/settings-display.php:294
+msgid "Important:"
+msgstr "هام:"
+
+#: app/Views/settings/settings-display.php:290
+msgid "Customize Content"
+msgstr "تخصيص المحتوى"
+
+#: app/Views/settings/settings-display.php:286
+msgid "Optionally customize the single listing markup."
+msgstr "يمكنك تخصيص ترميز القائمة الواحدة بشكل اختياري."
+
+#: app/Views/settings/settings-display.php:285
+msgid "Single Listing Content Markup"
+msgstr "ترميز محتوى قائمة واحدة"
+
+#: app/Views/settings/settings-display.php:278
+msgid "Listing CSS Classes"
+msgstr "فئات css القائمة"
+
+#: app/Views/settings/settings-display.php:274
+msgid "Paragraph (p)"
+msgstr "فقرة (p)"
+
+#: app/Views/settings/settings-display.php:273
+msgid "List Item (li)"
+msgstr "عنصر قائمة (li)"
+
+#: app/Views/settings/settings-display.php:271
+msgid "List Element Type"
+msgstr "نوع عنصر القائمة"
+
+#: app/Views/settings/settings-display.php:268
+msgid "The individual listing html element. Defaults to an html li item."
+msgstr "عنصر html الفردي للقائمة. إفتراضيًا إلى عنصر li."
+
+#: app/Views/settings/settings-display.php:267
+msgid "Single List Element"
+msgstr "عنصر القائمة الواحدة"
+
+#: app/Views/settings/settings-display.php:260
+msgid "Wrapper CSS Classes"
+msgstr "فئات css الغلاف"
+
+#: app/Views/settings/settings-display.php:77
+#: app/Views/settings/settings-display.php:257
+#: app/Views/settings/settings-display.php:275
+msgid "Div"
+msgstr "صندوق"
+
+#: app/Views/settings/settings-display.php:256
+msgid "Ordered List (ol)"
+msgstr "قائمة مرتبة (ol)"
+
+#: app/Views/settings/settings-display.php:255
+msgid "Unordered List (ul)"
+msgstr "قائمة غير مرتبة (ul)"
+
+#: app/Views/settings/settings-display.php:253
+msgid "List Wrapper Type"
+msgstr "نوع قائمة الغلاف"
+
+#: app/Views/settings/settings-display.php:250
+msgid "The list wrapper html element. Defaults to an html ul list."
+msgstr "عنصر html لقائمة الغلاف. إفتراضيًا إلى قائمة ul."
+
+#: app/Views/settings/settings-display.php:249
+msgid "List Wrapper Element"
+msgstr "عنصر قائمة الغلاف"
+
+#: app/Views/settings/settings-display.php:243
+msgid "Customize the favorites list HTML"
+msgstr "تخصيص html قائمة التفضيلات"
+
+#: app/Views/settings/settings-display.php:236
+msgid "Listing Display"
+msgstr "عرض القائمة"
+
+#: app/Views/settings/settings-display.php:170
+msgid "Button Markup: Favorited"
+msgstr "رمز الزر: مُفضل"
+
+#: app/Views/settings/settings-display.php:160
+msgid "Button Markup: Unfavorited"
+msgstr "رمز الزر: غير مُفضل"
+
+#: app/Views/settings/settings-display.php:152
+msgid "Include button shadow"
+msgstr "تضمين ظل الزر"
+
+#: app/Views/settings/settings-display.php:136
+msgid "Active Button State (Favorited)"
+msgstr "حالة الزر الفعال (مُفضل)"
+
+#: app/Views/settings/settings-display.php:120
+msgid "Default Button State (Unfavorited)"
+msgstr "حالة الزر افتراضيًا (غير مُفضل)"
+
+#: app/Views/settings/settings-display.php:117
+msgid "Specify custom colors"
+msgstr "تحديد ألوان مخصصة"
+
+#: app/Views/settings/settings-display.php:114
+msgid "If colors are not specified, theme colors will apply. Note: theme styles will effect the appearance of the favorites button. The button is displayed in a button element, with a css class of \"simplefavorites-button\"."
+msgstr "إذا لم يتم تحديد الألوان، سيتم تطبيق ألوان القالب. ملاحظة: أنماط القالب سوف تأثر على ظهور زر المفضلة. يتم عرض الزر في عنصر زر، مع فئة css الـ \"simplefavorites-button\"."
+
+#: app/Views/settings/settings-display.php:113
+msgid "Color Options"
+msgstr "خيارات اللون"
+
+#: app/Views/settings/settings-display.php:101
+msgid "Preview"
+msgstr "معاينة"
+
+#: app/Views/settings/settings-display.php:90
+msgid "Custom Markup"
+msgstr "رمز مخصص"
+
+#: app/Views/settings/settings-display.php:85
+msgid "Use a predefined button or add your own markup."
+msgstr "استخدم زر معرف مسبقًا أو أضف العلامة الخاصة بك."
+
+#: app/Views/settings/settings-display.php:84
+#: app/Views/settings/settings-display.php:88
+msgid "Button Type"
+msgstr "نوع الزر"
+
+#: app/Views/settings/settings-display.php:64
+msgid "Favorite Button Content & Appearance"
+msgstr "محتوى ومظهر زر التفضيل"
+
+#: app/Config/SettingsRepository.php:451 app/Config/SettingsRepository.php:458
+msgid "Count Color"
+msgstr "لون العدد"
+
+#: app/Config/SettingsRepository.php:450 app/Config/SettingsRepository.php:457
+msgid "Icon Color"
+msgstr "لون الأيقونة"
+
+#: app/Config/SettingsRepository.php:449 app/Config/SettingsRepository.php:456
+msgid "Text Color"
+msgstr "لون النص"
+
+#: app/Config/SettingsRepository.php:448 app/Config/SettingsRepository.php:455
+msgid "Border Color"
+msgstr "لون الحد"
+
+#: app/Config/SettingsRepository.php:447 app/Config/SettingsRepository.php:454
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#: app/Config/SettingsRepository.php:411
+msgid "Added to Wishlist"
+msgstr "أضيف لقائمة الأماني"
+
+#: app/Config/SettingsRepository.php:410
+msgid "Add to Wishlist"
+msgstr "إضافة إلى قائمة الأماني"
+
+#: app/Config/SettingsRepository.php:407
+msgid "Wishlist"
+msgstr "قائمة الأماني"
+
+#: app/Config/SettingsRepository.php:404
+msgid "Bookmarked"
+msgstr "مُعلم"
+
+#: app/Config/SettingsRepository.php:400 app/Config/SettingsRepository.php:403
+msgid "Bookmark"
+msgstr "تعليم"
+
+#: app/Config/SettingsRepository.php:397
+msgid "Loved"
+msgstr "محبوب"
+
+#: app/Config/SettingsRepository.php:393 app/Config/SettingsRepository.php:396
+msgid "Love"
+msgstr "حب"
+
+#: app/Config/SettingsRepository.php:390
+msgid "Liked"
+msgstr "معجب"
+
+#: app/Config/SettingsRepository.php:386 app/Config/SettingsRepository.php:389
+msgid "Like"
+msgstr "إعجاب"
+
+#: app/Config/SettingsRepository.php:126
+msgid "Dismiss this notice"
+msgstr "تجاهل هذا الإشعار"
+
+#: app/Config/SettingsRepository.php:125
+msgid "Please login to add favorites."
+msgstr "يرجى تسجيل الدخول لإضافة تفضيلات."
+
+#: app/Views/settings/settings.php:12
+msgid "Display & Post Types"
+msgstr "العرض وأنواع المقالات"
+
+#: app/Views/settings/settings-users.php:50
+msgid "Unauthenticated users' favorites may be saved in either cookies or session. Authenticated users' favorites are saved as user meta."
+msgstr "يمكن حفظ تفضيلات المستخدمين غير المصادقين في ملفات تعريف الارتباط أو الجلسات. يتم حفظ المفضلة للمستخدمين المؤهلين كملف تعريف المستخدم."
+
+#: app/Views/settings/settings-users.php:49
+msgid "Save Unauthenticated Favorites as"
+msgstr "حفظ المفضلة غير المصادق عليها كـ"
+
+#: app/Views/settings/settings-users.php:11
+msgid "Enable Anonymous Users"
+msgstr "تمكين المستخدمين المجهولين"
+
+#: app/Views/settings/settings-users.php:8
+msgid "Enable favoriting functionality for unauthenticated users."
+msgstr "تمكين وظيفة التفضيل للمستخدمين الغير مصادق عليهم."
+
+#: app/Views/settings/settings-users.php:3
+msgid "User Settings"
+msgstr "إعدادات المستخدم"
+
+#: app/Views/settings/settings-general.php:60
+msgid "Favorites Version"
+msgstr "الإصدار"
+
+#: app/Views/settings/settings-general.php:45
+msgid "Important: The plugin JavaScript is required for core functions. If this is disabled, the plugin JS <strong>must</strong> be included with the theme along with the global JS variables."
+msgstr "هام: الجافاسكريبت للإضافة مطلوب من أجل الوظائف الأساسية. إذا تم تعطيل هذا، <strong>يجب</strong> أن يتم تضمين الجافا سكريبت مع القالب جنبًا إلى جنب مع متغيرات جافاسكريبت العالمية."
+
+#: app/Views/settings/settings-general.php:44
+msgid "Enqueue Plugin Javascript"
+msgstr "إدراج جافا سكريبت الإضافة"
+
+#: app/Views/settings/settings-general.php:31
+msgid "Enqueue Plugin CSS"
+msgstr "إدراج css الإضافة"
+
+#: app/Views/settings/settings-general.php:3
+msgid "Page Cache"
+msgstr "ذاكرة التخزين المؤقت للصفحة"
+
+#: app/Views/settings/settings-display.php:362
+msgid "No Favorites Text/HTML"
+msgstr "لا يوجد نص /HTML للمفضلات"
+
+#: app/Views/settings/settings-display.php:359
+msgid "Appears in user favorite lists when they have not favorited any posts."
+msgstr "يظهر في قوائم تفضيل المستخدم عندما لا يكون قد قام بتفضيل أي مقال."
+
+#: app/Views/settings/settings-display.php:352
+msgid "Clear Favorites Button Text/HTML"
+msgstr "نص/html زر مسح التفضيلات "
+
+#: app/Views/settings/settings-display.php:349
+msgid "The text that appears in the \"Clear Favorites\" button by default. Note, the text may be overridden in the shortcode or function call."
+msgstr "النص الذي يظهر في الزر \"مسح التفضيلات\" بشكل افتراضي. ملاحظة، قد يكون النص متجاوز في الكود القصير أو استدعاء وظيفة."
+
+#: app/Views/settings/settings-display.php:344
+msgid "Additional Display Settings"
+msgstr "إعدادات عرض إضافية"
+
+#: app/Views/settings/settings-display.php:228
+msgid "Add loading state on page load"
+msgstr "إضافة حالة التحميل على تحميل الصفحة"
+
+#: app/Views/settings/settings-display.php:225
+msgid "Adds the loading state to favorites buttons during page load. Helpful on sites with page cache enabled."
+msgstr "إضافة حالة التحميل لأزرار التفضيلات أثناء تحميل الصفحة. مفيد للمواقع المفعلة للتخزين المؤقت للصفحات."
+
+#: app/Views/settings/settings-display.php:224
+msgid "Page Load"
+msgstr "تحميل الصفحة"
+
+#: app/Views/settings/settings-display.php:218
+msgid "Use Image/GIF Spinner"
+msgstr "استخدام سبنر صورة/gif "
+
+#: app/Views/settings/settings-display.php:216
+msgid "Use CSS/HTML Spinner"
+msgstr "استخدام سبنر css/html"
+
+#: app/Views/settings/settings-display.php:213
+msgid "Adds a spinner to the button during loading state. See plugin documentation for filters available for theme customization."
+msgstr "إضافة سبنر إلى الزر أثناء تحميل الحالة. أنظر إلى وثائق الإضافة للمرشحات المتاحة لمخصص القالب."
+
+#: app/Views/settings/settings-display.php:212
+msgid "Loading Spinner"
+msgstr "تحميل سبنر"
+
+#: app/Views/settings/settings-display.php:206
+msgid "Loading Text/HTML"
+msgstr "نص/ HTML التحميل"
+
+#: app/Views/settings/settings-display.php:203
+msgid "Replaces the unfavorited/favorited button text during the loading state."
+msgstr "تبديل نص الزر المفضل/الغير مفضل أثناء تحميل الحالة."
+
+#: app/Views/settings/settings-display.php:202
+msgid "Loading Text"
+msgstr "نص التحميل"
+
+#: app/Views/settings/settings-display.php:189
+msgid "Favorite Button Loading Indication"
+msgstr "مؤشر تحميل زر التفضيل"
+
+#: app/Views/settings/settings-display.php:184
+msgid "Include count in button"
+msgstr "تضمين العدد في الزر"
+
+#: app/Views/settings/settings-display.php:181
+msgid "Adds the total number of times the post has been favorited to the button."
+msgstr "إضف إجمالي العدد للمرات التي تم تفضيل المقال في الزر."
+
+#: app/Views/settings/settings-display.php:180
+msgid "Include Total Favorite Count"
+msgstr "تضمين العدد الكلي للتفضيلات"
+
+#: app/Views/settings/settings-display.php:171
+msgid "The button inner html, in a favorited state."
+msgstr "زر html الداخلي، في حالة المفضل."
+
+#: app/Views/settings/settings-display.php:164
+#: app/Views/settings/settings-display.php:174
+msgid "Text/HTML"
+msgstr "نص / HTML"
+
+#: app/Views/settings/settings-display.php:161
+msgid "The button inner html, in an unfavorited state."
+msgstr "زر html الداخلي، في حالة غير المفضل."
+
+#: app/Views/settings/settings-display.php:56
+msgid "Add admin column"
+msgstr "إضافة عمود المدير"
+
+#: app/Views/settings/settings-display.php:53
+msgid "Adds a column to the admin listing with the total favorite count."
+msgstr "إضافة عمود إلى قائمة المدير مع مجموع عدد التفضيلات."
+
+#: app/Views/settings/settings-display.php:47
+msgid "Add meta box"
+msgstr "إضافة صندوق ميتا"
+
+#: app/Views/settings/settings-display.php:44
+msgid "Adds a meta box with the total number of favorites the post has received."
+msgstr "إضافة صندوق ميتا مع رقم مجموع التفضيلات الذي تلقاها المقال."
+
+#: app/Views/settings/settings-display.php:43
+msgid "Show favorite count on post edit screen"
+msgstr "إظهار عدد التفضيلات على صفحة تعديل المقال"
+
+#: app/Views/settings/settings-display.php:38
+msgid "Include after content"
+msgstr "تضمين بعد المحتوى"
+
+#: app/Views/settings/settings-display.php:35
+msgid "Favorite buttons are automatically inserted after the content using the_content filter."
+msgstr "يتم إضافة أزرار التفضيل تلقائيًا بعد المحتوى والتي تستخدم مرشح the_content."
+
+#: app/Views/settings/settings-display.php:34
+msgid "Insert Favorite button after content"
+msgstr "إدخال زر التفضيل بعد المحتوى"
+
+#: app/Views/settings/settings-display.php:29
+msgid "Include before content"
+msgstr "تضمين قبل المحتوى"
+
+#: app/Views/settings/settings-display.php:26
+msgid "Favorite buttons are automatically inserted before the content using the_content filter."
+msgstr "يتم إضافة أزرار التفضيل تلقائيًا قبل المحتوى والتي تستخدم مرشح the_content."
+
+#: app/Views/settings/settings-display.php:25
+msgid "Insert Favorite button before content"
+msgstr "إدخال زر التفضيل قبل المحتوى"
+
+#: app/Views/settings/settings-display.php:7
+msgid "Enabled Favorites for:"
+msgstr "تمكين التفضيلات لـ :"
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/kylephillips"
+msgstr "https://github.com/kylephillips"
+
+#. Author of the plugin/theme
+msgid "Kyle Phillips"
+msgstr "Kyle Phillips"
+
+#. Description of the plugin/theme
+msgid "Simple and flexible favorite buttons for any post type."
+msgstr "ازرار تفضيل بسيطة ومرنة لأي نوع مقال."
+
+#. Plugin URI of the plugin/theme
+msgid "http://favoriteposts.com"
+msgstr "http://favoriteposts.com"
+
+#: app/Views/settings/settings.php:9
+msgid "Users"
+msgstr "المستخدمين"
+
+#: app/Views/settings/settings.php:6
+msgid "General"
+msgstr "عام"
+
+#: app/Views/settings/settings-users.php:56
+msgid "Session"
+msgstr "الجلسة"
+
+#: app/Views/settings/settings-users.php:53
+msgid "Cookie"
+msgstr "ملف إرتباط"
+
+#: app/Views/settings/settings-users.php:13
+msgid "Include in Post Favorite Count"
+msgstr "التضمين في عدد تفضيلات المقال"
+
+#: app/Views/settings/settings-general.php:52
+msgid "If you are compiling your own minified Javascript, include the below (required for plugin functionality):"
+msgstr "إذا قمت بتجميع الجافا سكريبت المصغر خاصتك، قم بالتضمين أدناه (مطلوب لوظيفة الإضافة):"
+
+#: app/Views/settings/settings-general.php:49
+msgid "Output Plugin JavaScript"
+msgstr "ناتج جافا سكريبت الإضافة"
+
+#: app/Views/settings/settings-general.php:37
+msgid "If you are compiling your own minified CSS, include the CSS below:"
+msgstr "إذا قمت بتجميع الـ css المصغر خاصتك، قم بتضمين css في الأسفل:"
+
+#: app/Views/settings/settings-general.php:34
+msgid "Output Plugin CSS"
+msgstr "ناتج css الإضافة"
+
+#: app/Views/settings/settings-general.php:10
+msgid "Cache Enabled on Site (Favorites content is injected on page load with AJAX request)"
+msgstr "تم تمكين ذاكرة التخزين المؤقت في الموقع (يتم حقن المحتوى المفضل على تحميل الصفحة باستخدام طلب أجاكس)"
+
+#: app/Views/settings/settings-general.php:27
+msgid "Dependencies"
+msgstr "الاعتماديات"
+
+#: app/Views/settings/settings-display.php:358
+msgid "No Favorites Text"
+msgstr "نص عدم وجود التفضيلات"
+
+#: app/Views/settings/settings-display.php:196
+msgid "Helpful for slow sites with cache enabled"
+msgstr "مفيد للمواقع البطيئة مع ذاكرة التخزين المؤقتة المفعلة"
+
+#: app/Views/settings/settings-display.php:196
+msgid "Display loading indicator for buttons"
+msgstr "عرض مؤشر التحميل للأزرار"
+
+#: app/Views/settings/settings-display.php:320
+msgid "Favorite Count"
+msgstr "مجموع التفضيلات"
+
+#: app/Views/settings/settings-display.php:348
+msgid "Clear Favorites Button Text"
+msgstr "نص زر مسح التفضيلات"
+
+#: app/Views/settings/settings-display.php:52
+msgid "Show favorite count in admin columns"
+msgstr "إظهار عدد التفضيلات في أعمدة المدير"
+
+#: app/Entities/Post/PostMeta.php:44
+msgid "Total Favorites"
+msgstr "مجموع التفضيلات"
+
+#. Plugin Name of the plugin/theme
+#: app/Entities/Post/AdminColumns.php:63 app/Entities/Post/PostMeta.php:28
+#: app/Favorites.php:18
+msgid "Favorites"
+msgstr "التفضيلات"
+
+#: app/Config/SettingsRepository.php:331
+msgid "No Favorites"
+msgstr "لا توجد مفضلات"
+
+#: app/Config/SettingsRepository.php:248
+msgid "Loading"
+msgstr "جار التحميل"
+
+#: app/Config/SettingsRepository.php:188
+msgid "Clear Favorites"
+msgstr "مسح التفضيلات"
+
+#: app/Config/SettingsRepository.php:176 app/Config/SettingsRepository.php:383
+msgid "Favorited"
+msgstr "مُفضل"
+
+#: app/Config/SettingsRepository.php:164 app/Config/SettingsRepository.php:379
+#: app/Config/SettingsRepository.php:382
+msgid "Favorite"
+msgstr "تفضيل"
+
+#: app/Bootstrap.php:60
+msgid "FAQ"
+msgstr "الاسئلة المتكررة"
+
+#: app/Bootstrap.php:59 app/Config/Settings.php:52
+#: app/Views/settings/settings-display.php:20
+#: app/Views/settings/settings-display.php:197
+#: app/Views/settings/settings-display.php:244
+#: app/Views/settings/settings.php:2
+msgid "Settings"
+msgstr "إعدادات"
+
+#: app/Activation/Activate.php:40
+msgid "Favorited <i class=\"sf-icon-star-full\"></i>"
+msgstr "مفضلة <i class=\"sf-icon-star-full\"></i>"
+
+#: app/Activation/Activate.php:39
+msgid "Favorite <i class=\"sf-icon-star-empty\"></i>"
+msgstr "تفضيل <i class=\"sf-icon-star-empty\"></i>"
+
+#: app/API/Shortcodes/PostFavoritesShortcode.php:28
+msgid "Anonymous User"
+msgstr "مستخدم مجهول"
+
+#: app/API/Shortcodes/PostFavoritesShortcode.php:27
+#: app/Views/settings/settings-users.php:7
+msgid "Anonymous Users"
+msgstr "مستخدمين مجهولين"
