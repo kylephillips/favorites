@@ -273,7 +273,7 @@ Favorites.UserFavorites = function()
 	plugin.bindEvents = function()
 	{
 		$(document).on('favorites-nonce-generated', function(){
-			plugin.initalLoad = true;
+			plugin.initialLoad = true;
 			plugin.getFavorites();
 		});
 	}
@@ -298,11 +298,11 @@ Favorites.UserFavorites = function()
 					console.log(data);
 				}
 				Favorites.userFavorites = data.favorites;
-				$(document).trigger('favorites-user-favorites-loaded', [plugin.initalLoad]);
+				$(document).trigger('favorites-user-favorites-loaded', [plugin.initialLoad]);
 				$(document).trigger('favorites-update-all-buttons');
 
 				// Deprecated Callback
-				if ( plugin.initalLoad ) favorites_after_initial_load(Favorites.userFavorites);
+				if ( plugin.initialLoad ) favorites_after_initial_load(Favorites.userFavorites);
 			},
 			error: function(data){
 				if ( !Favorites.jsData.dev_mode ) return;
@@ -403,7 +403,7 @@ Favorites.Clear = function()
 	plugin.updateClearButtons = function()
 	{
 		var button;
-		var siteid; 
+		var siteid;
 		for ( var i = 0; i < $(Favorites.selectors.clear_button).length; i++ ){
 			button = $(Favorites.selectors.clear_button)[i];
 			siteid = $(button).attr('data-siteid');
@@ -669,7 +669,7 @@ Favorites.Button = function()
 				$(this).attr('data-favoritecount', favorite_count - 1);
 				$(this).find(Favorites.selectors.count).text(favorite_count - 1);
 				return;
-			} 
+			}
 			$(this).addClass(Favorites.cssClasses.active);
 			$(this).attr('data-favoritecount', favorite_count + 1);
 			$(this).find(Favorites.selectors.count).text(favorite_count + 1);
@@ -740,10 +740,10 @@ Favorites.ButtonUpdater = function()
 	*/
 	plugin.updateAllButtons = function(list)
 	{
-		var buttons = ( typeof list === undefined && list !== '' ) 
-			? $(list).find(Favorites.selectors.button) 
+		var buttons = ( typeof list === undefined && list !== '' )
+			? $(list).find(Favorites.selectors.button)
 			: $(Favorites.selectors.button);
-		
+
 		for ( var i = 0; i < $(buttons).length; i++ ){
 			plugin.activeButton = $(buttons)[i];
 			if ( Favorites.authenticated ) plugin.setButtonData();
@@ -818,7 +818,7 @@ Favorites.TotalCount = function()
 			// Loop through all sites in favorites
 			for ( var c = 0; c < Favorites.userFavorites.length; c++ ){
 				var site_favorites = Favorites.userFavorites[c];
-				if ( site_favorites.site_id !== siteid ) continue; 
+				if ( site_favorites.site_id !== siteid ) continue;
 				$.each(site_favorites.posts, function(){
 					if ( $(item).attr('data-posttypes') === 'all' ){
 						count++;
@@ -873,7 +873,7 @@ Favorites.PostFavoriteCount = function()
 			// Loop through all sites in favorites
 			for ( var c = 0; c < favorites.length; c++ ){
 				var site_favorites = favorites[c];
-				if ( site_favorites.site_id !== parseInt(siteid) ) continue; 
+				if ( site_favorites.site_id !== parseInt(siteid) ) continue;
 				$.each(site_favorites.posts, function(){
 
 					if ( this.post_id === postid ){
@@ -1020,7 +1020,7 @@ Favorites.selectors = {
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
 	modals : 'data-favorites-modal', // Modals
 	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
-	count : '.simplefavorite-button-count', // The count inside the favorites button 
+	count : '.simplefavorite-button-count', // The count inside the favorites button
 	post_favorite_count : 'data-favorites-post-count-id' // The total number of times a post has been favorited
 }
 
