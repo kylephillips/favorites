@@ -185,7 +185,7 @@ class UserRepository
 	public function isFavorite($post_id, $site_id = 1, $user_id = null, $group_id = null)
 	{
 		$favorites = $this->getFavorites($user_id, $site_id, $group_id);
-		if ( in_array($post_id, $favorites) ) return true;
+		if ( is_array($favorites) && in_array($post_id, $favorites) ) return true;
 		return false;
 	}
 
