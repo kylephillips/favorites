@@ -32,6 +32,7 @@ Favorites.Lists = function()
 	*/
 	plugin.updateAllLists = function()
 	{
+		if ( typeof Favorites.userFavorites === 'undefined' ) return;
 		for ( var i = 0; i < Favorites.userFavorites.length; i++ ){
 			var lists = $(Favorites.selectors.list + '[data-siteid="' + Favorites.userFavorites[i].site_id + '"]');
 			for ( var c = 0; c < $(lists).length; c++ ){

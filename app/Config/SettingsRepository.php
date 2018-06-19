@@ -58,6 +58,9 @@ class SettingsRepository
 				&& isset($consent_option['consent']['require']) 
 				&& $consent_option['consent']['require'] == 'true') ? true : false;
 		}
+		if ( $option == 'modal' && isset($consent_option['consent']['modal']) ){
+			return ( $consent_option['consent']['modal'] !== '' ) ? apply_filters('the_content', $consent_option['consent']['modal']) : false;
+		}
 		return ( isset($consent_option['consent'][$option]) ) ? $consent_option['consent'][$option] : false;
 	}
 

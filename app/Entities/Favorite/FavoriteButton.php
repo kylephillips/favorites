@@ -66,6 +66,8 @@ class FavoriteButton
 	*/
 	public function display($loading = true)
 	{
+		// $cookie = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
+		// var_dump($cookie[0]);
 		if ( !$this->settings_repo->cacheEnabled() ) $loading = false;
 		if ( !$this->user->getsButton() ) return false;
 
@@ -75,7 +77,7 @@ class FavoriteButton
 		$button_html_type = apply_filters('favorites/button/element_type', $this->settings_repo->getButtonHtmlType(), $this->post_id, $this->site_id);
 		$html = $this->html();
 
-		$out = '<' . $button_html_type . ' class="' . $this->cssClasses($loading) . '"';		
+		$out = '<' . $button_html_type . ' class="' . $this->cssClasses($loading) . '"';
 		
 		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-groupid="' . $this->group_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
 

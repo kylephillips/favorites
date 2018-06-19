@@ -117,13 +117,14 @@ class UserRepository
 	private function favoritesWithGroups($favorites)
 	{
 		if ( Helpers::groupsExist($favorites[0]) ) return $favorites;
+		$data = [
+			'group_id' => 1,
+			'site_id' => $favorites[0]['site_id'],
+			'group_name' => __('Default List', 'favorites'),
+			'posts' => $favorites[0]['posts']
+		];
 		$favorites[0]['groups'] = array(
-			array(
-				'group_id' => 1,
-				'site_id' => $favorites[0]['site_id'],
-				'group_name' => __('Default List', 'favorites'),
-				'posts' => $favorites[0]['posts']
-			)
+			$data
 		);
 		return $favorites;
 	}
@@ -170,6 +171,7 @@ class UserRepository
 		$favorites = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
 		$favorites = $this->favoritesWithSiteID($favorites);
 		$favorites = $this->favoritesWithGroups($favorites);
+		if ( isset($_POST['user_consent_accepted']) && $_POST['user_consent_accepted'] == 'true' ) $favorites[0]['consent_provided'] = time();
 		if ( !is_null($site_id) && is_null($group_id) ) $favorites = Helpers::pluckSiteFavorites($site_id, $favorites);
 		if ( !is_null($group_id) ) $favorites = Helpers::pluckGroupFavorites($group_id, $site_id, $favorites);
 		return $favorites;
@@ -209,5 +211,35 @@ class UserRepository
 		$favorites = $this->getAllFavorites();
 		$formatter = new FavoritesArrayFormatter;
 		return $formatter->format($favorites, $post_id, $site_id, $status);
+	}
+
+	/**
+	* Has the user consented to cookies (if applicable)
+	*/
+	public function consentedToCookies()
+	{
+		if ( $this->settings_repo->saveType() !== 'cookie' ) return true;
+		if ( isset($_POST['user_consent_accepted']) && $_POST['user_consent_accepted'] == 'true' ) return true;
+		if ( !$this->settings_repo->consent('require') ) return true;
+		if ( isset($_COOKIE['simplefavorites']) ){
+			$cookie = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
+			if ( isset($cookie[0]['consent_provided']) ) return true;
+			if ( isset($cookie[0]['consent_denied']) ) return false;
+		}
+		return false;
+	}
+
+	/**
+	* Has the user denied consent to cookies explicitly
+	*/
+	public function deniedCookies()
+	{
+		if ( $this->settings_repo->saveType() !== 'cookie' ) return false;
+		if ( !$this->settings_repo->consent('require') ) return false;
+		if ( isset($_COOKIE['simplefavorites']) ){
+			$cookie = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
+			if ( isset($cookie[0]['consent_denied']) ) return true;
+		}
+		return false;
 	}
 }

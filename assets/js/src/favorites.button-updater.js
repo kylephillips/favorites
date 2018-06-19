@@ -31,6 +31,7 @@ Favorites.ButtonUpdater = function()
 	*/
 	plugin.updateAllButtons = function(list)
 	{
+		if ( typeof Favorites.userFavorites === 'undefined' ) return;
 		var buttons = ( typeof list === undefined && list !== '' ) 
 			? $(list).find(Favorites.selectors.button) 
 			: $(Favorites.selectors.button);

@@ -16,7 +16,7 @@
 	</div><!-- .row -->
 	<div class="row">
 		<div class="description">
-			<h5><?php _e('User Opt-In', 'favorites'); ?></h5>
+			<h5><?php _e('User Cookie Consent', 'favorites'); ?></h5>
 			<p><?php _e('Require user consent for saving cookies before allowing favorites to be saved.', 'favorites'); ?></p><p><strong><?php _e('Important:', 'favorites'); ?></strong> <?php _e('If using this option for GDPR compliance, please consult an attorney for appropriate legal terms to display in the modal consent.', 'favorites'); ?></p>
 		</div>
 		<div class="field">

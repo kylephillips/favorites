@@ -2,17 +2,11 @@
 namespace Favorites\Listeners;
 
 use Favorites\Entities\Favorite\Favorite;
-use Favorites\Entities\User\UserRepository;
 use Favorites\Entities\Favorite\SyncAllFavorites;
 use Favorites\Entities\Post\SyncFavoriteCount;
 
 class ClearFavorites extends AJAXListenerBase
 {
-	/**
-	* User Repository
-	*/
-	private $user_repo;
-
 	/**
 	* Favorites Sync
 	*/
@@ -21,7 +15,6 @@ class ClearFavorites extends AJAXListenerBase
 	public function __construct()
 	{
 		parent::__construct();
-		$this->user_repo = new UserRepository;
 		$this->favorites_sync = new SyncAllFavorites;
 		$this->setFormData();
 		$this->clearFavorites();

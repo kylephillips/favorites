@@ -2,6 +2,7 @@
 namespace Favorites\Listeners;
 
 use Favorites\Config\SettingsRepository;
+use Favorites\Entities\User\UserRepository;
 
 /**
 * Base AJAX class
@@ -18,11 +19,18 @@ abstract class AJAXListenerBase
 	*/
 	protected $settings_repo;
 
-	public function __construct()
+	/**
+	* User Repo
+	*/
+	protected $user_repo;
+
+	public function __construct($check_nonce = true)
 	{
 		$this->settings_repo = new SettingsRepository;
-		$this->validateNonce();
+		$this->user_repo = new UserRepository;
+		if ( $check_nonce ) $this->validateNonce();
 		$this->checkLogIn();
+		$this->checkConsent();
 	}
 
 	/**
@@ -57,6 +65,21 @@ abstract class AJAXListenerBase
 		if ( $this->settings_repo->anonymous('display') ) return true;
 		if ( $this->settings_repo->requireLogin() ) return $this->response(array('status' => 'unauthenticated'));
 		if ( $this->settings_repo->redirectAnonymous() ) return $this->response(array('status' => 'unauthenticated'));
+	}
+
+	/**
+	* Check if consent is required and received
+	*/
+	protected function checkConsent()
+	{
+		if ( $this->user_repo->consentedToCookies() ) return;
+		return $this->response([
+			'status' => 'consent_required', 
+			'message' => $this->settings_repo->consent('modal'),
+			'accept_text' => $this->settings_repo->consent('consent_button_text'),
+			'deny_text' => $this->settings_repo->consent('deny_button_text'),
+			'post_data' => $_POST
+		]);
 	}
 
 	/**

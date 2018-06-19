@@ -46,6 +46,8 @@ Favorites.Button = function()
 		plugin.data.post_id = $(plugin.activeButton).attr('data-postid');
 		plugin.data.site_id = $(plugin.activeButton).attr('data-siteid');
 		plugin.data.status = ( $(plugin.activeButton).hasClass('active') ) ? 'inactive' : 'active';
+		var consentProvided = $(plugin.activeButton).attr('data-user-consent-accepted');
+		plugin.data.user_consent_accepted = ( typeof consentProvided !== 'undefined' && consentProvided !== '' ) ? true : false;
 	}
 
 	/**
@@ -55,19 +57,21 @@ Favorites.Button = function()
 	{
 		plugin.loading(true);
 		plugin.setData();
+		var formData = {
+			action : Favorites.formActions.favorite,
+			nonce : Favorites.jsData.nonce,
+			postid : plugin.data.post_id,
+			siteid : plugin.data.site_id,
+			status : plugin.data.status,
+			logged_in : Favorites.jsData.logged_in,
+			user_id : Favorites.jsData.user_id,
+			user_consent_accepted : plugin.data.user_consent_accepted
+		}
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
 			type: 'post',
 			dataType: 'json',
-			data: {
-				action : Favorites.formActions.favorite,
-				nonce : Favorites.jsData.nonce,
-				postid : plugin.data.post_id,
-				siteid : plugin.data.site_id,
-				status : plugin.data.status,
-				logged_in : Favorites.jsData.logged_in,
-				user_id : Favorites.jsData.user_id
-			},
+			data: formData,
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
 					console.log('The favorite was successfully saved.');
@@ -79,6 +83,11 @@ Favorites.Button = function()
 					plugin.data.status = 'inactive';
 					$(document).trigger('favorites-update-all-buttons');
 					$(document).trigger('favorites-require-authentication', [plugin.data]);
+					return;
+				}
+				if ( data.status === 'consent_required' ){
+					plugin.loading(false);
+					$(document).trigger('favorites-require-consent', [data, plugin.data, plugin.activeButton]);
 					return;
 				}
 				Favorites.userFavorites = data.favorites;

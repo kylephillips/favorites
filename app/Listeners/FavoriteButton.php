@@ -2,20 +2,12 @@
 namespace Favorites\Listeners;
 
 use Favorites\Entities\Favorite\Favorite;
-use Favorites\Entities\User\UserRepository;
 
 class FavoriteButton extends AJAXListenerBase
 {
-	/**
-	* User Repository
-	* @var Favorites\Entities\User\UserRepository
-	*/
-	private $user_repo;
-
 	public function __construct()
 	{
 		parent::__construct();
-		$this->user_repo = new UserRepository;
 		$this->setFormData();
 		$this->updateFavorite();
 	}

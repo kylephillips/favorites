@@ -104,7 +104,7 @@ class SyncSingleFavorite
 		if ( !Helpers::siteExists($this->site_id, $favorites) ){
 			$favorites[] = array(
 				'site_id' => $this->site_id,
-				'posts' => array(),
+				'posts' => array()
 			);
 		}
 		// Loop through each site's favorites, continue if not the correct site id

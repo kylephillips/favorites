@@ -7,6 +7,7 @@ use Favorites\Listeners\FavoritesArray;
 use Favorites\Listeners\ClearFavorites;
 use Favorites\Listeners\FavoriteCount;
 use Favorites\Listeners\FavoriteList;
+use Favorites\Listeners\CookieConsent;
 
 class RegisterPublicEvents 
 {
@@ -35,6 +36,10 @@ class RegisterPublicEvents
 		// Single Favorite List
 		add_action( 'wp_ajax_nopriv_favorites_list', array($this, 'favoriteList' ));
 		add_action( 'wp_ajax_favorites_list', array($this, 'favoriteList' ));
+
+		// Accept/Deny Cookies
+		add_action( 'wp_ajax_nopriv_favorites_cookie_consent', array($this, 'cookiesConsented' ));
+		add_action( 'wp_ajax_favorites_cookie_consent', array($this, 'cookiesConsented' ));
 
 	}
 
@@ -84,5 +89,13 @@ class RegisterPublicEvents
 	public function favoriteList()
 	{
 		new FavoriteList;
+	}
+
+	/**
+	* Cookies were either accepted or denied
+	*/
+	public function cookiesConsented()
+	{
+		new CookieConsent;
 	}
 }

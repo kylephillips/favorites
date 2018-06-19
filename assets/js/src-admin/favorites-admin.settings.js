@@ -80,6 +80,11 @@ FavoritesAdmin.Settings = function()
 		$(document).on('change', '[data-favorites-color-picker]', function(){
 			plugin.toggleButtonPreviewColors();
 		});
+
+		// Consent Settings
+		$(document).on('change', '[data-favorites-require-consent-checkbox]', function(){
+			plugin.toggleModalConsentContent();
+		});
 	}
 
 	/**

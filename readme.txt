@@ -29,6 +29,14 @@ Visit [favoriteposts.com](http://favoriteposts.com) for a full list of available
 
 **Designed for Developers** - Favorites works great out-of-the-box for beginners, but a full set of template functions unlocks just about any sort of custom functionality developers may need. Favorites outputs the minimum amount of markup needed, putting the style and control in your hands.
 
+**GDPR**
+
+As of version 2.2, a setting is provided to help comply with GDPR standards. To enable this setting, visit Settings > Favorites > Users, and check the field under "User Cookie Consent." When this setting is enabled, the content saved under the setting displays in a modal window, and the user must agree to the terms you provide before favorite cookies can be saved. Note: There is no language provided by default. This should be supplied by a qualified attorney or legal entity. Once the user has approved or denied cookies, that is saved in the "simplefavorites" cookie along with the timestamp of approval or denial. If the site is part of a multi-site installation, the setting will carry through to all sites.
+
+If your site already has a cookie compliance solution in place, there are two document-level jQuery events that may be triggered in order to approve or deny cookies in the background.
+
+To approve the use of cookies, trigger the event "favorites-user-consent-approved". To deny the use of cookies, trigger the event "favorites-user-consent-denied".
+
 **Multisite Compatible** - As of version 1.1.0, Favorites is multisite compatible. User favorites are saved on a site/blog basis, and may be retrieved and displayed across sites.
 
 For more information visit [favoriteposts.com](http://favoriteposts.com).
@@ -75,6 +83,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 2.2.0 =
 * Fixes multisite issue where favorites were not being retrieved correctly.
+* Adds setting to require consenting to cookies before saving favorites, in an effort to adhere to GDPR compliance. Note: the modal content that displays when this setting is enabled should be provided by a qualified attorney or legal entity. Should your site already have a cookie consent protocol in place, document-level events are provided for triggering the user preferences.
 
 = 2.1.6 =
 * Adds option of redirecting to a page/post by ID if an anonmyous user attempts to favorite an item

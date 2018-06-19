@@ -32,6 +32,7 @@ Favorites.selectors = {
 	clear_button : '.simplefavorites-clear', // Clear Button
 	total_favorites : '.simplefavorites-user-count', // Total Favorites (from the_user_favorites_count)
 	modals : 'data-favorites-modal', // Modals
+	consentModal : 'data-favorites-consent-modal', // Consent Modal
 	close_modals : 'data-favorites-modal-close', // Link/Button to close the modals
 	count : '.simplefavorite-button-count', // The count inside the favorites button 
 	post_favorite_count : 'data-favorites-post-count-id' // The total number of times a post has been favorited
@@ -88,7 +89,8 @@ Favorites.formActions = {
 	favoritesarray : 'favorites_array',
 	favorite : 'favorites_favorite',
 	clearall : 'favorites_clear',
-	favoritelist : 'favorites_list'
+	favoritelist : 'favorites_list',
+	cookieConsent : 'favorites_cookie_consent'
 }
 
 /**
@@ -110,6 +112,7 @@ Favorites.Factory = function()
 		new Favorites.TotalCount;
 		new Favorites.PostFavoriteCount;
 		new Favorites.RequireAuthentication;
+		new Favorites.RequireConsent;
 	}
 
 	return plugin.build();

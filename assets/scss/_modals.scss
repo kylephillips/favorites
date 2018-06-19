@@ -56,12 +56,30 @@
 	&.no-padding {
 		padding: 0;
 	}
+	&.has-footer {
+		padding-bottom: 0;
+	}
+}
+
+.simplefavorites-modal-content-interior {
+	padding: 1em;
+	padding-bottom: 0;
 }
 
 .simplefavorites-modal-content-footer {
 	@include clearfix;
 	padding: .7em;
 	border-radius: 0 0 2px 2px;
+	background-color: rgba($black, .1);
+}
+
+.simplefavorites-button-consent-deny {
+	float: left;
+	opacity: .7;
+}
+
+.simplefavorites-button-consent-accept {
+	float: right;
 }
 
 @media (max-width: 767px)
