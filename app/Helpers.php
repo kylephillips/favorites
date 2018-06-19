@@ -108,7 +108,7 @@ class Helpers
 	public static function pluckGroupFavorites($group_id, $site_id, $all_favorites)
 	{
 		foreach($all_favorites as $key => $site_favorites){
-			if ( $site_favorites['site_id'] !== $site_id ) return;
+			if ( $site_favorites['site_id'] !== $site_id ) continue;
 			foreach ( $all_favorites[$key]['groups'] as $group ){
 				if ( $group['group_id'] == $group_id ){
 					return $group['posts'];

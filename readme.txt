@@ -72,6 +72,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.1.7 =
+* Fixes multisite issue where favorites were not being retrieved correctly.
+
 = 2.1.6 =
 * Adds option of redirecting to a page/post by ID if an anonmyous user attempts to favorite an item
 * Adds shortcode processing to authentication gate modal content
