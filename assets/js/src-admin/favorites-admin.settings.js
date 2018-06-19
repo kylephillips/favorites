@@ -19,6 +19,7 @@ FavoritesAdmin.Settings = function()
 			plugin.enableColorPickers();
 			plugin.toggleButtonPreviewColors();
 			plugin.toggleCountOptions();
+			plugin.toggleModalConsentContent();
 			$.each($('[data-favorites-dependency-checkbox]'), function(){
 				var item = $(this).parents('.field');
 				plugin.toggleDependencyContent(item);
@@ -307,6 +308,19 @@ FavoritesAdmin.Settings = function()
 		$('.simplefavorite-button-count').hide();
 		$('[data-favorites-color-option="count_default"]').hide();
 		$('[data-favorites-color-option="count_active"]').hide();
+	}
+
+	/**
+	* Toggle the Modal Consent Content
+	*/
+	plugin.toggleModalConsentContent = function()
+	{
+		var checked = ( $('[data-favorites-require-consent-checkbox]').is(':checked') ) ? true : false;
+		if ( checked ){
+			$('[data-favorites-require-consent-modal-content]').show();
+			return;
+		}
+		$('[data-favorites-require-consent-modal-content]').hide();
 	}
 
 	return plugin.bindEvents();

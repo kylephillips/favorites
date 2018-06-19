@@ -14,6 +14,36 @@
 			</label>
 		</div>
 	</div><!-- .row -->
+	<div class="row">
+		<div class="description">
+			<h5><?php _e('User Opt-In', 'favorites'); ?></h5>
+			<p><?php _e('Require user consent for saving cookies before allowing favorites to be saved.', 'favorites'); ?></p><p><strong><?php _e('Important:', 'favorites'); ?></strong> <?php _e('If using this option for GDPR compliance, please consult an attorney for appropriate legal terms to display in the modal consent.', 'favorites'); ?></p>
+		</div>
+		<div class="field">
+			<label class="block"><input type="checkbox" name="simplefavorites_users[consent][require]" value="true" <?php if ( $this->settings_repo->consent('require') ) echo ' checked'; ?> data-favorites-require-consent-checkbox /><?php _e('Require User Consent', 'favorites'); ?>
+			</label>
+			<div class="require-consent-modal-content" data-favorites-require-consent-modal-content>
+				<h3><?php _e('Content to Display in Modal Agreement', 'favorites'); ?></h3>
+				<?php
+					wp_editor($this->settings_repo->consent('modal'), 'simplefavorites_users_authentication_modal', 
+					array(
+						'textarea_name' => 'simplefavorites_users[consent][modal]',
+						'tabindex' => 1,
+						'wpautop' => true
+						)
+					); 
+				?>
+				<p>
+					<label class="block"><?php _e('Consent Button Text', 'favorites'); ?></label>
+					<input type="text" name="simplefavorites_users[consent][consent_button_text]" value="<?php echo $this->settings_repo->consent('consent_button_text'); ?>" />
+				</p>
+				<p>
+					<label class="block"><?php _e('Deny Button Text', 'favorites'); ?></label>
+					<input type="text" name="simplefavorites_users[consent][deny_button_text]" value="<?php echo $this->settings_repo->consent('deny_button_text'); ?>" />
+				</p>
+			</div>
+		</div>
+	</div><!-- .row -->
 	<div class="row" data-favorites-require-login>
 		<div class="description">
 			<h5><?php _e('Anonymous Favoriting Behavior', 'favorites'); ?></h5>

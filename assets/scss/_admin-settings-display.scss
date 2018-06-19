@@ -57,6 +57,9 @@
 		select {
 			width: 100%;
 		}
+		.require-consent-modal-content {
+			display: none;
+		}
 		.authentication-modal-content {
 			padding-top: 2em;
 			display: none;

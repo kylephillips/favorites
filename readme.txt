@@ -73,7 +73,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
-= 2.1.7 =
+= 2.2.0 =
 * Fixes multisite issue where favorites were not being retrieved correctly.
 
 = 2.1.6 =
