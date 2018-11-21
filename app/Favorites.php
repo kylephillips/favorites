@@ -12,7 +12,7 @@ class Favorites
 		$favorites_env = 'live';
 
 		global $favorites_version;
-		$favorites_version = '2.2.0';
+		$favorites_version = '2.3.0';
 
 		global $favorites_name;
 		$favorites_name = __('Favorites', 'favorites');
