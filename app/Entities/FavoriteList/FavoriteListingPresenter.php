@@ -131,10 +131,12 @@ class FavoriteListingPresenter
 	*/
 	private function replaceCustomFields()
 	{
-		preg_match("/\[[^\]]*\]/", $this->html, $out);
-		foreach($out as $field){
+		preg_match_all("/\[[^\]]*\]/", $this->html, $out);
+		if ( empty($out) ) return;
+		foreach($out[0] as $field){
 			$field_bracketed = $field;
 			$key = str_replace('[', '', $field);
+			$key = str_replace('custom_field:', '', $key);
 			$key = str_replace(']', '', $key);
 			$meta = get_post_meta($this->favorite, $key, true);
 			if ( !$meta ) $meta = '';

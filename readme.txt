@@ -81,6 +81,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.3.1 =
+* Bug Fix: Fixes issue where only one custom field was being output when multiple were specified in the custom list html.
+
 = 2.3.0 =
 * Security Update: Removes ability for users to manipulate favorites belonging to other users. Thanks to Arne van Hoorn for uncovering this issue.
 
