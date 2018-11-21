@@ -43,10 +43,7 @@ Favorites.Clear = function()
 			datatype: 'json',
 			data: {
 				action : Favorites.formActions.clearall,
-				nonce : Favorites.jsData.nonce,
-				siteid : site_id,
-				logged_in : Favorites.jsData.logged_in,
-				user_id : Favorites.jsData.user_id
+				siteid : site_id
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){

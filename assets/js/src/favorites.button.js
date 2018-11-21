@@ -59,12 +59,9 @@ Favorites.Button = function()
 		plugin.setData();
 		var formData = {
 			action : Favorites.formActions.favorite,
-			nonce : Favorites.jsData.nonce,
 			postid : plugin.data.post_id,
 			siteid : plugin.data.site_id,
 			status : plugin.data.status,
-			logged_in : Favorites.jsData.logged_in,
-			user_id : Favorites.jsData.user_id,
 			user_consent_accepted : plugin.data.user_consent_accepted
 		}
 		$.ajax({

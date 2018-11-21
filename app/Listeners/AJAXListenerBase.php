@@ -28,19 +28,8 @@ abstract class AJAXListenerBase
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->user_repo = new UserRepository;
-		if ( $check_nonce ) $this->validateNonce();
 		$this->checkLogIn();
 		$this->checkConsent();
-	}
-
-	/**
-	* Validate the Nonce
-	*/
-	protected function validateNonce()
-	{
-		if ( !isset($_POST['nonce']) ) return $this->sendError();
-		$nonce = sanitize_text_field($_POST['nonce']);
-		if ( !wp_verify_nonce( $nonce, 'simple_favorites_nonce' ) ) return $this->sendError();
 	}
 
 	/**
@@ -49,7 +38,7 @@ abstract class AJAXListenerBase
 	*/
 	protected function sendError($error = null)
 	{
-		$error = ( $error ) ? $error : __('The nonce could not be verified.', 'favorites');
+		$error = ( $error ) ? $error : __('There was an error processing the request.', 'favorites');
 		return wp_send_json(array(
 			'status' => 'error', 
 			'message' => $error
@@ -61,7 +50,7 @@ abstract class AJAXListenerBase
 	*/
 	protected function checkLogIn()
 	{
-		if ( isset($_POST['logged_in']) && intval($_POST['logged_in']) == 1 ) return true;
+		if ( is_user_logged_in() ) return true;
 		if ( $this->settings_repo->anonymous('display') ) return true;
 		if ( $this->settings_repo->requireLogin() ) return $this->response(array('status' => 'unauthenticated'));
 		if ( $this->settings_repo->redirectAnonymous() ) return $this->response(array('status' => 'unauthenticated'));

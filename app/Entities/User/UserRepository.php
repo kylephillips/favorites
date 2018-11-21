@@ -36,7 +36,7 @@ class UserRepository
 	*/
 	public function getAllFavorites()
 	{
-		if ( isset($_POST['logged_in']) && intval($_POST['logged_in']) == 1 ) {
+		if ( is_user_logged_in() ) {
 			$all_favorites = $this->getLoggedInFavorites();
 		} else {
 			$saveType = $this->settings_repo->saveType();
@@ -61,8 +61,8 @@ class UserRepository
 	*/
 	public function getFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
-		$logged_in = ( isset($_POST['logged_in']) && intval($_POST['logged_in']) == 1 && isset($_POST['user_id']) ) ? true : false;
-		if ( $logged_in || is_user_logged_in() || $user_id ) {
+		if ( is_user_logged_in() && !$user_id ) $user_id = get_current_user_id();
+		if ( is_user_logged_in() || $user_id ) {
 			$favorites = $this->getLoggedInFavorites($user_id, $site_id, $group_id);
 		} else {
 			$saveType = $this->settings_repo->saveType();
@@ -134,8 +134,7 @@ class UserRepository
 	*/
 	private function getLoggedInFavorites($user_id = null, $site_id = null, $group_id = null)
 	{
-		$user_id_post = ( isset($_POST['user_id']) ) ? intval($_POST['user_id']) : get_current_user_id();
-		$user_id = ( !is_null($user_id) ) ? $user_id : $user_id_post;
+		$user_id = ( is_null($user_id) ) ? get_current_user_id() : $user_id;
 		$favorites = get_user_meta($user_id, 'simplefavorites');
 		if ( empty($favorites) ) return array(array('site_id'=> 1, 'posts' => array(), 'groups' => array() ));
 		

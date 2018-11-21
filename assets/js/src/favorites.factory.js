@@ -51,7 +51,6 @@ Favorites.cssClasses = {
 */
 Favorites.jsData = {
 	ajaxurl : favorites_data.ajaxurl, // The WP AJAX URL
-	nonce : null, // The Dynamically-Generated Nonce
 	favorite : favorites_data.favorite, // Active Button Text/HTML
 	favorited : favorites_data.favorited, // Inactive Button Text
 	include_count : favorites_data.includecount, // Whether to include the count in buttons
@@ -85,7 +84,6 @@ Favorites.authenticated = true;
 * WP Form Actions Used by the Plugin
 */
 Favorites.formActions = {
-	nonce : 'favorites_nonce',
 	favoritesarray : 'favorites_array',
 	favorite : 'favorites_favorite',
 	clearall : 'favorites_clear',
@@ -103,7 +101,6 @@ Favorites.Factory = function()
 
 	plugin.build = function()
 	{
-		new Favorites.NonceGenerator;
 		new Favorites.UserFavorites;
 		new Favorites.Lists;
 		new Favorites.Clear;

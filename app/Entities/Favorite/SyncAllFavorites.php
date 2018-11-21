@@ -57,8 +57,7 @@ class SyncAllFavorites
 	*/
 	private function updateUserMeta()
 	{
-		if ( !isset($_POST['user_id']) ) return false;
-		if ( !isset($_POST['logged_in']) && intval($_POST['logged_in']) !== 1 ) return false;
-		return update_user_meta( intval($_POST['user_id']), 'simplefavorites', $this->favorites );
+		if ( !is_user_logged_in() ) return false;
+		return update_user_meta( intval(get_current_user_id()), 'simplefavorites', $this->favorites );
 	}
 }

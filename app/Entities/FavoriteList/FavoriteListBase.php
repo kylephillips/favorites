@@ -33,6 +33,7 @@ abstract class FavoriteListBase
 		$options = $this->list_options;
 		$this->list_options = new \stdClass;
 		$this->list_options->user_id = ( isset($options['user_id']) ) ? $options['user_id'] : null;
+		if ( ($this->list_options->user_id && isset($options['include_button'])) && ( get_current_user_id() !== $this->list_options->user_id ) ) unset($options['include_button']);
 		$this->list_options->site_id = ( isset($options['site_id']) ) ? $options['site_id'] : null;
 		$this->list_options->filters = ( isset($options['filters']) ) ? $options['filters'] : null;
 		$this->list_options->include_button = ( isset($options['include_button']) ) ? $options['include_button'] : false;

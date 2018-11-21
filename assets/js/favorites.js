@@ -204,61 +204,6 @@ Favorites.ButtonOptionsFormatter = function()
 	}
 }
 /**
-* Generates a new nonce on page load via AJAX
-* Solves problem of cached pages and expired nonces
-*
-* Events:
-* favorites-nonce-generated: The nonce has been generated
-*/
-var Favorites = Favorites || {};
-
-Favorites.NonceGenerator = function()
-{
-	var plugin = this;
-	var $ = jQuery;
-
-	plugin.bindEvents = function()
-	{
-		$(document).ready(function(){
-			if ( Favorites.jsData.dev_mode ){
-				console.log('Favorites Localized Data');
-				console.log(Favorites.jsData);
-			}
-			plugin.getNonce();
-		});
-	}
-
-	/**
-	* Make the AJAX call to get the nonce
-	*/
-	plugin.getNonce = function()
-	{
-		if ( Favorites.jsData.cache_enabled === '' ){
-			Favorites.jsData.nonce = favorites_data.nonce;
-			return;
-		}
-		$.ajax({
-			url: Favorites.jsData.ajaxurl,
-			type: 'POST',
-			datatype: 'json',
-			data: {
-				action : Favorites.formActions.nonce,
-				logged_in : Favorites.jsData.logged_in,
-				user_id : Favorites.jsData.user_id
-			},
-			success: function(data){
-				Favorites.jsData.nonce = data.nonce;
-				if ( Favorites.jsData.dev_mode ){
-					console.log('Nonce successfully generated: ' + data.nonce);
-				}
-				$(document).trigger('favorites-nonce-generated', [data.nonce]);
-			}
-		});
-	}
-
-	return plugin.bindEvents();
-}
-/**
 * Gets the user favorites
 */
 var Favorites = Favorites || {};
@@ -272,7 +217,7 @@ Favorites.UserFavorites = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('favorites-nonce-generated', function(){
+		$(window).on('load', function(){
 			plugin.initialLoad = true;
 			plugin.getFavorites();
 		});
@@ -288,9 +233,7 @@ Favorites.UserFavorites = function()
 			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.favoritesarray,
-				logged_in : Favorites.jsData.logged_in,
-				user_id : Favorites.jsData.user_id
+				action : Favorites.formActions.favoritesarray
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
@@ -359,10 +302,7 @@ Favorites.Clear = function()
 			datatype: 'json',
 			data: {
 				action : Favorites.formActions.clearall,
-				nonce : Favorites.jsData.nonce,
-				siteid : site_id,
-				logged_in : Favorites.jsData.logged_in,
-				user_id : Favorites.jsData.user_id
+				siteid : site_id
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){
@@ -496,7 +436,6 @@ Favorites.Lists = function()
 			dataType: 'json',
 			data: {
 				action : Favorites.formActions.favoritelist,
-				nonce : Favorites.jsData.nonce,
 				userid : user_id,
 				siteid : site_id,
 				include_links : include_links,
@@ -617,12 +556,9 @@ Favorites.Button = function()
 		plugin.setData();
 		var formData = {
 			action : Favorites.formActions.favorite,
-			nonce : Favorites.jsData.nonce,
 			postid : plugin.data.post_id,
 			siteid : plugin.data.site_id,
 			status : plugin.data.status,
-			logged_in : Favorites.jsData.logged_in,
-			user_id : Favorites.jsData.user_id,
 			user_consent_accepted : plugin.data.user_consent_accepted
 		}
 		$.ajax({
@@ -1156,7 +1092,6 @@ Favorites.cssClasses = {
 */
 Favorites.jsData = {
 	ajaxurl : favorites_data.ajaxurl, // The WP AJAX URL
-	nonce : null, // The Dynamically-Generated Nonce
 	favorite : favorites_data.favorite, // Active Button Text/HTML
 	favorited : favorites_data.favorited, // Inactive Button Text
 	include_count : favorites_data.includecount, // Whether to include the count in buttons
@@ -1190,7 +1125,6 @@ Favorites.authenticated = true;
 * WP Form Actions Used by the Plugin
 */
 Favorites.formActions = {
-	nonce : 'favorites_nonce',
 	favoritesarray : 'favorites_array',
 	favorite : 'favorites_favorite',
 	clearall : 'favorites_clear',
@@ -1208,7 +1142,6 @@ Favorites.Factory = function()
 
 	plugin.build = function()
 	{
-		new Favorites.NonceGenerator;
 		new Favorites.UserFavorites;
 		new Favorites.Lists;
 		new Favorites.Clear;

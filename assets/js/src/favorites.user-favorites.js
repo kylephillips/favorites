@@ -12,7 +12,7 @@ Favorites.UserFavorites = function()
 
 	plugin.bindEvents = function()
 	{
-		$(document).on('favorites-nonce-generated', function(){
+		$(window).on('load', function(){
 			plugin.initialLoad = true;
 			plugin.getFavorites();
 		});
@@ -28,9 +28,7 @@ Favorites.UserFavorites = function()
 			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.favoritesarray,
-				logged_in : Favorites.jsData.logged_in,
-				user_id : Favorites.jsData.user_id
+				action : Favorites.formActions.favoritesarray
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {

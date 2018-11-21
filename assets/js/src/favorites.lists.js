@@ -63,7 +63,6 @@ Favorites.Lists = function()
 			dataType: 'json',
 			data: {
 				action : Favorites.formActions.favoritelist,
-				nonce : Favorites.jsData.nonce,
 				userid : user_id,
 				siteid : site_id,
 				include_links : include_links,

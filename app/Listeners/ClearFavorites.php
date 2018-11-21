@@ -28,8 +28,6 @@ class ClearFavorites extends AJAXListenerBase
 	{
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
 		$this->data['old_favorites'] = $this->user_repo->formattedFavorites();
-		$this->data['logged_in'] = ( isset($_POST['logged_in']) && $_POST['logged_in'] !== '' ) ? true : false;
-		$this->data['user_id'] = ( isset($_POST['user_id']) && $_POST['user_id'] !== '' ) ? intval($_POST['user_id']) : 0;
 	}
 
 	/**
@@ -37,7 +35,7 @@ class ClearFavorites extends AJAXListenerBase
 	*/
 	private function clearFavorites()
 	{
-		$user = ( $this->data['logged_in'] ) ? $this->data['user_id'] : null;
+		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
 		do_action('favorites_before_clear', $this->data['siteid'], $user);
 		$favorites = $this->user_repo->getAllFavorites();
 		foreach($favorites as $key => $site_favorites){

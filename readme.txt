@@ -81,6 +81,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.3.0 =
+* Security Update: Removes ability for users to manipulate favorites belonging to other users.
+
 = 2.2.0 =
 * Fixes multisite issue where favorites were not being retrieved correctly.
 * Adds setting to require consenting to cookies before saving favorites, in an effort to adhere to GDPR compliance. Note: the modal content that displays when this setting is enabled should be provided by a qualified attorney or legal entity. Should your site already have a cookie consent protocol in place, document-level events are provided for triggering the user preferences.
