@@ -66,10 +66,10 @@ class ClearFavorites extends AJAXListenerBase
 	private function sendResponse()
 	{
 		$favorites = $this->user_repo->formattedFavorites();
-		$this->response(array(
+		$this->response([
 			'status' => 'success',
 			'old_favorites' => $this->data['old_favorites'],
 			'favorites' => $favorites
-		));
+		]);
 	}
 }

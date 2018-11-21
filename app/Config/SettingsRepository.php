@@ -215,7 +215,7 @@ class SettingsRepository
 	*/
 	public function metaEnabled()
 	{
-		$posttypes = array();
+		$posttypes = [];
 		$types = get_option('simplefavorites_display');
 		if ( !isset($types['posttypes']) || $types['posttypes'] == "" ) return $posttypes;
 		foreach ( $types['posttypes'] as $key => $type ){
@@ -394,43 +394,43 @@ class SettingsRepository
 	*/
 	public function presetButton($button = 'all')
 	{
-		$buttons = array(
-			'favorite' => array(
+		$buttons = [
+			'favorite' => [
 				'label' => __('Favorite', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-favorite"></i>', 'favorite'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-favorite', 'favorite'),
 				'state_default' => apply_filters('favorites/button/text/default', __('Favorite', 'favorites'), 'favorite'),
 				'state_active' => apply_filters('favorites/button/text/active', __('Favorited', 'favorites'), 'favorite')
-			),
-			'like' => array(
+			],
+			'like' => [
 				'label' => __('Like', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-like"></i>', 'like'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-like', 'like'),
 				'state_default' => apply_filters('favorites/button/text/default', __('Like', 'favorites'), 'like'),
 				'state_active' => apply_filters('favorites/button/text/active', __('Liked', 'favorites'), 'like')
-			),
-			'love' => array(
+			],
+			'love' => [
 				'label' => __('Love', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-love"></i>', 'love'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-love', 'love'),
 				'state_default' => apply_filters('favorites/button/text/default', __('Love', 'favorites'), 'love'),
 				'state_active' => apply_filters('favorites/button/text/active', __('Loved', 'favorites'), 'love')
-			),
-			'bookmark' => array(
+			],
+			'bookmark' => [
 				'label' => __('Bookmark', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-bookmark"></i>', 'bookmark'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-bookmark', 'bookmark'),
 				'state_default' => apply_filters('favorites/button/text/default', __('Bookmark', 'favorites'), 'bookmark'),
 				'state_active' => apply_filters('favorites/button/text/active', __('Bookmarked', 'favorites'), 'bookmark')
-			),
-			'wishlist' => array(
+			],
+			'wishlist' => [
 				'label' => __('Wishlist', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-wishlist"></i>', 'wishlist'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-wishlist', 'wishlist'),
 				'state_default' => apply_filters('favorites/button/text/default', __('Add to Wishlist', 'favorites'), 'wishlist'),
 				'state_active' => apply_filters('favorites/button/text/active', __('Added to Wishlist', 'favorites'), 'wishlist')
-			)
-		);
+			]
+		];
 		if ( $button == 'all' ) return $buttons;
 		if ( isset($buttons[$button]) ) return $buttons[$button];
 		return $buttons['favorite'];
@@ -444,7 +444,7 @@ class SettingsRepository
 	public function buttonColors($color = 'background_default')
 	{
 		$option = get_option('simplefavorites_display');
-		if ( !isset($option['button_colors']) ) $option['button_colors'] = array();
+		if ( !isset($option['button_colors']) ) $option['button_colors'] = [];
 		$option = $option['button_colors'];
 
 		if ( $color == 'custom' )
@@ -462,22 +462,22 @@ class SettingsRepository
 	*/
 	public function colorOptions($group = 'default')
 	{
-		$options = array(
-			'default' => array(
+		$options = [
+			'default' => [
 				'background_default' => __('Background Color', 'favorites'),
 				'border_default' => __('Border Color', 'favorites'),
 				'text_default' => __('Text Color', 'favorites'),
 				'icon_default' => __('Icon Color', 'favorites'),
 				'count_default' => __('Count Color', 'favorites')
-			),
-			'active' => array(
+			],
+			'active' => [
 				'background_active' => __('Background Color', 'favorites'),
 				'border_active' => __('Border Color', 'favorites'),
 				'text_active' => __('Text Color', 'favorites'),
 				'icon_active' => __('Icon Color', 'favorites'),
 				'count_active' => __('Count Color', 'favorites')
-			)
-		);
+			]
+		];
 		return $options[$group];
 	}
 
@@ -487,7 +487,7 @@ class SettingsRepository
 	public function formattedButtonOptions()
 	{
 		$option = get_option('simplefavorites_display');
-		if ( !isset($option['button_colors']) ) $option['button_colors'] = array();
+		if ( !isset($option['button_colors']) ) $option['button_colors'] = [];
 		$option = $option['button_colors'];
 
 		// Button Type
@@ -531,6 +531,4 @@ class SettingsRepository
 
 		return ( isset($option[$setting]) ) ? $option[$setting] : false;
 	}
-
-
 }

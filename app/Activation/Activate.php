@@ -18,34 +18,34 @@ class Activate
 	{
 		if ( !get_option('simplefavorites_dependencies') 
 			&& get_option('simplefavorites_dependencies') !== "" ){
-			update_option('simplefavorites_dependencies', array(
+			update_option('simplefavorites_dependencies', [
 				'css' => 'true',
 				'js' => 'true'
-			));
+			]);
 		}
 		if ( !get_option('simplefavorites_users')
 			&& get_option('simplefavorites_users') !== "" ){
-			update_option('simplefavorites_users', array(
-				'anonymous' => array(
+			update_option('simplefavorites_users', [
+				'anonymous' => [
 					'display' => 'true',
 					'save' => 'true'
-				),
+				],
 				'saveas' => 'cookie'
-			));
+			]);
 		}
 		if ( !get_option('simplefavorites_display')
 			&& get_option('simplefavorites_display') !== "" ){
-			update_option('simplefavorites_display', array(
+			update_option('simplefavorites_display', [
 				'buttontext' => __('Favorite <i class="sf-icon-star-empty"></i>', 'favorites'),
 				'buttontextfavorited' => __('Favorited <i class="sf-icon-star-full"></i>', 'favorites'),
-				'posttypes' => array(
-					'post' => array(
+				'posttypes' => [
+					'post' => [
 						'display' => true,
 						'after_content' => true,
 						'postmeta' => true
-					)
-				)
-			));
+					]
+				]
+			]);
 		}
 		if ( !get_option('simplefavorites_cache_enabled')
 			&& get_option('simplefavorites_cache_enabled') !== "" ){

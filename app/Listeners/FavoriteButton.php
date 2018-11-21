@@ -33,17 +33,17 @@ class FavoriteButton extends AJAXListenerBase
 			$favorite = new Favorite;
 			$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid'], $this->data['groupid']);
 			$this->afterUpdateAction();
-			$this->response(array(
+			$this->response([
 				'status' => 'success', 
-				'favorite_data' => array(
+				'favorite_data' => [
 					'id' => $this->data['postid'], 
 					'siteid' => $this->data['siteid'], 
 					'status' => $this->data['status'],
 					'groupid' => $this->data['groupid'],
 					'save_type' => $favorite->saveType()
-				),
+				],
 				'favorites' => $this->user_repo->formattedFavorites($this->data['postid'], $this->data['siteid'], $this->data['status'])
-			));
+			]);
 		} catch ( \Exception $e ){
 			return $this->sendError($e->getMessage());
 		}

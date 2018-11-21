@@ -11,7 +11,7 @@ class PostFavoritesShortcode
 
 	public function __construct()
 	{
-		add_shortcode('post_favorites', array($this, 'renderView'));
+		add_shortcode('post_favorites', [$this, 'renderView']);
 	}
 
 	/**
@@ -19,14 +19,14 @@ class PostFavoritesShortcode
 	*/
 	private function setOptions($options)
 	{
-		$this->options = shortcode_atts(array(
+		$this->options = shortcode_atts([
 			'post_id' => '',
 			'site_id' => '',
 			'separator' => 'list',
 			'include_anonymous' => 'true',
 			'anonymous_label' => __('Anonymous Users', 'favorites'),
 			'anonymous_label_single' => __('Anonymous User', 'favorites')
-		), $options);
+		], $options);
 	}
 
 	/**

@@ -11,7 +11,7 @@ class FavoriteCountShortcode
 
 	public function __construct()
 	{
-		add_shortcode('favorite_count', array($this, 'renderView'));
+		add_shortcode('favorite_count', [$this, 'renderView']);
 	}
 
 	/**
@@ -19,10 +19,10 @@ class FavoriteCountShortcode
 	*/
 	private function setOptions($options)
 	{
-		$this->options = shortcode_atts(array(
+		$this->options = shortcode_atts([
 			'post_id' => '',
 			'site_id' => ''
-		), $options);
+		], $options);
 	}
 
 	/**

@@ -39,10 +39,10 @@ abstract class AJAXListenerBase
 	protected function sendError($error = null)
 	{
 		$error = ( $error ) ? $error : __('There was an error processing the request.', 'favorites');
-		return wp_send_json(array(
+		return wp_send_json([
 			'status' => 'error', 
 			'message' => $error
-		));
+		]);
 	}
 
 	/**
@@ -52,8 +52,8 @@ abstract class AJAXListenerBase
 	{
 		if ( is_user_logged_in() ) return true;
 		if ( $this->settings_repo->anonymous('display') ) return true;
-		if ( $this->settings_repo->requireLogin() ) return $this->response(array('status' => 'unauthenticated'));
-		if ( $this->settings_repo->redirectAnonymous() ) return $this->response(array('status' => 'unauthenticated'));
+		if ( $this->settings_repo->requireLogin() ) return $this->response(['status' => 'unauthenticated']);
+		if ( $this->settings_repo->redirectAnonymous() ) return $this->response(['status' => 'unauthenticated']);
 	}
 
 	/**

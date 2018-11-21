@@ -54,9 +54,9 @@ class CookieConsent
 
 	private function respond()
 	{
-		wp_send_json(array(
+		wp_send_json([
 			'status' => 'success',
 			'consent' => $this->consent
-		));
+		]);
 	}
 }

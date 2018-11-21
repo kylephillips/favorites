@@ -37,7 +37,7 @@ class AdminColumns
 	*/
 	private function setPostTypes()
 	{
-		$this->post_types = array();
+		$this->post_types = [];
 		foreach ( $this->post_type_repo->getAllPostTypes() as $key => $posttype ) : 
 			$display = $this->settings_repo->displayInPostType($posttype);
 			if ( isset($display['admincolumns']) ) array_push($this->post_types, $key);
@@ -50,8 +50,8 @@ class AdminColumns
 	private function addHooks()
 	{
 		foreach($this->post_types as $type){
-			add_filter('manage_' . $type . '_posts_columns', array($this, 'addColumn'));
-			add_action('manage_' . $type . '_posts_custom_column', array($this, 'addColumnData'), 10, 2);
+			add_filter('manage_' . $type . '_posts_columns', [$this, 'addColumn']);
+			add_action('manage_' . $type . '_posts_custom_column', [$this, 'addColumnData'], 10, 2);
 		}
 	}
 
@@ -60,7 +60,7 @@ class AdminColumns
 	*/
 	public function addColumn($columns)
 	{
-		$new_column = array('favorites' => __('Favorites', 'favorites'));
+		$new_column = ['favorites' => __('Favorites', 'favorites')];
 		return array_merge($columns, $new_column);
 	}
 

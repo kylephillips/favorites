@@ -27,7 +27,7 @@ class PostHooks
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
-		add_filter('the_content', array($this, 'filterContent'));
+		add_filter('the_content', [$this, 'filterContent']);
 	}
 
 	/**

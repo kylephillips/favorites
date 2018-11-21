@@ -19,7 +19,7 @@ class UserFavoritesShortcode
 
 	public function __construct()
 	{
-		add_shortcode('user_favorites', array($this, 'renderView'));
+		add_shortcode('user_favorites', [$this, 'renderView']);
 	}
 
 	/**
@@ -27,7 +27,7 @@ class UserFavoritesShortcode
 	*/
 	private function setOptions($options)
 	{
-		$this->options = shortcode_atts(array(
+		$this->options = shortcode_atts([
 			'user_id' => '',
 			'site_id' => '',
 			'include_links' => 'true',
@@ -37,7 +37,7 @@ class UserFavoritesShortcode
 			'thumbnail_size' => 'thumbnail',
 			'include_excerpts' => 'false',
 			'no_favorites' => ''
-		), $options);
+		], $options);
 	}
 
 	/**
@@ -47,7 +47,7 @@ class UserFavoritesShortcode
 	{
 		if ( $this->options['post_types'] == "" ) return;
 		$post_types = explode(',', $this->options['post_types']);
-		$this->filters = array('post_type' => $post_types);
+		$this->filters = ['post_type' => $post_types];
 	}
 
 	/**

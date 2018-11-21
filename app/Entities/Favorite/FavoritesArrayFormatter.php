@@ -123,7 +123,7 @@ class FavoritesArrayFormatter
 	{
 		if ( !has_post_thumbnail($post_id) ) return false;
 		$sizes = get_intermediate_image_sizes();
-		$thumbnails = array();
+		$thumbnails = [];
 		foreach ( $sizes as $size ){
 			$url = get_the_post_thumbnail_url($post_id, $size);
 			$img = '<img src="' . $url . '" alt="' . get_the_title($post_id) . '" class="favorites-list-thumbnail" />';

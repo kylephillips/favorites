@@ -30,8 +30,8 @@ class Settings
 		$this->settings_repo = new SettingsRepository;
 		$this->post_type_repo = new PostTypeRepository;
 		$this->setName();
-		add_action( 'admin_init', array( $this, 'registerSettings' ) );
-		add_action( 'admin_menu', array( $this, 'registerSettingsPage' ) );
+		add_action( 'admin_init', [$this, 'registerSettings']);
+		add_action( 'admin_menu', [$this, 'registerSettingsPage']);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Settings
 			$this->plugin_name,
 			'manage_options',
 			'simple-favorites', 
-			array( $this, 'settingsPage' ) 
+			[$this, 'settingsPage']
 		);
 	}
 

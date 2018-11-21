@@ -29,9 +29,9 @@ class FavoriteCount extends AJAXListenerBase
 
 	private function sendCount()
 	{
-		$this->response(array(
+		$this->response([
 			'status' => 'success',
 			'count' => $this->favorite_counter->getCount($this->data['postid'], $this->data['siteid'])
-		));
+		]);
 	}
 }

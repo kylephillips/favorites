@@ -14,7 +14,7 @@ class PostMeta
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
-		add_action( 'add_meta_boxes', array($this, 'favoriteCountBox') );
+		add_action( 'add_meta_boxes', [$this, 'favoriteCountBox']);
 	}
 
 	/**
@@ -26,7 +26,7 @@ class PostMeta
 			add_meta_box(
 				'favorites',
 				__( 'Favorites', 'favorites' ),
-				array($this, 'favoriteCount'),
+				[$this, 'favoriteCount'],
 				$type,
 				'side',
 				'low'

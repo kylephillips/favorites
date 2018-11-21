@@ -99,12 +99,12 @@ class UserRepository
 			}
 		}
 		if ( Helpers::keyExists('site_id', $favorites) ) return $favorites;
-		$new_favorites = array(
-			array(
+		$new_favorites = [
+			[
 				'site_id' => 1,
 				'posts' => $favorites
-			)
-		);
+			]
+		];
 		return $new_favorites;
 	}
 
@@ -123,9 +123,9 @@ class UserRepository
 			'group_name' => __('Default List', 'favorites'),
 			'posts' => $favorites[0]['posts']
 		];
-		$favorites[0]['groups'] = array(
+		$favorites[0]['groups'] = [
 			$data
-		);
+		];
 		return $favorites;
 	}
 
@@ -136,7 +136,7 @@ class UserRepository
 	{
 		$user_id = ( is_null($user_id) ) ? get_current_user_id() : $user_id;
 		$favorites = get_user_meta($user_id, 'simplefavorites');
-		if ( empty($favorites) ) return array(array('site_id'=> 1, 'posts' => array(), 'groups' => array() ));
+		if ( empty($favorites) ) return array(array('site_id'=> 1, 'posts' => [], 'groups' => [] ));
 		
 		$favorites = $this->favoritesWithSiteID($favorites[0]);
 		$favorites = $this->favoritesWithGroups($favorites);
@@ -152,7 +152,7 @@ class UserRepository
 	*/
 	private function getSessionFavorites($site_id = null, $group_id = null)
 	{
-		if ( !isset($_SESSION['simplefavorites']) ) $_SESSION['simplefavorites'] = array();
+		if ( !isset($_SESSION['simplefavorites']) ) $_SESSION['simplefavorites'] = [];
 		$favorites = $_SESSION['simplefavorites'];
 		$favorites = $this->favoritesWithSiteID($favorites);
 		$favorites = $this->favoritesWithGroups($favorites);
@@ -166,7 +166,7 @@ class UserRepository
 	*/
 	private function getCookieFavorites($site_id = null, $group_id = null)
 	{
-		if ( !isset($_COOKIE['simplefavorites']) ) $_COOKIE['simplefavorites'] = json_encode(array());
+		if ( !isset($_COOKIE['simplefavorites']) ) $_COOKIE['simplefavorites'] = json_encode([]);
 		$favorites = json_decode(stripslashes($_COOKIE['simplefavorites']), true);
 		$favorites = $this->favoritesWithSiteID($favorites);
 		$favorites = $this->favoritesWithGroups($favorites);

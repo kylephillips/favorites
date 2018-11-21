@@ -84,8 +84,8 @@ class FavoriteFilter
 		
 		foreach ( $favorites as $key => $favorite ) :
 
-			$all_terms = array();
-			$all_filters = array();
+			$all_terms = [];
+			$all_filters = [];
 
 			foreach ( $taxonomies as $taxonomy => $terms ){
 				if ( !isset($terms) || !is_array($terms) ) continue;

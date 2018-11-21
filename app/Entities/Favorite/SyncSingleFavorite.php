@@ -101,10 +101,10 @@ class SyncSingleFavorite
 	{
 		$favorites = $this->user->getAllFavorites($this->site_id);
 		if ( !Helpers::siteExists($this->site_id, $favorites) ){
-			$favorites[] = array(
+			$favorites[] = [
 				'site_id' => $this->site_id,
-				'posts' => array()
-			);
+				'posts' => []
+			];
 		}
 		// Loop through each site's favorites, continue if not the correct site id
 		foreach($favorites as $key => $site_favorites){
@@ -113,14 +113,14 @@ class SyncSingleFavorite
 
 			// Add the default group if it doesn't exist yet
 			if ( !Helpers::groupsExist($site_favorites) ){
-				$favorites[$key]['groups'] = array(
-					array(
+				$favorites[$key]['groups'] = [
+					[
 						'group_id' => 1,
 						'site_id' => $this->site_id,
 						'group_name' => __('Default List', 'favorites'),
 						'posts' => array()
-					)
-				);
+					]
+				];
 			}
 			foreach( $favorites[$key]['groups'] as $group_key => $group){
 				if ( $group['group_id'] == $this->group_id ) 

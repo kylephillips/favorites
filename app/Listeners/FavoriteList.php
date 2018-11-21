@@ -21,7 +21,7 @@ class FavoriteList extends AJAXListenerBase
 		parent::__construct();
 		$this->setData();
 		$this->getList();
-		wp_send_json(array('status' => 'success', 'list' => $this->list, 'data' => $this->data));
+		wp_send_json(['status' => 'success', 'list' => $this->list, 'data' => $this->data]);
 	}
 
 	/**
@@ -49,7 +49,7 @@ class FavoriteList extends AJAXListenerBase
 		$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 		if ( !is_multisite() ) $site_id = 1;
 
-		$filters = ( !empty($this->data['post_types']) ) ? array('post_type' => $this->data['post_types']) : null;
+		$filters = ( !empty($this->data['post_types']) ) ? ['post_type' => $this->data['post_types']] : null;
 		
 		$favorites = new UserFavorites(
 			$this->data['user_id'], 

@@ -11,7 +11,7 @@ class ClearFavoritesShortcode
 
 	public function __construct()
 	{
-		add_shortcode('clear_favorites_button', array($this, 'renderView'));
+		add_shortcode('clear_favorites_button', [$this, 'renderView']);
 	}
 
 	/**
@@ -19,10 +19,10 @@ class ClearFavoritesShortcode
 	*/
 	private function setOptions($options)
 	{
-		$this->options = shortcode_atts(array(
+		$this->options = shortcode_atts([
 			'site_id' => null,
 			'text' => null
-		), $options);
+		], $options);
 	}
 
 	/**

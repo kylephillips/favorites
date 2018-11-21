@@ -90,7 +90,7 @@ class UserFavorites
 	*/
 	public function getFavoritesList($include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false, $no_favorites = '')
 	{
-		$list_args = array(
+		$list_args = [
 			'include_button' => $include_button,
 			'include_thumbnails' => $include_thumbnails,
 			'thumbnail_size' => $thumbnail_size,
@@ -100,7 +100,7 @@ class UserFavorites
 			'user_id' => $this->user_id,
 			'no_favorites' => $no_favorites,
 			'filters' => $this->filters,
-		);
+		];
 		$list = new FavoriteList($list_args);
 		return $list->getList();
 	}

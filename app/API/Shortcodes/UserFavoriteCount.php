@@ -17,7 +17,7 @@ class UserFavoriteCount
 
 	public function __construct()
 	{
-		add_shortcode('user_favorite_count', array($this, 'renderView'));
+		add_shortcode('user_favorite_count', [$this, 'renderView']);
 	}
 
 	/**
@@ -25,11 +25,11 @@ class UserFavoriteCount
 	*/
 	private function setOptions($options)
 	{
-		$this->options = shortcode_atts(array(
+		$this->options = shortcode_atts([
 			'user_id' => '',
 			'site_id' => '',
 			'post_types' => ''
-		), $options);
+		], $options);
 	}
 
 	/**
@@ -39,7 +39,7 @@ class UserFavoriteCount
 	{
 		if ( $this->options['post_types'] == "" ) return;
 		$post_types = explode(',', $this->options['post_types']);
-		$this->filters = array('post_type' => $post_types);
+		$this->filters = ['post_type' => $post_types];
 	}
 
 	/**

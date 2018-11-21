@@ -11,7 +11,7 @@ class ButtonShortcode
 
 	public function __construct()
 	{
-		add_shortcode('favorite_button', array($this, 'renderView'));
+		add_shortcode('favorite_button', [$this, 'renderView']);
 	}
 
 	/**
@@ -19,11 +19,11 @@ class ButtonShortcode
 	*/
 	private function setOptions($options)
 	{
-		$this->options = shortcode_atts(array(
+		$this->options = shortcode_atts([
 			'post_id' => null,
 			'site_id' => null,
 			'group_id' => null
-		), $options);
+		], $options);
 	}
 
 	/**

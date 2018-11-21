@@ -65,10 +65,10 @@ class PostFavorites
 	*/
 	private function getAllUsers()
 	{
-		$user_query = new \WP_User_Query(array(
+		$user_query = new \WP_User_Query([
 			'blog_id' => ( $this->site_id ) ? $this->site_id : get_current_blog_id(),
 			'role'    => $this->user_role
-		));
+		]);
 		$users = $user_query->get_results();
 		return $users;
 	}

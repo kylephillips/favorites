@@ -29,10 +29,10 @@ class Dependencies
 		$this->settings_repo = new SettingsRepository;
 		$this->setPluginVersion();
 		$this->plugin_dir = Helpers::plugin_url();
-		add_action( 'admin_enqueue_scripts', array($this, 'adminStyles') );
-		add_action( 'admin_enqueue_scripts', array($this, 'adminScripts') );
-		add_action( 'wp_enqueue_scripts', array( $this, 'frontendStyles' ));
-		add_action( 'wp_enqueue_scripts', array( $this, 'frontendScripts' ));
+		add_action( 'admin_enqueue_scripts', [$this, 'adminStyles']);
+		add_action( 'admin_enqueue_scripts', [$this, 'adminScripts']);
+		add_action( 'wp_enqueue_scripts', [$this, 'frontendStyles']);
+		add_action( 'wp_enqueue_scripts', [$this, 'frontendScripts']);
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Dependencies
 		wp_enqueue_style(
 			'simple-favorites-admin', 
 			$this->plugin_dir . '/assets/css/favorites-admin.css', 
-			array(), 
+			[], 
 			$this->plugin_version
 		);
 	}
@@ -69,7 +69,7 @@ class Dependencies
 		wp_enqueue_script(
 			'simple-favorites-admin', 
 			$this->plugin_dir . '/assets/js/favorites-admin.min.js', 
-			array('jquery', 'wp-color-picker'), 
+			['jquery', 'wp-color-picker'], 
 			$this->plugin_version
 		);
 	}
@@ -83,7 +83,7 @@ class Dependencies
 		wp_enqueue_style(
 			'simple-favorites', 
 			$this->plugin_dir . '/assets/css/favorites.css', 
-			array(), 
+			[], 
 			$this->plugin_version
 		);
 	}
@@ -98,10 +98,10 @@ class Dependencies
 		wp_enqueue_script(
 			'favorites', 
 			$this->plugin_dir . '/assets/js/' . $file, 
-			array('jquery'), 
+			['jquery'], 
 			$this->plugin_version
 		);
-		$localized_data = array(
+		$localized_data = [
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'nonce' => wp_create_nonce('simple_favorites_nonce'),
 			'favorite' => apply_filters('favorites/button/html', $this->settings_repo->buttonText(), null, false, null),
@@ -119,7 +119,7 @@ class Dependencies
 			'dev_mode' => $this->settings_repo->devMode(),
 			'logged_in' => is_user_logged_in(),
 			'user_id' => get_current_user_id()
-		);
+		];
 		$redirect_url = $this->settings_repo->redirectAnonymousId();
 		$localized_data['authentication_redirect_url'] = ( $redirect_url ) ? get_the_permalink($redirect_url) : apply_filters( 'favorites/authentication_redirect_url', wp_login_url() );
 		wp_localize_script(

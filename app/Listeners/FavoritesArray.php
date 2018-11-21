@@ -16,7 +16,7 @@ class FavoritesArray extends AJAXListenerBase
 	{
 		parent::__construct(false);
 		$this->setFavorites();
-		$this->response(array('status'=>'success', 'favorites' => $this->favorites));
+		$this->response(['status'=>'success', 'favorites' => $this->favorites]);
 	}
 
 	/**
