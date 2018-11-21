@@ -82,7 +82,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 == Changelog ==
 
 = 2.3.0 =
-* Security Update: Removes ability for users to manipulate favorites belonging to other users.
+* Security Update: Removes ability for users to manipulate favorites belonging to other users. Thanks to Arne van Hoorn for uncovering this issue.
 
 = 2.2.0 =
 * Fixes multisite issue where favorites were not being retrieved correctly.
