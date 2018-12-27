@@ -30,6 +30,7 @@ class FavoriteButton extends AJAXListenerBase
 	{
 		try {
 			$this->beforeUpdateAction();
+			if ( !$this->validates() ) throw new \Exception(__('Invalid post.', 'favorites'));
 			$favorite = new Favorite;
 			$favorite->update($this->data['postid'], $this->data['status'], $this->data['siteid'], $this->data['groupid']);
 			$this->afterUpdateAction();
@@ -67,5 +68,18 @@ class FavoriteButton extends AJAXListenerBase
 	{
 		$user = ( is_user_logged_in() ) ? get_current_user_id() : null;
 		do_action('favorites_after_favorite', $this->data['postid'], $this->data['status'], $this->data['siteid'], $user);
+	}
+
+	/**
+	* Validate the Favorite
+	*/
+	private function validates()
+	{
+		$post_type = get_post_type($this->data['postid']);
+		$enabled = $this->settings_repo->displayInPostType($post_type);
+		$post_type_object = get_post_type_object(get_post_type($this->data['postid']));
+		if ( !$post_type_object ) return false;
+		if ( !$post_type_object->public || !$enabled ) return false;
+		return true;
 	}
 }

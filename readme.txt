@@ -4,7 +4,7 @@ Donate link: http://favoriteposts.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
 Requires PHP: 5.4
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,7 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 = 2.3.1 =
 * Bug Fix: Fixes issue where only one custom field was being output when multiple were specified in the custom list html.
+* Security Update: Removes potential security issue where user may favorite a non-public post, or a post where favorites are not enabled.
 
 = 2.3.0 =
 * Security Update: Removes ability for users to manipulate favorites belonging to other users. Thanks to Arne van Hoorn for uncovering this issue.
