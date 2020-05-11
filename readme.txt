@@ -81,6 +81,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.3.2 =
+* Security update.
+
 = 2.3.1 =
 * Bug Fix: Fixes issue where only one custom field was being output when multiple were specified in the custom list html.
 * Security Update: Removes potential security issue where user may favorite a non-public post, or a post where favorites are not enabled.
