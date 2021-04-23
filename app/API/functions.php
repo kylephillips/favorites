@@ -257,3 +257,26 @@ function the_total_favorites_count($site_id = null)
 {
 	echo get_total_favorites_count($site_id);
 }
+
+/**
+  * Get the total number of how many times users added author posts to favorites
+  * @param $user_id int
+  * @param $site_id int, defaults to current blog/site
+  * @return int
+  */
+function get_total_favorites_count_made_by_users($user_id, $site_id = null)
+{
+    $count = new FavoriteCount();
+    return $count->getCountByUsers($user_id, $site_id);
+}
+
+/**
+* Print the total number of how many times users added author posts to favorites
+* @param $user_id int
+* @param $site_id int, defaults to current blog/site
+* @return int
+*/
+function the_total_favorites_count_made_by_users($user_id, $site_id = null)
+{
+    echo get_total_favorites_count_made_by_users($user_id, $site_id);
+}
