@@ -79,7 +79,7 @@ class FavoriteButton
 
 		$out = '<' . $button_html_type . ' class="' . $this->cssClasses($loading) . '"';
 		
-		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-groupid="' . $this->group_id . '" data-favoritecount="' . $count . '" style="' . $this->styleAttributes() . '">';
+		$out .= ' data-postid="' . $this->post_id . '" data-siteid="' . $this->site_id . '" data-groupid="' . $this->group_id . '" data-favoritecount="' . $count . '" data-elementtype="' . $button_html_type . '" style="' . $this->styleAttributes() . '">';
 
 		if ( $this->settings_repo->includeLoadingIndicator() && $this->settings_repo->includeLoadingIndicatorPreload() && $loading){
 			$out .= $this->settings_repo->loadingText();

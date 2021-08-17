@@ -530,7 +530,8 @@ Favorites.Button = function()
 	plugin.setAllButtons = function()
 	{
 		var post_id = $(plugin.activeButton).attr('data-postid');
-		plugin.allButtons = $('button[data-postid="' + post_id + '"]');
+		var element_type = $(plugin.activeButton).attr('data-elementtype');
+		plugin.allButtons = $(element_type + '[data-postid="' + post_id + '"]');
 	}
 
 	/**
@@ -613,7 +614,7 @@ Favorites.Button = function()
 				$(this).attr('data-favoritecount', favorite_count - 1);
 				$(this).find(Favorites.selectors.count).text(favorite_count - 1);
 				return;
-			} 
+			}
 			$(this).addClass(Favorites.cssClasses.active);
 			$(this).attr('data-favoritecount', favorite_count + 1);
 			$(this).find(Favorites.selectors.count).text(favorite_count + 1);
@@ -651,6 +652,7 @@ Favorites.Button = function()
 
 	return plugin.bindEvents();
 }
+
 /**
 * Updates Favorite Buttons as Needed
 */
