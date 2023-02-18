@@ -46,21 +46,24 @@ class FavoriteList extends AJAXListenerBase
 	private function getList()
 	{
 		global $blog_id;
-		$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
-		if ( !is_multisite() ) $site_id = 1;
+		if ( !is_multisite() ) {
+			$site_id = 1;
+		} else {
+			$site_id = ( is_null($site_id) ) ? $blog_id : $site_id;
+		}
 
 		$filters = ( !empty($this->data['post_types']) ) ? ['post_type' => $this->data['post_types']] : null;
-		
+
 		$favorites = new UserFavorites(
-			$this->data['user_id'], 
-			$this->data['site_id'], 
-			$this->data['include_links'], 
+			$this->data['user_id'],
+			$this->data['site_id'],
+			$this->data['include_links'],
 			$filters
 		);
 		$this->list = $favorites->getFavoritesList(
-			$include_button = $this->data['include_buttons'], 
-			$this->data['include_thumbnails'], 
-			$this->data['thumbnail_size'], 
+			$include_button = $this->data['include_buttons'],
+			$this->data['include_thumbnails'],
+			$this->data['thumbnail_size'],
 			$this->data['include_excerpt'],
 			$this->data['no_favorites']
 		);
