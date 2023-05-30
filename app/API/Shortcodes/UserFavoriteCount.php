@@ -39,7 +39,7 @@ class UserFavoriteCount
 	{
 		if ( $this->options['post_types'] == "" ) return;
 		$post_types = explode(',', $this->options['post_types']);
-		$this->filters = ['post_type' => $post_types];
+		$this->filters = ['post_type' => sanitize_text_field($post_types)];
 	}
 
 	/**
@@ -51,8 +51,8 @@ class UserFavoriteCount
 		$this->setOptions($options);
 		$this->parsePostTypes();
 
-		if ( $this->options['user_id'] == '' ) $this->options['user_id'] = null;
-		if ( $this->options['site_id'] == '' ) $this->options['site_id'] = get_current_blog_id();
+		$this->options['user_id'] = ( $this->options['user_id'] == "" ) ? null : intval($this->options['user_id']);
+		$this->options['site_id'] = ( $this->options['site_id'] == "" ) ? get_current_blog_id() : intval($this->options['site_id']);
 		
 		return get_user_favorites_count($this->options['user_id'], $this->options['site_id'], $this->filters, true);
 	}

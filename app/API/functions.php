@@ -188,6 +188,22 @@ function get_users_who_favorited_post($post_id = null, $site_id = null, $user_ro
 * @param $anonymous_label_single string, singular label for anonymous user count
 * @param $user_role string, defaults to all
 */
+function get_users_list_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User', $user_role = null)
+{
+	$users = new PostFavorites($post_id, $site_id, $user_role);
+	return $users->userList($separator, $include_anonymous, $anonymous_label, $anonymous_label_single);
+}
+
+/**
+* Get a list of users who favorited a post
+* @param $post_id int, defaults to current post
+* @param $site_id int, defaults to current blog/site
+* @param $separator string, custom separator between items (defaults to HTML list)
+* @param $include_anonmyous boolean, whether to include anonmyous users
+* @param $anonymous_label string, label for anonymous user count
+* @param $anonymous_label_single string, singular label for anonymous user count
+* @param $user_role string, defaults to all
+*/
 function the_users_who_favorited_post($post_id = null, $site_id = null, $separator = 'list', $include_anonymous = true, $anonymous_label = 'Anonymous Users', $anonymous_label_single = 'Anonymous User', $user_role = null)
 {
 	$users = new PostFavorites($post_id, $site_id, $user_role);

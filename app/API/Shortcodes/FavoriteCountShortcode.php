@@ -32,6 +32,8 @@ class FavoriteCountShortcode
 	public function renderView($options)
 	{
 		$this->setOptions($options);
+		$this->options['post_id'] = ( $this->options['post_id'] == "" ) ? null : intval($this->options['post_id']);
+		$this->options['site_id'] = ( $this->options['site_id'] == "" ) ? null : intval($this->options['site_id']);
 		return get_favorites_count($this->options['post_id'], $this->options['site_id']);
 	}
 }
