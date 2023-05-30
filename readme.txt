@@ -81,6 +81,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.3.3 =
+* Security update.
+
 = 2.3.2 =
 * Security update.
 
