@@ -1,0 +1,771 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Favorites\n"
+"POT-Creation-Date: 2023-05-31 19:18+0900\n"
+"PO-Revision-Date: 2023-05-31 20:13+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: app/API/Shortcodes/PostFavoritesShortcode.php:27
+#: app/Views/settings/settings-users.php:7
+msgid "Anonymous Users"
+msgstr "匿名ユーザー"
+
+#: app/API/Shortcodes/PostFavoritesShortcode.php:28
+msgid "Anonymous User"
+msgstr "匿名ユーザー"
+
+#: app/Activation/Activate.php:39
+msgid "Favorite <i class=\"sf-icon-star-empty\"></i>"
+msgstr "お気に入り<i class=\"sf-icon-star-empty\"></i>"
+
+#: app/Activation/Activate.php:40
+msgid "Favorited <i class=\"sf-icon-star-full\"></i>"
+msgstr "お気に入り済み <i class=\"sf-icon-star-full\"></i>"
+
+#: app/Bootstrap.php:59 app/Config/Settings.php:52
+#: app/Views/settings/settings-display.php:20
+#: app/Views/settings/settings-display.php:197
+#: app/Views/settings/settings-display.php:244
+#: app/Views/settings/settings.php:2
+msgid "Settings"
+msgstr "設定"
+
+#: app/Bootstrap.php:60
+msgid "FAQ"
+msgstr "FAQ"
+
+#: app/Config/SettingsRepository.php:145
+msgid "Please login to add favorites."
+msgstr "お気に入りを追加するにはログインしてください。"
+
+#: app/Config/SettingsRepository.php:146
+msgid "Dismiss this notice"
+msgstr "この通知を非表示にする"
+
+#: app/Config/SettingsRepository.php:184 app/Config/SettingsRepository.php:399
+#: app/Config/SettingsRepository.php:402
+msgid "Favorite"
+msgstr "お気に入り"
+
+#: app/Config/SettingsRepository.php:196 app/Config/SettingsRepository.php:403
+msgid "Favorited"
+msgstr "お気に入り済み"
+
+#: app/Config/SettingsRepository.php:208
+msgid "Clear Favorites"
+msgstr "お気に入りを消去"
+
+#: app/Config/SettingsRepository.php:268
+msgid "Loading"
+msgstr "ロード中"
+
+#: app/Config/SettingsRepository.php:351
+msgid "No Favorites"
+msgstr "お気に入りなし"
+
+#: app/Config/SettingsRepository.php:406 app/Config/SettingsRepository.php:409
+msgid "Like"
+msgstr "いいね"
+
+#: app/Config/SettingsRepository.php:410
+msgid "Liked"
+msgstr "いいね済み"
+
+#: app/Config/SettingsRepository.php:413 app/Config/SettingsRepository.php:416
+msgid "Love"
+msgstr "好き"
+
+#: app/Config/SettingsRepository.php:417
+msgid "Loved"
+msgstr "好き済み"
+
+#: app/Config/SettingsRepository.php:420 app/Config/SettingsRepository.php:423
+msgid "Bookmark"
+msgstr "ブックマーク"
+
+#: app/Config/SettingsRepository.php:424
+msgid "Bookmarked"
+msgstr "ブックマーク済み"
+
+#: app/Config/SettingsRepository.php:427
+msgid "Wishlist"
+msgstr "ウィッシュリスト"
+
+#: app/Config/SettingsRepository.php:430
+msgid "Add to Wishlist"
+msgstr "ウィッシュリストに追加"
+
+#: app/Config/SettingsRepository.php:431
+msgid "Added to Wishlist"
+msgstr "ウィッシュリストに追加済み"
+
+#: app/Config/SettingsRepository.php:467 app/Config/SettingsRepository.php:474
+msgid "Background Color"
+msgstr "背景色"
+
+#: app/Config/SettingsRepository.php:468 app/Config/SettingsRepository.php:475
+msgid "Border Color"
+msgstr "枠線の色"
+
+#: app/Config/SettingsRepository.php:469 app/Config/SettingsRepository.php:476
+msgid "Text Color"
+msgstr "文字の色"
+
+#: app/Config/SettingsRepository.php:470 app/Config/SettingsRepository.php:477
+msgid "Icon Color"
+msgstr "アイコンの色"
+
+#: app/Config/SettingsRepository.php:471 app/Config/SettingsRepository.php:478
+msgid "Count Color"
+msgstr "カウントの色"
+
+#: app/Entities/Favorite/SyncSingleFavorite.php:120
+#: app/Entities/User/UserRepository.php:123
+msgid "Default List"
+msgstr "デフォルトリスト"
+
+#: app/Entities/Post/AdminColumns.php:63 app/Entities/Post/PostMeta.php:28
+#: app/Favorites.php:18
+msgid "Favorites"
+msgstr "お気に入り"
+
+#: app/Entities/Post/PostMeta.php:44
+msgid "Total Favorites"
+msgstr "お気に入り総数"
+
+#: app/Listeners/AJAXListenerBase.php:41
+msgid "There was an error processing the request."
+msgstr "リクエスト処理中にエラーが発生しました。"
+
+#: app/Listeners/FavoriteButton.php:33
+msgid "Invalid post."
+msgstr "無効な投稿。"
+
+#: app/Views/settings/settings-display.php:7
+msgid "Enabled Favorites for:"
+msgstr "お気に入りを有効にする:"
+
+#: app/Views/settings/settings-display.php:25
+msgid "Insert Favorite button before content"
+msgstr "本文の前にお気に入りボタンを挿入"
+
+#: app/Views/settings/settings-display.php:26
+msgid ""
+"Favorite buttons are automatically inserted before the content using "
+"the_content filter."
+msgstr ""
+"the_contentフィルターを使って、本文の前にお気に入りボタンが自動的に挿入され"
+"ます。"
+
+#: app/Views/settings/settings-display.php:29
+msgid "Include before content"
+msgstr "本文の前に含める"
+
+#: app/Views/settings/settings-display.php:34
+msgid "Insert Favorite button after content"
+msgstr "本文の後にお気に入りボタンを挿入"
+
+#: app/Views/settings/settings-display.php:35
+msgid ""
+"Favorite buttons are automatically inserted after the content using "
+"the_content filter."
+msgstr ""
+"the_contentフィルターを使って、本文の後ろにお気に入りボタンが自動的に挿入さ"
+"れます。"
+
+#: app/Views/settings/settings-display.php:38
+msgid "Include after content"
+msgstr "本文の後に含める"
+
+#: app/Views/settings/settings-display.php:43
+msgid "Show favorite count on post edit screen"
+msgstr "投稿編集画面でお気に入り数を表示"
+
+#: app/Views/settings/settings-display.php:44
+msgid ""
+"Adds a meta box with the total number of favorites the post has received."
+msgstr "その投稿のお気に入り総数を表示するメタボックスを追加します。"
+
+#: app/Views/settings/settings-display.php:47
+msgid "Add meta box"
+msgstr "メタボックスを追加"
+
+#: app/Views/settings/settings-display.php:52
+msgid "Show favorite count in admin columns"
+msgstr "管理画面のカラムにお気に入り数を表示"
+
+#: app/Views/settings/settings-display.php:53
+msgid "Adds a column to the admin listing with the total favorite count."
+msgstr "お気に入り総数を表示する管理画面カラムを追加します。"
+
+#: app/Views/settings/settings-display.php:56
+msgid "Add admin column"
+msgstr "管理画面のカラムを追加"
+
+#: app/Views/settings/settings-display.php:64
+msgid "Favorite Button Content & Appearance"
+msgstr "お気に入りボタンの内容・外観"
+
+#: app/Views/settings/settings-display.php:68
+#: app/Views/settings/settings-display.php:72
+msgid "Button HTML Element"
+msgstr "ボタンのHTML要素"
+
+#: app/Views/settings/settings-display.php:69
+msgid "By default, the button is displayed in an HTML button element."
+msgstr "デフォルトではボタンはHTMLのbutton要素で表示されます。"
+
+#: app/Views/settings/settings-display.php:75
+msgid "Button"
+msgstr "Button"
+
+#: app/Views/settings/settings-display.php:76
+msgid "a (link)"
+msgstr "a (リンク)"
+
+#: app/Views/settings/settings-display.php:77
+#: app/Views/settings/settings-display.php:257
+#: app/Views/settings/settings-display.php:275
+msgid "Div"
+msgstr "Div"
+
+#: app/Views/settings/settings-display.php:78
+msgid "Span"
+msgstr "Span"
+
+#: app/Views/settings/settings-display.php:84
+#: app/Views/settings/settings-display.php:88
+msgid "Button Type"
+msgstr "ボタンタイプ"
+
+#: app/Views/settings/settings-display.php:85
+msgid "Use a predefined button or add your own markup."
+msgstr ""
+"あらかじめ定義されたボタンを使用するか、独自のマークアップを追加してくださ"
+"い。"
+
+#: app/Views/settings/settings-display.php:90
+msgid "Custom Markup"
+msgstr "カスタムマークアップ"
+
+#: app/Views/settings/settings-display.php:101
+msgid "Preview"
+msgstr "プレビュー"
+
+#: app/Views/settings/settings-display.php:113
+msgid "Color Options"
+msgstr "色の設定"
+
+#: app/Views/settings/settings-display.php:114
+msgid ""
+"If colors are not specified, theme colors will apply. Note: theme styles "
+"will effect the appearance of the favorites button. The button is displayed "
+"in a button element, with a css class of \"simplefavorites-button\"."
+msgstr ""
+"色が指定されていない場合はテーマカラーが適用されます。注意: テーマのスタイル"
+"がお気に入りボタンの外観に影響します。ボタンはbutton要素で表示され、cssクラ"
+"スは \"simplefavorites-button \"となります。"
+
+#: app/Views/settings/settings-display.php:117
+msgid "Specify custom colors"
+msgstr "カスタムカラーを指定する"
+
+#: app/Views/settings/settings-display.php:120
+msgid "Default Button State (Unfavorited)"
+msgstr "デフォルトのボタン状態(お気に入りされていない)"
+
+#: app/Views/settings/settings-display.php:136
+msgid "Active Button State (Favorited)"
+msgstr "アクティブなボタン状態(お気に入り済み)"
+
+#: app/Views/settings/settings-display.php:152
+msgid "Include button shadow"
+msgstr "ボタンの影を含む"
+
+#: app/Views/settings/settings-display.php:160
+msgid "Button Markup: Unfavorited"
+msgstr "ボタンのマークアップ: お気に入りされていない"
+
+#: app/Views/settings/settings-display.php:161
+msgid "The button inner html, in an unfavorited state."
+msgstr "お気に入りされていない状態のbutton要素内のhtml。"
+
+#: app/Views/settings/settings-display.php:164
+#: app/Views/settings/settings-display.php:174
+msgid "Text/HTML"
+msgstr "テキスト/HTML"
+
+#: app/Views/settings/settings-display.php:170
+msgid "Button Markup: Favorited"
+msgstr "ボタンのマークアップ: お気に入り済み"
+
+#: app/Views/settings/settings-display.php:171
+msgid "The button inner html, in a favorited state."
+msgstr "お気に入り済み状態のbutton要素内のhtml。"
+
+#: app/Views/settings/settings-display.php:180
+msgid "Include Total Favorite Count"
+msgstr "お気に入り総数を含める"
+
+#: app/Views/settings/settings-display.php:181
+msgid ""
+"Adds the total number of times the post has been favorited to the button."
+msgstr "ボタンにお気に入りされた総数を追加します。"
+
+#: app/Views/settings/settings-display.php:184
+msgid "Include count in button"
+msgstr "ボタンに総数を含める"
+
+#: app/Views/settings/settings-display.php:189
+msgid "Favorite Button Loading Indication"
+msgstr "お気に入りボタンのローディング表示"
+
+#: app/Views/settings/settings-display.php:196
+msgid "Display loading indicator for buttons"
+msgstr "ボタンにローディング状態を表示する"
+
+#: app/Views/settings/settings-display.php:196
+msgid "Helpful for slow sites with cache enabled"
+msgstr "キャッシュを有効にしている遅いサイトに役立ちます"
+
+#: app/Views/settings/settings-display.php:202
+msgid "Loading Text"
+msgstr "ローディングテキスト"
+
+#: app/Views/settings/settings-display.php:203
+msgid ""
+"Replaces the unfavorited/favorited button text during the loading state."
+msgstr "ローディング中にお気に入りボタンのテキストを置き換えます。"
+
+#: app/Views/settings/settings-display.php:206
+msgid "Loading Text/HTML"
+msgstr "ローディング中のテキスト/HTML"
+
+#: app/Views/settings/settings-display.php:212
+msgid "Loading Spinner"
+msgstr "ローディングスピナー"
+
+#: app/Views/settings/settings-display.php:213
+msgid ""
+"Adds a spinner to the button during loading state. See plugin documentation "
+"for filters available for theme customization."
+msgstr ""
+"ローディング中のボタンにスピナーを追加します。テーマのカスタマイズに利用可能"
+"なフィルターについては、プラグインのドキュメントを参照してください。"
+
+#: app/Views/settings/settings-display.php:216
+msgid "Use CSS/HTML Spinner"
+msgstr "CSS/HTMLスピナーを使う"
+
+#: app/Views/settings/settings-display.php:218
+msgid "Use Image/GIF Spinner"
+msgstr "画像/GIFによるスピナーを使う"
+
+#: app/Views/settings/settings-display.php:224
+msgid "Page Load"
+msgstr "ページ読み込み"
+
+#: app/Views/settings/settings-display.php:225
+msgid ""
+"Adds the loading state to favorites buttons during page load. Helpful on "
+"sites with page cache enabled."
+msgstr ""
+"ページ読み込み中のお気に入りボタンをローディング\n"
+"状態にします。ページキャッシュを有効にしているサイトで役立ちます。"
+
+#: app/Views/settings/settings-display.php:228
+msgid "Add loading state on page load"
+msgstr "ページ読み込み中にローディング状態を追加"
+
+#: app/Views/settings/settings-display.php:236
+msgid "Listing Display"
+msgstr "リスト表示"
+
+#: app/Views/settings/settings-display.php:243
+msgid "Customize the favorites list HTML"
+msgstr "お気に入りリストのHTMLをカスタマイズ"
+
+#: app/Views/settings/settings-display.php:249
+msgid "List Wrapper Element"
+msgstr "リストラッパー要素"
+
+#: app/Views/settings/settings-display.php:250
+msgid "The list wrapper html element. Defaults to an html ul list."
+msgstr "リストラッパーHTML要素。デフォルトはHTMLのulリストです。"
+
+#: app/Views/settings/settings-display.php:253
+msgid "List Wrapper Type"
+msgstr "リストラッパーの種類"
+
+#: app/Views/settings/settings-display.php:255
+msgid "Unordered List (ul)"
+msgstr "順序なしリスト (ul)"
+
+#: app/Views/settings/settings-display.php:256
+msgid "Ordered List (ol)"
+msgstr "順序付きリスト (ol)"
+
+#: app/Views/settings/settings-display.php:260
+msgid "Wrapper CSS Classes"
+msgstr "ラッパーのCSSクラス"
+
+#: app/Views/settings/settings-display.php:267
+msgid "Single List Element"
+msgstr "リスト要素"
+
+#: app/Views/settings/settings-display.php:268
+msgid "The individual listing html element. Defaults to an html li item."
+msgstr "個別のリストのhtml要素。デフォルトはhtmlのli項目です。"
+
+#: app/Views/settings/settings-display.php:271
+msgid "List Element Type"
+msgstr "リスト要素の種類"
+
+#: app/Views/settings/settings-display.php:273
+msgid "List Item (li)"
+msgstr "リスト項目 (li)"
+
+#: app/Views/settings/settings-display.php:274
+msgid "Paragraph (p)"
+msgstr "段落 (p)"
+
+#: app/Views/settings/settings-display.php:278
+msgid "Listing CSS Classes"
+msgstr "リスト要素のCSSクラス"
+
+#: app/Views/settings/settings-display.php:285
+msgid "Single Listing Content Markup"
+msgstr "リスト内容のマークアップ"
+
+#: app/Views/settings/settings-display.php:286
+msgid "Optionally customize the single listing markup."
+msgstr "オプションでリストのマークアップをカスタマイズできます。"
+
+#: app/Views/settings/settings-display.php:290
+msgid "Customize Content"
+msgstr "コンテンツをカスタマイズ"
+
+#: app/Views/settings/settings-display.php:294
+#: app/Views/settings/settings-users.php:20
+msgid "Important:"
+msgstr "重要:"
+
+#: app/Views/settings/settings-display.php:294
+msgid ""
+"By customizing the listing content, some shortcode options will not apply. "
+"These options include: include_links, include_buttons, include_thumbnails, "
+"and thumbnail_size"
+msgstr ""
+"リスト内容をカスタマイズすると、一部のショートコードオプションが適用されなく"
+"なります。これらのオプションには、include_links, include_buttons, "
+"include_thumbnails, 及びthumbnail_sizeが含まれます"
+
+#: app/Views/settings/settings-display.php:297
+msgid "Add Dynamic Fields"
+msgstr "動的フィールドの追加"
+
+#: app/Views/settings/settings-display.php:298
+msgid ""
+"To add a custom meta field, use the format <code>[custom_field:"
+"custom_field_name]</code>"
+msgstr ""
+"カスタムメタフィールドを追加するには以下の書式を使います。"
+"<code>[custom_field:custom_field_name]</code>"
+
+#: app/Views/settings/settings-display.php:301
+msgid "Post Fields"
+msgstr "投稿フィールド"
+
+#: app/Views/settings/settings-display.php:303
+msgid "Post Title"
+msgstr "投稿タイトル"
+
+#: app/Views/settings/settings-display.php:304
+msgid "Excerpt"
+msgstr "抜粋"
+
+#: app/Views/settings/settings-display.php:305
+msgid "Permalink (raw link)"
+msgstr "パーマリンク (生のリンク)"
+
+#: app/Views/settings/settings-display.php:306
+msgid "Permalink (as link)"
+msgstr "パーマリンク (リンク)"
+
+#: app/Views/settings/settings-display.php:310
+msgid "Thumbnail: "
+msgstr "サムネイル: "
+
+#: app/Views/settings/settings-display.php:314
+#: app/Views/settings/settings-display.php:322
+msgid "Add"
+msgstr "追加"
+
+#: app/Views/settings/settings-display.php:317
+msgid "Favorites Fields"
+msgstr "お気に入りフィールド"
+
+#: app/Views/settings/settings-display.php:319
+msgid "Favorite Button"
+msgstr "お気に入りボタン"
+
+#: app/Views/settings/settings-display.php:320
+msgid "Favorite Count"
+msgstr "お気に入り総数"
+
+#: app/Views/settings/settings-display.php:344
+msgid "Additional Display Settings"
+msgstr "表示の追加設定"
+
+#: app/Views/settings/settings-display.php:348
+msgid "Clear Favorites Button Text"
+msgstr "お気に入り削除ボタンのテキスト"
+
+#: app/Views/settings/settings-display.php:349
+msgid ""
+"The text that appears in the \"Clear Favorites\" button by default. Note, "
+"the text may be overridden in the shortcode or function call."
+msgstr ""
+"「お気に入りを消去」ボタンに表示されるデフォルトのテキストです。なお、このテ"
+"キストは、ショートコードや関数呼び出しで上書きすることができます。"
+
+#: app/Views/settings/settings-display.php:352
+msgid "Clear Favorites Button Text/HTML"
+msgstr "お気に入りを消去ボタンのテキスト/HTML"
+
+#: app/Views/settings/settings-display.php:358
+msgid "No Favorites Text"
+msgstr "お気に入りなしのテキスト"
+
+#: app/Views/settings/settings-display.php:359
+msgid "Appears in user favorite lists when they have not favorited any posts."
+msgstr ""
+"ユーザがどの投稿もお気に入りしていない場合にお気に入りリストに表示されます。"
+
+#: app/Views/settings/settings-display.php:362
+msgid "No Favorites Text/HTML"
+msgstr "お気に入りなしのテキスト/HTML"
+
+#: app/Views/settings/settings-general.php:3
+msgid "Page Cache"
+msgstr "ページキャッシュ"
+
+#: app/Views/settings/settings-general.php:10
+msgid ""
+"Cache Enabled on Site (Favorites content is injected on page load with AJAX "
+"request)"
+msgstr ""
+"サイトキャッシュ有効 (ページロード時にAjaxリクエストでFavoritesの要素が注入"
+"されます)"
+
+#: app/Views/settings/settings-general.php:15
+msgid "Development Mode"
+msgstr "開発モード"
+
+#: app/Views/settings/settings-general.php:22
+msgid ""
+"Enable Development Mode (logs JS responses in the console for debugging)"
+msgstr ""
+"開発モード有効 (デバッグのためにJSのレスポンスをコンソールに記録します)"
+
+#: app/Views/settings/settings-general.php:27
+msgid "Dependencies"
+msgstr "依存関係"
+
+#: app/Views/settings/settings-general.php:31
+msgid "Enqueue Plugin CSS"
+msgstr "プラグインCSSのenqueue"
+
+#: app/Views/settings/settings-general.php:34
+msgid "Output Plugin CSS"
+msgstr "プラグインのCSSを出力"
+
+#: app/Views/settings/settings-general.php:37
+msgid "If you are compiling your own minified CSS, include the CSS below:"
+msgstr "自身でminified CSSをコンパイルする場合は、以下のCSSを含めてください:"
+
+#: app/Views/settings/settings-general.php:44
+msgid "Enqueue Plugin Javascript"
+msgstr "プラグインJavaScriptのenqueue"
+
+#: app/Views/settings/settings-general.php:45
+msgid ""
+"Important: The plugin JavaScript is required for core functions. If this is "
+"disabled, the plugin JS <strong>must</strong> be included with the theme "
+"along with the global JS variables."
+msgstr ""
+"重要: プラグインのJavaScriptはコア機能に必須です。この項目を無効にする場合、"
+"プラグインJSはグローバルJS変数と一緒にテーマに含めることが<strong>必須</"
+"strong>です。"
+
+#: app/Views/settings/settings-general.php:49
+msgid "Output Plugin JavaScript"
+msgstr "プラグインのJavaScriptを出力"
+
+#: app/Views/settings/settings-general.php:52
+msgid ""
+"If you are compiling your own minified Javascript, include the below "
+"(required for plugin functionality):"
+msgstr ""
+"自身でminified JavaScriptをコンパイルする場合は、以下を含めてください (プラ"
+"グインの機能に必須です):"
+
+#: app/Views/settings/settings-general.php:60
+msgid "Favorites Version"
+msgstr "Favoritesのバージョン"
+
+#: app/Views/settings/settings-users.php:3
+msgid "User Settings"
+msgstr "ユーザー設定"
+
+#: app/Views/settings/settings-users.php:8
+msgid "Enable favoriting functionality for unauthenticated users."
+msgstr "認証されていないユーザーに対してお気に入り機能を有効にします。"
+
+#: app/Views/settings/settings-users.php:11
+msgid "Enable Anonymous Users"
+msgstr "匿名ユーザーを有効にする"
+
+#: app/Views/settings/settings-users.php:13
+msgid "Include in Post Favorite Count"
+msgstr "投稿お気に入り総数に含める"
+
+#: app/Views/settings/settings-users.php:19
+msgid "User Cookie Consent"
+msgstr "ユーザーのCookie同意"
+
+#: app/Views/settings/settings-users.php:20
+msgid ""
+"Require user consent for saving cookies before allowing favorites to be "
+"saved."
+msgstr "Cookieにお気に入りを保存する前にユーザーの同意を必須にします。"
+
+#: app/Views/settings/settings-users.php:20
+msgid ""
+"If using this option for GDPR compliance, please consult an attorney for "
+"appropriate legal terms to display in the modal consent."
+msgstr ""
+"GDPR対応でこのオプションを使用する場合は、モーダル同意に表示する適切な法律用"
+"語について弁護士にご相談ください。"
+
+#: app/Views/settings/settings-users.php:23
+msgid "Require User Consent"
+msgstr "ユーザー同意必須"
+
+#: app/Views/settings/settings-users.php:26
+msgid "Content to Display in Modal Agreement"
+msgstr "モーダルアグリーメントに表示する内容"
+
+#: app/Views/settings/settings-users.php:37
+msgid "Consent Button Text"
+msgstr "同意ボタンのテキスト"
+
+#: app/Views/settings/settings-users.php:41
+msgid "Deny Button Text"
+msgstr "拒否ボタンのテキスト"
+
+#: app/Views/settings/settings-users.php:49
+msgid "Anonymous Favoriting Behavior"
+msgstr "匿名ユーザーのお気に入り動作"
+
+#: app/Views/settings/settings-users.php:50
+msgid ""
+"By default, favorite buttons are hidden from unauthenticated users if "
+"anonymous users are disabled."
+msgstr ""
+"デフォルトでは、匿名ユーザーを無効にしている場合、認証されていないユーザーか"
+"らはお気に入りボタンが非表示になります。"
+
+#: app/Views/settings/settings-users.php:53
+msgid "Show Buttons and Display Modal for Anonymous Users"
+msgstr "ボタンを表示して匿名ユーザーへのモーダルを出す"
+
+#: app/Views/settings/settings-users.php:55
+msgid "Redirect Anonymous Users to a Page"
+msgstr "匿名ユーザーをページへリダイレクトする"
+
+#: app/Views/settings/settings-users.php:58
+msgid "Edit the Modal Content Below"
+msgstr "モーダルの内容を以下で編集"
+
+#: app/Views/settings/settings-users.php:59
+msgid "Important: "
+msgstr "重要: "
+
+#: app/Views/settings/settings-users.php:59
+msgid ""
+"If plugin css or javascript has been disabled, the modal window will not "
+"display correctly."
+msgstr ""
+"プラグインCSSかJavaScriptが無効の場合、モーダルウィンドウは正しく表示されま"
+"せん。"
+
+#: app/Views/settings/settings-users.php:60
+msgid ""
+"To add \"close\" button or link, give it a data attribute of \"data-"
+"favorites-modal-close\"."
+msgstr ""
+"「閉じる」ボタンやリンクを追加するには、\"data-favorites-modal-close\"という"
+"データ属性を指定してください。"
+
+#: app/Views/settings/settings-users.php:72
+msgid "Enter the Page/Post ID to redirect to (defaults to the site url)"
+msgstr ""
+"リダイレクト先のページ/投稿IDを入力してください (デフォルトではサイトURL)"
+
+#: app/Views/settings/settings-users.php:79
+msgid "Save Unauthenticated Favorites as"
+msgstr "未認証のお気に入り保存"
+
+#: app/Views/settings/settings-users.php:80
+msgid ""
+"Unauthenticated users' favorites may be saved in either cookies or session. "
+"Authenticated users' favorites are saved as user meta."
+msgstr ""
+"認証されていないユーザーのお気に入りはCookieとセッションのいずれかに保存され"
+"ます。認証ユーザーのお気に入りはユーザーメタに保存されます。"
+
+#: app/Views/settings/settings-users.php:83
+msgid "Cookie"
+msgstr "Cookie"
+
+#: app/Views/settings/settings-users.php:86
+msgid "Session"
+msgstr "セッション"
+
+#: app/Views/settings/settings.php:6
+msgid "General"
+msgstr "一般"
+
+#: app/Views/settings/settings.php:9
+msgid "Users"
+msgstr "ユーザー"
+
+#: app/Views/settings/settings.php:12
+msgid "Display & Post Types"
+msgstr "表示・投稿タイプ"
+
+#~ msgid "Invalid form field"
+#~ msgstr "無効なフォームフィールド"
+
+#~ msgid "Require Login to Favorite"
+#~ msgstr "お気に入りにはログインが必須"
+
+#~ msgid ""
+#~ "Show the buttons to unauthenticated users, but display a modal window "
+#~ "prompting them to login to save favorites."
+#~ msgstr ""
+#~ "認証されていないユーザーに対してボタンを表示するが、お気に入りを保存する"
+#~ "にはログインが必要と表示するモーダルウィンドウを表示します。"
