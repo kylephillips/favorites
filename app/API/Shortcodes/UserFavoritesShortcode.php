@@ -32,6 +32,8 @@ class UserFavoritesShortcode
 			'site_id' => '',
 			'include_links' => 'true',
 			'post_types' => '',
+			'taxonomy' => '',
+			'terms' =>	'',
 			'include_buttons' => 'false',
 			'include_thumbnails' => 'false',
 			'thumbnail_size' => 'thumbnail',
@@ -47,7 +49,20 @@ class UserFavoritesShortcode
 	{
 		if ( $this->options['post_types'] == "" ) return;
 		$post_types = explode(',', $this->options['post_types']);
-		$this->filters = ['post_type' => $post_types];
+		$this->filters['post_type'] = $post_types;
+	}
+	
+	/**
+	 * Parse Taxonomy and terms
+	 */
+	private function parseTaxonomyAndTerms()
+	{
+		if ( $this->options['taxonomy'] == ""  || $this->options['terms'] == "" ) return;
+		$this->filters['terms'] = [
+				$this->options['taxonomy'] => [
+						$this->options['terms']
+				]
+		];
 	}
 
 	/**
@@ -58,6 +73,7 @@ class UserFavoritesShortcode
 	{
 		$this->setOptions($options);
 		$this->parsePostTypes();
+		$this->parseTaxonomyAndTerms();
 		
 		$this->options['user_id'] = ( $this->options['user_id'] == "" ) ? null : intval($this->options['user_id']);
 		$this->options['site_id'] = ( $this->options['site_id'] == "" ) ? null : intval($this->options['site_id']);
@@ -81,3 +97,4 @@ class UserFavoritesShortcode
 		);
 	}
 }
+
