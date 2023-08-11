@@ -38,14 +38,16 @@ class PostFavoritesShortcode
 		$this->setOptions($options);
 
 		$this->options['include_anonymous'] = ( $this->options['include_anonymous'] == 'true' ) ? true : false;
+		$this->options['post_id'] = ( $this->options['post_id'] == "" ) ? '' : intval($this->options['post_id']);
+		$this->options['site_id'] = ( $this->options['site_id'] == "" ) ? null : intval($this->options['site_id']);
 		
-		return the_users_who_favorited_post(
+		return get_users_list_who_favorited_post(
 			$post_id = $this->options['post_id'], 
 			$site_id = $this->options['site_id'], 
-			$separator = $this->options['separator'], 
+			$separator = sanitize_text_field($this->options['separator']), 
 			$include_anonymous = $this->options['include_anonymous'], 
-			$anonymous_label = $this->options['anonymous_label'], 
-			$anonymous_label_single =  $this->options['anonymous_label_single']
+			$anonymous_label = sanitize_text_field($this->options['anonymous_label']), 
+			$anonymous_label_single =  sanitize_text_field($this->options['anonymous_label_single'])
 		);
 	}
 }

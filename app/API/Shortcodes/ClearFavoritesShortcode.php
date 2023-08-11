@@ -32,6 +32,8 @@ class ClearFavoritesShortcode
 	public function renderView($options)
 	{
 		$this->setOptions($options);
+		$this->options['site_id'] = ( $this->options['site_id'] == "" ) ? null : intval($this->options['site_id']);
+		$this->options['text'] = ( $this->options['text'] == "" ) ? null : sanitize_text_field($this->options['site_id']);
 		return get_clear_favorites_button($this->options['site_id'], $this->options['text']);
 	}
 }
