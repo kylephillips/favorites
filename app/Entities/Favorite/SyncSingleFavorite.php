@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Favorites\Entities\Favorite;
 
 use Favorites\Entities\User\UserRepository;
@@ -7,7 +7,7 @@ use Favorites\Helpers;
 /**
 * Sync a single favorite to a given save type
 */
-class SyncSingleFavorite 
+class SyncSingleFavorite
 {
 	/**
 	* The Post ID
@@ -52,11 +52,13 @@ class SyncSingleFavorite
 	public function cookie()
 	{
 		if ( $this->user->isFavorite($this->post_id, $this->site_id) ){
+			do_action('before_remove_favorite',$this->post_id);
 			$favorites = $this->removeFavorite();
 			setcookie( 'simplefavorites', json_encode( $favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
 			return;
 		}
 		$favorites = $this->addFavorite();
+		do_action('before_add_favorite',$this->post_id);
 		setcookie( 'simplefavorites', json_encode( $favorites ), time() + apply_filters( 'simplefavorites_cookie_expiration_interval', 31556926 ), '/' );
 		return;
 	}
@@ -67,6 +69,7 @@ class SyncSingleFavorite
 	public function updateUserMeta($favorites)
 	{
 		if ( !is_user_logged_in() ) return;
+		$favorites = apply_filters('favorites_before_update_meta', $favorites);
 		update_user_meta( intval(get_current_user_id()), 'simplefavorites', $favorites );
 	}
 
@@ -123,7 +126,7 @@ class SyncSingleFavorite
 				];
 			}
 			foreach( $favorites[$key]['groups'] as $group_key => $group){
-				if ( $group['group_id'] == $this->group_id ) 
+				if ( $group['group_id'] == $this->group_id )
 					$favorites[$key]['groups'][$group_key]['posts'][] = $this->post_id;
 			}
 		}
