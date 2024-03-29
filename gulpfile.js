@@ -1,12 +1,11 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var autoprefix = require('gulp-autoprefixer');
 var livereload = require('gulp-livereload');
-var notify = require('gulp-notify');
+var minifycss = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var pump = require('pump');
 
 // Paths
 var scss = 'assets/scss/**/*';
@@ -38,83 +37,70 @@ var js_frontend_source = [
 var js_compiled = 'assets/js/';
 
 /**
-* Smush the admin Styles and output
+* Minify the styles and output
 */
-gulp.task('scss', function(callback){
-	pump([
-		gulp.src(scss),
-		sass({ outputStyle: 'compressed' }),
-		autoprefix('last 15 version'),
-		gulp.dest(css),
-		livereload(),
-		notify('Favorites styles compiled & compressed.')
-	], callback);
-});
+var styles = function(){
+	return gulp.src(scss)
+		.pipe(sass({sourceComments: 'map', sourceMap: 'sass', style: 'compact'}))
+		.pipe(autoprefix('last 5 version'))
+		.pipe(minifycss({keepBreaks: false}))
+		.pipe(gulp.dest(css))
+		.pipe(livereload());
+}
 
 /**
-* Uncompressed styles
+* Uncompressed styles for development
 */
-gulp.task('uncompressed_styles', function(callback){
-	pump([
-		gulp.src(scss),
-		sass({ outputStyle: 'expanded' }),
-		autoprefix('last 15 version'),
-		rename('styles-uncompressed.css'),
-		gulp.dest(css)
-	], callback);
-});
+var uncompressed_styles = function(){
+	return gulp.src(scss)
+		.pipe(sass({sourceComments: 'map', sourceMap: 'sass', style: 'expanded'}))
+		.pipe(autoprefix('last 5 version'))
+		.pipe(rename('styles-uncompressed.css'))
+		.pipe(gulp.dest(css))
+		.pipe(livereload());
+}
 
 /**
-* Admin Scripts
+* Concatenate and minify admin scripts
 */
-gulp.task('admin_scripts', function(callback){
-	pump([
-		gulp.src(js_admin_source),
-		concat('favorites-admin.min.js'),
-		gulp.dest(js_compiled),
-		uglify(),
-		gulp.dest(js_compiled),
-		notify('Favorites admin scripts compiles & compressed.')
-	], callback);
-});
+var admin_scripts = function(){
+	return gulp.src(js_admin_source)
+		.pipe(concat('favorites-admin.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(js_compiled));
+};
 
 /**
-* Front end Scripts
+* Concatenate and minify front end scripts
 */
-gulp.task('frontend_scripts', function(callback){
-	pump([
-		gulp.src(js_frontend_source),
-		concat('favorites.min.js'),
-		gulp.dest(js_compiled),
-		uglify(),
-		gulp.dest(js_compiled),
-		notify('Favorites front end scripts compiles & compressed.')
-	], callback);
-});
+var frontend_scripts = function(){
+	return gulp.src(js_frontend_source)
+		.pipe(concat('favorites.min.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(js_compiled));
+};
 
 /**
-* Front end Scripts - Unminified
+* Concatenate and minify front end scripts
 */
-gulp.task('frontend_scripts_pretty', function(callback){
-	pump([
-		gulp.src(js_frontend_source),
-		concat('favorites.js'),
-		gulp.dest(js_compiled)
-	], callback);
-});
+var frontend_scripts_pretty = function(){
+	return gulp.src(js_frontend_source)
+		.pipe(concat('favorites.js'))
+		.pipe(gulp.dest(js_compiled));
+};
 
 /**
 * Watch Task
 */
 gulp.task('watch', function(){
 	livereload.listen();
-	gulp.watch(scss, ['scss', 'uncompressed_styles']);
-	gulp.watch(js_admin_source, ['admin_scripts']);
-	gulp.watch(js_frontend_source, ['frontend_scripts']);
-	gulp.watch(js_frontend_source, ['frontend_scripts_pretty']);
+	gulp.watch(scss, gulp.series(styles, uncompressed_styles));
+	gulp.watch(js_admin_source, gulp.series(admin_scripts));
+	gulp.watch(js_frontend_source, gulp.series(frontend_scripts, frontend_scripts_pretty));
 });
+
 
 /**
 * Default
 */
-gulp.task('default', ['scss', 'uncompressed_styles', 'admin_scripts', 'frontend_scripts', 'frontend_scripts_pretty', 'watch']);
+gulp.task('default', gulp.series(styles, uncompressed_styles, admin_scripts, frontend_scripts, frontend_scripts_pretty,  'watch'));
