@@ -46,7 +46,7 @@ class UserFavoritesShortcode
 	private function parsePostTypes()
 	{
 		if ( $this->options['post_types'] == "" ) return;
-		$post_types = explode(',', $this->options['post_types']);
+		$post_types = explode(',', esc_attr($this->options['post_types']));
 		$this->filters = ['post_type' => $post_types];
 	}
 
@@ -77,7 +77,7 @@ class UserFavoritesShortcode
 			$this->options['include_thumbnails'], 
 			esc_attr($this->options['thumbnail_size']), 
 			$this->options['include_excerpts'],
-			$this->options['no_favorites']
+			esc_attr($this->options['no_favorites'])
 		);
 	}
 }
