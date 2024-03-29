@@ -46,6 +46,7 @@ class FavoriteList extends AJAXListenerBase
 	private function getList()
 	{
 		global $blog_id;
+		$site_id = 1;
 		$site_id = ( is_multisite() && is_null($site_id) ) ? $blog_id : $site_id;
 		if ( !is_multisite() ) $site_id = 1;
 
