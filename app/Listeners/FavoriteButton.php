@@ -17,7 +17,11 @@ class FavoriteButton extends AJAXListenerBase
 	*/
 	private function setFormData()
 	{
-		$this->data['postid'] = intval(sanitize_text_field($_POST['postid']));
+		if (isset($_POST['permalink'])) {
+			$this->data['postid'] = url_to_postid(sanitize_text_field($_POST['permalink']));
+		} else {
+			$this->data['postid'] = intval(sanitize_text_field($_POST['postid']));
+		}
 		$this->data['siteid'] = intval(sanitize_text_field($_POST['siteid']));
 		$this->data['status'] = ( $_POST['status'] == 'active') ? 'active' : 'inactive';
 		$this->data['groupid'] = ( isset($_POST['groupid']) && $_POST['groupid'] !== '' ) ? intval($_POST['groupid']) : 1;
