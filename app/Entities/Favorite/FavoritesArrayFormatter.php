@@ -62,15 +62,15 @@ class FavoritesArrayFormatter
 	*/
 	private function resetIndexes()
 	{
-		foreach ( $this->formatted_favorites as $site => $site_favorites ){
+		foreach ($this->formatted_favorites as $site => $site_favorites) {
 			// Make older posts compatible with new name
-			if ( !isset($site_favorites['posts']) ) {
+			if (!isset($site_favorites['posts'])) {
 				$site_favorites['posts'] = $site_favorites['site_favorites'];
 				unset($this->formatted_favorites[$site]['site_favorites']);
 			}
-			foreach ( $site_favorites['posts'] as $key => $favorite ){
+			foreach ($site_favorites['posts'] as $key => $favorite) {
 				unset($this->formatted_favorites[$site]['posts'][$key]);
-				$this->formatted_favorites[$site]['posts'][$favorite]['post_id'] = $favorite;
+				$this->formatted_favorites[$site]['posts'][$favorite] = ['post_id' => $favorite];
 			}
 		}
 	}
