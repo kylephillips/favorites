@@ -101,11 +101,12 @@ class Helpers
 	/**
 	* Pluck the site favorites from saved meta array
 	* @since 1.1
+	* @param int $group_id
+	* @param array $all_favorites (user meta)
 	* @param int $site_id
-	* @param array $favorites (user meta)
 	* @return array
 	*/
-	public static function pluckGroupFavorites($group_id, $site_id = 1, $all_favorites)
+	public static function pluckGroupFavorites($group_id, $all_favorites,  $site_id = 1)
 	{
 		foreach($all_favorites as $key => $site_favorites){
 			if ( $site_favorites['site_id'] !== $site_id ) continue;
