@@ -111,7 +111,7 @@ class Helpers
 		foreach($all_favorites as $key => $site_favorites){
 			if ( $site_favorites['site_id'] !== $site_id ) continue;
 			foreach ( $all_favorites[$key]['groups'] as $group ){
-				if ( $group['group_id'] == $group_id ){
+				if ( isset($$group_id) && $group['group_id'] == $group_id ){
 					return $group['posts'];
 				}
 			}
