@@ -81,6 +81,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.3.5 =
+* Security update
+
 = 2.3.4 =
 * Tested with WordPress v6.4
 * Fixes various PHP errors
