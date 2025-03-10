@@ -29,7 +29,7 @@ Copyright: Kyle Phillips
 */
 
 /**
-* Check Wordpress and PHP versions before instantiating plugin
+* Check WordPress and PHP versions before instantiating plugin
 */
 register_activation_hook( __FILE__, 'favorites_check_versions' );
 
