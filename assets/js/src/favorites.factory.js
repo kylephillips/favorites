@@ -110,6 +110,7 @@ Favorites.Factory = function()
 		new Favorites.PostFavoriteCount;
 		new Favorites.RequireAuthentication;
 		new Favorites.RequireConsent;
+		new Favorites.NativeEvents;
 	}
 
 	return plugin.build();
