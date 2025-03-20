@@ -105,7 +105,7 @@ class Helpers
 	* @param array $favorites (user meta)
 	* @return array
 	*/
-	public static function pluckGroupFavorites($group_id, $site_id = 1, $all_favorites)
+	public static function pluckGroupFavorites($group_id, $site_id = 1, $all_favorites = [])
 	{
 		foreach($all_favorites as $key => $site_favorites){
 			if ( $site_favorites['site_id'] !== $site_id ) continue;
