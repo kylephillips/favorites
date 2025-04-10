@@ -71,6 +71,10 @@ class FavoriteListingPresenter
 	*/
 	private function filterMarkup()
 	{
+		global $post;
+        	$post = get_post( $this->favorite, OBJECT );
+        	setup_postdata( $post );
+		
 		$this->html .= apply_filters('the_content', $this->markup);
 		$this->replacePostFields();
 		$this->replaceFavoritesFields();
