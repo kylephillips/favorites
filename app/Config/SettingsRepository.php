@@ -349,7 +349,8 @@ class SettingsRepository
 	public function noFavoritesText()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'favorites');
+		$text = ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'favorites');
+		return apply_filters('favorites/no_favorites_text', $text);
 	}
 
 	/**

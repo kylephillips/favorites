@@ -109,7 +109,7 @@ abstract class FavoriteListTypeBase
 		$out .= ( $this->list_options->include_thumbnails ) ? ' data-includethumbnails="true"' : ' data-includethumbnails="false"';
 		$out .= ( $this->list_options->include_excerpt ) ? ' data-includeexcerpts="true"' : ' data-includeexcerpts="false"';
 		$out .= ' data-thumbnailsize="' . $this->list_options->thumbnail_size . '"';
-		$out .= ' data-nofavoritestext="' . $this->list_options->no_favorites . '"';
+		$out .= ' data-nofavoritestext="' . htmlspecialchars($this->list_options->no_favorites) . '"';
 		$out .= ' data-posttypes="' . $this->list_options->post_types . '"';
 		$out .= '>';
 		return $out;

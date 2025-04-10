@@ -46,7 +46,7 @@ abstract class FavoriteListBase
 		$this->list_options->wrapper_css = '';
 		$this->list_options->listing_type = 'li';
 		$this->list_options->listing_css = '';
-		$this->list_options->no_favorites = ( isset($options['no_favorites']) ) ? $options['no_favorites'] : '';
+		$this->list_options->no_favorites = ( isset($options['no_favorites']) ) ? apply_filters('favorites/no_favorites_text', $options['no_favorites']) : '';
 		$this->setCustomOptions();
 		if ( !property_exists($this->list_options, 'customize_markup') ) $this->list_options->customize_markup = false;
 		if ( !property_exists($this->list_options, 'custom_markup_html') ) $this->list_options->custom_markup_html = false;
