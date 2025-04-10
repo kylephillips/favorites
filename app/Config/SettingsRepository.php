@@ -206,7 +206,8 @@ class SettingsRepository
 		$option = get_option('simplefavorites_display');
 		if ( !isset($option['clearfavorites']) || $option['clearfavorites'] == "" ) 
 			return __('Clear Favorites', 'favorites');
-		return $this->sanitizeOutput($option['clearfavorites']);
+		$text = $this->sanitizeOutput($option['clearfavorites']);
+		return apply_filters('favorites/clear_favorites_text', $text);
 	}
 
 	/**
