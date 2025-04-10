@@ -81,6 +81,9 @@ As of version 1.1.0, Favorites is compatible with multisite installations. By de
 
 == Changelog ==
 
+= 2.3.6 =
+* Adds filter to customize the "Clear Favorites" button text (favorites/clear_favorites_text)
+
 = 2.3.5 =
 * Security update
 
