@@ -194,7 +194,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 		</div>
 		<div class="post-type-name">
 			<?php _e('Display loading indicator for buttons', 'favorites'); ?> <em>(<?php _e('Helpful for slow sites with cache enabled', 'favorites'); ?>)</em>
-			<button class="button" data-favorites-toggle-post-type-settings <?php if ( !$display ) echo 'style="display:none;"';?>><?php _e('Settings', 'favorites'); ?></button>
+			<button class="button" data-favorites-toggle-post-type-settings <?php if ( ! $this->settings_repo->includeLoadingIndicator() ) echo 'style="display:none;"';?>><?php _e('Settings', 'favorites'); ?></button>
 		</div>
 		<div class="post-type-settings">
 			<div class="row">
