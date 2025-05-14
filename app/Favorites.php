@@ -14,9 +14,6 @@ class Favorites
 		global $favorites_version;
 		$favorites_version = '2.3.6';
 
-		global $favorites_name;
-		$favorites_name = __('Favorites', 'favorites');
-
 		$app = new Favorites\Bootstrap;
 	}
 }

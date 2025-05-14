@@ -20,7 +20,6 @@ class Bootstrap
 		add_action( 'init', [$this, 'init']);
 		add_action( 'admin_init', [$this, 'adminInit']);
 		add_filter( 'plugin_action_links_' . 'favorites/favorites.php', [$this, 'settingsLink']);
-		add_action( 'init', [$this, 'addLocalization']);
 	}
 
 	/**
@@ -28,6 +27,9 @@ class Bootstrap
 	*/
 	public function init()
 	{
+		global $favorites_name;
+		$favorites_name = __('Favorites', 'favorites');
+		
 		new Config\Settings;
 		new Activation\Activate;
 		new Activation\Dependencies;
@@ -40,6 +42,7 @@ class Bootstrap
 		new API\Shortcodes\UserFavoriteCount;
 		new API\Shortcodes\PostFavoritesShortcode;
 		new API\Shortcodes\ClearFavoritesShortcode;
+		$this->addLocalization();
 		$this->startSession();
 	}
 
@@ -70,8 +73,9 @@ class Bootstrap
 	{
 		load_plugin_textdomain(
 			'favorites', 
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' ), 
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
+			false,
+			dirname(dirname(plugin_basename( __FILE__ ))) . '/languages' 
+		);
 	}
 
 	/**

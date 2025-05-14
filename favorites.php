@@ -49,7 +49,7 @@ function favorites_check_versions( $wp = '3.9', $php = '5.3.2' ) {
     wp_die('<p>The <strong>Favorites</strong> plugin requires'.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
 }
 
-if( !class_exists('Bootstrap') ) :
+if( !class_exists('\Favorites\Bootstrap') ) :
     favorites_check_versions();
     require_once(__DIR__ . '/vendor/autoload.php');
     require_once(__DIR__ . '/app/Favorites.php');
