@@ -549,7 +549,21 @@ class SettingsRepository
 			],
 			'strong' => []
 		];
-		$output = wp_kses($output, $allowed);
+
+		/**
+		 * Allow developers to modify the list of allowed HTML tags and attributes.
+		 *
+		 * @param array $allowed Allowed HTML tags.
+		 * @param string $output Original HTML content.
+		 */
+		$allowed = apply_filters( 'favorites/sanitize_output/allowed_tags', $allowed, $output );
+
+		$output = wp_kses( $output, $allowed );
+
+		if ( is_admin() ) {
+			$output = esc_attr( $output );
+		}
+
 		return $output;
 	}
 }
