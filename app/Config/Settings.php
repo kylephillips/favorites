@@ -63,7 +63,7 @@ class Settings
 	public function settingsPage()
 	{
 		$tab = ( isset($_GET['tab']) ) ? sanitize_text_field($_GET['tab']) : 'general';
-		include( Helpers::view('settings/settings') );
+		include( Helpers::view('settings') );
 	}
 
 	/**

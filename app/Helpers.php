@@ -17,9 +17,17 @@ class Helpers
 	/**
 	* Views
 	*/
-	public static function view($file)
+	public static function view($file, $folder = 'settings')
 	{
-		return dirname(__FILE__) . '/Views/' . $file . '.php';
+		// Sanitaze file name.
+		$file = sanitize_file_name($file);
+		$file = preg_replace('/[^a-zA-Z0-9\-_]/', '', $file);
+
+		// Sanitaze folder name.
+		$folder = sanitize_file_name($folder);
+		$folder = preg_replace('/[^a-zA-Z0-9\-_]/', '', $folder);
+
+		return dirname(__FILE__) . '/Views/' . $folder . '/' . $file . '.php';
 	}
 
 	/**
