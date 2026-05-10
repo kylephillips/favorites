@@ -28,8 +28,33 @@ abstract class AJAXListenerBase
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->user_repo = new UserRepository;
+		if ( $check_nonce ) $this->verifyNonce();
 		$this->checkLogIn();
 		$this->checkConsent();
+	}
+
+	/**
+	* Verify the AJAX nonce for security
+	* Prevents CSRF attacks on favorite actions
+	*/
+	protected function verifyNonce()
+	{
+		if ( !isset($_POST['nonce']) ) {
+			wp_send_json([
+				'status' => 'error', 
+				'message' => __('Security verification failed: No nonce provided.', 'favorites')
+			]);
+			die();
+		}
+		
+		$nonce = sanitize_text_field($_POST['nonce']);
+		if ( !wp_verify_nonce($nonce, 'simple_favorites_nonce') ) {
+			wp_send_json([
+				'status' => 'error', 
+				'message' => __('Security verification failed: Invalid nonce.', 'favorites')
+			]);
+			die();
+		}
 	}
 
 	/**

@@ -28,7 +28,8 @@ Favorites.UserFavorites = function()
 			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.favoritesarray
+				action : Favorites.formActions.favoritesarray,
+				nonce : Favorites.jsData.nonce
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {

@@ -13,10 +13,10 @@ $button_type_selected = $this->settings_repo->getButtonType();
 	?>
 	<div class="post-type-row">
 		<div class="post-type-checkbox">
-			<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][display]" value="true" <?php if ( $display ) echo ' checked'; ?> data-favorites-posttype-checkbox />
+            <input type="checkbox" name="simplefavorites_display[posttypes][<?php echo esc_attr($posttype); ?>][display]" value="true" <?php if ( $display ) echo ' checked'; ?> data-favorites-posttype-checkbox />
 		</div>
 		<div class="post-type-name">
-			<?php echo $post_type_object->labels->name; ?>
+			<?php echo esc_html($post_type_object->labels->name); ?>
 			<button class="button" data-favorites-toggle-post-type-settings <?php if ( !$display ) echo 'style="display:none;"';?>><?php _e('Settings', 'favorites'); ?></button>
 		</div>
 		<div class="post-type-settings">
@@ -26,7 +26,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					<p><?php _e('Favorite buttons are automatically inserted before the content using the_content filter.', 'favorites'); ?></p>
 				</div>
 				<div class="field">
-					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][before_content]" value="true" <?php if ( isset($display['before_content']) ) echo ' checked'; ?>/> <?php _e('Include before content', 'favorites'); ?>
+					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo esc_attr($posttype); ?>][before_content]" value="true" <?php if ( isset($display['before_content']) ) echo ' checked'; ?>/> <?php _e('Include before content', 'favorites'); ?>
 				</div>
 			</div><!-- .row -->
 			<div class="row">
@@ -35,7 +35,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					<p><?php _e('Favorite buttons are automatically inserted after the content using the_content filter.', 'favorites'); ?></p>
 				</div>
 				<div class="field">
-					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][after_content]" value="true" <?php if ( isset($display['after_content']) ) echo ' checked'; ?>/> <?php _e('Include after content', 'favorites'); ?>
+					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo esc_attr($posttype); ?>][after_content]" value="true" <?php if ( isset($display['after_content']) ) echo ' checked'; ?>/> <?php _e('Include after content', 'favorites'); ?>
 				</div>
 			</div><!-- .row -->
 			<div class="row">
@@ -44,7 +44,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					<p><?php _e('Adds a meta box with the total number of favorites the post has received.', 'favorites'); ?></p>
 				</div>
 				<div class="field">
-					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][postmeta]" value="true" <?php if ( isset($display['postmeta']) ) echo ' checked'; ?>/> <?php _e('Add meta box', 'favorites'); ?>
+					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo esc_attr($posttype); ?>][postmeta]" value="true" <?php if ( isset($display['postmeta']) ) echo ' checked'; ?>/> <?php _e('Add meta box', 'favorites'); ?>
 				</div>
 			</div><!-- .row -->
 			<div class="row">
@@ -53,7 +53,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					<p><?php _e('Adds a column to the admin listing with the total favorite count.', 'favorites'); ?></p>
 				</div>
 				<div class="field">
-					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo $posttype; ?>][admincolumns]" value="true" <?php if ( isset($display['admincolumns']) ) echo ' checked'; ?>/> <?php _e('Add admin column', 'favorites'); ?>
+					<input type="checkbox" name="simplefavorites_display[posttypes][<?php echo esc_attr($posttype); ?>][admincolumns]" value="true" <?php if ( isset($display['admincolumns']) ) echo ' checked'; ?>/> <?php _e('Add admin column', 'favorites'); ?>
 				</div>
 			</div><!-- .row -->
 		</div><!-- .post-type-settings -->

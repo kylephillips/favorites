@@ -71,7 +71,8 @@ Favorites.Lists = function()
 				thumbnail_size : thumbnail_size,
 				include_excerpt : include_excerpt,
 				no_favorites : no_favorites,
-				post_types : post_types
+				post_types : post_types,
+				nonce : Favorites.jsData.nonce
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){

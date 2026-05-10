@@ -62,8 +62,9 @@ class Settings
 	*/
 	public function settingsPage()
 	{
-		$tab = ( isset($_GET['tab']) ) ? sanitize_text_field($_GET['tab']) : 'general';
-		include( Helpers::view('settings/settings') );
+		$allowed_tabs = ['general', 'users', 'display'];
+		$tab = ( isset($_GET['tab']) && in_array($_GET['tab'], $allowed_tabs, true) ) ? sanitize_text_field($_GET['tab']) : 'general';
+		include( Helpers::view('settings', 'settings') );
 	}
 
 	/**

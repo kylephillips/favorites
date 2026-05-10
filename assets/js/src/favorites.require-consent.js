@@ -98,7 +98,8 @@ Favorites.RequireConsent = function()
 			dataType: 'json',
 			data: {
 				action : Favorites.formActions.cookieConsent,
-				consent : consent
+				consent : consent,
+				nonce : Favorites.jsData.nonce
 			}
 		});
 	}

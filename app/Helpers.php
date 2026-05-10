@@ -16,10 +16,24 @@ class Helpers
 
 	/**
 	* Views
+	* @param string $file - The view file name
+	* @param string $folder - The folder name within Views (default: empty)
+	* @return string - The full path to the view file
 	*/
-	public static function view($file)
+	public static function view($file, $folder = '')
 	{
-		return dirname(__FILE__) . '/Views/' . $file . '.php';
+		// Sanitize file name - remove any path traversal characters
+		$file = sanitize_file_name($file);
+		$file = preg_replace('/[^a-zA-Z0-9\-_]/', '', $file);
+		
+		// Sanitize folder name if provided
+		if ( !empty($folder) ) {
+			$folder = sanitize_file_name($folder);
+			$folder = preg_replace('/[^a-zA-Z0-9\-_]/', '', $folder);
+			$folder = $folder . '/';
+		}
+		
+		return dirname(__FILE__) . '/Views/' . $folder . $file . '.php';
 	}
 
 	/**

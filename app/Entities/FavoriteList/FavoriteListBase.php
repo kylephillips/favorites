@@ -62,8 +62,12 @@ abstract class FavoriteListBase
 		foreach ( $options as $option => $val ){
 			if ( $option == 'customize' ) continue;
 			if ( $val == '' ) continue;
-			$this->list_options->$option = ( $val == 'true' ) ? true : sanitize_text_field($val);
-			if ( $option == 'custom_markup_html' ) $this->list_options->custom_markup_html = $val;
+			
+			if ( $option == 'custom_markup_html' ) {
+				$this->list_options->$option = wp_kses_post($val);
+			} else {
+				$this->list_options->$option = ( $val == 'true' ) ? true : sanitize_text_field($val);
+			}
 		}
 	}
 }

@@ -51,6 +51,7 @@ Favorites.cssClasses = {
 */
 Favorites.jsData = {
 	ajaxurl : favorites_data.ajaxurl, // The WP AJAX URL
+	nonce : favorites_data.nonce, // Security nonce for AJAX requests
 	favorite : favorites_data.favorite, // Active Button Text/HTML
 	favorited : favorites_data.favorited, // Inactive Button Text
 	include_count : favorites_data.includecount, // Whether to include the count in buttons

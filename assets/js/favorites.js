@@ -233,7 +233,8 @@ Favorites.UserFavorites = function()
 			type: 'POST',
 			datatype: 'json',
 			data: {
-				action : Favorites.formActions.favoritesarray
+				action : Favorites.formActions.favoritesarray,
+				nonce : Favorites.jsData.nonce
 			},
 			success: function(data){
 				if ( Favorites.jsData.dev_mode ) {
@@ -302,7 +303,8 @@ Favorites.Clear = function()
 			datatype: 'json',
 			data: {
 				action : Favorites.formActions.clearall,
-				siteid : site_id
+				siteid : site_id,
+				nonce : Favorites.jsData.nonce
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){
@@ -444,7 +446,8 @@ Favorites.Lists = function()
 				thumbnail_size : thumbnail_size,
 				include_excerpt : include_excerpt,
 				no_favorites : no_favorites,
-				post_types : post_types
+				post_types : post_types,
+				nonce : Favorites.jsData.nonce
 			},
 			success : function(data){
 				if ( Favorites.jsData.dev_mode ){
@@ -557,7 +560,8 @@ Favorites.Button = function()
 			postid : plugin.data.post_id,
 			siteid : plugin.data.site_id,
 			status : plugin.data.status,
-			user_consent_accepted : plugin.data.user_consent_accepted
+			user_consent_accepted : plugin.data.user_consent_accepted,
+			nonce : Favorites.jsData.nonce
 		}
 		$.ajax({
 			url: Favorites.jsData.ajaxurl,
@@ -1030,7 +1034,8 @@ Favorites.RequireConsent = function()
 			dataType: 'json',
 			data: {
 				action : Favorites.formActions.cookieConsent,
-				consent : consent
+				consent : consent,
+				nonce : Favorites.jsData.nonce
 			}
 		});
 	}
@@ -1090,6 +1095,7 @@ Favorites.cssClasses = {
 */
 Favorites.jsData = {
 	ajaxurl : favorites_data.ajaxurl, // The WP AJAX URL
+	nonce : favorites_data.nonce, // Security nonce for AJAX requests
 	favorite : favorites_data.favorite, // Active Button Text/HTML
 	favorited : favorites_data.favorited, // Inactive Button Text
 	include_count : favorites_data.includecount, // Whether to include the count in buttons
