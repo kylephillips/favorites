@@ -7,6 +7,8 @@ class Favorites
 {
 	public static function init()
 	{
+		add_action( 'init', [__CLASS__, 'init_translated']);
+
 		// dev/live
 		global $favorites_env;
 		$favorites_env = 'live';
@@ -14,9 +16,11 @@ class Favorites
 		global $favorites_version;
 		$favorites_version = '2.3.6';
 
+		$app = new Favorites\Bootstrap;
+	}
+
+	public static function init_translated() {
 		global $favorites_name;
 		$favorites_name = __('Favorites', 'favorites');
-
-		$app = new Favorites\Bootstrap;
 	}
 }
