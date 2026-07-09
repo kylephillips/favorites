@@ -1,36 +1,31 @@
-# Translation of Plugins - Favorites - Development (trunk) in Arabic
-# This file is distributed under the same license as the Plugins - Favorites - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-10-14 07:53+0300\n"
+"Project-Id-Version: Plugins - Favorites - Development (trunk)\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2017-10-14 07:53+0300\n"
+"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Language: ar\n"
-"Project-Id-Version: Plugins - Favorites - Development (trunk)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
 
-#: app/Views/settings/settings-users.php:42
-msgid "Enter the Page/Post ID to redirect to (defaults to the site url)"
-msgstr "أدخل معرف الصفحة/المقال للتوجيه إليه (إفتراضيًا إلى رابط الموقع)"
-
-#: app/Views/settings/settings-users.php:25
+#: app/Views/settings/settings-users.php:55
 msgid "Redirect Anonymous Users to a Page"
 msgstr "توجيه المستخدمين المجهولين إلى صفحة"
 
-#: app/Views/settings/settings-users.php:23
+#: app/Views/settings/settings-users.php:53
 msgid "Show Buttons and Display Modal for Anonymous Users"
 msgstr "إظهار الأزرار والعرض المشروط للمستخدمين المجهولين"
 
-#: app/Views/settings/settings-users.php:20
+#: app/Views/settings/settings-users.php:50
 msgid "By default, favorite buttons are hidden from unauthenticated users if anonymous users are disabled."
 msgstr "إفتراضيًا، تكون أزرار التفضيل مخفية عن المستخديمن غير المصادق عليهم إذا تم تعطيل الستخدمين المجهولين."
 
-#: app/Views/settings/settings-users.php:19
+#: app/Views/settings/settings-users.php:49
 msgid "Anonymous Favoriting Behavior"
 msgstr "سلوك التفضيل للمجهولين"
 
@@ -42,18 +37,10 @@ msgstr "الرابط الثابت (كرابط)"
 msgid "Permalink (raw link)"
 msgstr "الرابط الثابت (الرابط الخام)"
 
-#: app/Listeners/AJAXListenerBase.php:44
-msgid "The nonce could not be verified."
-msgstr "لم يتم الحقق من المناسبة."
-
-#: app/Entities/Favorite/SyncSingleFavorite.php:121
-#: app/Entities/User/UserRepository.php:124
+#: app/Entities/Favorite/SyncSingleFavorite.php:120
+#: app/Entities/User/UserRepository.php:123
 msgid "Default List"
 msgstr "القائمة الافتراضية"
-
-#: app/Views/settings/settings-general.php:22
-msgid "Enable Development Mode (logs JS responses in the console for debugging)"
-msgstr "تمكين وضع التطوير (تسجل ردود الجافا سكريبت في وحدة التحكم لتصحيح الأخطاء)"
 
 #: app/Views/settings/settings-general.php:15
 msgid "Development Mode"
@@ -80,19 +67,19 @@ msgstr "إفتراضيًا، يتم عرض الزر في عنصر زر html."
 msgid "Button HTML Element"
 msgstr "عنصر زر HTML "
 
-#: app/Views/settings/settings-users.php:30
+#: app/Views/settings/settings-users.php:60
 msgid "To add \"close\" button or link, give it a data attribute of \"data-favorites-modal-close\"."
 msgstr "لإضافة زر \"إغلاق\" أو رابط، قم بإعطائه سمة البيانات \"data-favorites-modal-close\"."
 
-#: app/Views/settings/settings-users.php:29
+#: app/Views/settings/settings-users.php:59
 msgid "If plugin css or javascript has been disabled, the modal window will not display correctly."
 msgstr "إذا تم تعطيل css أو الجافا سكريبتت الخاص بالإضافة، لن يتم عرض النافذة المشروطة بشكل صحيح."
 
-#: app/Views/settings/settings-users.php:29
+#: app/Views/settings/settings-users.php:59
 msgid "Important: "
 msgstr "هام: "
 
-#: app/Views/settings/settings-users.php:28
+#: app/Views/settings/settings-users.php:58
 msgid "Edit the Modal Content Below"
 msgstr "تعديل محتوى الشرط أدناه"
 
@@ -138,6 +125,7 @@ msgid "By customizing the listing content, some shortcode options will not apply
 msgstr "من خلال تخصيص محتوى القائمة، لن يتم تطبيق بعض خيارات الكود القصير. وتشمل هذه الخيارات: include_links, include_buttons, include_thumbnails, and thumbnail_size"
 
 #: app/Views/settings/settings-display.php:294
+#: app/Views/settings/settings-users.php:20
 msgid "Important:"
 msgstr "هام:"
 
@@ -268,67 +256,89 @@ msgstr "نوع الزر"
 msgid "Favorite Button Content & Appearance"
 msgstr "محتوى ومظهر زر التفضيل"
 
-#: app/Config/SettingsRepository.php:451 app/Config/SettingsRepository.php:458
+#: app/Config/SettingsRepository.php:505
+#: app/Config/SettingsRepository.php:512
 msgid "Count Color"
 msgstr "لون العدد"
 
-#: app/Config/SettingsRepository.php:450 app/Config/SettingsRepository.php:457
+#: app/Config/SettingsRepository.php:504
+#: app/Config/SettingsRepository.php:511
 msgid "Icon Color"
 msgstr "لون الأيقونة"
 
-#: app/Config/SettingsRepository.php:449 app/Config/SettingsRepository.php:456
+#: app/Config/SettingsRepository.php:503
+#: app/Config/SettingsRepository.php:510
 msgid "Text Color"
 msgstr "لون النص"
 
-#: app/Config/SettingsRepository.php:448 app/Config/SettingsRepository.php:455
+#: app/Config/SettingsRepository.php:502
+#: app/Config/SettingsRepository.php:509
 msgid "Border Color"
 msgstr "لون الحد"
 
-#: app/Config/SettingsRepository.php:447 app/Config/SettingsRepository.php:454
+#: app/Config/SettingsRepository.php:501
+#: app/Config/SettingsRepository.php:508
 msgid "Background Color"
 msgstr "لون الخلفية"
 
-#: app/Config/SettingsRepository.php:411
+#. translators: Button text indicating item has been added to wishlist (past tense)
+#: app/Config/SettingsRepository.php:465
 msgid "Added to Wishlist"
 msgstr "أضيف لقائمة الأماني"
 
-#: app/Config/SettingsRepository.php:410
+#. translators: Button text to add item to wishlist (action verb)
+#: app/Config/SettingsRepository.php:463
 msgid "Add to Wishlist"
 msgstr "إضافة إلى قائمة الأماني"
 
-#: app/Config/SettingsRepository.php:407
+#. translators: Label for the wishlist button type (noun, used in settings dropdown)
+#: app/Config/SettingsRepository.php:459
 msgid "Wishlist"
 msgstr "قائمة الأماني"
 
-#: app/Config/SettingsRepository.php:404
+#. translators: Button text indicating item has been bookmarked (past tense)
+#: app/Config/SettingsRepository.php:455
 msgid "Bookmarked"
 msgstr "مُعلم"
 
-#: app/Config/SettingsRepository.php:400 app/Config/SettingsRepository.php:403
+#. translators: Label for the bookmark button type (noun, used in settings dropdown)
+#. translators: Button text to bookmark an item (action verb)
+#: app/Config/SettingsRepository.php:449
+#: app/Config/SettingsRepository.php:453
 msgid "Bookmark"
 msgstr "تعليم"
 
-#: app/Config/SettingsRepository.php:397
+#. translators: Button text indicating item has been loved (past tense)
+#: app/Config/SettingsRepository.php:445
 msgid "Loved"
 msgstr "محبوب"
 
-#: app/Config/SettingsRepository.php:393 app/Config/SettingsRepository.php:396
+#. translators: Label for the love button type (noun, used in settings dropdown)
+#. translators: Button text to love an item (action verb)
+#: app/Config/SettingsRepository.php:439
+#: app/Config/SettingsRepository.php:443
 msgid "Love"
 msgstr "حب"
 
-#: app/Config/SettingsRepository.php:390
+#. translators: Button text indicating item has been liked (past tense)
+#: app/Config/SettingsRepository.php:435
 msgid "Liked"
 msgstr "معجب"
 
-#: app/Config/SettingsRepository.php:386 app/Config/SettingsRepository.php:389
+#. translators: Label for the like button type (noun, used in settings dropdown)
+#. translators: Button text to like an item (action verb)
+#: app/Config/SettingsRepository.php:429
+#: app/Config/SettingsRepository.php:433
 msgid "Like"
 msgstr "إعجاب"
 
-#: app/Config/SettingsRepository.php:126
+#. translators: Link text to close the authentication modal
+#: app/Config/SettingsRepository.php:148
 msgid "Dismiss this notice"
 msgstr "تجاهل هذا الإشعار"
 
-#: app/Config/SettingsRepository.php:125
+#. translators: Message shown to unauthenticated users when they try to favorite a post
+#: app/Config/SettingsRepository.php:146
 msgid "Please login to add favorites."
 msgstr "يرجى تسجيل الدخول لإضافة تفضيلات."
 
@@ -336,11 +346,11 @@ msgstr "يرجى تسجيل الدخول لإضافة تفضيلات."
 msgid "Display & Post Types"
 msgstr "العرض وأنواع المقالات"
 
-#: app/Views/settings/settings-users.php:50
+#: app/Views/settings/settings-users.php:80
 msgid "Unauthenticated users' favorites may be saved in either cookies or session. Authenticated users' favorites are saved as user meta."
 msgstr "يمكن حفظ تفضيلات المستخدمين غير المصادقين في ملفات تعريف الارتباط أو الجلسات. يتم حفظ المفضلة للمستخدمين المؤهلين كملف تعريف المستخدم."
 
-#: app/Views/settings/settings-users.php:49
+#: app/Views/settings/settings-users.php:79
 msgid "Save Unauthenticated Favorites as"
 msgstr "حفظ المفضلة غير المصادق عليها كـ"
 
@@ -513,19 +523,23 @@ msgstr "إدخال زر التفضيل قبل المحتوى"
 msgid "Enabled Favorites for:"
 msgstr "تمكين التفضيلات لـ :"
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
+#: favorites.php
 msgid "https://github.com/kylephillips"
 msgstr "https://github.com/kylephillips"
 
-#. Author of the plugin/theme
+#. Author of the plugin
+#: favorites.php
 msgid "Kyle Phillips"
 msgstr "Kyle Phillips"
 
-#. Description of the plugin/theme
+#. Description of the plugin
+#: favorites.php
 msgid "Simple and flexible favorite buttons for any post type."
 msgstr "ازرار تفضيل بسيطة ومرنة لأي نوع مقال."
 
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
+#: favorites.php
 msgid "http://favoriteposts.com"
 msgstr "http://favoriteposts.com"
 
@@ -537,11 +551,11 @@ msgstr "المستخدمين"
 msgid "General"
 msgstr "عام"
 
-#: app/Views/settings/settings-users.php:56
+#: app/Views/settings/settings-users.php:86
 msgid "Session"
 msgstr "الجلسة"
 
-#: app/Views/settings/settings-users.php:53
+#: app/Views/settings/settings-users.php:83
 msgid "Cookie"
 msgstr "ملف إرتباط"
 
@@ -601,30 +615,46 @@ msgstr "إظهار عدد التفضيلات في أعمدة المدير"
 msgid "Total Favorites"
 msgstr "مجموع التفضيلات"
 
-#. Plugin Name of the plugin/theme
-#: app/Entities/Post/AdminColumns.php:63 app/Entities/Post/PostMeta.php:28
-#: app/Favorites.php:18
+#. Plugin Name of the plugin
+#: favorites.php
+#: app/Config/Settings.php:38
+#: app/Entities/Post/AdminColumns.php:63
+#: app/Entities/Post/PostMeta.php:28
 msgid "Favorites"
 msgstr "التفضيلات"
 
-#: app/Config/SettingsRepository.php:331
+#. translators: Message displayed when user has no favorites saved (empty state)
+#: app/Config/SettingsRepository.php:368
 msgid "No Favorites"
 msgstr "لا توجد مفضلات"
 
-#: app/Config/SettingsRepository.php:248
+#. translators: Text shown while favorite button is processing (loading state)
+#: app/Config/SettingsRepository.php:281
 msgid "Loading"
 msgstr "جار التحميل"
 
-#: app/Config/SettingsRepository.php:188
+#. translators: Button text to remove all favorited posts (call to action)
+#: app/Config/SettingsRepository.php:215
 msgid "Clear Favorites"
 msgstr "مسح التفضيلات"
 
-#: app/Config/SettingsRepository.php:176 app/Config/SettingsRepository.php:383
+#. translators: Button text indicating a post has been added to favorites (past tense). HTML icon is appended after translation.
+#. translators: Button text indicating a post has been added to favorites (past tense)
+#. translators: Button text indicating item has been favorited (past tense)
+#: app/Activation/Activate.php:42
+#: app/Config/SettingsRepository.php:201
+#: app/Config/SettingsRepository.php:425
 msgid "Favorited"
 msgstr "مُفضل"
 
-#: app/Config/SettingsRepository.php:164 app/Config/SettingsRepository.php:379
-#: app/Config/SettingsRepository.php:382
+#. translators: Button text to add a post to favorites (action verb, not noun). HTML icon is appended after translation.
+#. translators: Button text to add a post to favorites (action verb, not noun)
+#. translators: Label for the favorite button type (noun, used in settings dropdown)
+#. translators: Button text to add item to favorites (action verb)
+#: app/Activation/Activate.php:40
+#: app/Config/SettingsRepository.php:187
+#: app/Config/SettingsRepository.php:419
+#: app/Config/SettingsRepository.php:423
 msgid "Favorite"
 msgstr "تفضيل"
 
@@ -632,21 +662,12 @@ msgstr "تفضيل"
 msgid "FAQ"
 msgstr "الاسئلة المتكررة"
 
-#: app/Bootstrap.php:59 app/Config/Settings.php:52
+#: app/Bootstrap.php:59
 #: app/Views/settings/settings-display.php:20
 #: app/Views/settings/settings-display.php:197
 #: app/Views/settings/settings-display.php:244
-#: app/Views/settings/settings.php:2
 msgid "Settings"
 msgstr "إعدادات"
-
-#: app/Activation/Activate.php:40
-msgid "Favorited <i class=\"sf-icon-star-full\"></i>"
-msgstr "مفضلة <i class=\"sf-icon-star-full\"></i>"
-
-#: app/Activation/Activate.php:39
-msgid "Favorite <i class=\"sf-icon-star-empty\"></i>"
-msgstr "تفضيل <i class=\"sf-icon-star-empty\"></i>"
 
 #: app/API/Shortcodes/PostFavoritesShortcode.php:28
 msgid "Anonymous User"
@@ -656,3 +677,48 @@ msgstr "مستخدم مجهول"
 #: app/Views/settings/settings-users.php:7
 msgid "Anonymous Users"
 msgstr "مستخدمين مجهولين"
+
+#: app/Config/Settings.php:37
+#: app/Views/settings/settings.php:2
+msgid "Favorites Settings"
+msgstr "إعدادات المفضلات"
+
+#: app/Listeners/AJAXListenerBase.php:41
+msgid "There was an error processing the request."
+msgstr "حدث خطأ أثناء معالجة الطلب."
+
+#: app/Listeners/FavoriteButton.php:33
+msgid "Invalid post."
+msgstr "منشور غير صالح."
+
+#: app/Views/settings/settings-users.php:19
+msgid "User Cookie Consent"
+msgstr "موافقة ملفات تعريف الارتباط للمستخدم"
+
+#: app/Views/settings/settings-users.php:20
+msgid "Require user consent for saving cookies before allowing favorites to be saved."
+msgstr "اشتراط موافقة المستخدم على حفظ ملفات تعريف الارتباط قبل السماح بحفظ المفضلات."
+
+#: app/Views/settings/settings-users.php:20
+msgid "If using this option for GDPR compliance, please consult an attorney for appropriate legal terms to display in the modal consent."
+msgstr "إذا كنت تستخدم هذا الخيار للامتثال لـ GDPR، يُرجى استشارة محامٍ للحصول على الشروط القانونية المناسبة لعرضها في موافقة النموذج."
+
+#: app/Views/settings/settings-users.php:23
+msgid "Require User Consent"
+msgstr "اشتراط موافقة المستخدم"
+
+#: app/Views/settings/settings-users.php:26
+msgid "Content to Display in Modal Agreement"
+msgstr "المحتوى المراد عرضه في موافقة النموذج"
+
+#: app/Views/settings/settings-users.php:37
+msgid "Consent Button Text"
+msgstr "نص زر الموافقة"
+
+#: app/Views/settings/settings-users.php:41
+msgid "Deny Button Text"
+msgstr "نص زر الرفض"
+
+#: app/Views/settings/settings-general.php:22
+msgid "Enable Development Mode (logs JS responses in the console for debugging)"
+msgstr "تمكين وضع التطوير (تسجيل استجابات JS في وحدة التحكم للتصحيح)"

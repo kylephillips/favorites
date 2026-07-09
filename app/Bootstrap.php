@@ -20,7 +20,7 @@ class Bootstrap
 		add_action( 'init', [$this, 'init']);
 		add_action( 'admin_init', [$this, 'adminInit']);
 		add_filter( 'plugin_action_links_' . 'favorites/favorites.php', [$this, 'settingsLink']);
-		add_action( 'plugins_loaded', [$this, 'addLocalization']);
+		add_action( 'init', [$this, 'addLocalization']);
 	}
 
 	/**

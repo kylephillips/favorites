@@ -142,7 +142,9 @@ class SettingsRepository
 			add_filter('favorites/authentication_modal_content', 'do_shortcode');
 			return apply_filters('favorites/authentication_modal_content', $content);
 		}
+		/* translators: Message shown to unauthenticated users when they try to favorite a post */
 		$html = '<p>' . __('Please login to add favorites.', 'favorites') . '</p>';
+		/* translators: Link text to close the authentication modal */
 		$html .= '<p><a href="#" data-favorites-modal-close>' . __('Dismiss this notice', 'favorites') . '</a></p>';
 		return $html;
 	}
@@ -180,8 +182,10 @@ class SettingsRepository
 	public function buttonText()
 	{
 		$option = get_option('simplefavorites_display');
-		if ( !isset($option['buttontext']) || $option['buttontext'] == "" ) 
+		if ( !isset($option['buttontext']) || $option['buttontext'] == "" ) {
+			/* translators: Button text to add a post to favorites (action verb, not noun) */
 			return __('Favorite', 'favorites');
+		}
 		return $this->sanitizeOutput($option['buttontext']);
 	}
 
@@ -192,8 +196,10 @@ class SettingsRepository
 	public function buttonTextFavorited()
 	{
 		$option = get_option('simplefavorites_display');
-		if ( !isset($option['buttontextfavorited']) || $option['buttontextfavorited'] == "" ) 
+		if ( !isset($option['buttontextfavorited']) || $option['buttontextfavorited'] == "" ) {
+			/* translators: Button text indicating a post has been added to favorites (past tense) */
 			return __('Favorited', 'favorites');
+		}
 		return $this->sanitizeOutput($option['buttontextfavorited']);
 	}
 
@@ -204,8 +210,10 @@ class SettingsRepository
 	public function clearFavoritesText()
 	{
 		$option = get_option('simplefavorites_display');
-		if ( !isset($option['clearfavorites']) || $option['clearfavorites'] == "" ) 
+		if ( !isset($option['clearfavorites']) || $option['clearfavorites'] == "" ) {
+			/* translators: Button text to remove all favorited posts (call to action) */
 			return __('Clear Favorites', 'favorites');
+		}
 		$text = $this->sanitizeOutput($option['clearfavorites']);
 		return apply_filters('favorites/clear_favorites_text', $text);
 	}
@@ -266,7 +274,11 @@ class SettingsRepository
 	public function loadingText()
 	{
 		$option = get_option('simplefavorites_display');
-		return ( isset($option['loadingindicator']['text']) ) ? $this->sanitizeOutput($option['loadingindicator']['text']) : __('Loading', 'favorites');
+		if ( isset($option['loadingindicator']['text']) ) {
+			return $this->sanitizeOutput($option['loadingindicator']['text']);
+		}
+		/* translators: Text shown while favorite button is processing (loading state) */
+		return __('Loading', 'favorites');
 	}
 
 	/**
@@ -349,7 +361,12 @@ class SettingsRepository
 	public function noFavoritesText()
 	{
 		$option = get_option('simplefavorites_display');
-		$text = ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) ? $option['nofavorites'] : __('No Favorites', 'favorites');
+		if ( isset($option['nofavorites']) && $option['nofavorites'] !== "" ) {
+			$text = $option['nofavorites'];
+		} else {
+			/* translators: Message displayed when user has no favorites saved (empty state) */
+			$text = __('No Favorites', 'favorites');
+		}
 		return apply_filters('favorites/no_favorites_text', $text);
 	}
 
@@ -398,38 +415,53 @@ class SettingsRepository
 	{
 		$buttons = [
 			'favorite' => [
+				/* translators: Label for the favorite button type (noun, used in settings dropdown) */
 				'label' => __('Favorite', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-favorite"></i>', 'favorite'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-favorite', 'favorite'),
+				/* translators: Button text to add item to favorites (action verb) */
 				'state_default' => apply_filters('favorites/button/text/default', __('Favorite', 'favorites'), 'favorite'),
+				/* translators: Button text indicating item has been favorited (past tense) */
 				'state_active' => apply_filters('favorites/button/text/active', __('Favorited', 'favorites'), 'favorite')
 			],
 			'like' => [
+				/* translators: Label for the like button type (noun, used in settings dropdown) */
 				'label' => __('Like', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-like"></i>', 'like'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-like', 'like'),
+				/* translators: Button text to like an item (action verb) */
 				'state_default' => apply_filters('favorites/button/text/default', __('Like', 'favorites'), 'like'),
+				/* translators: Button text indicating item has been liked (past tense) */
 				'state_active' => apply_filters('favorites/button/text/active', __('Liked', 'favorites'), 'like')
 			],
 			'love' => [
+				/* translators: Label for the love button type (noun, used in settings dropdown) */
 				'label' => __('Love', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-love"></i>', 'love'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-love', 'love'),
+				/* translators: Button text to love an item (action verb) */
 				'state_default' => apply_filters('favorites/button/text/default', __('Love', 'favorites'), 'love'),
+				/* translators: Button text indicating item has been loved (past tense) */
 				'state_active' => apply_filters('favorites/button/text/active', __('Loved', 'favorites'), 'love')
 			],
 			'bookmark' => [
+				/* translators: Label for the bookmark button type (noun, used in settings dropdown) */
 				'label' => __('Bookmark', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-bookmark"></i>', 'bookmark'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-bookmark', 'bookmark'),
+				/* translators: Button text to bookmark an item (action verb) */
 				'state_default' => apply_filters('favorites/button/text/default', __('Bookmark', 'favorites'), 'bookmark'),
+				/* translators: Button text indicating item has been bookmarked (past tense) */
 				'state_active' => apply_filters('favorites/button/text/active', __('Bookmarked', 'favorites'), 'bookmark')
 			],
 			'wishlist' => [
+				/* translators: Label for the wishlist button type (noun, used in settings dropdown) */
 				'label' => __('Wishlist', 'favorites'),
 				'icon' => apply_filters('favorites/button/icon', '<i class="sf-icon-wishlist"></i>', 'wishlist'),
 				'icon_class' => apply_filters('favorites/button/icon-class', 'sf-icon-wishlist', 'wishlist'),
+				/* translators: Button text to add item to wishlist (action verb) */
 				'state_default' => apply_filters('favorites/button/text/default', __('Add to Wishlist', 'favorites'), 'wishlist'),
+				/* translators: Button text indicating item has been added to wishlist (past tense) */
 				'state_active' => apply_filters('favorites/button/text/active', __('Added to Wishlist', 'favorites'), 'wishlist')
 			]
 		];

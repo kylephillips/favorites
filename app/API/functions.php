@@ -217,7 +217,7 @@ function the_users_who_favorited_post($post_id = null, $site_id = null, $separat
  */
 function get_anonymous_users_who_favourited_post( $post_id = null ) {
 	$user = new PostFavorites( $post_id );
-	return $users->anonymousCount();
+	return $user->anonymousCount();
 }
 
 /**

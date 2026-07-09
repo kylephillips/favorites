@@ -11,11 +11,6 @@ use Favorites\Helpers;
 class Settings 
 {
 	/**
-	* Plugin Name
-	*/
-	private $plugin_name;
-
-	/**
 	* Settings Repository
 	*/
 	private $settings_repo;
@@ -29,18 +24,8 @@ class Settings
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->post_type_repo = new PostTypeRepository;
-		$this->setName();
 		add_action( 'admin_init', [$this, 'registerSettings']);
 		add_action( 'admin_menu', [$this, 'registerSettingsPage']);
-	}
-
-	/**
-	* Set the plugin name
-	*/
-	private function setName()
-	{
-		global $favorites_name;
-		$this->plugin_name = $favorites_name;
 	}
 
 	/**
@@ -49,8 +34,8 @@ class Settings
 	public function registerSettingsPage()
 	{
 		add_options_page( 
-			$this->plugin_name . ' ' . __('Settings', 'favorites'),
-			$this->plugin_name,
+			__('Favorites Settings', 'favorites'),
+			__('Favorites', 'favorites'),
 			'manage_options',
 			'simple-favorites', 
 			[$this, 'settingsPage']

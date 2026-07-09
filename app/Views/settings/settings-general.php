@@ -19,7 +19,7 @@
 			<input type="checkbox" name="simplefavorites_dev_mode" value="true" <?php if ( $this->settings_repo->devMode() ) echo 'checked'; ?> />
 		</div>
 		<div class="post-type-name">
-			<?php _e('Enable Development Mode (logs JS responses in the console for debugging)'); ?>
+			<?php _e('Enable Development Mode (logs JS responses in the console for debugging)', 'favorites'); ?>
 		</div>
 	</div><!-- .post-type-row -->
 </div><!-- .simple-favorites-post-types -->

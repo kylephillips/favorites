@@ -25,5 +25,9 @@
 		"allow-plugins": {
 			"composer/installers": true
 		}
+	},
+	"scripts": {
+		"i18n:extract": "wp i18n make-pot . languages/favorites.pot --domain=favorites --exclude=vendor && wp i18n update-po languages/favorites.pot languages/",
+		"i18n:compile": "wp i18n make-mo languages/"
 	}
 }

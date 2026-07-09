@@ -1,10 +1,10 @@
-<?php 
+<?php
 namespace Favorites\Activation;
 
 /**
-* Plugin Activation
-*/
-class Activate 
+ * Plugin Activation
+ */
+class Activate
 {
 	public function __construct()
 	{
@@ -12,11 +12,11 @@ class Activate
 	}
 
 	/**
-	* Default Plugin Options
-	*/
+	 * Default Plugin Options
+	 */
 	private function setOptions()
 	{
-		if ( !get_option('simplefavorites_dependencies') 
+		if ( !get_option('simplefavorites_dependencies')
 			&& get_option('simplefavorites_dependencies') !== "" ){
 			update_option('simplefavorites_dependencies', [
 				'css' => 'true',
@@ -36,8 +36,10 @@ class Activate
 		if ( !get_option('simplefavorites_display')
 			&& get_option('simplefavorites_display') !== "" ){
 			update_option('simplefavorites_display', [
-				'buttontext' => __('Favorite <i class="sf-icon-star-empty"></i>', 'favorites'),
-				'buttontextfavorited' => __('Favorited <i class="sf-icon-star-full"></i>', 'favorites'),
+				// translators: Button text to add a post to favorites (action verb, not noun). HTML icon is appended after translation.
+				'buttontext' => __('Favorite', 'favorites') . ' <i class="sf-icon-star-empty"></i>',
+				// translators: Button text indicating a post has been added to favorites (past tense). HTML icon is appended after translation.
+				'buttontextfavorited' => __('Favorited', 'favorites') . ' <i class="sf-icon-star-full"></i>',
 				'posttypes' => [
 					'post' => [
 						'display' => true,
