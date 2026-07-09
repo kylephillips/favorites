@@ -1,4 +1,4 @@
-# Favorites for Wordpress
+# Favorites for WordPress
 
 ## Overview
 
