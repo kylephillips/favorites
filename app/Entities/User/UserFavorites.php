@@ -54,18 +54,18 @@ class UserFavorites
 		$site_id = ( isset($site_id) ) ? $site_id : $this->site_id;
 		$favorites = $this->user_repo->getFavorites($user_id, $site_id);
 		if ( isset($filters) ) $this->filters = $filters;
-		if ( isset($this->filters) && is_array($this->filters) ) $favorites = $this->filterFavorites($favorites);
-		return $this->removeInvalidFavorites($favorites);
+		if ( isset($this->filters) && is_array($this->filters) ) $favorites = $this->filterFavorites($favorites, $site_id);
+		return $this->removeInvalidFavorites($favorites, $site_id);
 	}
 
 	/**
 	* Remove non-existent or non-published favorites
 	* @param array $favorites
 	*/
-	private function removeInvalidFavorites($favorites)
+	private function removeInvalidFavorites($favorites, $site_id)
 	{
 		foreach($favorites as $key => $favorite){
-			if ( !$this->postExists($favorite) ) unset($favorites[$key]);
+			if ( !$this->postExists($favorite, $site_id) ) unset($favorites[$key]);
 		}
 		return $favorites;
 	}
@@ -75,9 +75,9 @@ class UserFavorites
 	* @since 1.1.1
 	* @param array $favorites
 	*/
-	private function filterFavorites($favorites)
+	private function filterFavorites($favorites, $site_id)
 	{
-		$favorites = new FavoriteFilter($favorites, $this->filters);
+		$favorites = new FavoriteFilter($favorites, $this->filters, $site_id);
 		return $favorites->filter();
 	}	
 
@@ -108,10 +108,12 @@ class UserFavorites
 	/**
 	* Check if post exists and is published
 	*/
-	private function postExists($id)
+	private function postExists($id, $site_id)
 	{
+		if ( is_multisite() ) switch_to_blog($site_id);
 		$allowed_statuses = ( isset($this->filters['status']) && is_array($this->filters['status']) ) ? $this->filters['status'] : array('publish');
 		$status = get_post_status($id);
+		if ( is_multisite() ) restore_current_blog();
 		if ( !$status ) return false;
 		if ( !in_array($status, $allowed_statuses) ) return false;
 		return true;

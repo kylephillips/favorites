@@ -33,10 +33,18 @@ class FavoriteFilter
 	*/
 	private $filters;
 
-	public function __construct($favorites, $filters)
+	/**
+	 * Site ID
+	 *
+	 * @var int
+	 */
+	private $site_id;
+
+	public function __construct($favorites, $filters, $site_id)
 	{
 		$this->favorites = $favorites;
 		$this->filters = $filters;
+		$this->site_id = $site_id;
 	}
 
 	public function filter()
@@ -54,10 +62,12 @@ class FavoriteFilter
 	*/
 	private function filterByPostType()
 	{
+		if ( is_multisite() ) switch_to_blog($this->site_id);
 		foreach($this->favorites as $key => $favorite){
 			$post_type = get_post_type($favorite);
 			if ( !in_array($post_type, $this->filters['post_type']) ) unset($this->favorites[$key]);
 		}
+		if ( is_multisite() ) restore_current_blog();
 	}
 
 	/**
@@ -66,10 +76,12 @@ class FavoriteFilter
 	*/
 	private function filterByStatus()
 	{
+		if ( is_multisite() ) switch_to_blog($this->site_id);
 		foreach($this->favorites as $key => $favorite){
 			$status = get_post_status($favorite);
 			if ( !in_array($status, $this->filters['status']) ) unset($this->favorites[$key]);
 		}
+		if ( is_multisite() ) restore_current_blog();
 	}
 
 	/**
@@ -81,7 +93,7 @@ class FavoriteFilter
 	{
 		$taxonomies = $this->filters['terms'];
 		$favorites = $this->favorites;
-		
+		if ( is_multisite() ) switch_to_blog($this->site_id);
 		foreach ( $favorites as $key => $favorite ) :
 
 			$all_terms = [];
@@ -98,7 +110,7 @@ class FavoriteFilter
 			if ( !empty($dif) ) unset($favorites[$key]);		
 
 		endforeach;
-
+		if ( is_multisite() ) restore_current_blog();
 		$this->favorites = $favorites;
 	}
 }

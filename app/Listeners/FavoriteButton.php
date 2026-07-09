@@ -75,9 +75,11 @@ class FavoriteButton extends AJAXListenerBase
 	*/
 	private function validates()
 	{
+		if ( is_multisite() ) switch_to_blog($this->data['siteid']);
 		$post_type = get_post_type($this->data['postid']);
 		$enabled = $this->settings_repo->displayInPostType($post_type);
 		$post_type_object = get_post_type_object(get_post_type($this->data['postid']));
+		if ( is_multisite() ) restore_current_blog();
 		if ( !$post_type_object ) return false;
 		if ( !$post_type_object->public || !$enabled ) return false;
 		return true;
