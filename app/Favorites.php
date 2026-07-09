@@ -12,7 +12,7 @@ class Favorites
 		$favorites_env = 'live';
 
 		global $favorites_version;
-		$favorites_version = '2.3.6';
+		$favorites_version = '2.3.7';
 
 		$app = new Favorites\Bootstrap;
 	}
