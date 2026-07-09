@@ -17,10 +17,6 @@
 function favorites_after_button_submit(favorites, post_id, site_id, status){}
 function favorites_after_initial_load(favorites){}
 
-jQuery(document).ready(function(){
-	new Favorites.Factory;
-});
-
 var Favorites = Favorites || {};
 
 /**
@@ -115,3 +111,7 @@ Favorites.Factory = function()
 
 	return plugin.build();
 }
+
+jQuery(document).ready(function(){
+	new Favorites.Factory;
+});
