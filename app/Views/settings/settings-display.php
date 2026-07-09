@@ -162,7 +162,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('Text/HTML', 'favorites'); ?></label>
-			<input type="text" name="simplefavorites_display[buttontext]" value="<?php echo $this->settings_repo->buttonText(); ?>" />
+			<input type="text" name="simplefavorites_display[buttontext]" value="<?php echo esc_attr( $this->settings_repo->buttonText() ); ?>" />
 		</div>
 	</div><!-- .row -->
 	<div class="row" data-favorites-custom-button-option>
@@ -172,7 +172,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('Text/HTML', 'favorites'); ?></label>
-			<input type="text" name="simplefavorites_display[buttontextfavorited]" value="<?php echo $this->settings_repo->buttonTextFavorited(); ?>" />
+			<input type="text" name="simplefavorites_display[buttontextfavorited]" value="<?php echo esc_attr( $this->settings_repo->buttonTextFavorited() ); ?>" />
 		</div>
 	</div><!-- .row -->
 	<div class="row">
@@ -204,7 +204,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 				</div>
 				<div class="field">
 					<label class="block"><?php _e('Loading Text/HTML', 'favorites'); ?></label>
-					<input type="text" name="simplefavorites_display[loadingindicator][text]" value="<?php echo $this->settings_repo->loadingText(); ?>" />
+					<input type="text" name="simplefavorites_display[loadingindicator][text]" value="<?php echo esc_attr( $this->settings_repo->loadingText() ); ?>" />
 				</div>
 			</div><!-- .row -->
 			<div class="row">
@@ -258,7 +258,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					</select>
 					<p>
 						<label class="block"><?php _e('Wrapper CSS Classes', 'favorites'); ?></label>
-						<input type="text" name="simplefavorites_display[listing][wrapper_css]" value="<?php echo $this->settings_repo->listCustomization('wrapper_css'); ?>" />
+						<input type="text" name="simplefavorites_display[listing][wrapper_css]" value="<?php echo esc_attr( $this->settings_repo->listCustomization('wrapper_css') ); ?>" />
 					</p>
 				</div>
 			</div><!-- .row -->
@@ -276,7 +276,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 					</select>
 					<p>
 						<label class="block"><?php _e('Listing CSS Classes', 'favorites'); ?></label>
-						<input type="text" name="simplefavorites_display[listing][listing_css]" value="<?php echo $this->settings_repo->listCustomization('listing_css'); ?>" />
+						<input type="text" name="simplefavorites_display[listing][listing_css]" value="<?php echo esc_attr( $this->settings_repo->listCustomization('listing_css') ); ?>" />
 					</p>
 				</div>
 			</div><!-- .row -->
@@ -350,7 +350,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('Clear Favorites Button Text/HTML', 'favorites'); ?></label>
-			<input type="text" name="simplefavorites_display[clearfavorites]" value="<?php echo $this->settings_repo->clearFavoritesText(); ?>" />
+			<input type="text" name="simplefavorites_display[clearfavorites]" value="<?php echo esc_attr( $this->settings_repo->clearFavoritesText() ); ?>" />
 		</div>
 	</div><!-- .row -->
 	<div class="row">
@@ -360,7 +360,7 @@ $button_type_selected = $this->settings_repo->getButtonType();
 		</div>
 		<div class="field">
 			<label class="block"><?php _e('No Favorites Text/HTML', 'favorites'); ?></label>
-			<input type="text" name="simplefavorites_display[nofavorites]" value="<?php echo $this->settings_repo->noFavoritesText(); ?>" />
+			<input type="text" name="simplefavorites_display[nofavorites]" value="<?php echo esc_attr( $this->settings_repo->noFavoritesText() ); ?>" />
 		</div>
 	</div><!-- .row -->
 </div><!-- .favorites-display-settings -->
