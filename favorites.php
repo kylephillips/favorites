@@ -1,18 +1,18 @@
 <?php
 /*
 Plugin Name: Favorites
-Plugin URI: http://favoriteposts.com
+Plugin URI: https://hookandfilter.com/plugins/favorites/
 Description: Simple and flexible favorite buttons for any post type.
-Version: 2.3.7
-Author: Kyle Phillips
-Author URI: https://github.com/kylephillips
+Version: 2.3.8
+Author: Hook & Filter
+Author URI: https://hookandfilter.com
 Text Domain: favorites
 Domain Path: /languages/
 License: GPLv2 or later.
-Copyright: Kyle Phillips
+Copyright: Hook & Filter
 */
 
-/*  Copyright 2026 Kyle Phillips
+/*  Copyright 2026 Hook & Filter  (email : support@hookandfilter.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 

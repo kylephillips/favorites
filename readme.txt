@@ -1,6 +1,6 @@
 === Favorites ===
-Contributors: kylephillips
-Donate link: http://favoriteposts.com/
+Contributors: kylephillips, hookandfilter
+Donate link: https://hookandfilter.com/
 Tags: favorites, like, bookmark, favorite, likes, bookmarks, favourite, favourites, multisite, wishlist, wish list
 Requires at least: 3.8
 Requires PHP: 5.4
@@ -19,7 +19,7 @@ Favorites is designed for end users and theme developers. It provides an easy-to
 
 The plugin can provide a way to save favorites, likes, bookmarks, or any other similar types of data with its customizable button text.
 
-Visit [favoriteposts.com](http://favoriteposts.com) for a full list of available template functions and shortcodes.
+Visit [hookandfilter.com](http://hookandfilter.com) for a full list of available template functions and shortcodes.
 
 **Features**
 
@@ -39,7 +39,7 @@ To approve the use of cookies, trigger the event "favorites-user-consent-approve
 
 **Multisite Compatible** - As of version 1.1.0, Favorites is multisite compatible. User favorites are saved on a site/blog basis, and may be retrieved and displayed across sites.
 
-For more information visit [favoriteposts.com](http://favoriteposts.com).
+For more information visit [hookandfilter.com](http://hookandfilter.com).
 
 **Important: Favorites requires WordPress version 3.8 or higher, and PHP version 5.4 or higher.**
 
